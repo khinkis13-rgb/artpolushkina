@@ -138,11 +138,12 @@ a:hover{color:var(--mars)}
 .cb{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
 .cc{font-size:.82rem;color:var(--wg)}
 .cs{padding:7px 14px;border-radius:8px;border:1px solid var(--lg);background:var(--canvas-w);font-family:var(--fb);font-size:.8rem;color:var(--char);cursor:pointer}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.cg{display:flex;gap:24px;align-items:flex-start}
+.cg-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px}
 .cd{background:var(--canvas);border-radius:14px;overflow:hidden;border:1px solid rgba(200,169,110,.08);transition:.3s var(--e);cursor:pointer}
 .cd:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(45,42,38,.09)}
-.ci{width:100%;aspect-ratio:1;overflow:hidden;background:linear-gradient(135deg,var(--canvas-w),var(--lg));position:relative}
-.ci img{width:100%;height:100%;object-fit:cover;transition:.4s var(--e)}
+.ci{width:100%;overflow:hidden;background:linear-gradient(135deg,var(--canvas-w),var(--lg));position:relative}
+.ci img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s var(--e)}
 .cd:hover .ci img{transform:scale(1.04)}
 .ci .ph{font-family:var(--fd);font-size:.9rem;color:var(--wg);font-style:italic;text-align:center;padding:20px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 /* media count badge */
@@ -165,12 +166,12 @@ a:hover{color:var(--mars)}
 .mx:hover{background:rgba(139,64,73,.12);color:var(--burg)}
 
 /* ── Carousel ── */
-.ml{position:relative;overflow:hidden;border-radius:18px 0 0 18px;background:linear-gradient(135deg,var(--canvas-w),var(--lg));min-height:400px}
+.ml{position:relative;overflow:hidden;border-radius:18px 0 0 18px;background:linear-gradient(135deg,var(--canvas-w),var(--lg));min-height:min(560px,80vh)}
 .car-wrap{position:absolute;inset:0;overflow:hidden}
 .car-track{display:flex;height:100%;transition:transform .38s var(--e);will-change:transform}
 .car-slide{flex:0 0 100%;height:100%;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
-.car-slide img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.car-slide video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;background:#000}
+.car-slide img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
+.car-slide video{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;background:#000}
 .car-slide .ph{font-family:var(--fd);font-size:1rem;color:var(--wg);font-style:italic;position:relative;z-index:1;text-align:center;padding:24px}
 .car-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:38px;height:38px;border-radius:50%;border:none;background:rgba(247,241,232,.82);backdrop-filter:blur(6px);cursor:pointer;font-size:1.15rem;color:var(--char);display:flex;align-items:center;justify-content:center;transition:.2s var(--e);box-shadow:0 2px 10px rgba(45,42,38,.15)}
 .car-btn:hover{background:rgba(247,241,232,.98);color:var(--burg)}
@@ -208,6 +209,7 @@ a:hover{color:var(--mars)}
 .cl svg{width:16px;height:16px;fill:currentColor}
 
 .ft{background:var(--char);color:var(--wg);text-align:center;padding:20px 28px;font-size:.78rem;border-top:1px solid rgba(200,169,110,.08)}
+.ft .mk{margin-top:6px;font-size:11px;opacity:.45}
 .btt{position:fixed;bottom:24px;right:24px;z-index:90;width:44px;height:44px;border-radius:50%;background:var(--burg);color:#fff;border:none;cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(122,48,64,.25);transition:.3s}
 .btt.vis{display:flex}
 .btt:hover{background:var(--mars);transform:translateY(-2px)}
@@ -234,7 +236,7 @@ a:hover{color:var(--mars)}
   .ag{grid-template-columns:1fr}
   .ap-ring{width:220px;height:220px}
   .md{grid-template-columns:1fr}
-  .ml{min-height:300px;border-radius:18px 18px 0 0}
+  .ml{min-height:0;aspect-ratio:var(--mr,1);max-height:62vh;border-radius:18px 18px 0 0}
   .car-thumbs{display:none}
   .nk{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;align-items:center;gap:28px;padding:32px 24px 40px;background:rgba(247,241,232,.97);border-bottom:1px solid rgba(200,169,110,.22);box-shadow:0 8px 32px rgba(45,42,38,.12)}
   .nk.open{display:flex;animation:menuSlide .22s ease both}
@@ -245,11 +247,11 @@ a:hover{color:var(--mars)}
 }
 @media(max-width:600px){
   .sec{padding:56px 16px}
-  .cg{grid-template-columns:1fr 1fr;gap:14px}
+  .cg,.cg-col{gap:14px}
   .cb2{padding:12px}
   .ctt{font-size:.9rem}
 }
-@media(max-width:400px){.cg{grid-template-columns:1fr}}
+@media(max-width:400px){.csk{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -357,7 +359,7 @@ a:hover{color:var(--mars)}
   </div>
 </section>
 
-<footer class="ft" id="footerText">© 2026 Мария Полушкина</footer>
+<footer class="ft"><div id="footerText">© 2026 Мария Полушкина</div><div class="mk">Made by Dmitry Khinkis</div></footer>
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <!-- MODAL -->
@@ -493,25 +495,44 @@ function rC(){
   else if(s==='ya')items.sort((a,b)=>a.y-b.y);
   const u=L==='ru'?'см':'cm';
   document.getElementById('cC').textContent=L==='ru'?`${items.length} работ`:`${items.length} works`;
-  document.getElementById('cG').innerHTML=items.map(a=>{
+  const cards=items.map(a=>{
     const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me;
     const media=getMedia(a);
     const first=media[0];
     const hasVid=media.some(m=>m.type==='vid');
-    const thumb=first.type==='img'?`<img src="${first.path}" alt="${tt}" loading="lazy" onerror="this.onerror=null;this.style.display='none'">`:`<video src="${first.path}" muted preload="none" style="width:100%;height:100%;object-fit:cover"></video>`;
+    const thumb=first.type==='img'?`<img src="${first.path}" alt="${tt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" style="width:100%;height:100%;object-fit:cover"></video>`;
     const countBadge=media.length>1?`<div class="media-badge">🖼 ${media.length}</div>`:'';
     const vidBadge=hasVid?`<div class="vid-badge">▶ видео</div>`:'';
     return`<div class="cd" onclick="oM(${a.id})">
-      <div class="ci">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}</div>
+      <div class="ci" style="aspect-ratio:1/${catRatio(a)}">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}</div>
       <div class="cb2">
         <div class="ctt">${tt}</div>
         <div class="cm">${mm}. ${a.s} ${u}. ${a.y}</div>
         <div class="cft"><span class="cp">${a.p.toLocaleString('ru-RU')} ₽</span><span class="cby">${L==='ru'?'Купить':'Buy'}</span></div>
       </div>
     </div>`;
-  }).join('');
+  });
+  // раскладка по колонкам: каждую карточку — в самую короткую, высоту считаем по размеру холста
+  const n=catCols(),hs=Array(n).fill(0),cols=Array.from({length:n},()=>[]);
+  items.forEach((a,i)=>{const k=hs.indexOf(Math.min(...hs));cols[k].push(cards[i]);hs[k]+=catRatio(a)+.45;});
+  document.getElementById('cG').innerHTML=cols.map(c=>`<div class="cg-col">${c.join('')}</div>`).join('');
+  catN=n;
   ob();
 }
+let catN=0;
+// высота/ширина работы из размера «70×60» (высота × ширина) — до загрузки фото
+function catRatio(a){
+  const m=String(a.s||'').match(/(\d+(?:[.,]\d+)?)\s*[×xх*]\s*(\d+(?:[.,]\d+)?)/);
+  const r=m?parseFloat(m[1].replace(',','.'))/parseFloat(m[2].replace(',','.')):1;
+  return Math.min(2.2,Math.max(.45,r||1));
+}
+function catCols(){
+  if(innerWidth<=400)return 1;
+  if(innerWidth<=600)return 2;
+  const w=document.getElementById('cG').clientWidth||innerWidth;
+  return Math.max(1,Math.floor((w+24)/(270+24)));
+}
+addEventListener('resize',()=>{if(W.length&&catCols()!==catN)rC();});
 
 /* ── CAROUSEL ── */
 let carIdx=0,carMedia=[],carStartX=0,carDragging=false;
@@ -568,6 +589,7 @@ function carSetupSwipe(){
 function oM(id){
   const a=W.find(x=>x.id===id);if(!a)return;
   const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me,u=L==='ru'?'см':'cm';
+  document.querySelector('.ml').style.setProperty('--mr',`1/${catRatio(a)}`);
   carBuild(getMedia(a),tt);
   document.getElementById('mT').textContent=tt;
   document.getElementById('mM').innerHTML=`${mm}<br>${a.s} ${u}<br>${a.y}`;
