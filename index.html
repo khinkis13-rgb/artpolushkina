@@ -38,8 +38,8 @@ a:hover{color:var(--mars)}
 .hb span:nth-child(1){top:0}.hb span:nth-child(2){top:8px}.hb span:nth-child(3){top:16px}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:80px 28px 40px;overflow:hidden;background:var(--canvas)}
-.hi{max-width:var(--mw);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 28px 40px;overflow:hidden;background:var(--hb,var(--canvas));transition:background-color .9s ease}
+.hi{max-width:var(--mw);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:center}
 .ht h1{font-family:var(--fd);font-weight:300;font-size:clamp(2.6rem,5vw,4rem);line-height:1.12;margin-bottom:20px}
 .ht h1 .ac{color:var(--burg);font-style:italic;font-weight:400}
 .hs{font-size:.95rem;color:var(--wg);max-width:420px;margin-bottom:28px;line-height:1.9}
@@ -48,11 +48,22 @@ a:hover{color:var(--mars)}
 .hl a:hover{border-color:var(--burg);color:var(--burg)}
 .hc{display:inline-block;padding:13px 32px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;font-weight:400;transition:.3s var(--e)}
 .hc:hover{background:var(--mars);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,48,64,.25)}
-.ha{display:flex;justify-content:center;align-items:center}
-.ha-vid{width:100%;max-width:600px;aspect-ratio:848/464;display:block;border-radius:14px;object-fit:cover;background:#F4F1E4;box-shadow:0 18px 50px rgba(45,42,38,.16)}
+.ha{display:flex;flex-direction:column;justify-content:center;align-items:center}
+/* Ролик без рамки: края растворяются, фон экрана берёт цвет текущей сцены (heroSync) */
+.ha-vid{width:100%;max-width:760px;aspect-ratio:848/464;display:block;object-fit:cover;background:transparent;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
+.ha-cap{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;min-height:1.6em;margin-top:6px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);transition:opacity .5s,color .9s}
+.ha-cap.off{opacity:0;pointer-events:none}
+.ha-cap .cg{color:var(--burg);border-bottom:1px solid currentColor;transition:color .9s}
+.ha-cap:hover .cg{color:var(--mars)}
+.hero h1,.hero .hs,.hero .hl a{transition:color .9s,border-color .9s}
+.hero.dk h1{color:var(--canvas)}.hero.dk h1 .ac{color:var(--gold-s)}
+.hero.dk .hs,.hero.dk .ha-cap{color:rgba(247,241,232,.82)}
+.hero.dk .hl a{color:var(--canvas);border-color:rgba(247,241,232,.35)}
+.hero.dk .ha-cap .cg{color:var(--gold-s)}
 
 
 .wd{width:100%;line-height:0;overflow:hidden}
+.wd.wh{background:var(--hb,var(--canvas));transition:background-color .9s ease}
 .wd svg{width:100%;height:auto;display:block}
 
 /* SECTIONS */
@@ -257,7 +268,8 @@ a:hover{color:var(--mars)}
   .hs{margin:0 auto 28px}
   .hl{justify-content:center}
   .ha{order:-1;margin-bottom:16px}
-  .ha-vid{max-width:520px}
+  .ha-vid{max-width:none;width:calc(100% + 56px);margin:0 -28px}
+  .hi{gap:28px}
   .ag{grid-template-columns:1fr}
   .ap-ring{width:220px;height:220px}
   .md{grid-template-columns:1fr}
@@ -331,12 +343,13 @@ a:hover{color:var(--mars)}
       <a href="#catalog" class="hc" data-ru="Смотреть каталог ↓" data-en="View catalog ↓">Смотреть каталог ↓</a>
     </div>
     <div class="ha">
-      <video class="ha-vid" src="site/videos/hero.mp4" poster="site/images/hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Анимация работ Марии Полушкиной"></video>
+      <video class="ha-vid" id="heroVid" src="site/videos/hero.mp4" poster="site/images/hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Анимация работ Марии Полушкиной"></video>
+      <a class="ha-cap off" id="heroCap" href="#"></a>
     </div>
   </div>
 </section>
 
-<div class="wd"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40Q180 0 360 35Q540 70 720 35Q900 0 1080 35Q1260 70 1440 40L1440 80 0 80Z" fill="#F2EADD"/></svg></div>
+<div class="wd wh"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40Q180 0 360 35Q540 70 720 35Q900 0 1080 35Q1260 70 1440 40L1440 80 0 80Z" fill="#F2EADD"/></svg></div>
 
 <section class="sec ab" id="about">
   <div class="si">
@@ -677,6 +690,38 @@ function shareWork(id){
 }
 function openFromHash(){const m=location.hash.match(/^#work-(\d+)$/);if(m&&W.length)oM(+m[1]);}
 addEventListener('hashchange',openFromHash);
+
+/* Заставка: фон первого экрана берёт цвет краёв текущего кадра, под роликом — подпись сцены со ссылкой на работу */
+const HERO_SC=[[0,25],[7.5,65],[16.8,77],[22.3,37],[30.3,25],[35.3,18],[40,55],[46.3,25],[51.3,59],[56.3,52],[61.3,0],[67.3,60],[72,24],[77.3,35]];
+function heroSync(){
+  const v=document.getElementById('heroVid'),hero=document.getElementById('hero'),cap=document.getElementById('heroCap');
+  if(!v)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
+  const c=document.createElement('canvas');c.width=32;c.height=18;const g=c.getContext('2d',{willReadFrequently:true});
+  let vis=true,last='',capKey='';
+  new IntersectionObserver(e=>{vis=e[0].isIntersecting;},{threshold:0}).observe(hero);
+  const med=a=>{a.sort((x,y)=>x-y);return a[a.length>>1];};
+  function tick(){
+    if(vis&&!document.hidden&&v.readyState>=2){
+      try{
+        g.drawImage(v,0,0,32,18);const d=g.getImageData(0,0,32,18).data,r=[],gg=[],b=[];
+        for(let y=0;y<18;y++)for(let x=0;x<32;x++){if(x>1&&x<30&&y>1&&y<16)continue;const i=(y*32+x)*4;r.push(d[i]);gg.push(d[i+1]);b.push(d[i+2]);}
+        const R=med(r),G=med(gg),B=med(b),col=`rgb(${R},${G},${B})`;
+        if(col!==last){last=col;document.documentElement.style.setProperty('--hb',col);
+          const li=x=>{x/=255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;},lum=.2126*li(R)+.7152*li(G)+.0722*li(B);hero.classList.toggle('dk',lum<.25);}
+      }catch(e){}
+      const t=v.currentTime;let id=0;for(const [s,w] of HERO_SC)if(t>=s)id=w;
+      const a=id&&W.find(x=>x.id===id),k=(a?id:0)+L;
+      if(k!==capKey){capKey=k;cap.classList.add('off');
+        setTimeout(()=>{if(!a)return;const ru=L==='ru';
+          cap.innerHTML=`<span>${ru?a.t:(a.te||a.t)}${a.y?' · '+a.y:''}</span><span class="cg">${ru?'Смотреть работу →':'View work →'}</span>`;
+          cap.href='#work-'+id;cap.classList.remove('off');},a?450:0);}
+    }
+    setTimeout(tick,140);
+  }
+  tick();
+}
+heroSync();
 // высота/ширина работы из размера «70×60» (высота × ширина) — до загрузки фото
 function catRatio(a){
   const m=String(a.s||'').match(/(\d+(?:[.,]\d+)?)\s*[×xх*]\s*(\d+(?:[.,]\d+)?)/);
