@@ -48,48 +48,8 @@ a:hover{color:var(--mars)}
 .hc{display:inline-block;padding:13px 32px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;font-weight:400;transition:.3s var(--e)}
 .hc:hover{background:var(--mars);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,48,64,.25)}
 .ha{display:flex;justify-content:center;align-items:center}
-.ha-svg{width:100%;max-width:520px;height:auto;display:block}
+.ha-vid{width:100%;max-width:600px;aspect-ratio:848/464;display:block;border-radius:14px;object-fit:cover;background:#F4F1E4;box-shadow:0 18px 50px rgba(45,42,38,.16)}
 
-/* SVG Animations */
-#heroSvg{animation:svgIn .5s ease forwards}
-@keyframes svgIn{from{opacity:0}to{opacity:1}}
-.wire{stroke-dasharray:680;stroke-dashoffset:680;animation:wireDraw 1.2s .45s ease forwards}
-.wire2{animation-delay:.6s}
-@keyframes wireDraw{to{stroke-dashoffset:0}}
-.lt-trunk{transform-box:fill-box;transform-origin:center bottom;animation:trunkUp .35s .72s ease both}
-.rt-trunk{transform-box:fill-box;transform-origin:center bottom;animation:trunkUp .35s .78s ease both}
-@keyframes trunkUp{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-.lt{animation:ltSlide .45s cubic-bezier(.34,1.56,.64,1) both;opacity:0}
-.lt1{animation-delay:.86s}.lt2{animation-delay:.98s}.lt3{animation-delay:1.10s}.lt4{animation-delay:1.22s}
-.lt5{animation-delay:1.34s}.lt6{animation-delay:1.46s}.lt7{animation-delay:1.58s}.lt8{animation-delay:1.70s}
-@keyframes ltSlide{from{transform:translateX(-130px);opacity:0}to{transform:translateX(0);opacity:1}}
-.rt{animation:rtSlide .45s cubic-bezier(.34,1.56,.64,1) both;opacity:0}
-.rt1{animation-delay:1.06s}.rt2{animation-delay:1.16s}.rt3{animation-delay:1.26s}.rt4{animation-delay:1.36s}
-.rt5{animation-delay:1.46s}.rt6{animation-delay:1.56s}.rt7{animation-delay:1.66s}
-@keyframes rtSlide{from{transform:translateX(130px);opacity:0}to{transform:translateX(0);opacity:1}}
-.ltree-g{transform-box:fill-box;transform-origin:center bottom;animation:treeSway 18s 2.4s ease-in-out infinite}
-.rtree-g{transform-box:fill-box;transform-origin:center bottom;animation:treeSway 24s 2.6s ease-in-out infinite reverse}
-@keyframes treeSway{0%,100%{transform:rotate(0deg)}30%{transform:rotate(2.5deg)}70%{transform:rotate(-2deg)}}
-.fig-disc{animation:discDrop .6s cubic-bezier(.34,1.56,.64,1) 2.0s both,discFloat 11s 4s ease-in-out infinite}
-@keyframes discDrop{from{transform:translateY(-65px);opacity:0}to{transform:translateY(0);opacity:1}}
-@keyframes discFloat{0%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}70%{transform:translateY(4px)}}
-.fig-neck{animation:fadeEl .45s ease 2.05s both;opacity:0}
-@keyframes fadeEl{to{opacity:1}}
-.fig-body{transform-box:fill-box;transform-origin:top center;animation:bodyGrow .7s ease 2.1s both}
-@keyframes bodyGrow{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
-.w1{animation:waveIn .9s 2.5s ease both,waveFlowA 30s 3.5s ease-in-out infinite}
-.w2{animation:waveIn .9s 2.65s ease both,waveFlowB 24s 3.3s ease-in-out infinite}
-.w3{animation:waveIn .9s 2.8s ease both,waveFlowC 20s 3.55s ease-in-out infinite}
-.w4{animation:waveIn .9s 2.95s ease both,waveFlowA 36s 3.7s ease-in-out infinite reverse}
-@keyframes waveIn{from{opacity:0;transform:translateY(75px)}to{opacity:1;transform:translateY(0)}}
-@keyframes waveFlowA{0%,100%{transform:translateX(0)}50%{transform:translateX(-95px)}}
-@keyframes waveFlowB{0%,100%{transform:translateX(-30px)}50%{transform:translateX(75px)}}
-@keyframes waveFlowC{0%,100%{transform:translateX(10px)}50%{transform:translateX(-80px)}}
-.boat-g{transform-box:fill-box;animation:boatSlide .9s cubic-bezier(.34,1.56,.64,1) 3.1s both,boatBob 9s 4.1s ease-in-out infinite}
-@keyframes boatSlide{from{transform:translateX(220px);opacity:0}to{transform:translateX(0);opacity:1}}
-@keyframes boatBob{0%,100%{transform:translateY(0) rotate(-2.5deg)}50%{transform:translateY(-18px) rotate(3deg)}}
-.sig-text{animation:sigIn 1s 3.5s ease both;opacity:0}
-@keyframes sigIn{to{opacity:.5}}
 
 .wd{width:100%;line-height:0;overflow:hidden}
 .wd svg{width:100%;height:auto;display:block}
@@ -296,7 +256,7 @@ a:hover{color:var(--mars)}
   .hs{margin:0 auto 28px}
   .hl{justify-content:center}
   .ha{order:-1;margin-bottom:16px}
-  .ha-svg{max-width:360px}
+  .ha-vid{max-width:520px}
   .ag{grid-template-columns:1fr}
   .ap-ring{width:220px;height:220px}
   .md{grid-template-columns:1fr}
@@ -370,27 +330,7 @@ a:hover{color:var(--mars)}
       <a href="#catalog" class="hc" data-ru="Смотреть каталог ↓" data-en="View catalog ↓">Смотреть каталог ↓</a>
     </div>
     <div class="ha">
-      <svg id="heroSvg" class="ha-svg" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
-        <defs><clipPath id="pClip"><rect x="0" y="0" width="900" height="900" rx="14"/></clipPath><clipPath id="sailCP"><polygon points="673,548 673,608 638,608"/></clipPath></defs>
-        <rect width="900" height="900" fill="#EBF0EE" rx="14"/>
-        <g clip-path="url(#pClip)">
-          <line class="wire" x1="152" y1="320" x2="774" y2="332" stroke="#D0BFA8" stroke-width="1.5" opacity=".75"/>
-          <line class="wire wire2" x1="152" y1="342" x2="774" y2="354" stroke="#D0BFA8" stroke-width="1.5" opacity=".75"/>
-          <g class="ltree-g"><rect class="lt-trunk" x="109" y="534" width="8" height="165" fill="#5A3A25" rx="2"/><rect class="lt lt1" x="84" y="483" width="56" height="51" fill="#3D6C4A" rx="2"/><rect class="lt lt2" x="82" y="429" width="60" height="49" fill="#4A7A58" rx="2"/><rect class="lt lt3" x="81" y="376" width="63" height="49" fill="#3B6845" rx="2"/><rect class="lt lt4" x="79" y="323" width="67" height="49" fill="#4E8260" rx="2"/><rect class="lt lt5" x="81" y="270" width="63" height="49" fill="#386A48" rx="2"/><rect class="lt lt6" x="79" y="217" width="65" height="49" fill="#4A7A58" rx="2"/><rect class="lt lt7" x="82" y="164" width="61" height="49" fill="#3D6E4A" rx="2"/><rect class="lt lt8" x="84" y="113" width="57" height="47" fill="#2C5C38" rx="2"/></g>
-          <g class="rtree-g"><rect class="rt-trunk" x="810" y="540" width="7" height="122" fill="#5A3A25" rx="2"/><rect class="rt rt1" x="789" y="492" width="46" height="48" fill="#3D6C4A" rx="2"/><rect class="rt rt2" x="790" y="450" width="44" height="38" fill="#4A7A58" rx="2"/><rect class="rt rt3" x="789" y="408" width="46" height="38" fill="#3B6845" rx="2"/><rect class="rt rt4" x="790" y="366" width="44" height="38" fill="#4E8260" rx="2"/><rect class="rt rt5" x="789" y="324" width="46" height="38" fill="#386A48" rx="2"/><rect class="rt rt6" x="790" y="282" width="44" height="38" fill="#4A7A58" rx="2"/><rect class="rt rt7" x="791" y="237" width="43" height="41" fill="#2C5C38" rx="2"/></g>
-          <path class="w1" d="M -300,572 Q -150,558 0,570 Q 150,582 300,568 Q 450,554 600,570 Q 750,586 900,570 Q 1050,554 1200,570 L1200,900 L-300,900 Z" fill="#BDD2DF"/>
-          <path class="w2" d="M -300,633 Q -120,618 60,632 Q 240,646 420,630 Q 600,614 780,632 Q 960,650 1140,632 L1200,900 L-300,900 Z" fill="#8BA5B9"/>
-          <rect class="fig-neck" x="435" y="278" width="14" height="63" fill="#E0C0A8" rx="5"/>
-          <polygon class="fig-body" points="442,340 354,362 442,980 530,362" fill="#8B3840"/>
-          <ellipse class="fig-disc" cx="442" cy="278" rx="74" ry="19" fill="#6A8FAB"/>
-          <ellipse class="fig-disc" cx="442" cy="271" rx="74" ry="8" fill="#7B9EBB" opacity=".35"/>
-          <path class="w3" d="M -300,700 Q -100,685 120,700 Q 340,715 560,698 Q 780,681 1000,698 Q 1150,711 1300,698 L1300,900 L-300,900 Z" fill="#5E7F9E"/>
-          <path class="w4" d="M -300,762 Q -80,746 140,762 Q 360,778 580,760 Q 800,742 1020,762 Q 1160,776 1300,760 L1300,900 L-300,900 Z" fill="#3C5878"/>
-          <g class="boat-g"><path d="M 635,618 C 649,608 661,605 674,604 C 687,605 699,608 713,618 C 707,631 694,635 674,636 C 654,635 641,631 635,618 Z" fill="#704030"/><line x1="674" y1="605" x2="674" y2="548" stroke="#5A3020" stroke-width="2.5"/><g clip-path="url(#sailCP)"><rect x="638" y="596" width="12" height="12" fill="#4B6A8B"/><rect x="650" y="596" width="12" height="12" fill="#C8A96E"/><rect x="662" y="596" width="12" height="12" fill="#4A7858"/><rect x="641" y="584" width="12" height="12" fill="#8B3842"/><rect x="653" y="584" width="12" height="12" fill="#6B8FAB"/><rect x="665" y="584" width="12" height="12" fill="#C8A96E"/><rect x="646" y="572" width="12" height="12" fill="#4A7858"/><rect x="658" y="572" width="12" height="12" fill="#3C5A7A"/><rect x="670" y="572" width="12" height="12" fill="#8B3842"/><rect x="651" y="560" width="12" height="12" fill="#C8A96E"/><rect x="663" y="560" width="12" height="12" fill="#4B6A8B"/><rect x="659" y="548" width="12" height="12" fill="#4A7858"/></g></g>
-          <text class="sig-text" x="748" y="878" font-family="'Cormorant Garamond',Georgia,serif" font-size="14" fill="#5A4838" font-style="italic">M. Polushkina</text>
-        </g>
-        <rect x="1.5" y="1.5" width="897" height="897" fill="none" stroke="#C8A96E" stroke-width="1.5" rx="13.5" opacity=".22"/>
-      </svg>
+      <video class="ha-vid" src="site/videos/hero.mp4" poster="site/images/hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Анимация работ Марии Полушкиной"></video>
     </div>
   </div>
 </section>
