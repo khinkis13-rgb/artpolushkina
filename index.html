@@ -26,7 +26,8 @@ a:hover{color:var(--mars)}
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,241,232,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,169,110,.15)}
 .ni{max-width:var(--mw);margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;position:relative}
-.nl{font-family:var(--fd);font-size:1.1rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--char)}
+.nl{display:flex;align-items:center}
+.nl img{height:46px;width:auto;display:block;margin-top:8px}
 .nk{display:flex;align-items:center;gap:32px}
 .nk a{font-size:.78rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--wg);transition:.3s}
 .nk a:hover{color:var(--burg)}
@@ -305,7 +306,7 @@ a:hover{color:var(--mars)}
 <body>
 <nav class="nav">
   <div class="ni">
-    <a href="#" class="nl" data-ru="М. Полушкина" data-en="M. Polushkina">М. Полушкина</a>
+    <a href="#" class="nl" aria-label="Мария Полушкина"><img src="site/images/logo-signature.svg" alt="M. Polushkina" width="70" height="40"></a>
     <div class="nk" id="nk">
       <a href="#about" data-ru="О художнике" data-en="About">О художнике</a>
       <a href="#press" data-ru="Публикации" data-en="Press">Публикации</a>
