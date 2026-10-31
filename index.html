@@ -286,7 +286,7 @@ a:hover{color:var(--mars)}
 .try-size input{width:120px;accent-color:var(--terra)}
 .try-real{font-size:.78rem;color:var(--gold-s);padding:0 6px}
 .try-cal{display:none;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom));font-size:.82rem}
-.try-cal input{width:80px;padding:8px 10px;border-radius:10px;border:1px solid rgba(247,241,232,.3);background:rgba(247,241,232,.08);color:var(--canvas);font-family:var(--fb);font-size:.9rem;text-align:center}
+.try-cal input{width:80px;padding:8px 10px;border-radius:10px;border:1px solid rgba(247,241,232,.3);background:rgba(247,241,232,.08);color:var(--canvas);font-family:var(--fb);font-size:16px;text-align:center}
 .try.cal .try-bar{display:none}
 .try.cal .try-cal{display:flex}
 
@@ -322,7 +322,7 @@ a:hover{color:var(--mars)}
   .fv{width:30px;height:30px;top:6px;right:6px}
   .fv svg{width:15px;height:15px}
   .cfl{width:100%;display:grid;grid-template-columns:1fr 1fr}
-  .cfl .cs{min-width:0;font-size:.78rem;padding:7px 8px}
+  .cfl .cs{min-width:0;font-size:16px;padding:6px 8px}
   .cfl #cS{grid-column:1/-1}
 }
 @media(max-width:400px){.cby{display:none}.cft{min-height:24px}}
@@ -424,9 +424,9 @@ a:hover{color:var(--mars)}
       </select>
       <select class="cs" id="cSz" onchange="rC()" aria-label="Размер">
         <option value="" data-ru="Любой размер" data-en="Any size">Любой размер</option>
-        <option value="s" data-ru="Небольшие, до 40 см" data-en="Small, up to 40 cm">Небольшие, до 40 см</option>
-        <option value="m" data-ru="Средние, 50–70 см" data-en="Medium, 50–70 cm">Средние, 50–70 см</option>
-        <option value="l" data-ru="Крупные, от 80 см" data-en="Large, 80 cm+">Крупные, от 80 см</option>
+        <option value="s" data-ru="до 40 см" data-en="up to 40 cm">до 40 см</option>
+        <option value="m" data-ru="50–70 см" data-en="50–70 cm">50–70 см</option>
+        <option value="l" data-ru="от 80 см" data-en="80 cm+">от 80 см</option>
       </select>
       <select class="cs" id="cS" onchange="rC()" aria-label="Сортировка">
         <option value="d" data-ru="По умолчанию" data-en="Default">По умолчанию</option>
@@ -506,6 +506,7 @@ a:hover{color:var(--mars)}
     <label class="try-btn pri"><input type="file" accept="image/*" id="tryFile" hidden onchange="tryPhoto(this.files[0]);this.value=''"><svg viewBox="0 0 24 24"><path d="M9 3L7.2 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2h-3.2L15 3H9zm3 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg><span id="tryFileL"></span></label>
     <button class="try-btn" id="trySampleB" onclick="trySample()"></button>
     <span class="try-size" id="trySzW"><span id="trySzL"></span><input type="range" id="trySz" min="0.03" max="0.95" step="0.005" oninput="trySetW(+this.value)"></span>
+    <span class="try-size"><span id="tryRotL"></span><input type="range" id="tryRot" min="-20" max="20" step="0.5" value="0" oninput="trySetRot(+this.value)" ondblclick="trySetRot(0)"></span>
     <span class="try-real" id="tryReal"></span>
     <button class="try-btn" id="tryCalB" onclick="tryCalStart()"></button>
     <button class="try-btn" id="trySaveB" onclick="trySave()"></button>
@@ -819,20 +820,20 @@ function xM(){
 
 /* ── TRY ON WALL ── */
 // координаты T.x/T.y (центр картины) и T.w (её ширина) — в пикселях фона; T.pxcm — пикселей фона на сантиметр (0 — масштаб не задан)
-const T={a:null,hc:60,wc:60,ar:1,bw:0,bh:0,x:0,y:0,w:0,s:1,pxcm:0,sample:true,cal:false,p1:[0,0],p2:[0,0],photo:null,blob:null};
+const T={a:null,hc:60,wc:60,ar:1,bw:0,bh:0,x:0,y:0,w:0,rot:0,s:1,pxcm:0,sample:true,cal:false,p1:[0,0],p2:[0,0],photo:null,blob:null};
 const TX={
-  ru:{file:'Своё фото стены',sample:'Пример интерьера',size:'Размер',cal:'Указать масштаб',recal:'Изменить масштаб',save:'Сохранить',send:'Отправить художнице',
+  ru:{file:'Своё фото стены',sample:'Пример интерьера',size:'Размер',rot:'Поворот',cal:'Указать масштаб',recal:'Изменить масштаб',save:'Сохранить',send:'Отправить художнице',
     calL:'Протяните линию вдоль предмета, размер которого знаете (дверь, диван, стол), и укажите его длину:',ok:'Готово',no:'Отмена',
     hintSample:'Картина в реальном размере над диваном шириной 2 м. Её можно передвинуть или загрузить фото своей стены.',
-    hintPhoto:'Перетащите картину на нужное место, размер подберите ползунком. Для точного размера нажмите «Указать масштаб». Фото остаётся только на вашем устройстве.',
-    hintReal:'Картина в реальном размере. Перетаскивайте её по стене.',hintCal:'Поставьте красные точки на края предмета',
+    hintPhoto:'Перетащите картину на нужное место, размер подберите ползунком. Повернуть - ползунком или двумя пальцами. Для точного размера нажмите «Указать масштаб». Фото остаётся только на вашем устройстве.',
+    hintReal:'Картина в реальном размере. Перетаскивайте её по стене, наклон - ползунком «Поворот» или двумя пальцами.',hintCal:'Поставьте красные точки на края предмета',
     real:'Реальный размер',saved:'Картинка сохранена',badLen:'Растяните линию и укажите длину в сантиметрах',
     sendMsg:'Здравствуйте, Мария! Примеряю у себя на стене работу ',sendToast:'Картинка сохранена - прикрепите её к сообщению в Telegram',badPhoto:'Не получилось открыть фото'},
-  en:{file:'Photo of your wall',sample:'Sample interior',size:'Size',cal:'Set the scale',recal:'Change the scale',save:'Save',send:'Send to the artist',
+  en:{file:'Photo of your wall',sample:'Sample interior',size:'Size',rot:'Rotate',cal:'Set the scale',recal:'Change the scale',save:'Save',send:'Send to the artist',
     calL:'Draw a line along something of known size (a door, sofa, table) and enter its length:',ok:'Done',no:'Cancel',
     hintSample:'The painting at real size above a 2 m sofa. Move it around or upload a photo of your own wall.',
-    hintPhoto:'Drag the painting into place and adjust the size with the slider. For exact size tap “Set the scale”. Your photo stays on your device.',
-    hintReal:'The painting at real size. Drag it along the wall.',hintCal:'Put the red dots on the edges of the object',
+    hintPhoto:'Drag the painting into place and adjust the size with the slider; rotate with the slider or two fingers. For exact size tap “Set the scale”. Your photo stays on your device.',
+    hintReal:'The painting at real size. Drag it along the wall; tilt it with the Rotate slider or two fingers.',hintCal:'Put the red dots on the edges of the object',
     real:'Real size',saved:'Image saved',badLen:'Stretch the line and enter its length in centimetres',
     sendMsg:'Hello Maria! I am trying on my wall the work ',sendToast:'Image saved - attach it to your Telegram message',badPhoto:'Could not open the photo'}
 };
@@ -845,7 +846,7 @@ function tryOpen(id){
   const u=L==='ru'?'см':'cm';
   document.getElementById('tryT').textContent=L==='ru'?a.t:a.te;
   document.getElementById('tryS').textContent=`${a.s} ${u} · ${a.p.toLocaleString('ru-RU')} ₽`;
-  [['tryFileL','file'],['trySampleB','sample'],['trySzL','size'],['trySaveB','save'],['trySendB','send'],['tryCalL','calL'],['tryCalOk','ok'],['tryCalNo','no']]
+  [['tryFileL','file'],['trySampleB','sample'],['trySzL','size'],['tryRotL','rot'],['trySaveB','save'],['trySendB','send'],['tryCalL','calL'],['tryCalOk','ok'],['tryCalNo','no']]
     .forEach(([i,k])=>document.getElementById(i).textContent=tx(k));
   document.getElementById('tryCmU').textContent=u;
   const art=document.getElementById('tryArt');
@@ -869,7 +870,7 @@ function trySample(){
   const st=document.getElementById('tryStage'),sw=st.clientWidth,sh=st.clientHeight,pt=Math.min(sw/800,sh/1000)>Math.min(sw/1600,sh/1000)*1.15;
   ROOM=ROOMS[pt]=ROOMS[pt]||drawRoom(pt);
   tryBg(ROOM.url,ROOM.w,ROOM.h,ROOM.k,true);
-  T.w=T.wc*T.pxcm;T.x=ROOM.w/2;
+  T.w=T.wc*T.pxcm;T.x=ROOM.w/2;T.rot=0;
   const h=T.w*T.ar;T.y=Math.max(h/2+16,ROOM.top-h/2);
   tryHint('hintSample');tryRender();
 }
@@ -884,7 +885,7 @@ function tryPhoto(f){
       if(T.photo)URL.revokeObjectURL(T.photo);
       T.photo=URL.createObjectURL(b);
       tryBg(T.photo,w,h,0,false);
-      T.w=w*.28;T.x=w/2;T.y=Math.max(h*.4,T.w*T.ar/2+8);
+      T.w=w*.28;T.x=w/2;T.rot=0;T.y=Math.max(h*.4,T.w*T.ar/2+8);
       tryHint('hintPhoto');tryRender();
     },'image/jpeg',.92);
   };
@@ -897,7 +898,8 @@ function tryRender(){
   const st=document.getElementById('tryStage'),s=T.s=Math.min((st.clientWidth-24)/T.bw,(st.clientHeight-24)/T.bh);
   const pic=document.getElementById('tryPic');pic.style.width=T.bw*s+'px';pic.style.height=T.bh*s+'px';
   const h=T.w*T.ar;
-  Object.assign(document.getElementById('tryArt').style,{left:(T.x-T.w/2)*s+'px',top:(T.y-h/2)*s+'px',width:T.w*s+'px',height:h*s+'px'});
+  Object.assign(document.getElementById('tryArt').style,{left:(T.x-T.w/2)*s+'px',top:(T.y-h/2)*s+'px',width:T.w*s+'px',height:h*s+'px',transform:`rotate(${T.rot}deg)`});
+  document.getElementById('tryRot').value=T.rot;
   const real=T.pxcm>0;
   document.getElementById('trySzW').style.display=real?'none':'';
   document.getElementById('trySz').value=T.w/T.bw;
@@ -914,6 +916,7 @@ function tryRender(){
   T.blob=null;clearTimeout(T.bt);T.bt=setTimeout(()=>tryCompose().then(b=>T.blob=b),400);
 }
 function trySetW(f){T.w=Math.min(.95,Math.max(.03,f))*T.bw;tryRender();}
+function trySetRot(d){T.rot=Math.round(Math.min(45,Math.max(-45,d))*10)/10;tryRender();}
 addEventListener('resize',tryRender);
 
 (function(){
@@ -922,12 +925,16 @@ addEventListener('resize',tryRender);
     if(T.cal)return;
     pts.set(e.pointerId,[e.clientX,e.clientY]);
     if(pts.size===1&&e.target===art)drag={x:e.clientX,y:e.clientY,ox:T.x,oy:T.y};
-    if(pts.size===2&&!T.pxcm){const[p,q]=[...pts.values()];pinch={d:Math.hypot(p[0]-q[0],p[1]-q[1])||1,w:T.w};drag=null;}
+    if(pts.size===2){const[p,q]=[...pts.values()];pinch={d:Math.hypot(p[0]-q[0],p[1]-q[1])||1,a:Math.atan2(q[1]-p[1],q[0]-p[0]),w:T.w,r:T.rot};drag=null;}
   });
   stage.addEventListener('pointermove',e=>{
     if(!pts.has(e.pointerId))return;
     pts.set(e.pointerId,[e.clientX,e.clientY]);
-    if(pinch&&pts.size===2){const[p,q]=[...pts.values()];trySetW(pinch.w*Math.hypot(p[0]-q[0],p[1]-q[1])/pinch.d/T.bw);}
+    if(pinch&&pts.size===2){
+      const[p,q]=[...pts.values()];
+      if(!T.pxcm)T.w=Math.min(.95,Math.max(.03,pinch.w*Math.hypot(p[0]-q[0],p[1]-q[1])/pinch.d/T.bw))*T.bw;
+      trySetRot(pinch.r+(Math.atan2(q[1]-p[1],q[0]-p[0])-pinch.a)*180/Math.PI);
+    }
     else if(drag){T.x=Math.min(T.bw,Math.max(0,drag.ox+(e.clientX-drag.x)/T.s));T.y=Math.min(T.bh,Math.max(0,drag.oy+(e.clientY-drag.y)/T.s));tryRender();}
   });
   const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=null;if(!pts.size)drag=null;};
@@ -964,9 +971,11 @@ function tryCompose(){
   return new Promise(res=>{
     const c=document.createElement('canvas');c.width=T.bw;c.height=T.bh;const g=c.getContext('2d');
     g.drawImage(document.getElementById('tryBg'),0,0,T.bw,T.bh);
-    const h=T.w*T.ar,x=T.x-T.w/2,y=T.y-h/2;
+    const h=T.w*T.ar,x=-T.w/2,y=-h/2;
+    g.save();g.translate(T.x,T.y);g.rotate(T.rot*Math.PI/180);
     g.save();g.shadowColor='rgba(0,0,0,.32)';g.shadowBlur=T.w*.07;g.shadowOffsetY=T.w*.03;g.fillStyle='#000';g.fillRect(x,y,T.w,h);g.restore();
     g.drawImage(document.getElementById('tryArt'),x,y,T.w,h);
+    g.restore();
     const fs=Math.max(14,Math.round(T.bw*.016)),cap=`«${L==='ru'?T.a.t:T.a.te}», ${T.a.s} ${L==='ru'?'см':'cm'} · artpolushkina.com`;
     g.font=`${fs}px "Nunito Sans",sans-serif`;g.textAlign='right';g.textBaseline='bottom';
     g.fillStyle='rgba(0,0,0,.4)';g.fillText(cap,T.bw-fs*.8+1,T.bh-fs*.6+1);
