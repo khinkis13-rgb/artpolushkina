@@ -311,7 +311,8 @@ textarea{resize:vertical}
   <div class="tab-body" id="tab-contacts">
     <div class="contacts-form">
       <div class="section-title" style="font-family:var(--fd);font-size:1.1rem;font-weight:400;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(200,169,110,.2)">Контактная информация</div>
-      <div class="fm"><label>Telegram (без @)</label><input type="text" id="cTg" placeholder="artpolushkina"></div>
+      <div class="fm"><label>Telegram-канал (без @)</label><input type="text" id="cTg" placeholder="artpolushkina"></div>
+      <div class="fm"><label>Личный Telegram для покупок (без @)</label><input type="text" id="cTgDm" placeholder="m_polushkina"></div>
       <div class="fm"><label>Instagram (без @)</label><input type="text" id="cIg" placeholder="artpolushkina"></div>
       <div class="fm"><label>Email</label><input type="email" id="cEmail" placeholder="art@example.com"></div>
       <div class="fm"><label>Телефон</label><input type="tel" id="cPhone" placeholder="+7 926 000-00-00"></div>
@@ -957,6 +958,7 @@ async function deletePressItem(){
 function renderContactsForm(){
   const c=content.contacts||{};
   document.getElementById('cTg').value=(c.telegram||'').replace('@','');
+  document.getElementById('cTgDm').value=(c.telegramDm||'').replace('@','');
   document.getElementById('cIg').value=(c.instagram||'').replace('@','');
   document.getElementById('cEmail').value=c.email||'';
   document.getElementById('cPhone').value=c.phone||'';
@@ -968,6 +970,7 @@ async function saveContacts(){
   try{
     content.contacts={
       telegram:document.getElementById('cTg').value.trim().replace('@',''),
+      telegramDm:document.getElementById('cTgDm').value.trim().replace('@',''),
       instagram:document.getElementById('cIg').value.trim().replace('@',''),
       email:document.getElementById('cEmail').value.trim(),
       phone:document.getElementById('cPhone').value.trim()
