@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500&display=swap" rel="stylesheet">
 <style>
-:root{
+:root{--hf:#F7F1E8;--hbc:#F7F1E8;
   --canvas:#F7F1E8;--canvas-w:#F2EADD;--navy:#4B6A8B;--navy-d:#2C3E5A;
   --steel:#8BA4B8;--burg:#8B4049;--mars:#7A3040;--terra:#C67858;
   --gold:#C8A96E;--gold-s:#DABB85;--char:#2D2A26;--wg:#8A8178;--lg:#D1CBC3;
@@ -41,6 +41,10 @@ a:hover{color:var(--mars)}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:80px 28px 40px;overflow:hidden;background:var(--hb,var(--canvas))}
+@property --hf{syntax:"<color>";inherits:true;initial-value:#F7F1E8}
+@property --hbc{syntax:"<color>";inherits:true;initial-value:#F7F1E8}
+.hero.sync{background:linear-gradient(var(--hf) 0,var(--hf) var(--hy,100%),var(--hbc) var(--hy,100%),var(--hbc) 100%);transition:--hf .9s ease,--hbc .9s ease}
+.hero h1,.hero .hs,.hero .hl a,.ha-cap,.ha-cap .cg{transition:color .9s ease,border-color .9s ease}
 .hero-fx{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
 .hero .hi{position:relative;z-index:1}
 .hi{max-width:var(--mw);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:center}
@@ -66,7 +70,7 @@ a:hover{color:var(--mars)}
 
 
 .wd{width:100%;line-height:0;overflow:hidden}
-.wd.wh{background:var(--hbb,var(--canvas))}
+.wd.wh{background:var(--hbc,var(--canvas));transition:--hbc .9s ease}
 .wd svg{width:100%;height:auto;display:block}
 
 /* SECTIONS */
@@ -698,23 +702,26 @@ function openFromHash(){const m=location.hash.match(/^#work-(\d+)$/);if(m&&W.len
 addEventListener('hashchange',openFromHash);
 
 /* Заставка: фон первого экрана берёт цвет краёв текущего кадра, под роликом — подпись сцены со ссылкой на работу */
-// Сцены ролика по точным склейкам: [начало, id работы для подписи, цвет фона вокруг, цвет под роликом].
+// Сцены ролика по точным склейкам: [начало, id работы для подписи, цвет фона вокруг, цвет под роликом, 1 — низ ролика уходит в воду].
 // Цвета сняты заранее с показанных кадров (края картины), поэтому фон переключается ровно на склейке
 // и не ловит мусор с наездов и переходов. Сменится ролик — пересчитать.
 const HERO_SC=[[0,25,'#f5f5e1','#f4f4e1'],[4.8,25,'#f5f5e9','#f5f5e9'],[7.37,65,'#f5f5e9','#f5f5e9'],[16.833,77,'#16a063','#16a063'],
   [22.333,37,'#f2efe4','#f1eee4'],[30.333,25,'#f5f5e1','#f4f4e1'],[35.333,18,'#f8f7e3','#f8f6e3'],[37.35,18,'#faf8e4','#f8f8e3'],
-  [40.333,55,'#f7f5da','#f8f6da'],[46.3,25,'#f5f5e1','#f4f4e1'],[51.3,59,'#dbe9f7','#30638b'],[56.3,52,'#032b5a','#022a5a'],
+  [40.333,55,'#f7f5da','#f8f6da'],[46.3,25,'#f5f5e1','#f4f4e1'],[51.3,59,'#dbe9f7','#30638b',1],[56.3,52,'#032b5a','#022a5a'],
   [61.3,0,'#78a99a','#7aa99a'],[67.267,60,'#afbec7','#afbec7'],[72.267,24,'#e1a599','#e4a799'],[77.267,35,'#f3f3e7','#f1eedf']];
 // Где в кадре сама картина [с, по, u0, u1] (доля ширины кадра): за её краями стена со швом — скрываем
 const HERO_CLIP=[[0,4.8,.153,.846],[30.333,35.333,.153,.846],[46.3,51.3,.153,.846],[35.333,35.55,.276,.724],[37.35,40.333,.276,.724],[40.333,46.3,.28,.724],[67.85,71.85,0,.724]];
-// Рыба из «Затмения» выплывает за правый край картины, в «Привязанности» вплывает слева (кадр 848×464)
-const FISH={src:'site/images/hero-fish.png',w:148,h:52,dx:36,dy:10,t0:39.567,x0:508,y0:180,v0:243,cut:40.333,x1:240,t1:41.05,v1:160,edge:.28};
+// Рыба: положение спрайта (левый верх, px кадра 848×464) по кадрам ролика — найдено сопоставлением с кадрами.
+// Уходит из «Затмения» за край картины .724, в «Привязанности» входит из-за края .28 — свой спрайт на каждую сцену.
+const FISH={cut:40.333,
+  out:{src:'site/images/hero-fish.png',w:148,h:52,edge:.724,tr:[[39.5,456,174],[39.567,473,170],[39.633,491,167],[39.7,508,165],[39.767,525,164],[39.833,541,164],[39.9,556,164],[39.967,570,165]]},
+  in:{src:'site/images/hero-fish2.png',w:133,h:57,edge:.28,tr:[[40.5,118,169],[40.6,133,167],[40.7,149,165],[40.8,164,163],[40.9,177,161],[41,194,161],[41.1,210,161],[41.2,228,165],[41.3,244,168]]}};
 function heroSync(){
   const v=document.getElementById('heroVid'),hero=document.getElementById('hero'),cap=document.getElementById('heroCap');
   if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   const VW=848,VH=464,fx=document.createElement('canvas');fx.className='hero-fx';hero.append(fx);const fc=fx.getContext('2d');
-  const fish=new Image();fish.src=FISH.src;
+  for(const o of [FISH.out,FISH.in]){o.img=new Image();o.img.src=o.src;}
   const li=x=>{x=parseInt(x,16)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;};
   const lum=h=>.2126*li(h.slice(1,3))+.7152*li(h.slice(3,5))+.0722*li(h.slice(5,7));
   let key='',capKey='';
@@ -730,8 +737,9 @@ function heroSync(){
     if(k!==key){key=k;
       v.style.clipPath=cl||cr?`inset(0 ${(cr*100).toFixed(2)}% 0 ${(cl*100).toFixed(2)}%)`:'';
       // вокруг — цвет краёв картины, под роликом во всю ширину — цвет её нижнего края (вода, пол)
-      hero.style.background=`linear-gradient(${sc[2]} 0,${sc[2]} ${y1}px,${sc[3]} ${y1}px,${sc[3]} 100%)`;
-      document.documentElement.style.setProperty('--hbb',sc[3]);
+      const fb=sc[4]?16:0,st=document.documentElement.style;
+      v.style.webkitMaskImage=v.style.maskImage=fb?`linear-gradient(#000 calc(100% - ${fb}px),transparent)`:'';
+      hero.classList.add('sync');st.setProperty('--hf',sc[2]);st.setProperty('--hbc',sc[3]);hero.style.setProperty('--hy',(y1-fb)+'px');
       hero.classList.toggle('dk',lum(f.stack?sc[3]:sc[2])<.3);cap.classList.toggle('lt',lum(sc[3])<.3);
     }
     const id=sc[1],a=id&&W.find(x=>x.id===id),ck=(a?id:0)+L;
@@ -740,20 +748,17 @@ function heroSync(){
         cap.innerHTML=`<span>${ru?a.t:(a.te||a.t)}${a.y?' · '+a.y:''}</span><span class="cg">${ru?'Смотреть работу →':'View work →'}</span>`;
         cap.href='#work-'+id;cap.classList.remove('off');},a?450:0);}
   }
-  // Рыба: пока часть внутри картины — дорисовываем только то, что снаружи
+  // Рыба: пока часть внутри картины — дорисовываем только то, что снаружи; вне таблицы — по последней скорости
+  const pos=(tr,t)=>{let i=0;while(i<tr.length-2&&tr[i+1][0]<t)i++;const a=tr[i],b=tr[i+1],k=(t-a[0])/(b[0]-a[0]);return [a[1]+(b[1]-a[1])*k,a[2]+(b[2]-a[2])*k];};
   function drawFish(t,f){
     const W2=Math.round(f.hb.width),H2=Math.round(f.hb.height);
     if(fx.width!==W2||fx.height!==H2){fx.width=W2;fx.height=H2;}else fc.clearRect(0,0,W2,H2);
-    if(t<FISH.t0||t>FISH.t1||!fish.complete)return;
-    const one=(gx,gy,al,cx,side)=>{if(al<=0)return;fc.save();fc.globalAlpha=al;
-      if(cx!=null){const CX=f.X(cx);fc.beginPath();side>0?fc.rect(CX,0,W2-CX,H2):fc.rect(0,0,CX,H2);fc.clip();}
-      fc.drawImage(fish,f.X(0)+(gx-FISH.dx)*f.sc,f.Y(0)+(gy-FISH.dy)*f.sc,FISH.w*f.sc,FISH.h*f.sc);fc.restore();};
-    if(t<FISH.cut+.15){ // уплывает вправо и гаснет на склейке
-      one(FISH.x0+FISH.v0*(t-FISH.t0),FISH.y0-10*(t-FISH.t0),t<FISH.cut?1:1-(t-FISH.cut)/.15,.724,1);
-    }
-    if(t>=FISH.cut){ // вплывает слева, ровно в ход рыбы из ролика
-      one(FISH.x1-FISH.v1*(FISH.t1-t),174+31*Math.min(.6,FISH.t1-t),Math.min(1,(t-FISH.cut)/.12),FISH.edge,-1);
-    }
+    const one=(o,al,side)=>{const tr=o.tr;if(al<=0||!o.img.complete)return;const [x,y]=pos(tr,t),CX=f.X(o.edge);
+      fc.save();fc.globalAlpha=al;fc.beginPath();side>0?fc.rect(CX,0,W2-CX,H2):fc.rect(0,0,CX,H2);fc.clip();
+      fc.drawImage(o.img,f.X(0)+x*f.sc,f.Y(0)+y*f.sc,o.w*f.sc,o.h*f.sc);fc.restore();};
+    const O=FISH.out,I=FISH.in;
+    if(t>=O.tr[0][0]&&t<FISH.cut+.15)one(O,t<FISH.cut?1:1-(t-FISH.cut)/.15,1);
+    if(t>=FISH.cut&&t<=I.tr[I.tr.length-1][0])one(I,Math.min(1,(t-FISH.cut)/.12),-1);
   }
   const step=t=>{if(document.hidden)return;const f=box();apply(t,f);drawFish(t,f);};
   // обновляемся по показанному кадру видео, а не по таймеру — обрезка и фон меняются ровно на склейке
