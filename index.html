@@ -719,6 +719,13 @@ const HERO_CLIP=[[0,4.8,.153,.846],[30.333,35.333,.153,.846],[46.3,51.3,.153,.84
 // Фактура холста: тайл 540×928 px кадра, бесшовный. В нём полоса края кадра (слева — колонки 0–179, справа — 668–847, строки 0–463)
 // и продолжение, сшитое лоскутами из этой же полосы, — у края ролика фактура идёт дальше без шва и без отражений. Сменится ролик — пересобрать.
 const HERO_TX={g:['site/images/hero-tex-gl.webp','site/images/hero-tex-gr.webp'],b:['site/images/hero-tex-bl.webp','site/images/hero-tex-br.webp']};
+// Фон у краёв картины (сцены с обрезкой): яркость фона картины по высоте кадра [u левого края, u правого, 30 цветов сверху вниз
+// слева, справа], снята с краёв внутри картины (где у края рисунок — по соседним строкам фона). Выше и ниже ролика — цвет сцены.
+const HERO_PF={0:[0.153,0.846,'fafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceaf8fbe9fafceafbfceafafbeaf9fbe9fafce9fbfdeafafce9fafce9fbfdeafafce9fafce9fbfdeafafce9fafce9','f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f1f5e2f4f5e2f5f5e2f5f5e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f5f5e1f5f5e1f6f6e2f5f5e1f5f5e1f5f5e1f5f5e1f5f5e1f6f6e1f6f6e2'],
+  30.333:[0.153,0.846,'fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafbe9f9fae9fafbeafbfdeafbfdeafbfdeafbfdeafafce9fafceafafce9fafce9fafce9fafce9fbfdeafbfdeafafce9fafbe8fafce9','f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f5f5e2f4f5e1f5f5e1f5f5e1f5f5e1f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f5f5e1f5f5e1f5f5e1f5f5e1f5f5e1f5f5e2f5f5e2'],
+  46.3:[0.153,0.846,'fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafce9fafbe9fafceafbfdeafbfdeafbfdeafbfdeafafce9fafce9fafce9fafce9fafce9fafce9fbfdeafafce9fafce9fafce9fafce9','f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f5f5e1f6f6e2f5f5e2f5f5e1f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f5f5e1f5f5e1f5f5e1f5f5e1f5f5e1f6f6e1f6f6e2'],
+  37.35:[0.276,0.724,'f9f8e5faf9e6f9f9e6f8f8e6f8f8e6f8f8e6f9f8e5faf9e5faf9e5faf9e5f9f9e5f9f8e5faf9e6faf9e5faf9e4faf9e4faf9e4faf9e4faf9e4faf9e4faf8e4f9f8e4f9f8e3f9f7e2f8f6e2f8f6e1f8f6e0f8f6e0f9f7e1f9f8e4','faf9e4faf9e5fafae5faf9e5faf9e5fbfae5fbfbe5fbfae5fbfae5fafae5faf9e4faf9e4faf9e4fafae4fbfbe5fbfbe5fbfae4fafae4fafae4fafae4fbf9e4fafae4fafae4fafae3faf9e3faf9e3faf9e2fafae2f9f8e2faf9e4'],
+  40.333:[0.28,0.724,'f6f5dafaf8dff9f7dff8f6def8f5ddf8f4dcf6f4dbf7f5dbf6f3daf5f2d9f5f1d8f4f1d8f5f1d8f4f1d8f3f0d7f3f0d7f3f0d8f2f0d7f2f0d7f3f1d8f5f3d9f6f5d9f7f6daf8f6daf8f7dbf8f7daf9f8dbfaf9dcfbfadcf7f5da','f8f6dcf8f6e1f8f6e0f8f6e0f8f6dff8f6def8f6ddf7f5dcf8f6dcf7f5dbf7f5daf8f5d9f9f6d9f8f6d9f8f7d9f8f6d9f8f6d9f8f7d9f9f8dafaf9dafaf9dbfaf9dbfbfadbfbfadbfaf9dbfaf9dafaf9dafaf9dafaf9dbf8f7db']};
 // Рыба на переходе через край картины — покадровые ячейки (кадр ролика = номер ячейки, 30 fps): внутри картины — пиксели этого же кадра
 // (рыба из ролика и чистый фон вокруг её соседних положений, чтобы отставание слоя на кадр не давало «призраков»),
 // за краем — та же рыба, достроенная по форме и точному положению в кадре. Ячейка: [x, y, w, h в листе, x, y в кадре 848×464].
@@ -728,8 +735,9 @@ function heroSync(){
   if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   const VW=848,VH=464,fx=document.createElement('canvas');fx.className='hero-fx';hero.append(fx);const fc=fx.getContext('2d');
-  const wd=document.querySelector('.wd.wh'),txl=[hero,wd].filter(Boolean).map(el=>{const l=['l','r'].map(()=>{const d=document.createElement('div');d.className='hero-tx';el.prepend(d);return d;});return {el,l};});
-  let txOn='';
+  // два попеременных набора слоёв (левый край, правый край, основа) на экране и на волне: новый фон проявляется поверх старого
+  const wd=document.querySelector('.wd.wh'),txl=[hero,wd].filter(Boolean).map(el=>({el,s:[0,1].map(()=>['l','r','b'].map(()=>{const d=document.createElement('div');d.className='hero-tx';el.prepend(d);return d;}))}));
+  let bgOn='',ai=0;
   const li=x=>{x=parseInt(x,16)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;};
   const lum=h=>.2126*li(h.slice(1,3))+.7152*li(h.slice(3,5))+.0722*li(h.slice(5,7));
   let key='',capKey='';
@@ -749,7 +757,7 @@ function heroSync(){
       v.style.webkitMaskImage=v.style.maskImage=fb?`linear-gradient(#000 calc(100% - ${fb}px),transparent)`:'';
       hero.classList.add('sync');st.setProperty('--hf',sc[2]);st.setProperty('--hbc',sc[3]);hero.style.setProperty('--hy',(y1-fb)+'px');
       hero.classList.toggle('dk',lum(f.stack?sc[3]:sc[2])<.3);cap.classList.toggle('lt',lum(sc[3])<.3);
-      tex(sc[5],f);
+      bgSet(sc,f);
     }
     const id=sc[1],a=id&&W.find(x=>x.id===id),ck=(a?id:0)+L;
     if(ck!==capKey){capKey=ck;cap.classList.add('off');
@@ -757,14 +765,31 @@ function heroSync(){
         cap.innerHTML=`<span>${ru?a.t:(a.te||a.t)}${a.y?' · '+a.y:''}</span><span class="cg">${ru?'Смотреть работу →':'View work →'}</span>`;
         cap.href='#work-'+id;cap.classList.remove('off');},a?450:0);}
   }
-  // фактура: левый слой продолжает левый край кадра, правый — правый; над и под роликом левый плавно уходит в правый
-  function tex(id,f){
-    if(id&&id!==txOn)for(const g of txl)g.l.forEach((d,i)=>d.style.backgroundImage=`url(${HERO_TX[id][i]})`);
-    txOn=id||'';const k=f.sc,y0=f.Y(0);
-    for(const g of txl){const r=g.el.getBoundingClientRect(),ox=r.left-f.hb.left,oy=r.top-f.hb.top,[L,R]=g.l;
-      for(const d of g.l){d.classList.toggle('on',!!id);d.style.backgroundSize=`${540*k}px ${928*k}px`;}
-      L.style.backgroundPosition=`${f.X(0)-360*k-ox}px ${y0-oy}px`;R.style.backgroundPosition=`${f.X(668/VW)-ox}px ${y0-oy}px`;
-      L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${f.X(.25)-ox}px,transparent ${f.X(.75)-ox}px)`;}
+  // фон вокруг ролика: фактура (HERO_TX) или яркость краёв картины (HERO_PF); левый слой продолжает левый край, правый — правый,
+  // над и под роликом левый плавно уходит в правый
+  function bgSet(sc,f){
+    const pf=HERO_PF[sc[0]],id=sc[5]||(pf?'p'+sc[0]:'');
+    if(id!==bgOn){if(id)ai^=1;bgOn=id;for(const g of txl)g.s.forEach((p,i)=>p.forEach(d=>d.classList.toggle('on',!!id&&i===ai)));}
+    if(!id)return;
+    const k=f.sc;
+    for(const g of txl){const r=g.el.getBoundingClientRect(),ox=r.left-f.hb.left,oy=r.top-f.hb.top,[L,R,B]=g.s[ai];
+      if(sc[5]){
+        [L,R].forEach((d,i)=>{d.style.backgroundImage=`url(${HERO_TX[sc[5]][i]})`;d.style.backgroundSize=`${540*k}px ${928*k}px`;});
+        L.style.backgroundPosition=`${f.X(0)-360*k-ox}px ${f.Y(0)-oy}px`;R.style.backgroundPosition=`${f.X(668/VW)-ox}px ${f.Y(0)-oy}px`;
+        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${f.X(.25)-ox}px,transparent ${f.X(.75)-ox}px)`;
+        R.style.webkitMaskImage=R.style.maskImage='';B.style.backgroundImage='none';
+      }else{
+        // у края — яркость картины по высоте; дальше от края и выше/ниже ролика — средняя яркость этого края,
+        // а основа под всем плавно идёт от средней яркости левого края к правому (без ореола вокруг ролика)
+        const y0=f.Y(0)-oy,y1=f.Y(1)-oy,rm=(y1-y0)*.15,cs=h=>h.match(/.{6}/g),
+          avg=h=>'rgb('+[0,2,4].map(i=>Math.round(cs(h).reduce((t,c)=>t+parseInt(c.slice(i,i+2),16),0)/cs(h).length))+')',
+          gr=(h,m)=>`linear-gradient(${m} ${y0-rm}px,`+cs(h).map((c,i,a)=>`#${c} ${y0+(y1-y0)*i/(a.length-1)}px`).join(',')+`,${m} ${y1+rm}px)`,
+          Lm=avg(pf[2]),Rm=avg(pf[3]),a=f.X(pf[0])-ox,b=f.X(pf[1])-ox,D=f.X(.2)-f.X(0);
+        L.style.backgroundImage=gr(pf[2],Lm);R.style.backgroundImage=gr(pf[3],Rm);B.style.backgroundImage=`linear-gradient(to right,${Lm} ${a}px,${Rm} ${b}px)`;
+        for(const d of [L,R,B]){d.style.backgroundSize='100% 100%';d.style.backgroundPosition='0 0';}
+        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,transparent ${a-D}px,#000 ${a}px,transparent ${a+D}px)`;
+        R.style.webkitMaskImage=R.style.maskImage=`linear-gradient(to right,transparent ${b-D}px,#000 ${b}px,transparent ${b+D}px)`;
+      }}
   }
   let sheet=null,drawn=false;
   function drawFish(t,f){
