@@ -49,9 +49,9 @@ a:hover{color:var(--mars)}
 .hc{display:inline-block;padding:13px 32px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;font-weight:400;transition:.3s var(--e)}
 .hc:hover{background:var(--mars);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,48,64,.25)}
 .ha{display:flex;flex-direction:column;justify-content:center;align-items:center}
-/* Ролик без рамки: края растворяются, фон экрана берёт цвет текущей сцены (heroSync) */
-.ha-vid{width:100%;max-width:760px;aspect-ratio:848/464;display:block;object-fit:cover;background:transparent;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
-.ha-cap{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;min-height:1.6em;margin-top:6px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);transition:opacity .5s,color .9s}
+/* Ролик без рамки: фон экрана берёт цвет краёв текущей сцены (heroSync), границы кадра чёткие */
+.ha-vid{width:100%;max-width:760px;aspect-ratio:848/464;display:block;object-fit:cover;background:transparent}
+.ha-cap{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;min-height:1.6em;margin-top:14px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);transition:opacity .5s,color .9s}
 .ha-cap.off{opacity:0;pointer-events:none}
 .ha-cap .cg{color:var(--burg);border-bottom:1px solid currentColor;transition:color .9s}
 .ha-cap:hover .cg{color:var(--mars)}
