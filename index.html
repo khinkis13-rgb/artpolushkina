@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Мария Полушкина — Художник</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%238B4049%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Georgia,serif%27 font-size=%2732%27 text-anchor=%27middle%27 fill=%27%23F7F1E8%27%3EМП%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500&display=swap" rel="stylesheet">
 <style>
@@ -227,6 +228,68 @@ a:hover{color:var(--mars)}
 .csk-line.short{width:55%}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
+/* FILTERS / FAVORITES */
+.cfl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fb.fv-f{display:inline-flex;align-items:center;gap:6px}
+.fb.fv-f svg{width:13px;height:13px}
+.fv{position:absolute;top:8px;right:8px;z-index:3;width:34px;height:34px;border-radius:50%;border:none;background:rgba(247,241,232,.82);backdrop-filter:blur(4px);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--wg);transition:.2s var(--e);box-shadow:0 2px 8px rgba(45,42,38,.12)}
+.fv svg{width:17px;height:17px}
+.fv:hover{color:var(--burg)}
+.fv.on{color:var(--burg)}
+.fv.on svg path{fill:currentColor}
+.cempty{text-align:center;padding:48px 16px;color:var(--wg);font-size:.92rem}
+.cempty button{margin-top:14px}
+.fbar{position:fixed;left:16px;bottom:24px;z-index:95;display:none;align-items:center;gap:4px;padding:5px;border-radius:28px;background:var(--char);color:var(--canvas);box-shadow:0 8px 28px rgba(45,42,38,.28);max-width:calc(100% - 92px)}
+.fbar.vis{display:flex}
+.fbar button{border:none;cursor:pointer;font-family:var(--fb);font-size:.8rem;border-radius:22px;padding:9px 14px;white-space:nowrap;transition:.2s}
+.fbar .fb-n{background:transparent;color:var(--canvas);display:inline-flex;align-items:center;gap:6px}
+.fbar .fb-n svg{width:14px;height:14px;color:var(--terra)}
+.fbar .fb-go{background:var(--burg);color:#fff}
+.fbar .fb-go:hover{background:var(--mars)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);z-index:400;background:var(--char);color:var(--canvas);padding:11px 18px;border-radius:12px;font-size:.84rem;max-width:calc(100% - 32px);text-align:center;opacity:0;pointer-events:none;transition:.3s var(--e)}
+.toast.vis{opacity:1;transform:translate(-50%,0)}
+.m-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.m2{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:24px;border:1px solid var(--lg);background:transparent;font-family:var(--fb);font-size:.82rem;color:var(--char);cursor:pointer;transition:.2s var(--e)}
+.m2:hover{border-color:var(--burg);color:var(--burg)}
+.m2 svg{width:16px;height:16px}
+.m2.on{color:var(--burg);border-color:var(--burg)}
+.m2.on svg path{fill:currentColor}
+.m2.try-go{border-color:var(--burg);color:var(--burg)}
+.m2.try-go:hover{background:rgba(139,64,73,.06)}
+
+/* TRY ON WALL */
+.try{display:none;position:fixed;inset:0;z-index:300;background:#1f1d1a;color:var(--canvas);flex-direction:column}
+.try.on{display:flex}
+.try-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(247,241,232,.08)}
+.try-tt{min-width:0}
+.try-tt b{font-family:var(--fd);font-weight:400;font-size:1.15rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.try-tt span{font-size:.75rem;color:var(--lg)}
+.try .mx{position:static;background:rgba(247,241,232,.1);color:var(--canvas);flex-shrink:0}
+.try-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px;position:relative;touch-action:none;overflow:hidden}
+.try-pic{position:relative;flex-shrink:0;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+.try-pic>img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
+.try-art{cursor:grab;touch-action:none;box-shadow:0 6px 14px rgba(0,0,0,.28),0 18px 40px rgba(0,0,0,.18);outline:1px solid rgba(0,0,0,.08)}
+.try-pic>img.try-art{inset:auto;position:absolute}
+.try-art:active{cursor:grabbing}
+.try-ruler{position:absolute;inset:0;width:100%;height:100%;display:none;overflow:visible}
+.try-ruler.on{display:block}
+.try-ruler line{stroke:#fff;stroke-dasharray:6 5;filter:drop-shadow(0 0 2px rgba(0,0,0,.7))}
+.try-ruler circle{fill:var(--burg);stroke:#fff;cursor:grab;touch-action:none}
+.try-hint{padding:8px 16px 0;font-size:.8rem;color:var(--lg);text-align:center;min-height:1.6em}
+.try-bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
+.try-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:22px;border:1px solid rgba(247,241,232,.22);background:transparent;color:var(--canvas);font-family:var(--fb);font-size:.82rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.try-btn:hover{border-color:var(--gold);color:var(--gold)}
+.try-btn.pri{background:var(--burg);border-color:var(--burg);color:#fff}
+.try-btn.pri:hover{background:var(--mars);color:#fff}
+.try-btn svg{width:16px;height:16px;fill:currentColor}
+.try-size{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;color:var(--lg);padding:0 6px}
+.try-size input{width:120px;accent-color:var(--terra)}
+.try-real{font-size:.78rem;color:var(--gold-s);padding:0 6px}
+.try-cal{display:none;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom));font-size:.82rem}
+.try-cal input{width:80px;padding:8px 10px;border-radius:10px;border:1px solid rgba(247,241,232,.3);background:rgba(247,241,232,.08);color:var(--canvas);font-family:var(--fb);font-size:.9rem;text-align:center}
+.try.cal .try-bar{display:none}
+.try.cal .try-cal{display:flex}
+
 @media(max-width:900px){
   .hi{grid-template-columns:1fr;text-align:center}
   .hs{margin:0 auto 28px}
@@ -251,7 +314,19 @@ a:hover{color:var(--mars)}
   .cb2{padding:12px}
   .ctt{font-size:.9rem}
 }
-@media(max-width:400px){.csk{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .ml{aspect-ratio:auto;max-height:none;height:min(52vh,calc((100vw - 40px)*var(--mh,1)))}
+  .try-btn{padding:9px 13px;font-size:.78rem}
+  .try-size input{width:100px}
+  .try-hint{font-size:.74rem}
+  .fv{width:30px;height:30px;top:6px;right:6px}
+  .fv svg{width:15px;height:15px}
+  .cfl{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .cfl .cs{min-width:0;font-size:.78rem;padding:7px 8px}
+  .cfl #cS{grid-column:1/-1}
+}
+@media(max-width:400px){.cby{display:none}.cft{min-height:24px}}
+@media(max-width:340px){.csk{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -314,7 +389,7 @@ a:hover{color:var(--mars)}
     <div class="sh fi"><h2 class="st" data-ru="О художнике" data-en="About the artist">О художнике</h2><div class="gl"></div></div>
     <div class="ag">
       <div class="at fi">
-        <div class="ap-outer"><div class="ap-ring"><img class="ap-img" src="site/images/artist-photo.jpg" alt="Мария Полушкина" onerror="this.src='images/artist.jpg'"></div></div>
+        <div class="ap-outer"><div class="ap-ring"><img class="ap-img" src="site/images/artist-photo.jpg" alt="Мария Полушкина"></div></div>
         <div id="aboutParas"></div>
       </div>
       <div class="as fi">
@@ -339,13 +414,28 @@ a:hover{color:var(--mars)}
     <div class="sh fi"><h2 class="st" data-ru="Каталог работ" data-en="Catalog">Каталог работ</h2><div class="gl"></div><p class="ss" data-ru="Оригинальные картины в наличии" data-en="Original paintings available">Оригинальные картины в наличии</p></div>
     <div class="cf fi" id="cF"></div>
     <div class="cb fi"><span class="cc" id="cC"></span>
-      <select class="cs" id="cS" onchange="rC()">
+      <div class="cfl">
+      <select class="cs" id="cPr" onchange="rC()" aria-label="Цена">
+        <option value="" data-ru="Любая цена" data-en="Any price">Любая цена</option>
+        <option value="a" data-ru="до 30 000 ₽" data-en="under ₽30,000">до 30 000 ₽</option>
+        <option value="b" data-ru="30–70 тыс. ₽" data-en="₽30–70k">30–70 тыс. ₽</option>
+        <option value="c" data-ru="70–100 тыс. ₽" data-en="₽70–100k">70–100 тыс. ₽</option>
+        <option value="d" data-ru="от 100 тыс. ₽" data-en="₽100k and up">от 100 тыс. ₽</option>
+      </select>
+      <select class="cs" id="cSz" onchange="rC()" aria-label="Размер">
+        <option value="" data-ru="Любой размер" data-en="Any size">Любой размер</option>
+        <option value="s" data-ru="Небольшие, до 40 см" data-en="Small, up to 40 cm">Небольшие, до 40 см</option>
+        <option value="m" data-ru="Средние, 50–70 см" data-en="Medium, 50–70 cm">Средние, 50–70 см</option>
+        <option value="l" data-ru="Крупные, от 80 см" data-en="Large, 80 cm+">Крупные, от 80 см</option>
+      </select>
+      <select class="cs" id="cS" onchange="rC()" aria-label="Сортировка">
         <option value="d" data-ru="По умолчанию" data-en="Default">По умолчанию</option>
         <option value="pa" data-ru="Цена ↑" data-en="Price ↑">Цена ↑</option>
         <option value="pd" data-ru="Цена ↓" data-en="Price ↓">Цена ↓</option>
         <option value="yd" data-ru="Новые" data-en="Newest">Новые</option>
         <option value="ya" data-ru="Старые" data-en="Oldest">Старые</option>
       </select>
+      </div>
     </div>
     <div class="csk" id="cSk"><div class="csk-item"><div class="csk-img"></div><div class="csk-txt"><div class="csk-line"></div><div class="csk-line short"></div></div></div><div class="csk-item"><div class="csk-img"></div><div class="csk-txt"><div class="csk-line"></div><div class="csk-line short"></div></div></div><div class="csk-item"><div class="csk-img"></div><div class="csk-txt"><div class="csk-line"></div><div class="csk-line short"></div></div></div></div>
     <div class="cg" id="cG"></div>
@@ -380,9 +470,52 @@ a:hover{color:var(--mars)}
       <div class="mp" id="mP"></div>
       <a href="#" class="mt" id="mB" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        <span data-ru="Написать в Telegram" data-en="Message on Telegram">Написать в Telegram</span>
+        <span data-ru="Купить в Telegram" data-en="Buy via Telegram">Купить в Telegram</span>
       </a>
+      <div class="m-acts">
+        <button class="m2 try-go" onclick="tryOpen(curId)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg><span data-ru="Примерить на стене" data-en="Try on your wall">Примерить на стене</span></button>
+        <button class="m2" id="mFav" onclick="tFav(curId)"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-ru="В избранное" data-en="Favorite">В избранное</span></button>
+        <button class="m2" onclick="shareWork(curId)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg><span data-ru="Поделиться" data-en="Share">Поделиться</span></button>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- FAVORITES BAR -->
+<div class="fbar" id="fbar">
+  <button class="fb-n" onclick="showFav()"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="currentColor"/></svg><span id="fbarN"></span></button>
+  <button class="fb-go" onclick="askFav()" id="fbarGo"></button>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- TRY ON WALL -->
+<div class="try" id="try" role="dialog" aria-modal="true">
+  <div class="try-top">
+    <div class="try-tt"><b id="tryT"></b><span id="tryS"></span></div>
+    <button class="mx" onclick="tryClose()" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="try-stage" id="tryStage">
+    <div class="try-pic" id="tryPic">
+      <img id="tryBg" alt="" draggable="false">
+      <img id="tryArt" class="try-art" alt="" draggable="false">
+      <svg class="try-ruler" id="tryRuler"><line id="tryLn"/><circle id="tryP1"/><circle id="tryP2"/></svg>
+    </div>
+  </div>
+  <div class="try-hint" id="tryHint"></div>
+  <div class="try-bar">
+    <label class="try-btn pri"><input type="file" accept="image/*" id="tryFile" hidden onchange="tryPhoto(this.files[0]);this.value=''"><svg viewBox="0 0 24 24"><path d="M9 3L7.2 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2h-3.2L15 3H9zm3 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg><span id="tryFileL"></span></label>
+    <button class="try-btn" id="trySampleB" onclick="trySample()"></button>
+    <span class="try-size" id="trySzW"><span id="trySzL"></span><input type="range" id="trySz" min="0.03" max="0.95" step="0.005" oninput="trySetW(+this.value)"></span>
+    <span class="try-real" id="tryReal"></span>
+    <button class="try-btn" id="tryCalB" onclick="tryCalStart()"></button>
+    <button class="try-btn" id="trySaveB" onclick="trySave()"></button>
+    <button class="try-btn pri" id="trySendB" onclick="trySend()"></button>
+  </div>
+  <div class="try-cal">
+    <span id="tryCalL"></span>
+    <input type="number" id="tryCm" value="80" min="5" max="1000" inputmode="decimal"> <span id="tryCmU"></span>
+    <button class="try-btn pri" id="tryCalOk" onclick="tryCalDone()"></button>
+    <button class="try-btn" id="tryCalNo" onclick="tryCalCancel()"></button>
   </div>
 </div>
 
@@ -403,6 +536,7 @@ async function loadAll(){
   CT=ctResp.status==='fulfilled'&&ctResp.value.ok?await ctResp.value.json():CT_FB;
   if(sk)sk.style.display='none';
   rAll();
+  openFromHash();
   setTimeout(ob,100);
 }
 
@@ -413,14 +547,14 @@ function getMedia(a){
 }
 
 /* ── RENDER ALL ── */
-function rAll(){rAbout();rExhibitions();rPress();rContacts();rF();rC();}
+function rAll(){rAbout();rExhibitions();rPress();rContacts();rF();rC();rFav();}
 
 function tL(){
   L=L==='ru'?'en':'ru';
   document.getElementById('lB').textContent=L==='ru'?'EN':'RU';
   document.documentElement.lang=L;
   document.querySelectorAll('[data-ru]').forEach(el=>{const v=el.getAttribute('data-'+L);if(v)el.innerHTML=v;});
-  document.querySelectorAll('#cS option').forEach(o=>{const v=o.getAttribute('data-'+L);if(v)o.textContent=v;});
+  document.querySelectorAll('.cs option').forEach(o=>{const v=o.getAttribute('data-'+L);if(v)o.textContent=v;});
   rAll();
 }
 
@@ -478,25 +612,30 @@ function rContacts(){
     <a href="mailto:${c.email}" class="cl">${emSvg}${c.email}</a>
     <a href="https://instagram.com/${igHandle}" target="_blank" rel="noopener" class="cl">${igSvg}@${igHandle}</a>
     ${c.phone?`<a href="tel:${c.phone}" class="cl">${phSvg}${c.phone}</a>`:''}`;
-  document.getElementById('footerText').innerHTML=`© 2026 Мария Полушкина · <a href="mailto:${c.email}" style="color:var(--wg)">${c.email}</a>`;
+  document.getElementById('footerText').innerHTML=`© 2026 ${L==='ru'?'Мария Полушкина':'Maria Polushkina'} · <a href="mailto:${c.email}" style="color:var(--wg)">${c.email}</a>`;
   document.getElementById('mB').href=dmUrl;
 }
 
 /* ── CATALOG ── */
 function rF(){
   const yrs=[...new Set(W.map(a=>a.y))].sort((a,b)=>b-a);
-  document.getElementById('cF').innerHTML=`<button class="fb ${F==='all'?'on':''}" onclick="sF('all')">${L==='ru'?'Все':'All'}</button>`+yrs.map(y=>`<button class="fb ${F==y?'on':''}" onclick="sF(${y})">${y}</button>`).join('');
+  document.getElementById('cF').innerHTML=`<button class="fb ${F==='all'?'on':''}" onclick="sF('all')">${L==='ru'?'Все':'All'}</button>`+yrs.map(y=>`<button class="fb ${F==y?'on':''}" onclick="sF(${y})">${y}</button>`).join('')
+    +(FAV.size||F==='fav'?`<button class="fb fv-f ${F==='fav'?'on':''}" onclick="sF('fav')">${HEART}${L==='ru'?'Избранное':'Favorites'} · ${FAV.size}</button>`:'');
 }
 function sF(f){F=f;rF();rC();}
 function rC(){
-  let items=F==='all'?[...W]:W.filter(a=>a.y==F);
+  let items=F==='all'?[...W]:F==='fav'?W.filter(a=>FAV.has(a.id)):W.filter(a=>a.y==F);
+  const pr=document.getElementById('cPr').value,sz=document.getElementById('cSz').value;
+  if(pr)items=items.filter(a=>pr==='a'?a.p<30000:pr==='b'?a.p>=30000&&a.p<70000:pr==='c'?a.p>=70000&&a.p<100000:a.p>=100000);
+  if(sz)items=items.filter(a=>{const m=Math.max(...dims(a));return sz==='s'?m<=40:sz==='m'?m>40&&m<80:m>=80;});
   const s=document.getElementById('cS').value;
   if(s==='pa')items.sort((a,b)=>a.p-b.p);
   else if(s==='pd')items.sort((a,b)=>b.p-a.p);
   else if(s==='yd')items.sort((a,b)=>b.y-a.y);
   else if(s==='ya')items.sort((a,b)=>a.y-b.y);
   const u=L==='ru'?'см':'cm';
-  document.getElementById('cC').textContent=L==='ru'?`${items.length} работ`:`${items.length} works`;
+  const n10=items.length%10,n100=items.length%100;
+  document.getElementById('cC').textContent=L==='ru'?`${items.length} ${n10===1&&n100!==11?'работа':n10>=2&&n10<=4&&(n100<12||n100>14)?'работы':'работ'}`:`${items.length} ${items.length===1?'work':'works'}`;
   const cards=items.map(a=>{
     const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me;
     const media=getMedia(a);
@@ -506,7 +645,7 @@ function rC(){
     const countBadge=media.length>1?`<div class="media-badge">🖼 ${media.length}</div>`:'';
     const vidBadge=hasVid?`<div class="vid-badge">▶ видео</div>`:'';
     return`<div class="cd" onclick="oM(${a.id})">
-      <div class="ci" style="aspect-ratio:1/${catRatio(a)}">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}</div>
+      <div class="ci" style="aspect-ratio:1/${catRatio(a)}">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}<button class="fv ${FAV.has(a.id)?'on':''}" data-fav="${a.id}" onclick="event.stopPropagation();tFav(${a.id})" aria-label="${L==='ru'?'В избранное':'Favorite'}">${HEART}</button></div>
       <div class="cb2">
         <div class="ctt">${tt}</div>
         <div class="cm">${mm}. ${a.s} ${u}. ${a.y}</div>
@@ -517,11 +656,70 @@ function rC(){
   // раскладка по колонкам: каждую карточку — в самую короткую, высоту считаем по размеру холста
   const n=catCols(),hs=Array(n).fill(0),cols=Array.from({length:n},()=>[]);
   items.forEach((a,i)=>{const k=hs.indexOf(Math.min(...hs));cols[k].push(cards[i]);hs[k]+=catRatio(a)+.45;});
-  document.getElementById('cG').innerHTML=cols.map(c=>`<div class="cg-col">${c.join('')}</div>`).join('');
+  document.getElementById('cG').innerHTML=items.length?cols.map(c=>`<div class="cg-col">${c.join('')}</div>`).join('')
+    :`<div class="cempty">${L==='ru'?'Под эти условия работ не нашлось':'No works match these filters'}<br><button class="fb" onclick="resetF()">${L==='ru'?'Сбросить фильтры':'Reset filters'}</button></div>`;
   catN=n;
   ob();
 }
 let catN=0;
+function resetF(){F='all';document.getElementById('cPr').value='';document.getElementById('cSz').value='';rF();rC();}
+// размеры в см [высота, ширина]; у диптиха «40×30 + 40×30» ширины складываются
+function dims(a){
+  const ps=[...String(a.s||'').matchAll(/(\d+(?:[.,]\d+)?)\s*[×xх*]\s*(\d+(?:[.,]\d+)?)/g)].map(m=>[parseFloat(m[1].replace(',','.')),parseFloat(m[2].replace(',','.'))]);
+  if(!ps.length)return[60,60];
+  return[Math.max(...ps.map(p=>p[0])),ps.reduce((t,p)=>t+p[1],0)+(ps.length-1)*3];
+}
+
+/* ── FAVORITES ── */
+const HEART=`<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>`;
+const SITE='https://artpolushkina.com';
+let FAV=new Set();
+try{FAV=new Set(JSON.parse(localStorage.getItem('mp_fav')||'[]'));}catch(_){}
+function tFav(id){
+  FAV.has(id)?FAV.delete(id):FAV.add(id);
+  try{localStorage.setItem('mp_fav',JSON.stringify([...FAV]));}catch(_){}
+  document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.classList.toggle('on',FAV.has(id)));
+  if(F==='fav'&&!FAV.size)F='all';
+  rF();if(F==='fav')rC();
+  rFav();
+}
+function rFav(){
+  const n=FAV.size;
+  document.getElementById('fbar').classList.toggle('vis',n>0);
+  document.getElementById('fbarN').textContent=n;
+  document.getElementById('fbarGo').textContent=L==='ru'?(n===1?'Написать о работе':'Написать о работах'):'Ask the artist';
+  const mf=document.getElementById('mFav');
+  if(curId!=null){mf.classList.toggle('on',FAV.has(curId));mf.querySelector('span').textContent=FAV.has(curId)?(L==='ru'?'В избранном':'Saved'):(L==='ru'?'В избранное':'Favorite');}
+}
+function showFav(){F='fav';rF();rC();document.getElementById('catalog').scrollIntoView({behavior:'smooth'});}
+function workLine(a){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}, ${a.p.toLocaleString('ru-RU')} ₽ - ${SITE}/#work-${a.id}`;}
+function askFav(){
+  const ws=W.filter(a=>FAV.has(a.id));
+  const head=L==='ru'?'Здравствуйте, Мария! Меня заинтересовали работы с вашего сайта:':'Hello Maria! I am interested in these works from your website:';
+  tgMsg(head+'\n'+ws.map(workLine).join('\n'));
+}
+function dmHandle(){const c=CT.contacts||CT_FB.contacts;return(c.telegramDm||c.telegram||'artpolushkina').replace('@','');}
+// личка в Telegram: текст подставляется в ссылку и дублируется в буфер — вставить, если клиент его не подхватил
+function tgMsg(text,noOpen){
+  if(!noOpen)window.open(`https://t.me/${dmHandle()}?text=${encodeURIComponent(text)}`,'_blank','noopener');
+  copyText(text).then(ok=>{if(ok)toast(L==='ru'?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear');});
+}
+function copyText(t){
+  if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).then(()=>true,()=>false);
+  try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();return Promise.resolve(ok);}catch(_){return Promise.resolve(false);}
+}
+let toastT;
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('vis');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('vis'),3800);}
+
+/* ── LINK TO A WORK ── */
+function shareWork(id){
+  const a=W.find(x=>x.id===id);if(!a)return;
+  const url=`${SITE}/#work-${id}`,title=`${L==='ru'?a.t:a.te} - ${L==='ru'?'Мария Полушкина':'Maria Polushkina'}`;
+  if(navigator.share){navigator.share({title,url}).catch(()=>{});return;}
+  copyText(url).then(ok=>toast(ok?(L==='ru'?'Ссылка на работу скопирована':'Link copied'):url));
+}
+function openFromHash(){const m=location.hash.match(/^#work-(\d+)$/);if(m&&W.length)oM(+m[1]);}
+addEventListener('hashchange',openFromHash);
 // высота/ширина работы из размера «70×60» (высота × ширина) — до загрузки фото
 function catRatio(a){
   const m=String(a.s||'').match(/(\d+(?:[.,]\d+)?)\s*[×xх*]\s*(\d+(?:[.,]\d+)?)/);
@@ -529,7 +727,7 @@ function catRatio(a){
   return Math.min(2.2,Math.max(.45,r||1));
 }
 function catCols(){
-  if(innerWidth<=400)return 1;
+  if(innerWidth<=340)return 1;
   if(innerWidth<=600)return 2;
   const w=document.getElementById('cG').clientWidth||innerWidth;
   return Math.max(1,Math.floor((w+24)/(270+24)));
@@ -588,20 +786,29 @@ function carSetupSwipe(){
   wrap.onpointerup=e=>{if(!carDragging)return;carDragging=false;const dx=e.clientX-carStartX;if(Math.abs(dx)>40)carGo(dx<0?1:-1);};
 }
 
+let curId=null;
 function oM(id){
   const a=W.find(x=>x.id===id);if(!a)return;
+  curId=id;
+  if(location.hash!==`#work-${id}`)history.replaceState(null,'',`#work-${id}`);
   const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me,u=L==='ru'?'см':'cm';
   document.querySelector('.ml').style.setProperty('--mr',`1/${catRatio(a)}`);
+  document.querySelector('.ml').style.setProperty('--mh',catRatio(a));
   carBuild(getMedia(a),tt);
   document.getElementById('mT').textContent=tt;
   document.getElementById('mM').innerHTML=`${mm}<br>${a.s} ${u}<br>${a.y}`;
   document.getElementById('mP').textContent=a.p.toLocaleString('ru-RU')+' ₽';
-  const c=CT.contacts||CT_FB.contacts;
-  document.getElementById('mB').href=`https://t.me/${(c.telegramDm||c.telegram||'artpolushkina').replace('@','')}`;
+  const buy=(L==='ru'?'Здравствуйте, Мария! Хочу купить работу ':'Hello Maria! I would like to buy ')+workLine(a);
+  const mB=document.getElementById('mB');
+  mB.href=`https://t.me/${dmHandle()}?text=${encodeURIComponent(buy)}`;
+  mB.onclick=()=>tgMsg(buy,true);
+  rFav();
   document.getElementById('ov').classList.add('on');
   document.body.style.overflow='hidden';
 }
 function xM(){
+  curId=null;
+  if(/^#work-/.test(location.hash))history.replaceState(null,'',location.pathname+location.search);
   document.getElementById('ov').classList.remove('on');
   document.body.style.overflow='';
   document.querySelectorAll('#carTrack video').forEach(v=>v.pause());
@@ -610,8 +817,209 @@ function xM(){
   document.getElementById('carThumbs').innerHTML='';
 }
 
+/* ── TRY ON WALL ── */
+// координаты T.x/T.y (центр картины) и T.w (её ширина) — в пикселях фона; T.pxcm — пикселей фона на сантиметр (0 — масштаб не задан)
+const T={a:null,hc:60,wc:60,ar:1,bw:0,bh:0,x:0,y:0,w:0,s:1,pxcm:0,sample:true,cal:false,p1:[0,0],p2:[0,0],photo:null,blob:null};
+const TX={
+  ru:{file:'Своё фото стены',sample:'Пример интерьера',size:'Размер',cal:'Указать масштаб',recal:'Изменить масштаб',save:'Сохранить',send:'Отправить художнице',
+    calL:'Протяните линию вдоль предмета, размер которого знаете (дверь, диван, стол), и укажите его длину:',ok:'Готово',no:'Отмена',
+    hintSample:'Картина в реальном размере над диваном шириной 2 м. Её можно передвинуть или загрузить фото своей стены.',
+    hintPhoto:'Перетащите картину на нужное место, размер подберите ползунком. Для точного размера нажмите «Указать масштаб». Фото остаётся только на вашем устройстве.',
+    hintReal:'Картина в реальном размере. Перетаскивайте её по стене.',hintCal:'Поставьте красные точки на края предмета',
+    real:'Реальный размер',saved:'Картинка сохранена',badLen:'Растяните линию и укажите длину в сантиметрах',
+    sendMsg:'Здравствуйте, Мария! Примеряю у себя на стене работу ',sendToast:'Картинка сохранена - прикрепите её к сообщению в Telegram',badPhoto:'Не получилось открыть фото'},
+  en:{file:'Photo of your wall',sample:'Sample interior',size:'Size',cal:'Set the scale',recal:'Change the scale',save:'Save',send:'Send to the artist',
+    calL:'Draw a line along something of known size (a door, sofa, table) and enter its length:',ok:'Done',no:'Cancel',
+    hintSample:'The painting at real size above a 2 m sofa. Move it around or upload a photo of your own wall.',
+    hintPhoto:'Drag the painting into place and adjust the size with the slider. For exact size tap “Set the scale”. Your photo stays on your device.',
+    hintReal:'The painting at real size. Drag it along the wall.',hintCal:'Put the red dots on the edges of the object',
+    real:'Real size',saved:'Image saved',badLen:'Stretch the line and enter its length in centimetres',
+    sendMsg:'Hello Maria! I am trying on my wall the work ',sendToast:'Image saved - attach it to your Telegram message',badPhoto:'Could not open the photo'}
+};
+const tx=k=>TX[L][k];
+function tryHint(k){document.getElementById('tryHint').textContent=tx(k);}
+
+function tryOpen(id){
+  const a=W.find(x=>x.id===id);if(!a)return;
+  T.a=a;[T.hc,T.wc]=dims(a);T.ar=T.hc/T.wc;
+  const u=L==='ru'?'см':'cm';
+  document.getElementById('tryT').textContent=L==='ru'?a.t:a.te;
+  document.getElementById('tryS').textContent=`${a.s} ${u} · ${a.p.toLocaleString('ru-RU')} ₽`;
+  [['tryFileL','file'],['trySampleB','sample'],['trySzL','size'],['trySaveB','save'],['trySendB','send'],['tryCalL','calL'],['tryCalOk','ok'],['tryCalNo','no']]
+    .forEach(([i,k])=>document.getElementById(i).textContent=tx(k));
+  document.getElementById('tryCmU').textContent=u;
+  const art=document.getElementById('tryArt');
+  art.onload=()=>{
+    if(!art.naturalWidth)return;
+    T.ar=art.naturalHeight/art.naturalWidth;
+    if(T.sample&&ROOM){const h=T.w*T.ar;T.y=Math.max(h/2+16,ROOM.top-h/2);}
+    tryRender();
+  };
+  art.src=(getMedia(a).find(m=>m.type==='img')||{path:`site/images/work-${a.id}.jpg`}).path;
+  document.getElementById('try').classList.add('on');
+  if(T.photo&&!T.sample){if(T.pxcm)T.w=T.wc*T.pxcm;tryHint(T.pxcm?'hintReal':'hintPhoto');tryRender();}
+  else trySample();
+}
+function tryClose(){if(T.cal)tryCalEnd();document.getElementById('try').classList.remove('on');}
+
+function tryBg(url,w,h,pxcm,sample){T.bw=w;T.bh=h;T.pxcm=pxcm;T.sample=sample;document.getElementById('tryBg').src=url;}
+let ROOM=null;const ROOMS={};
+function trySample(){
+  // узкий экран — берём узкую комнату, если в ней картина выйдет заметно крупнее
+  const st=document.getElementById('tryStage'),sw=st.clientWidth,sh=st.clientHeight,pt=Math.min(sw/800,sh/1000)>Math.min(sw/1600,sh/1000)*1.15;
+  ROOM=ROOMS[pt]=ROOMS[pt]||drawRoom(pt);
+  tryBg(ROOM.url,ROOM.w,ROOM.h,ROOM.k,true);
+  T.w=T.wc*T.pxcm;T.x=ROOM.w/2;
+  const h=T.w*T.ar;T.y=Math.max(h/2+16,ROOM.top-h/2);
+  tryHint('hintSample');tryRender();
+}
+function tryPhoto(f){
+  if(!f)return;
+  const u=URL.createObjectURL(f),img=new Image();
+  img.onload=()=>{
+    const k=Math.min(1,2400/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.round(img.naturalWidth*k),h=Math.round(img.naturalHeight*k);
+    const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+    URL.revokeObjectURL(u);
+    c.toBlob(b=>{
+      if(T.photo)URL.revokeObjectURL(T.photo);
+      T.photo=URL.createObjectURL(b);
+      tryBg(T.photo,w,h,0,false);
+      T.w=w*.28;T.x=w/2;T.y=Math.max(h*.4,T.w*T.ar/2+8);
+      tryHint('hintPhoto');tryRender();
+    },'image/jpeg',.92);
+  };
+  img.onerror=()=>{URL.revokeObjectURL(u);toast(tx('badPhoto'));};
+  img.src=u;
+}
+
+function tryRender(){
+  if(!T.bw||!document.getElementById('try').classList.contains('on'))return;
+  const st=document.getElementById('tryStage'),s=T.s=Math.min((st.clientWidth-24)/T.bw,(st.clientHeight-24)/T.bh);
+  const pic=document.getElementById('tryPic');pic.style.width=T.bw*s+'px';pic.style.height=T.bh*s+'px';
+  const h=T.w*T.ar;
+  Object.assign(document.getElementById('tryArt').style,{left:(T.x-T.w/2)*s+'px',top:(T.y-h/2)*s+'px',width:T.w*s+'px',height:h*s+'px'});
+  const real=T.pxcm>0;
+  document.getElementById('trySzW').style.display=real?'none':'';
+  document.getElementById('trySz').value=T.w/T.bw;
+  const rl=document.getElementById('tryReal');rl.style.display=real?'':'none';rl.textContent=`${tx('real')}: ${T.a.s} ${L==='ru'?'см':'cm'}`;
+  const cb=document.getElementById('tryCalB');cb.style.display=T.sample?'none':'';cb.textContent=tx(real?'recal':'cal');
+  const r=document.getElementById('tryRuler');r.setAttribute('viewBox',`0 0 ${T.bw} ${T.bh}`);
+  if(T.cal){
+    const ln=document.getElementById('tryLn');
+    ln.setAttribute('x1',T.p1[0]);ln.setAttribute('y1',T.p1[1]);ln.setAttribute('x2',T.p2[0]);ln.setAttribute('y2',T.p2[1]);
+    ln.style.strokeWidth=2/s;ln.style.strokeDasharray=`${6/s} ${5/s}`;
+    [['tryP1',T.p1],['tryP2',T.p2]].forEach(([i,p])=>{const c=document.getElementById(i);c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r',11/s);c.style.strokeWidth=2/s;});
+  }
+  // готовая картинка для «Отправить» собирается заранее: share на телефоне должен вызываться сразу по нажатию
+  T.blob=null;clearTimeout(T.bt);T.bt=setTimeout(()=>tryCompose().then(b=>T.blob=b),400);
+}
+function trySetW(f){T.w=Math.min(.95,Math.max(.03,f))*T.bw;tryRender();}
+addEventListener('resize',tryRender);
+
+(function(){
+  const art=document.getElementById('tryArt'),stage=document.getElementById('tryStage'),pts=new Map();let drag=null,pinch=null;
+  stage.addEventListener('pointerdown',e=>{
+    if(T.cal)return;
+    pts.set(e.pointerId,[e.clientX,e.clientY]);
+    if(pts.size===1&&e.target===art)drag={x:e.clientX,y:e.clientY,ox:T.x,oy:T.y};
+    if(pts.size===2&&!T.pxcm){const[p,q]=[...pts.values()];pinch={d:Math.hypot(p[0]-q[0],p[1]-q[1])||1,w:T.w};drag=null;}
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!pts.has(e.pointerId))return;
+    pts.set(e.pointerId,[e.clientX,e.clientY]);
+    if(pinch&&pts.size===2){const[p,q]=[...pts.values()];trySetW(pinch.w*Math.hypot(p[0]-q[0],p[1]-q[1])/pinch.d/T.bw);}
+    else if(drag){T.x=Math.min(T.bw,Math.max(0,drag.ox+(e.clientX-drag.x)/T.s));T.y=Math.min(T.bh,Math.max(0,drag.oy+(e.clientY-drag.y)/T.s));tryRender();}
+  });
+  const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=null;if(!pts.size)drag=null;};
+  stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
+  stage.addEventListener('wheel',e=>{if(T.pxcm||!T.bw)return;e.preventDefault();trySetW(T.w/T.bw*(e.deltaY<0?1.06:1/1.06));},{passive:false});
+  ['tryP1','tryP2'].forEach((id,i)=>{
+    const c=document.getElementById(id);let on=false;
+    c.addEventListener('pointerdown',e=>{on=true;c.setPointerCapture(e.pointerId);});
+    c.addEventListener('pointermove',e=>{
+      if(!on)return;
+      const r=document.getElementById('tryPic').getBoundingClientRect();
+      const p=[Math.min(T.bw,Math.max(0,(e.clientX-r.left)/T.s)),Math.min(T.bh,Math.max(0,(e.clientY-r.top)/T.s))];
+      if(i)T.p2=p;else T.p1=p;tryRender();
+    });
+    c.addEventListener('pointerup',()=>on=false);c.addEventListener('pointercancel',()=>on=false);
+  });
+})();
+
+function tryCalStart(){
+  T.cal=true;T.p1=[T.bw*.3,T.bh*.62];T.p2=[T.bw*.7,T.bh*.62];
+  document.getElementById('try').classList.add('cal');document.getElementById('tryRuler').classList.add('on');
+  tryHint('hintCal');tryRender();
+}
+function tryCalDone(){
+  const cm=parseFloat(String(document.getElementById('tryCm').value).replace(',','.')),len=Math.hypot(T.p1[0]-T.p2[0],T.p1[1]-T.p2[1]);
+  if(!(cm>0)||len*T.s<20){toast(tx('badLen'));return;}
+  T.pxcm=len/cm;T.w=T.wc*T.pxcm;
+  tryCalEnd();tryHint('hintReal');
+}
+function tryCalCancel(){tryCalEnd();tryHint(T.pxcm?'hintReal':'hintPhoto');}
+function tryCalEnd(){T.cal=false;document.getElementById('try').classList.remove('cal');document.getElementById('tryRuler').classList.remove('on');tryRender();}
+
+function tryCompose(){
+  return new Promise(res=>{
+    const c=document.createElement('canvas');c.width=T.bw;c.height=T.bh;const g=c.getContext('2d');
+    g.drawImage(document.getElementById('tryBg'),0,0,T.bw,T.bh);
+    const h=T.w*T.ar,x=T.x-T.w/2,y=T.y-h/2;
+    g.save();g.shadowColor='rgba(0,0,0,.32)';g.shadowBlur=T.w*.07;g.shadowOffsetY=T.w*.03;g.fillStyle='#000';g.fillRect(x,y,T.w,h);g.restore();
+    g.drawImage(document.getElementById('tryArt'),x,y,T.w,h);
+    const fs=Math.max(14,Math.round(T.bw*.016)),cap=`«${L==='ru'?T.a.t:T.a.te}», ${T.a.s} ${L==='ru'?'см':'cm'} · artpolushkina.com`;
+    g.font=`${fs}px "Nunito Sans",sans-serif`;g.textAlign='right';g.textBaseline='bottom';
+    g.fillStyle='rgba(0,0,0,.4)';g.fillText(cap,T.bw-fs*.8+1,T.bh-fs*.6+1);
+    g.fillStyle='rgba(255,255,255,.92)';g.fillText(cap,T.bw-fs*.8,T.bh-fs*.6);
+    c.toBlob(b=>res(b),'image/jpeg',.9);
+  });
+}
+const tryName=()=>`polushkina-${T.a.id}-na-stene.jpg`;
+function dl(b,name){const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);}
+function trySave(){tryCompose().then(b=>{dl(b,tryName());toast(tx('saved'));});}
+function trySend(){
+  const text=tx('sendMsg')+workLine(T.a);
+  const canFiles=navigator.canShare&&navigator.canShare({files:[new File([new Blob(['x'])],'a.jpg',{type:'image/jpeg'})]});
+  if(canFiles){
+    const go=b=>navigator.share({files:[new File([b],tryName(),{type:'image/jpeg'})],text}).catch(e=>{if(e.name!=='AbortError'){dl(b,tryName());tgMsg(text,true);toast(tx('sendToast'));}});
+    T.blob?go(T.blob):tryCompose().then(go);
+    return;
+  }
+  tgMsg(text);
+  tryCompose().then(b=>{dl(b,tryName());setTimeout(()=>toast(tx('sendToast')),400);});
+}
+
+// пример интерьера: стена, пол и диван шириной 200 см — масштаб известен, картина сразу в реальном размере
+function drawRoom(portrait){
+  const w=portrait?800:1600,h=1000,k=3.2,fy=800,c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');
+  const rr=(x,y,ww,hh,r,col)=>{g.fillStyle=col;g.beginPath();g.moveTo(x+r,y);g.arcTo(x+ww,y,x+ww,y+hh,r);g.arcTo(x+ww,y+hh,x,y+hh,r);g.arcTo(x,y+hh,x,y,r);g.arcTo(x,y,x+ww,y,r);g.closePath();g.fill();};
+  let gr=g.createLinearGradient(0,0,0,fy);gr.addColorStop(0,'#EFE8DD');gr.addColorStop(1,'#E0D4C3');g.fillStyle=gr;g.fillRect(0,0,w,fy);
+  gr=g.createRadialGradient(w*.22,-120,40,w*.22,-120,1200);gr.addColorStop(0,'rgba(255,255,255,.5)');gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(0,0,w,fy);
+  gr=g.createLinearGradient(0,fy,0,h);gr.addColorStop(0,'#AD8B6B');gr.addColorStop(1,'#8C6B4F');g.fillStyle=gr;g.fillRect(0,fy,w,h-fy);
+  g.strokeStyle='rgba(60,40,25,.13)';g.lineWidth=2;for(let y=fy+16,d=16;y<h;d*=1.28,y+=d){g.beginPath();g.moveTo(0,y);g.lineTo(w,y);g.stroke();}
+  g.fillStyle='#F6F1EA';g.fillRect(0,fy-16,w,16);g.fillStyle='rgba(0,0,0,.09)';g.fillRect(0,fy,w,3);
+  const sw=200*k,sx=(w-sw)/2,top=fy-82*k;
+  g.fillStyle='rgba(40,25,15,.18)';g.beginPath();g.ellipse(w/2,fy+8,sw*.56,20,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#4A3828';g.fillRect(sx+14,fy-26,12,26);g.fillRect(sx+sw-26,fy-26,12,26);
+  rr(sx+22,top,sw-44,150,26,'#7D8C79');
+  rr(sx,top+104,sw,124,22,'#8A9986');
+  rr(sx+84,top+70,120,96,22,'#C8A96E');
+  rr(sx+sw-210,top+76,112,90,22,'#B8CBE0');
+  rr(sx+80,top+118,sw-160,34,14,'#94A390');
+  rr(sx-16,top+68,84,176,30,'#738270');rr(sx+sw-68,top+68,84,176,30,'#738270');
+  if(portrait)return{url:c.toDataURL('image/jpeg',.9),w,h,k,top:top-22*k};
+  g.fillStyle='#C67858';g.beginPath();g.moveTo(222,fy-118);g.lineTo(318,fy-118);g.lineTo(304,fy-4);g.lineTo(236,fy-4);g.closePath();g.fill();
+  [['#3A7B52',-0.5,230,560],['#4A8B60',0.15,272,530],['#2D5E3F',0.7,312,575],['#4A8B60',-1.1,214,622],['#3A7B52',1.2,330,628]].forEach(([col,a,x,y])=>{g.save();g.translate(x,y);g.rotate(a);g.fillStyle=col;g.beginPath();g.ellipse(0,0,26,92,0,0,Math.PI*2);g.fill();g.restore();});
+  g.strokeStyle='#2D2A26';g.lineWidth=5;g.beginPath();g.moveTo(1350,fy-6);g.lineTo(1350,380);g.stroke();
+  g.fillStyle='#2D2A26';g.beginPath();g.ellipse(1350,fy-4,46,9,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#F4ECE0';g.beginPath();g.moveTo(1302,388);g.lineTo(1398,388);g.lineTo(1380,300);g.lineTo(1320,300);g.closePath();g.fill();
+  gr=g.createRadialGradient(1350,420,10,1350,420,260);gr.addColorStop(0,'rgba(255,236,200,.35)');gr.addColorStop(1,'rgba(255,236,200,0)');g.fillStyle=gr;g.fillRect(1050,300,600,500);
+  return{url:c.toDataURL('image/jpeg',.9),w,h,k,top:top-22*k};
+}
+
 /* ── NAV / SCROLL ── */
 document.addEventListener('keydown',e=>{
+  if(document.getElementById('try').classList.contains('on')){if(e.key==='Escape')T.cal?tryCalCancel():tryClose();return;}
   if(document.getElementById('ov').classList.contains('on')){
     if(e.key==='ArrowLeft')carGo(-1);
     else if(e.key==='ArrowRight')carGo(1);
