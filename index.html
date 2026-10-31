@@ -38,7 +38,9 @@ a:hover{color:var(--mars)}
 .hb span:nth-child(1){top:0}.hb span:nth-child(2){top:8px}.hb span:nth-child(3){top:16px}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:80px 28px 40px;overflow:hidden;background:var(--hb,var(--canvas));transition:background-color .9s ease}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:80px 28px 40px;overflow:hidden;background:var(--hb,var(--canvas))}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero .hi{position:relative;z-index:1}
 .hi{max-width:var(--mw);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:center}
 .ht h1{font-family:var(--fd);font-weight:300;font-size:clamp(2.6rem,5vw,4rem);line-height:1.12;margin-bottom:20px}
 .ht h1 .ac{color:var(--burg);font-style:italic;font-weight:400}
@@ -49,7 +51,7 @@ a:hover{color:var(--mars)}
 .hc{display:inline-block;padding:13px 32px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;font-weight:400;transition:.3s var(--e)}
 .hc:hover{background:var(--mars);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,48,64,.25)}
 .ha{display:flex;flex-direction:column;justify-content:center;align-items:center}
-/* Ролик без рамки: фон экрана берёт цвет краёв текущей сцены (heroSync), границы кадра чёткие */
+/* Ролик без рамки: фон экрана продолжает фон краёв кадра (heroSync), там где картина упирается в край — граница чёткая */
 .ha-vid{width:100%;max-width:760px;aspect-ratio:848/464;display:block;object-fit:cover;background:transparent}
 .ha-cap{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;min-height:1.6em;margin-top:14px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);transition:opacity .5s,color .9s}
 .ha-cap.off{opacity:0;pointer-events:none}
@@ -63,7 +65,7 @@ a:hover{color:var(--mars)}
 
 
 .wd{width:100%;line-height:0;overflow:hidden}
-.wd.wh{background:var(--hb,var(--canvas));transition:background-color .9s ease}
+.wd.wh{background:var(--hb,var(--canvas))}
 .wd svg{width:100%;height:auto;display:block}
 
 /* SECTIONS */
@@ -697,18 +699,71 @@ function heroSync(){
   const v=document.getElementById('heroVid'),hero=document.getElementById('hero'),cap=document.getElementById('heroCap');
   if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
-  const c=document.createElement('canvas');c.width=32;c.height=18;const g=c.getContext('2d',{willReadFrequently:true});
-  let vis=true,last='',capKey='';
+  // Фон рисуется в canvas за контентом: основной цвет сцены (самый светлый из крупных цветов края кадра)
+  // + края кадра, продолженные наружу и плавно уходящие в основной цвет. Где у края другой цвет
+  // (картина упирается в край) — продолжения нет, граница остаётся чёткой.
+  const CW=48,CH=27,c=document.createElement('canvas');c.width=CW;c.height=CH;const g=c.getContext('2d',{willReadFrequently:true});
+  const bg=document.createElement('canvas');bg.className='hero-bg';hero.prepend(bg);const bx=bg.getContext('2d');
+  const strip=document.createElement('canvas'),sx=strip.getContext('2d');
+  let vis=true,capKey='',tgt=null,cur=null,raf=0;
   new IntersectionObserver(e=>{vis=e[0].isIntersecting;},{threshold:0}).observe(hero);
-  const med=a=>{a.sort((x,y)=>x-y);return a[a.length>>1];};
+  const dist=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2]);
+  const li=x=>{x/=255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;},lum=p=>.2126*li(p[0])+.7152*li(p[1])+.0722*li(p[2]);
+  const avg=a=>[0,1,2].map(k=>a.reduce((s,p)=>s+p[k],0)/a.length);
+  // видимая часть кадра (object-fit:cover на телефоне обрезает бока)
+  function frameBox(){
+    const hb=hero.getBoundingClientRect(),vb=v.getBoundingClientRect(),vw=v.videoWidth||848,vh=v.videoHeight||464;
+    const sc=Math.max(vb.width/vw,vb.height/vh),u=(vb.width/sc)/vw,w=(vb.height/sc)/vh;
+    return {hb,x:vb.left-hb.left,y:vb.top-hb.top,w:vb.width,h:vb.height,u0:(1-u)/2,u1:(1+u)/2,v0:(1-w)/2,v1:(1+w)/2};
+  }
+  function analyse(d,f){
+    const px=(u,vv)=>{const x=Math.min(CW-2,Math.max(1,Math.round(u*(CW-1)))),y=Math.min(CH-2,Math.max(1,Math.round(vv*(CH-1))));const i=(y*CW+x)*4;return [d[i],d[i+1],d[i+2]];};
+    const T=[],B=[],Lf=[],R=[];
+    for(let i=0;i<CW;i++){const u=f.u0+(f.u1-f.u0)*i/(CW-1);T.push(px(u,f.v0));B.push(px(u,f.v1));}
+    for(let j=0;j<CH;j++){const vv=f.v0+(f.v1-f.v0)*j/(CH-1);Lf.push(px(f.u0,vv));R.push(px(f.u1,vv));}
+    const ring=[...T,...B,...Lf,...R],cl=[];
+    for(const p of ring){let k=cl.find(c=>dist(c.m,p)<38);if(!k){k={m:p.slice(),a:[]};cl.push(k);}k.a.push(p);k.m=avg(k.a);}
+    const big=cl.filter(c=>c.a.length>=ring.length*.25);
+    const main=(big.length?big:cl).reduce((x,y)=>lum(y.m)>lum(x.m)?y:x).m;
+    // чужие цвета на краю заменяем основным, затем сглаживаем вдоль края, чтобы продолжение не шло полосами
+    const fx=(a,r)=>{const f=a.map(p=>dist(p,main)<38?p:main);return f.map((_,i)=>avg(f.slice(Math.max(0,i-r),i+r+1)));};
+    return {main,T:fx(T,5),B:fx(B,5),L:fx(Lf,3),R:fx(R,3)};
+  }
+  const flat=o=>[o.main,...o.T,...o.B,...o.L,...o.R];
+  function paint(){
+    raf=0;if(!tgt)return;
+    const t=flat(tgt);if(!cur||cur.length!==t.length)cur=t.map(p=>p.slice());
+    let moving=false;
+    for(let i=0;i<t.length;i++)for(let k=0;k<3;k++){const dd=t[i][k]-cur[i][k];if(Math.abs(dd)>.4){cur[i][k]+=dd*.08;moving=true;}else cur[i][k]=t[i][k];}
+    const main=cur[0],T=cur.slice(1,1+CW),B=cur.slice(1+CW,1+2*CW),Lf=cur.slice(1+2*CW,1+2*CW+CH),R=cur.slice(1+2*CW+CH);
+    const f=frameBox(),K=.5,W2=Math.max(1,Math.round(f.hb.width*K)),H2=Math.max(1,Math.round(f.hb.height*K));
+    if(bg.width!==W2||bg.height!==H2){bg.width=W2;bg.height=H2;}
+    const x0=f.x*K,y0=f.y*K,x1=(f.x+f.w)*K,y1=(f.y+f.h)*K,D=Math.min(260,f.hb.height*.3)*K;
+    const col=(p,a=1)=>`rgba(${p[0]|0},${p[1]|0},${p[2]|0},${a})`;
+    bx.globalAlpha=1;bx.fillStyle=col(main);bx.fillRect(0,0,W2,H2);
+    // строка пикселей → растянутая полоса
+    const put=(arr,horiz)=>{strip.width=horiz?arr.length:1;strip.height=horiz?1:arr.length;const im=sx.createImageData(strip.width,strip.height);arr.forEach((p,i)=>{im.data.set([p[0],p[1],p[2],255],i*4);});sx.putImageData(im,0,0);return strip;};
+    const fade=(gx0,gy0,gx1,gy1,rx,ry,rw,rh)=>{const gr=bx.createLinearGradient(gx0,gy0,gx1,gy1);gr.addColorStop(0,col(main,0));gr.addColorStop(1,col(main,1));bx.fillStyle=gr;bx.fillRect(rx,ry,rw,rh);};
+    bx.imageSmoothingEnabled=true;
+    bx.drawImage(put(T,1),x0,y0-D,x1-x0,D+1);fade(0,y0,0,y0-D,x0,y0-D,x1-x0,D+1);
+    bx.drawImage(put(B,1),x0,y1-1,x1-x0,D+1);fade(0,y1,0,y1+D,x0,y1-1,x1-x0,D+1);
+    bx.drawImage(put(Lf,0),x0-D,y0,D+1,y1-y0);fade(x0,0,x0-D,0,x0-D,y0,D+1,y1-y0);
+    bx.drawImage(put(R,0),x1-1,y0,D+1,y1-y0);fade(x1,0,x1+D,0,x1-1,y0,D+1,y1-y0);
+    // углы: цвет угла кадра, уходящий в основной цвет по диагонали
+    for(const [cx,cy,p] of [[x0,y0,T[0]],[x1,y0,T[CW-1]],[x0,y1,B[0]],[x1,y1,B[CW-1]]]){
+      const gr=bx.createRadialGradient(cx,cy,0,cx,cy,D);gr.addColorStop(0,col(p));gr.addColorStop(1,col(p,0));
+      bx.fillStyle=col(main);bx.fillRect(cx<x1?cx-D:cx-1,cy<y1?cy-D:cy-1,D+1,D+1);bx.fillStyle=gr;bx.fillRect(cx<x1?cx-D:cx-1,cy<y1?cy-D:cy-1,D+1,D+1);
+    }
+    document.documentElement.style.setProperty('--hb',col(main));
+    if(moving)raf=requestAnimationFrame(paint);
+  }
+  addEventListener('resize',()=>{if(!raf)raf=requestAnimationFrame(paint);});
   function tick(){
     if(vis&&!document.hidden&&v.readyState>=2){
       try{
-        g.drawImage(v,0,0,32,18);const d=g.getImageData(0,0,32,18).data,r=[],gg=[],b=[];
-        for(let y=0;y<18;y++)for(let x=0;x<32;x++){if(x>1&&x<30&&y>1&&y<16)continue;const i=(y*32+x)*4;r.push(d[i]);gg.push(d[i+1]);b.push(d[i+2]);}
-        const R=med(r),G=med(gg),B=med(b),col=`rgb(${R},${G},${B})`;
-        if(col!==last){last=col;document.documentElement.style.setProperty('--hb',col);
-          const li=x=>{x/=255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;},lum=.2126*li(R)+.7152*li(G)+.0722*li(B);hero.classList.toggle('dk',lum<.25);}
+        g.drawImage(v,0,0,CW,CH);tgt=analyse(g.getImageData(0,0,CW,CH).data,frameBox());
+        hero.classList.toggle('dk',lum(tgt.main)<.3);
+        if(!raf)raf=requestAnimationFrame(paint);
       }catch(e){}
       const t=v.currentTime;let id=0;for(const [s,w] of HERO_SC)if(t>=s)id=w;
       const a=id&&W.find(x=>x.id===id),k=(a?id:0)+L;
