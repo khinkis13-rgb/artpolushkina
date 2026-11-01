@@ -49,7 +49,9 @@ a:hover{color:var(--mars)}
 /* склейка ролика: последний кадр сцены поверх ролика тает вместе с фоном; провод лампы над роликом */
 .ha-ov{position:absolute;margin:0;max-width:none;object-fit:cover;pointer-events:none;opacity:0}
 .ha-ov.on{opacity:1}.ha-ov.out{transition:opacity .6s cubic-bezier(.3,.6,.4,1)}
-.hero-wire{position:absolute;top:0;z-index:1;pointer-events:none}
+.hero-ext{position:absolute;z-index:1;pointer-events:none;opacity:0;transition:opacity .6s cubic-bezier(.3,.6,.4,1)}.hero-ext.on{opacity:1}
+.hero-wire{transition:none}.hero-sw{-webkit-mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent)}
+.wd.wh::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:#F2EADD;z-index:3}
 @property --ta{syntax:"<color>";inherits:false;initial-value:transparent}
 @property --tb{syntax:"<color>";inherits:false;initial-value:transparent}
 /* фон вокруг ролика (heroSync): набор слоёв на сцену — основа, левый и правый край, низ; новая сцена проявляется поверх старой */
@@ -733,10 +735,11 @@ const HERO_TX={g:['site/images/hero-tex-gl.webp','site/images/hero-tex-gr.webp']
 // Море: фон страницы продолжает картину полосами по высоте кадра — слева небо, розовая стена, море; справа небо и море.
 // Граница синего идёт по линии горизонта на картине. [доля высоты кадра, цвет] для левого и правого края
 const HERO_BD={51.3:[[[0,'dcebf9'],[.1088,'f2c5c5'],[.5894,'30638b']],[[0,'dcebf8'],[.5929,'30638b']]]};
-// Волночки на горизонте моря — полоса горизонта с картины (без деревьев), повторяется до краёв экрана слева и справа от неё.
-// Ролик здесь обрезан по картине, чтобы за её краями шли полосы фона с этими волночками. [тайл, столбец кадра, ширина, строка кадра —
-// сдвинута так, чтобы горизонт тайла пришёлся на горизонт у края картины]
-const HERO_SW={51.3:[['site/images/hero-sea-l.webp',270,150,265.5],['site/images/hero-sea-r.webp',455,95,268.7]]};
+// Волночки на горизонте моря: полоса горизонта с картины (без деревьев и без пролетающих через неё фигур) берётся из текущего кадра ролика и повторяется
+// до краёв экрана — волны те же и шевелятся так же. Ширина полосы кратна шагу волн (10 px кадра), поэтому у края картины
+// они идут без сбоя. Ролик здесь обрезан по картине. [столбец кадра, ширина, первая строка, сдвиг в px кадра — горизонт
+// полосы встаёт на горизонт у края картины: он чуть наклонён]
+const HERO_SW={51.3:[[260,90,266,-.5],[488,60,268,.7]]};
 // Фон у краёв ролика без обрезки, где бумага или холст картины меняет тон по высоте (розовая «She is always…», «Между»):
 // 30 цветов краёв кадра сверху вниз [слева, справа]; выше и ниже ролика фон продолжает крайний цвет, без шва по низу ролика
 const HERO_VP={72.267:['dfa196dfa398dfa498dfa499e0a599dea299dfa498dfa398dfa498e0a498e1a398e0a398e0a498e0a599e0a599e1a599e0a599e1a69ae2a69ae4a69be4a69be3a59ae4a79ae4a699e5a79ce5a89de5a89ce4a69be5a89be5a79c','e1a398e1a599e0a599dea397dfa498dfa398dfa599dfa498e0a599e0a599dfa498e0a498e0a498e0a599e0a599e0a599e0a599e1a499e0a599e1a699e2a698e3a698e2a599e1a698e3a69ae2a699e4a699e3a69be3a699e3a698'],
@@ -745,7 +748,8 @@ const HERO_VP={72.267:['dfa196dfa398dfa498dfa499e0a599dea299dfa498dfa398dfa498e0
 // за 0,2 с до склейки поверх ролика ставим его же кадр, после склейки он тает 0,6 с вместе с фоном
 const HERO_CUT=[4.8,16.833,22.333,30.333,35.333,46.3,51.3,56.3,61.3,67.267,72.267,77.267];
 // «Хороший музыкальный вкус»: у верхнего края картины тёмная кромка — срезаем 4 px кадра, а провод лампы продолжаем
-// до верха экрана. w — [центр, толщина] провода в px кадра по кадрам ролика начиная с n
+// до верха экрана — тянем вверх верхние строки текущего кадра вокруг провода. w — [центр, толщина] провода в px кадра
+// по кадрам ролика начиная с n (толщина задаёт ширину полосы)
 const HERO_WIRE={s:67.267,e:72.267,top:4/464,c:'#25333a',n:2038,w:[[438.7,11.1],[436.9,10.3],[435.0,8.2],[433.6,7.5],[432.4,6.5],[431.2,5.7],[429.9,4.7],[428.8,3.8],[428.5,3.2],[427.8,2.6],[427.1,2.4],[426.8,2.3],[426.8,2.3],[426.9,2.4],[427.1,2.4],[427.1,2.4],[427.1,2.4],[427.2,2.4],[427.3,2.4],[427.4,2.3],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.4,2.3],[427.3,2.3],[427.2,2.3],[427.1,2.4],[427.0,2.3],[426.9,2.3],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[427.0,2.3],[428.2,3.0],[429.2,3.9],[430.6,4.8],[432.0,5.9]]};
 // Фон у краёв картины (сцены с обрезкой): яркость фона картины по высоте кадра [u левого края, u правого, 30 цветов сверху вниз
 // слева, справа], снята с краёв внутри картины (где у края рисунок — по соседним строкам фона). Выше и ниже ролика — цвет сцены.
@@ -767,7 +771,9 @@ function heroSync(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   const VW=848,VH=464,fx=document.createElement('canvas');fx.className='hero-fx';hero.append(fx);const fc=fx.getContext('2d');
   const ov=document.createElement('canvas');ov.className='ha-ov';ov.width=VW;ov.height=VH;v.after(ov);const oc=ov.getContext('2d');
-  const wire=document.createElement('div');wire.className='hero-wire';wire.hidden=true;hero.append(wire);
+  // продолжения картины за роликом из его же кадра (провод, волны): под текстом, над фоном
+  const hi=hero.querySelector('.hi'),mk=c=>{const e=document.createElement('canvas');e.className='hero-ext '+c;hero.insertBefore(e,hi);return [e,e.getContext('2d')];},
+    [wire,wc]=mk('hero-wire'),[swv,sc2]=mk('hero-sw');
   // iOS показывает ролик темнее тех же цветов в CSS (замер по скринам с iPhone: y = x − 0,17·x·(1 − x)) — там так же
   // затемняем фон, фактуру и рыбу, иначе на краю ролика ступенька тона
   const IOS=/iP(hone|od|ad)/.test(navigator.platform)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
@@ -779,7 +785,7 @@ function heroSync(){
     toned={};
   // слои фона: два попеременных набора на экране и на волне под ним; новая сцена проявляется поверх старой, старая гаснет под ней
   const wd=document.querySelector('.wd.wh'),G=[hero,wd].filter(Boolean).map(el=>({el,s:[0,1].map(()=>{const b=document.createElement('div'),l={};
-    b.className='hero-bg';for(const k of ['base','R','L','B','WL','WR'])b.append(l[k]=document.createElement('div'));el.prepend(b);return {b,l};})}));
+    b.className='hero-bg';for(const k of ['base','R','L','B'])b.append(l[k]=document.createElement('div'));el.prepend(b);return {b,l};})}));
   const li=x=>{x=parseInt(x,16)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;};
   const lum=h=>.2126*li(h.slice(1,3))+.7152*li(h.slice(3,5))+.0722*li(h.slice(5,7));
   let key='',capKey='',bgKey=null,ai=-1,tmo=0,zoom=1,bpKey='',BP={},prepK='',txT=0,dz=0,dc=0,dzT=0,clipNow={u0:0,u1:1,ct:0,zi:0,sc:HERO_SC[0]};
@@ -813,11 +819,7 @@ function heroSync(){
     // следующую сцену заранее раскладываем в свободный набор слоёв — на склейке остаётся только проявить его
     const D=v.duration||HERO_SC.at(-1)[0]+6,ni=HERO_SC.findIndex(r=>r[0]>t),ns=HERO_SC[ni<0?0:ni],nt=ni<0?D:ns[0];
     if(bgKey===sc[0]&&nt-t<.6&&prepK!==ns[0]+'|'+lk&&ns[0]!==sc[0]){prepK=ns[0]+'|'+lk;fill(ai^1,ns,f);}
-    // провод лампы над роликом — по его положению в кадре
-    const ww=wr&&HERO_WIRE.w[Math.floor(t*30+.01)-HERO_WIRE.n];
-    if(ww){const w=ww[1]*f.sc;wire.hidden=false;
-      wire.style.cssText=`left:${(f.X(ww[0]/VW)-w/2).toFixed(2)}px;width:${w.toFixed(2)}px;height:${P(f.Y(HERO_WIRE.top))};background:${col(HERO_WIRE.c)}`;}
-    else wire.hidden=true;
+    ext(t,sc,f,wr);
     const id=sc[1],a=id&&W.find(x=>x.id===id),ck=(a?id:0)+L;
     if(ck!==capKey){capKey=ck;cap.classList.add('off');
       setTimeout(()=>{if(!a)return;const ru=L==='ru';
@@ -866,9 +868,9 @@ function heroSync(){
   // на телефоне под роликом — профиль низа кадра (bpSet)
   function fill(i,sc,f){
     const pf=HERO_PF[sc[0]],bd=HERO_BD[sc[0]],vp=HERO_VP[sc[0]],tx=sc[5]&&HERO_TX[sc[5]],k=f.sc;
-    for(const g of G){const r=g.el.getBoundingClientRect(),ox=r.left-f.hb.left,oy=r.top-f.hb.top,{base,L,R,B,WL,WR}=g.s[i].l,
+    for(const g of G){const r=g.el.getBoundingClientRect(),ox=r.left-f.hb.left,oy=r.top-f.hb.top,{base,L,R,B}=g.s[i].l,
         X=u=>f.X(u)-ox,Y=vv=>f.Y(vv)-oy,yb=f.b-oy;
-      for(const d of [L,R,B,WL,WR])d.style.cssText='';
+      for(const d of [L,R,B])d.style.cssText='';
       base.style.background=`linear-gradient(${col(sc[2])} ${P(yb)},${col(sc[3])} ${P(yb)})`;
       if(tx){
         [L,R].forEach((d,j)=>{d.style.backgroundImage=`url(${toned[tx[j]]||tx[j]})`;d.style.backgroundSize=`${540*k}px ${928*k}px`;d.style.backgroundRepeat='repeat';});
@@ -879,10 +881,6 @@ function heroSync(){
         const gb=s=>'linear-gradient('+s.map(([,c],j)=>(j?`${col(c)} ${P(Y(s[j][0]))}`:'')+(j<s.length-1?`${j?',':''}${col(c)} ${P(Y(s[j+1][0]))}`:'')).join(',')+')';
         L.style.background=gb(bd[0]);R.style.background=gb(bd[1]);
         L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${P(X(.25))},transparent ${P(X(.75))})`;
-        // волночки горизонта — от краёв картины до краёв экрана, тайл встык с картиной
-        const sw=HERO_SW[sc[0]],c=HERO_CLIP.find(r=>r[0]===sc[0]);
-        if(sw&&c)[[WL,sw[0],0,X(c[2])],[WR,sw[1],X(c[3]),r.width]].forEach(([d,[u,x0,w,y0],a,b])=>{
-          d.style.cssText=`inset:auto;left:${a}px;width:${Math.max(0,b-a)}px;top:${Y(y0/VH)}px;height:${17*k}px;background:url(${toned[u]||u}) repeat-x;background-size:${w*k}px ${17*k}px;background-position:${X(x0/VW)-a}px 0`;});
       }else if(vp){
         // край кадра по высоте, выше и ниже ролика — крайние цвета; левый край над и под роликом плавно уходит в правый
         const y0=Y(0),y1=Y(1),gr=h=>'linear-gradient('+h.match(/.{6}/g).map((c,j,a)=>`${col(c)} ${P(y0+(y1-y0)*j/(a.length-1))}`).join(',')+')';
@@ -920,7 +918,7 @@ function heroSync(){
   function drawFish(t,f){
     const n=Math.floor(t*30+.01),cs=FISH.c[n];
     if(!sheet&&t>8){sheet=new Image();sheet.src=FISH.src;
-      for(const u of [...Object.values(HERO_TX),...Object.values(HERO_SW).map(a=>a.map(x=>x[0]))].flat()){new Image().src=u;if(IOS)tone(u).then(c=>c.toBlob(b=>{toned[u]=URL.createObjectURL(b);key='';}));}
+      for(const u of Object.values(HERO_TX).flat()){new Image().src=u;if(IOS)tone(u).then(c=>c.toBlob(b=>{toned[u]=URL.createObjectURL(b);key='';}));}
       if(IOS)tone(FISH.src).then(c=>sheetT=c);}
     if(!cs||!sheet||!sheet.complete||!sheet.naturalWidth||(IOS&&!sheetT)){if(drawn){fc.clearRect(0,0,fx.width,fx.height);drawn=false;}return;}
     // холст в пикселях экрана, а не CSS, и встаёт ровно по пикселям экрана: иначе на ретине рыба мягче, чем в ролике
@@ -932,9 +930,27 @@ function heroSync(){
     for(const [sx,sy,w,h,x,y] of cs)fc.drawImage(src,sx,sy,w,h,X0+x*k,Y0+y*k,w*k,h*k);
     fc.setTransform(1,0,0,1,0,0);drawn=true;
   }
+  // продолжения из кадра: верхние строки вокруг провода тянутся до верха экрана; полоса горизонта моря повторяется до краёв.
+  // Рисуем каждый кадр из самого ролика — провод при наезде и волны двигаются вместе с картиной
+  function ext(t,sc,f,wr){
+    const dpr=devicePixelRatio||1,k=f.sc,ww=wr&&HERO_WIRE.w[Math.floor(t*30+.01)-HERO_WIRE.n],sw=HERO_SW[sc[0]],
+      put=(e,x,y,w,h)=>{const W2=Math.ceil(w*dpr),H2=Math.ceil(h*dpr),st=`left:${x}px;top:${y}px;width:${W2/dpr}px;height:${H2/dpr}px`;
+        if(e.width!==W2||e.height!==H2)e.width=W2,e.height=H2;if(e.dataset.st!==st)e.style.cssText=e.dataset.st=st;},
+      ios=(c,e)=>{if(!IOS||!e.width)return;const d=c.getImageData(0,0,e.width,e.height),p=d.data;for(let i=0;i<p.length;i+=4){p[i]=LUT[p[i]];p[i+1]=LUT[p[i+1]];p[i+2]=LUT[p[i+2]];}c.putImageData(d,0,0);};
+    wire.classList.toggle('on',!!ww);
+    if(ww){const hw=Math.max(6,ww[1]*1.5),x=Math.floor(f.X((ww[0]-hw)/VW)*dpr)/dpr,y1=f.Y(HERO_WIRE.top);
+      put(wire,x,0,2*hw*k,Math.max(1,y1));
+      try{wc.setTransform(1,0,0,1,0,0);wc.clearRect(0,0,wire.width,wire.height);wc.drawImage(v,ww[0]-hw,HERO_WIRE.top*VH,2*hw,1.5,(f.X((ww[0]-hw)/VW)-x)*dpr,0,2*hw*k*dpr,wire.height);ios(wc,wire);}catch(e){}}
+    swv.classList.toggle('on',!!sw);
+    if(sw){const h=17,y=f.Y(Math.min(...sw.map(a=>a[2]+a[3]))/VH),H=(h+2)*k,c=HERO_CLIP.find(r=>r[0]===sc[0]);
+      put(swv,0,y,f.hb.width,H);sc2.setTransform(dpr,0,0,dpr,0,0);sc2.clearRect(0,0,f.hb.width,H);
+      try{[[sw[0],0,f.X(c[2])+1],[sw[1],f.X(c[3])-1,f.hb.width]].forEach(([[x0,w,y0,d],a,b])=>{
+        const T=w*k,o=f.X(x0/VW);for(let x=o-Math.ceil((o-a)/T)*T;x<b;x+=T)sc2.drawImage(v,x0,y0,w,h,x,f.Y((y0+d)/VH)-y,T,h*k);});
+        ios(sc2,swv);}catch(e){}}
+  }
   // склейка: за 0,2 с до неё кладём поверх ролика его текущий кадр (с той же обрезкой), после склейки он тает вместе с фоном.
   // Запас в 0,2 с нужен Safari: он применяет стили на несколько кадров позже, чем показывает кадр ролика
-  function cut(t){
+  function cut(t,f){
     const D=v.duration||HERO_SC.at(-1)[0]+6,nc=HERO_CUT.find(c=>c>t)??D;
     if(!dz&&nc-t<=.2&&nc-t>0){
       // за краями картины в кадре «стена со швом» — там рисуем то же, что фон у края картины (HERO_PF или цвет сцены)
@@ -948,12 +964,18 @@ function heroSync(){
         if(u1<1)side(3,u1*VW,VW-u1*VW);
         if(IOS){const d=oc.getImageData(0,0,VW,VH),p=d.data;for(let i=0;i<p.length;i+=4){p[i]=LUT[p[i]];p[i+1]=LUT[p[i+1]];p[i+2]=LUT[p[i+2]];}oc.putImageData(d,0,0);}
       }catch(e){return;}
-      const zp=(zi*100).toFixed(2)+'%',cp=`inset(${(ct*100).toFixed(2)}% ${zp} ${zp} ${zp})`;
-      ov.style.cssText=`left:${v.offsetLeft}px;top:${v.offsetTop}px;width:${v.offsetWidth}px;height:${v.offsetHeight}px;transform:${v.style.transform};clip-path:${cp};-webkit-clip-path:${cp}`;
+      // кадр лежит только там, где ролик был виден до склейки или будет виден после: за этим фон перетекает сам,
+      // и кадр поверх него дал бы светлую или тёмную рамку
+      const nt=nc>=D-.001?.001:nc+.001,nr=HERO_CLIP.find(r=>nt>=r[0]&&nt<r[1]),cu=f.cu1-f.cu0,
+        a0=Math.min(u0,nr?nr[2]:0),a1=Math.max(u1,nr?nr[3]:1),pc=x=>(Math.max(zi,x)*100).toFixed(2)+'%',
+        cp=`inset(${pc(ct)} ${pc((f.cu1-a1)/cu)} ${pc(zi)} ${pc((a0-f.cu0)/cu)})`;
+      // место ролика без увеличения, в долях пикселя: целые offset* на 0,5 px не доходят до его правого и нижнего края
+      const vr=v.getBoundingClientRect(),pr=v.parentElement.getBoundingClientRect(),z=zoom,vw=vr.width/z,vh=vr.height/z;
+      ov.style.cssText=`left:${vr.left-pr.left+(vr.width-vw)/2}px;top:${vr.top-pr.top+(vr.height-vh)/2}px;width:${vw}px;height:${vh}px;transform:${v.style.transform};clip-path:${cp};-webkit-clip-path:${cp}`;
       ov.className='ha-ov on';dz=1;dc=nc;
     }else if(dz===1&&(t>=dc||t<dc-1)){ov.className='ha-ov out';dz=2;clearTimeout(dzT);dzT=setTimeout(()=>{ov.className='ha-ov';dz=0;},700);}
   }
-  const step=t=>{if(document.hidden)return;const f=apply(t);cut(t);drawFish(t,f);};
+  const step=t=>{if(document.hidden)return;const f=apply(t);cut(t,f);drawFish(t,f);};
   // обновляемся по показанному кадру видео, а не по таймеру — обрезка и фон меняются ровно на склейке
   if(v.requestVideoFrameCallback){const cb=(n,m)=>{step(m.mediaTime);v.requestVideoFrameCallback(cb);};v.requestVideoFrameCallback(cb);}
   else{const raf=()=>{step(v.currentTime);requestAnimationFrame(raf);};requestAnimationFrame(raf);}
