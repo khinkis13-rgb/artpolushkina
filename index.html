@@ -47,7 +47,7 @@ a:hover{color:var(--mars)}
 .hero h1,.hero .hs,.hero .hl a,.ha-cap,.ha-cap .cg{transition:color .6s ease,border-color .6s ease}
 .hero-fx{position:absolute;z-index:2;pointer-events:none}
 /* склейка ролика: последний кадр сцены поверх ролика тает вместе с фоном; провод лампы над роликом */
-.ha-ov{position:absolute;margin:0;max-width:none;object-fit:cover;pointer-events:none;opacity:0}
+.ha-ov{position:absolute;margin:0;pointer-events:none;opacity:0}.ha-ov video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.ha-ov>div{position:absolute;top:0;bottom:0}
 .ha-ov.on{opacity:1}.ha-ov.out{transition:opacity .6s cubic-bezier(.3,.6,.4,1)}
 .hero-ext{position:absolute;z-index:1;pointer-events:none;opacity:0;transition:opacity .6s cubic-bezier(.3,.6,.4,1)}.hero-ext.on{opacity:1}
 .hero-wire{transition:none}.hero-sw{-webkit-mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(transparent,#000 25%,#000 75%,transparent)}
@@ -770,10 +770,14 @@ function heroSync(){
   if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   const VW=848,VH=464,fx=document.createElement('canvas');fx.className='hero-fx';hero.append(fx);const fc=fx.getContext('2d');
-  const ov=document.createElement('canvas');ov.className='ha-ov';ov.width=VW;ov.height=VH;v.after(ov);const oc=ov.getContext('2d');
+  // кадр поверх ролика на склейке — второй такой же ролик (цвета совпадают в любом браузере, копия в холст в Chrome темнее)
+  // и полосы фона по бокам картины
+  const ov=document.createElement('div'),ovv=document.createElement('video'),ovs=[0,1].map(()=>document.createElement('div'));
+  ov.className='ha-ov';ovv.muted=true;ovv.playsInline=true;ovv.preload='auto';ovv.setAttribute('aria-hidden','true');
+  ovv.src=v.getAttribute('src');ov.append(ovv,...ovs);v.after(ov);
   // продолжения картины за роликом из его же кадра (провод, волны): под текстом, над фоном
   const hi=hero.querySelector('.hi'),mk=c=>{const e=document.createElement('canvas');e.className='hero-ext '+c;hero.insertBefore(e,hi);return [e,e.getContext('2d')];},
-    [wire,wc]=mk('hero-wire'),[swv,sc2]=mk('hero-sw');
+    [wire,wc]=mk('hero-wire'),[swv,sc2]=mk('hero-sw'),sb=document.createElement('canvas'),sbc=sb.getContext('2d');
   // iOS показывает ролик темнее тех же цветов в CSS (замер по скринам с iPhone: y = x − 0,17·x·(1 − x)) — там так же
   // затемняем фон, фактуру и рыбу, иначе на краю ролика ступенька тона
   const IOS=/iP(hone|od|ad)/.test(navigator.platform)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
@@ -818,7 +822,9 @@ function heroSync(){
     if(f.stack)bpSet(sc,t,f);
     // следующую сцену заранее раскладываем в свободный набор слоёв — на склейке остаётся только проявить его
     const D=v.duration||HERO_SC.at(-1)[0]+6,ni=HERO_SC.findIndex(r=>r[0]>t),ns=HERO_SC[ni<0?0:ni],nt=ni<0?D:ns[0];
-    if(bgKey===sc[0]&&nt-t<.6&&prepK!==ns[0]+'|'+lk&&ns[0]!==sc[0]){prepK=ns[0]+'|'+lk;fill(ai^1,ns,f);}
+    if(bgKey===sc[0]&&nt-t<.6&&prepK!==ns[0]+'|'+lk&&ns[0]!==sc[0]){prepK=ns[0]+'|'+lk;fill(ai^1,ns,f);
+      // набор уже виден, но под текущим (тот непрозрачен): Safari отрисует его заранее, и на склейке фон не опоздает
+      for(const g of G){const b=g.s[ai^1].b;b.style.zIndex=0;b.style.transition='none';b.classList.add('on');void b.offsetWidth;b.style.transition='';}}
     ext(t,sc,f,wr);
     const id=sc[1],a=id&&W.find(x=>x.id===id),ck=(a?id:0)+L;
     if(ck!==capKey){capKey=ck;cap.classList.add('off');
@@ -860,7 +866,9 @@ function heroSync(){
     if(!nw)return;
     clearTimeout(tmo);
     const first=!G[0].s[ai^1].b.classList.contains('on');
-    for(const g of G){const n=g.s[ai].b,o=g.s[ai^1].b;n.style.zIndex=1;o.style.zIndex=0;
+    for(const g of G){const n=g.s[ai].b,o=g.s[ai^1].b;
+      if(!first&&n.classList.contains('on')){n.style.transition='none';n.classList.remove('on');void n.offsetWidth;n.style.transition='';}
+      n.style.zIndex=1;o.style.zIndex=0;
       if(first)n.style.transition='none';n.classList.add('on');if(first){void n.offsetWidth;n.style.transition='';}}
     const old=ai^1;tmo=setTimeout(()=>{for(const g of G){const o=g.s[old].b;o.style.transition='none';o.classList.remove('on');void o.offsetWidth;o.style.transition='';}},first?0:700);
   }
@@ -944,36 +952,43 @@ function heroSync(){
     swv.classList.toggle('on',!!sw);
     if(sw){const h=17,y=f.Y(Math.min(...sw.map(a=>a[2]+a[3]))/VH),H=(h+2)*k,c=HERO_CLIP.find(r=>r[0]===sc[0]);
       put(swv,0,y,f.hb.width,H);sc2.setTransform(dpr,0,0,dpr,0,0);sc2.clearRect(0,0,f.hb.width,H);
+      // из ролика — одна копия полосы на сторону в маленький холст (Safari медленно рисует из видео), дальше повторяем её
       try{[[sw[0],0,f.X(c[2])+1],[sw[1],f.X(c[3])-1,f.hb.width]].forEach(([[x0,w,y0,d],a,b])=>{
-        const T=w*k,o=f.X(x0/VW);for(let x=o-Math.ceil((o-a)/T)*T;x<b;x+=T)sc2.drawImage(v,x0,y0,w,h,x,f.Y((y0+d)/VH)-y,T,h*k);});
-        ios(sc2,swv);}catch(e){}}
+        if(sb.width!==w||sb.height!==h)sb.width=w,sb.height=h;sbc.drawImage(v,x0,y0,w,h,0,0,w,h);ios(sbc,sb);
+        const T=w*k,o=f.X(x0/VW);for(let x=o-Math.ceil((o-a)/T)*T;x<b;x+=T)sc2.drawImage(sb,0,0,w,h,x,f.Y((y0+d)/VH)-y,T,h*k);});
+      }catch(e){}}
   }
   // склейка: за 0,2 с до неё кладём поверх ролика его текущий кадр (с той же обрезкой), после склейки он тает вместе с фоном.
   // Запас в 0,2 с нужен Safari: он применяет стили на несколько кадров позже, чем показывает кадр ролика
   function cut(t,f){
     const D=v.duration||HERO_SC.at(-1)[0]+6,nc=HERO_CUT.find(c=>c>t)??D;
-    if(!dz&&nc-t<=.2&&nc-t>0){
-      // за краями картины в кадре «стена со швом» — там рисуем то же, что фон у края картины (HERO_PF или цвет сцены)
-      const {u0,u1,ct,zi,sc}=clipNow,pf=HERO_PF[sc[0]],bd=HERO_BD[sc[0]],
-        side=(j,x,w)=>{let g=sc[2];if(pf||bd)g=oc.createLinearGradient(0,0,0,VH);
-          if(pf)pf[j].match(/.{6}/g).forEach((c,q,a)=>g.addColorStop(q/(a.length-1),'#'+c));
-          if(bd)bd[j-2].forEach(([y,c],q,a)=>{g.addColorStop(y,'#'+c);g.addColorStop(q<a.length-1?a[q+1][0]:1,'#'+c);});
-          oc.fillStyle=g;oc.fillRect(x,0,w,VH);};
-      try{oc.drawImage(v,0,0,VW,VH);
-        if(u0>0)side(2,0,u0*VW);
-        if(u1<1)side(3,u1*VW,VW-u1*VW);
-        if(IOS){const d=oc.getImageData(0,0,VW,VH),p=d.data;for(let i=0;i<p.length;i+=4){p[i]=LUT[p[i]];p[i+1]=LUT[p[i+1]];p[i+2]=LUT[p[i+2]];}oc.putImageData(d,0,0);}
-      }catch(e){return;}
-      // кадр лежит только там, где ролик был виден до склейки или будет виден после: за этим фон перетекает сам,
-      // и кадр поверх него дал бы светлую или тёмную рамку
-      const nt=nc>=D-.001?.001:nc+.001,nr=HERO_CLIP.find(r=>nt>=r[0]&&nt<r[1]),cu=f.cu1-f.cu0,
-        a0=Math.min(u0,nr?nr[2]:0),a1=Math.max(u1,nr?nr[3]:1),pc=x=>(Math.max(zi,x)*100).toFixed(2)+'%',
-        cp=`inset(${pc(ct)} ${pc((f.cu1-a1)/cu)} ${pc(zi)} ${pc((a0-f.cu0)/cu)})`;
+    // за 0,8 с до склейки второй ролик идёт вместе с первым и встаёт на последнем кадре сцены
+    if(!dz&&nc-t<=.8&&nc-t>.3&&ovv.requestVideoFrameCallback){
+      dz=1;dc=nc;const stop=dc-2.5/30;
+      try{ovv.currentTime=v.currentTime+.03;ovv.play().catch(()=>{});}catch(e){dz=0;return;}
+      const cb=(n,m)=>{if(dz&&dz<3&&m.mediaTime>=stop&&!ovv.paused){ovv.pause();ovv.currentTime=dc-.5/30;}else if(!ovv.paused)ovv.requestVideoFrameCallback(cb);};
+      ovv.requestVideoFrameCallback(cb);
+    }
+    // за 0,2 с он показывается поверх (кадры те же — стоп-кадра нет); после склейки тает 0,6 с вместе с фоном
+    if(dz===1&&dc-t<=.2&&t<dc){
+      const {u0,u1,ct,zi,sc}=clipNow,pf=HERO_PF[sc[0]],bd=HERO_BD[sc[0]],cu=f.cu1-f.cu0,
+        nt=dc>=D-.001?.001:dc+.001,nr=HERO_CLIP.find(r=>nt>=r[0]&&nt<r[1]),a0=Math.min(u0,nr?nr[2]:0),a1=Math.max(u1,nr?nr[3]:1),
+        e=u=>(u-f.cu0)/cu,pc=x=>(Math.max(zi,x)*100).toFixed(2)+'%',
+        // за краями картины, где ролик станет виден после склейки, — то же, что фон у края картины (HERO_PF, полосы или цвет сцены)
+        side=j=>pf?'linear-gradient('+pf[j].match(/.{6}/g).map((c,q,a)=>`${col(c)} ${(q/(a.length-1)*100).toFixed(1)}%`).join(',')+')'
+          :bd?'linear-gradient('+bd[j-2].map(([y,c],q,a)=>`${col(c)} ${y*100}%,${col(c)} ${(q<a.length-1?a[q+1][0]:1)*100}%`).join(',')+')':col(sc[2]),
+        // кадр лежит только там, где ролик виден до склейки или будет виден после — иначе вокруг рамка
+        cp=`inset(${pc(ct)} ${pc(1-e(a1))} ${pc(zi)} ${pc(e(a0))})`,ci=`inset(${pc(ct)} ${pc(1-e(u1))} ${pc(zi)} ${pc(e(u0))})`;
       // место ролика без увеличения, в долях пикселя: целые offset* на 0,5 px не доходят до его правого и нижнего края
       const vr=v.getBoundingClientRect(),pr=v.parentElement.getBoundingClientRect(),z=zoom,vw=vr.width/z,vh=vr.height/z;
       ov.style.cssText=`left:${vr.left-pr.left+(vr.width-vw)/2}px;top:${vr.top-pr.top+(vr.height-vh)/2}px;width:${vw}px;height:${vh}px;transform:${v.style.transform};clip-path:${cp};-webkit-clip-path:${cp}`;
-      ov.className='ha-ov on';dz=1;dc=nc;
-    }else if(dz===1&&(t>=dc||t<dc-1)){ov.className='ha-ov out';dz=2;clearTimeout(dzT);dzT=setTimeout(()=>{ov.className='ha-ov';dz=0;},700);}
+      ovv.style.clipPath=ovv.style.webkitClipPath=ci;
+      ovs[0].style.cssText=a0<u0?`left:${e(a0)*100}%;width:${(e(u0)-e(a0))*100}%;background:${side(2)}`:'display:none';
+      ovs[1].style.cssText=a1>u1?`left:${e(u1)*100}%;width:${(e(a1)-e(u1))*100}%;background:${side(3)}`:'display:none';
+      ov.className='ha-ov on';dz=2;
+    }else if(dz&&dz<3&&(t>=dc||t<dc-1)){
+      if(dz===1){dz=0;ovv.pause();return;}
+      ov.className='ha-ov out';dz=3;clearTimeout(dzT);dzT=setTimeout(()=>{ov.className='ha-ov';ovv.pause();dz=0;},700);}
   }
   const step=t=>{if(document.hidden)return;const f=apply(t);cut(t,f);drawFish(t,f);};
   // обновляемся по показанному кадру видео, а не по таймеру — обрезка и фон меняются ровно на склейке
