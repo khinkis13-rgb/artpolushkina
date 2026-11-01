@@ -713,8 +713,8 @@ addEventListener('hashchange',openFromHash);
    чтобы картина легла в колонку (#heroBox), и по сцене меняет цвет текста и подпись (точность кадра не нужна) */
 // Кадр: W×H, картина VW×VH с левым верхним углом в (L, T). На компьютере запас фона закрывает экраны до 1920×1080,
 // на телефоне (до 600 px) — квадрат середины кадра во всю ширину, сверху место под шапку, снизу под текст и волну
-const HERO_V={d:{src:'site/videos/hero-desktop.mp4',poster:'site/images/hero-desktop-poster.jpg',W:2480,H:1536,L:1184,T:472,VW:848,VH:464},
-  m:{src:'site/videos/hero-phone.mp4',poster:'site/images/hero-phone-poster.jpg',W:464,H:1440,L:0,T:80,VW:464,VH:464}};
+const HERO_V={d:{src:'site/videos/hero-desktop.mp4?v=2',poster:'site/images/hero-desktop-poster.jpg',W:2480,H:1536,L:1184,T:472,VW:848,VH:464},
+  m:{src:'site/videos/hero-phone.mp4?v=2',poster:'site/images/hero-phone-poster.jpg',W:464,H:1440,L:0,T:80,VW:464,VH:464}};
 // Сцены: [начало, id работы для подписи, цвет вокруг, цвет под роликом] — по ним тёмный/светлый текст
 const HERO_SC=[[0,25,'#f5f5e1','#f4f4e1'],[4.8,25,'#f5f5e9','#f5f5e9'],[7.37,65,'#f5f5e9','#f5f5e9'],[16.833,77,'#16a063','#16a063'],
   [22.333,37,'#f2efe4','#f1eee4'],[30.333,25,'#f5f5e1','#f4f4e1'],[35.333,18,'#f8f7e3','#f8f6e3'],[37.35,18,'#faf8e4','#f8f8e3'],

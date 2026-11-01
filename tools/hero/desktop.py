@@ -118,7 +118,8 @@ def shift_rows(strip,dy):  # сдвиг полосы вниз на дробно�
       if 0<=rr<h+3: out[rr]+=strip[r]*w; al[rr]+=w
   return out,al,iy  # al — покрытие
 def compose(n,frame,t=None):
-  t=n/30 if t is None else t; sc=scAt(t); img=background(sc).copy()
+  t=n/30+1e-3 if t is None else t; sc=scAt(t);  # +1e-3: склейка 67,267 = кадр 2018,01 — кадр 2018 уже новая сцена
+  img=background(sc).copy()
   if sc[0] not in CUT and sc[0]>0 and t-sc[0]<.6:
     pv=scAt(sc[0]-.001); w=ez((t-sc[0])/.6); img=background(pv)*(1-w)+img*w
   # волны моря: полоса горизонта из этого же кадра, повтор до краёв (ext), маска холста по высоте
@@ -187,8 +188,8 @@ if True:
   for n in range(N0,N1):
     img=compose(n,F(n))
     for c in cuts:
-      dt=n/30-c
-      if -1e-6<=dt<.6:
+      dt=(n-round(c*30))/30
+      if 0<=dt<.6:
         a=1-ez(dt/.6); img=img*(1-a)+frozen[c]*a
     if LOOP and n/30<.6:
       a=1-ez(n/30/.6); img=img*(1-a)+endF*a
