@@ -45,7 +45,13 @@ a:hover{color:var(--mars)}
 @property --hbc{syntax:"<color>";inherits:true;initial-value:#F7F1E8}
 .hero.sync{background:linear-gradient(var(--hf) 0,var(--hf) var(--hy,100%),var(--hbc) var(--hy,100%),var(--hbc) 100%);transition:--hf .9s ease,--hbc .9s ease}
 .hero h1,.hero .hs,.hero .hl a,.ha-cap,.ha-cap .cg{transition:color .6s ease,border-color .6s ease}
-.hero-fx{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hero-fx{position:absolute;z-index:2;pointer-events:none}
+/* склейка ролика: последний кадр сцены поверх ролика тает вместе с фоном; провод лампы над роликом */
+.ha-ov{position:absolute;margin:0;max-width:none;object-fit:cover;pointer-events:none;opacity:0}
+.ha-ov.on{opacity:1}.ha-ov.out{transition:opacity .6s cubic-bezier(.3,.6,.4,1)}
+.hero-wire{position:absolute;top:0;z-index:1;pointer-events:none}
+@property --ta{syntax:"<color>";inherits:false;initial-value:transparent}
+@property --tb{syntax:"<color>";inherits:false;initial-value:transparent}
 /* фон вокруг ролика (heroSync): набор слоёв на сцену — основа, левый и правый край, низ; новая сцена проявляется поверх старой */
 .hero-bg{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s cubic-bezier(.3,.6,.4,1)}
 .hero-bg.on{opacity:1}
@@ -60,7 +66,7 @@ a:hover{color:var(--mars)}
 .hl a:hover{border-color:var(--burg);color:var(--burg)}
 .hc{display:inline-block;padding:13px 32px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;font-weight:400;transition:.3s var(--e)}
 .hc:hover{background:var(--mars);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(122,48,64,.25)}
-.ha{display:flex;flex-direction:column;justify-content:center;align-items:center}
+.ha{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center}
 /* Ролик без рамки: фон экрана продолжает фон краёв кадра (heroSync), там где картина упирается в край — граница чёткая */
 .ha-vid{width:100%;max-width:760px;aspect-ratio:848/464;display:block;object-fit:cover;background:transparent}
 .ha-cap{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;min-height:1.6em;margin-top:14px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);transition:opacity .5s}
@@ -727,6 +733,16 @@ const HERO_TX={g:['site/images/hero-tex-gl.webp','site/images/hero-tex-gr.webp']
 // Море: фон страницы продолжает картину полосами по высоте кадра — слева небо, розовая стена, море; справа небо и море.
 // Граница синего идёт по линии горизонта на картине. [доля высоты кадра, цвет] для левого и правого края
 const HERO_BD={51.3:[[[0,'dcebf9'],[.1088,'f2c5c5'],[.5894,'30638b']],[[0,'dae9f4'],[.5959,'30638b']]]};
+// Фон у краёв ролика без обрезки, где бумага или холст картины меняет тон по высоте (розовая «She is always…», «Между»):
+// 30 цветов краёв кадра сверху вниз [слева, справа]; выше и ниже ролика фон продолжает крайний цвет, без шва по низу ролика
+const HERO_VP={72.267:['dfa196dfa398dfa498dfa499e0a599dea299dfa498dfa398dfa498e0a498e1a398e0a398e0a498e0a599e0a599e1a599e0a599e1a69ae2a69ae4a69be4a69be3a59ae4a79ae4a699e5a79ce5a89de5a89ce4a69be5a89be5a79c','e1a398e1a599e0a599dea397dfa498dfa398dfa599dfa498e0a599e0a599dfa498e0a498e0a498e0a599e0a599e0a599e0a599e1a499e0a599e1a699e2a698e3a698e2a599e1a698e3a69ae2a699e4a699e3a69be3a699e3a698'],
+  77.267:['f6f6e9f5f5eaf6f5ecf6f5ecf7f6edf7f6edf7f6edf7f6edf7f6edf7f6edf6f5ecf5f4ebf5f4ebf5f4ebf5f4eaf5f5e9f5f5e9f5f5e9f5f5e9f5f5e9f4f4e8f4f4e8f4f4e8f3f3e5f3f3e5f4f1e4f3f0e1f2efe0f1eedef1eedf','f3f3e7f4f4e8f5f5e9f5f5e9f5f5e9f5f5e9f5f5e9f5f5e9f5f5e9f5f5e9f4f4e8f4f4e8f4f4e8f3f3e7f4f4e8f3f3e7f4f4e8f5f5e9f4f4e8f4f4e8f3f3e6f3f3e5f3f3e5f3f3e5f4f1e3f3f0e1f2efe0f1eedff1eedff1eedf']};
+// Жёсткие склейки ролика (без 40,333 — там рыба переплывает из картины в картину) и конец ролика перед повтором:
+// за 0,2 с до склейки поверх ролика ставим его же кадр, после склейки он тает 0,6 с вместе с фоном
+const HERO_CUT=[4.8,16.833,22.333,30.333,35.333,46.3,51.3,56.3,61.3,67.267,72.267,77.267];
+// «Хороший музыкальный вкус»: у верхнего края картины тёмная кромка — срезаем 4 px кадра, а провод лампы продолжаем
+// до верха экрана. w — [центр, толщина] провода в px кадра по кадрам ролика начиная с n
+const HERO_WIRE={s:67.267,e:72.267,top:4/464,c:'#25333a',n:2038,w:[[438.7,11.1],[436.9,10.3],[435.0,8.2],[433.6,7.5],[432.4,6.5],[431.2,5.7],[429.9,4.7],[428.8,3.8],[428.5,3.2],[427.8,2.6],[427.1,2.4],[426.8,2.3],[426.8,2.3],[426.9,2.4],[427.1,2.4],[427.1,2.4],[427.1,2.4],[427.2,2.4],[427.3,2.4],[427.4,2.3],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.5,2.2],[427.4,2.3],[427.3,2.3],[427.2,2.3],[427.1,2.4],[427.0,2.3],[426.9,2.3],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[426.9,2.2],[427.0,2.3],[428.2,3.0],[429.2,3.9],[430.6,4.8],[432.0,5.9]]};
 // Фон у краёв картины (сцены с обрезкой): яркость фона картины по высоте кадра [u левого края, u правого, 30 цветов сверху вниз
 // слева, справа], снята с краёв внутри картины (где у края рисунок — по соседним строкам фона). Выше и ниже ролика — цвет сцены.
 const HERO_PF={0:[0.153,0.846,'fafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceafafceaf8fbe9fafceafbfceafafbeaf9fbe9fafce9fbfdeafafce9fafce9fbfdeafafce9fafce9fbfdeafafce9fafce9','f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f5f6e2f1f5e2f4f5e2f5f5e2f5f5e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f6f6e2f5f5e1f5f5e1f6f6e2f5f5e1f5f5e1f5f5e1f5f5e1f5f5e1f6f6e1f6f6e2'],
@@ -740,12 +756,14 @@ const HERO_PF={0:[0.153,0.846,'fafceafafceafafceafafceafafceafafceafafceafafceaf
 // (рыба из ролика и чистый фон вокруг её соседних положений, чтобы отставание слоя на кадр не давало «призраков»),
 // за краем — та же рыба, достроенная по форме и точному положению в кадре; выплыв за край не тормозит и гаснет за 10 кадров.
 // Ячейка: [x, y, w, h в листе, x, y в кадре 848×464].
-const FISH={src:'site/images/hero-fish-cells.webp',c:{"1186":[[0,0,167,57,447,170]],"1187":[[168,0,155,55,464,170]],"1188":[[324,0,164,57,464,167]],"1189":[[489,0,150,57,486,167]],"1190":[[640,0,147,57,498,167]],"1191":[[788,0,145,57,509,166]],"1192":[[0,58,144,54,518,166]],"1193":[[145,58,146,59,524,161]],"1194":[[292,58,144,59,534,161]],"1195":[[437,58,144,58,542,161]],"1196":[[582,58,144,58,549,161]],"1197":[[727,58,146,59,555,161]],"1198":[[874,58,147,59,561,161]],"1199":[[0,118,146,60,568,161]],"1200":[[147,118,145,60,576,162]],"1201":[[293,118,145,61,582,162]],"1202":[[439,118,143,59,589,164]],"1203":[[583,118,142,60,595,164]],"1204":[[726,118,142,58,600,166]],"1205":[[869,118,142,58,605,166]],"1206":[[0,180,144,56,609,167]],"1207":[[145,180,135,55,624,167]],"1208":[[281,180,135,56,631,166]],"1209":[[417,180,135,55,638,166]],"1210":[[553,180,135,55,645,166],[544,237,142,55,92,167]],"1211":[[689,180,135,55,652,166],[687,237,150,54,97,167]],"1212":[[825,180,135,55,659,165],[838,237,150,55,102,166]],"1213":[[0,237,135,55,666,165],[0,293,150,54,107,166]],"1214":[[136,237,135,54,673,165],[151,293,149,55,113,165]],"1215":[[272,237,135,54,680,165],[301,293,149,55,118,164]],"1216":[[408,237,135,53,687,165],[451,293,149,55,124,164]],"1217":[[601,293,149,55,129,162]],"1218":[[751,293,150,54,134,162]],"1219":[[0,349,150,54,140,161]],"1220":[[151,349,150,55,145,160]],"1221":[[302,349,149,55,151,159]],"1222":[[452,349,150,55,156,159]],"1223":[[603,349,149,55,162,158]],"1224":[[753,349,149,55,167,157]],"1225":[[0,405,150,55,172,157]],"1226":[[151,405,149,55,178,156]],"1227":[[301,405,150,56,183,155]],"1228":[[452,405,150,56,189,155]],"1229":[[603,405,149,55,195,155]],"1230":[[753,405,149,55,200,155]],"1231":[[0,462,150,56,205,154]],"1232":[[151,462,158,57,211,154]],"1233":[[310,462,155,58,216,155]],"1234":[[466,462,150,60,221,155]],"1235":[[617,462,151,60,226,157]],"1236":[[769,462,148,63,231,157]],"1237":[[0,526,148,63,236,157]],"1238":[[149,526,151,64,238,159]]}};
+const FISH={src:'site/images/hero-fish-cells.webp',c:{"1186":[[0,0,167,60,447,167]],"1187":[[168,0,172,61,447,166]],"1188":[[341,0,181,61,447,166]],"1189":[[523,0,189,66,447,161]],"1190":[[713,0,181,64,464,161]],"1191":[[0,67,190,63,464,161]],"1192":[[191,67,176,63,486,161]],"1193":[[368,67,172,63,498,161]],"1194":[[541,67,169,62,509,161]],"1195":[[711,67,168,60,518,161]],"1196":[[0,131,169,61,524,161]],"1197":[[170,131,167,62,534,161]],"1198":[[338,131,166,62,542,161]],"1199":[[505,131,165,63,549,161]],"1200":[[671,131,166,63,555,161]],"1201":[[838,131,166,63,561,161]],"1202":[[0,195,164,63,568,161]],"1203":[[165,195,161,62,576,162]],"1204":[[327,195,160,62,582,162]],"1205":[[488,195,158,60,589,164]],"1206":[[647,195,158,60,595,164]],"1207":[[806,195,159,58,600,166]],"1208":[[0,259,161,58,605,166]],"1209":[[162,259,164,57,609,166]],"1210":[[327,259,135,55,645,166],[272,318,170,55,92,167]],"1211":[[463,259,135,55,652,166],[443,318,170,54,97,167]],"1212":[[599,259,135,55,659,165],[614,318,171,55,102,166]],"1213":[[735,259,135,55,666,165],[786,318,171,54,107,166]],"1214":[[871,259,135,54,673,165],[0,374,171,55,113,165]],"1215":[[0,318,135,54,680,165],[172,374,172,55,118,164]],"1216":[[136,318,135,53,687,165],[345,374,171,55,124,164]],"1217":[[517,374,171,55,129,162]],"1218":[[689,374,172,54,134,162]],"1219":[[0,430,171,54,140,161]],"1220":[[172,430,171,55,145,160]],"1221":[[344,430,171,55,151,159]],"1222":[[516,430,171,55,156,159]],"1223":[[688,430,171,56,162,158]],"1224":[[0,487,172,57,167,157]],"1225":[[173,487,172,56,172,157]],"1226":[[346,487,171,56,178,156]],"1227":[[518,487,172,57,183,155]],"1228":[[691,487,180,56,189,155]],"1229":[[0,545,176,58,195,155]],"1230":[[177,545,171,60,200,155]],"1231":[[349,545,172,63,205,154]],"1232":[[522,545,168,66,211,154]],"1233":[[691,545,168,65,216,155]],"1234":[[0,612,168,68,221,155]],"1235":[[169,612,163,66,226,157]],"1236":[[333,612,158,66,231,157]],"1237":[[492,612,153,66,236,157]],"1238":[[646,612,151,66,238,157]]}};
 function heroSync(){
   const v=document.getElementById('heroVid'),hero=document.getElementById('hero'),cap=document.getElementById('heroCap');
   if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();return;}
   const VW=848,VH=464,fx=document.createElement('canvas');fx.className='hero-fx';hero.append(fx);const fc=fx.getContext('2d');
+  const ov=document.createElement('canvas');ov.className='ha-ov';ov.width=VW;ov.height=VH;v.after(ov);const oc=ov.getContext('2d');
+  const wire=document.createElement('div');wire.className='hero-wire';wire.hidden=true;hero.append(wire);
   // iOS показывает ролик темнее тех же цветов в CSS (замер по скринам с iPhone: y = x − 0,17·x·(1 − x)) — там так же
   // затемняем фон, фактуру и рыбу, иначе на краю ролика ступенька тона
   const IOS=/iP(hone|od|ad)/.test(navigator.platform)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
@@ -760,13 +778,15 @@ function heroSync(){
     b.className='hero-bg';for(const k of ['base','R','L','B'])b.append(l[k]=document.createElement('div'));el.prepend(b);return {b,l};})}));
   const li=x=>{x=parseInt(x,16)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;};
   const lum=h=>.2126*li(h.slice(1,3))+.7152*li(h.slice(3,5))+.0722*li(h.slice(5,7));
-  let key='',capKey='',bgKey=null,ai=-1,tmo=0,zoom=1,bpKey='',BP={};
+  let key='',capKey='',bgKey=null,ai=-1,tmo=0,zoom=1,bpKey='',BP={},prepK='',txT=0,dz=0,dc=0,dzT=0,clipNow={u0:0,u1:1,ct:0,zi:0,sc:HERO_SC[0]};
+  // стопы градиентов не уходят в минус: Safari при всех стопах выше верха слоя (волна под первым экраном) берёт первый цвет, а не последний
+  const P=x=>Math.max(0,x).toFixed(1)+'px';
   fetch('site/hero-edges.json').then(r=>r.json()).then(j=>{for(const k in j)BP[k]=j[k].map(([n,h])=>[n,h.match(/../g).map(x=>parseInt(x,16))]);key='';}).catch(()=>{});
   // кадр на экране: X(u), Y(v) — px героя для доли кадра (object-fit:cover и увеличение ролика), b — низ видимой части ролика
   function box(){
     const hb=hero.getBoundingClientRect(),r=v.getBoundingClientRect(),sc=Math.max(r.width/VW,r.height/VH),cu=(r.width/sc)/VW,cv=(r.height/sc)/VH,
       cu0=(1-cu)/2,cv0=(1-cv)/2;
-    return {hb,sc,cu0,cu1:(1+cu)/2,X:u=>r.left-hb.left+(u-cu0)/cu*r.width,Y:vv=>r.top-hb.top+(vv-cv0)/cv*r.height,
+    return {hb,sc,cu0,cu1:(1+cu)/2,cv0,cv,X:u=>r.left-hb.left+(u-cu0)/cu*r.width,Y:vv=>r.top-hb.top+(vv-cv0)/cv*r.height,
       b:r.top-hb.top+(r.height+r.height/zoom)/2,stack:r.width/zoom>hb.width*.95};
   }
   function apply(t){
@@ -775,16 +795,25 @@ function heroSync(){
     const zr=HERO_ZM.find(r=>t>=r[0]&&t<r[1]),zw=zr&&f.stack?(f.cu1-f.cu0)/(zr[3]-zr[2]):1,z=zw>1&&zw<1.35?zw:1;
     if(z!==zoom){zoom=z;v.style.transform=`scale(${z})`;f=box();}
     // обрезка — в долях самого ролика: края картины (HERO_CLIP) и лишнее от увеличения; задана всегда, меняются только числа
-    const c=HERO_CLIP.find(r=>t>=r[0]&&t<r[1]),cu=f.cu1-f.cu0,zi=(1-1/z)/2,
-      cl=Math.max(zi,c?(c[2]-f.cu0)/cu:0),cr=Math.max(zi,c?(f.cu1-c[3])/cu:0),
-      k=sc[0]+'|'+cl.toFixed(4)+cr.toFixed(4)+'|'+Math.round(f.b)+'|'+Math.round(f.hb.width)+'|'+Object.keys(BP).length;
+    const c=HERO_CLIP.find(r=>t>=r[0]&&t<r[1]),cu=f.cu1-f.cu0,zi=(1-1/z)/2,wr=t>=HERO_WIRE.s&&t<HERO_WIRE.e,
+      cl=Math.max(zi,c?(c[2]-f.cu0)/cu:0),cr=Math.max(zi,c?(f.cu1-c[3])/cu:0),ct=Math.max(zi,wr?(HERO_WIRE.top-f.cv0)/f.cv:0),
+      lk=Math.round(f.b)+'|'+Math.round(f.hb.width),k=sc[0]+'|'+cl.toFixed(4)+cr.toFixed(4)+ct.toFixed(4)+'|'+lk+'|'+Object.keys(BP).length;
+    clipNow={u0:c?c[2]:0,u1:c?c[3]:1,ct,zi,sc};
     if(k!==key){key=k;
-      v.style.clipPath=`inset(${(zi*100).toFixed(2)}% ${(cr*100).toFixed(2)}% ${(zi*100).toFixed(2)}% ${(cl*100).toFixed(2)}%)`;
+      v.style.clipPath=`inset(${(ct*100).toFixed(2)}% ${(cr*100).toFixed(2)}% ${(zi*100).toFixed(2)}% ${(cl*100).toFixed(2)}%)`;
       const st=document.documentElement.style;hero.classList.add('sync');st.setProperty('--hf',sc[2]);st.setProperty('--hbc',sc[3]);
       hero.classList.toggle('dk',lum(f.stack?sc[3]:sc[2])<.3);cap.classList.toggle('lt',lum(sc[3])<.3);
-      bgSet(sc,f);txSplit(HERO_BD[sc[0]]&&!f.stack?f.Y(HERO_BD[sc[0]][0].at(-1)[0]):null,f);
+      bgSet(sc,f,lk);txSplit(HERO_BD[sc[0]]&&!f.stack?f.Y(HERO_BD[sc[0]][0].at(-1)[0]):null,f);
     }
     if(f.stack)bpSet(sc,t,f);
+    // следующую сцену заранее раскладываем в свободный набор слоёв — на склейке остаётся только проявить его
+    const D=v.duration||HERO_SC.at(-1)[0]+6,ni=HERO_SC.findIndex(r=>r[0]>t),ns=HERO_SC[ni<0?0:ni],nt=ni<0?D:ns[0];
+    if(bgKey===sc[0]&&nt-t<.6&&prepK!==ns[0]+'|'+lk&&ns[0]!==sc[0]){prepK=ns[0]+'|'+lk;fill(ai^1,ns,f);}
+    // провод лампы над роликом — по его положению в кадре
+    const ww=wr&&HERO_WIRE.w[Math.floor(t*30+.01)-HERO_WIRE.n];
+    if(ww){const w=ww[1]*f.sc;wire.hidden=false;
+      wire.style.cssText=`left:${(f.X(ww[0]/VW)-w/2).toFixed(2)}px;width:${w.toFixed(2)}px;height:${P(f.Y(HERO_WIRE.top))};background:${col(HERO_WIRE.c)}`;}
+    else wire.hidden=true;
     const id=sc[1],a=id&&W.find(x=>x.id===id),ck=(a?id:0)+L;
     if(ck!==capKey){capKey=ck;cap.classList.add('off');
       setTimeout(()=>{if(!a)return;const ru=L==='ru';
@@ -794,22 +823,34 @@ function heroSync(){
   }
   // море на десктопе: текст слева лежит и на светлом небе, и на тёмной воде — ниже горизонта он светлый (как в тёмных сценах),
   // строка, которую пересекает горизонт, меняет цвет ровно на нём
+  // цвет ниже горизонта проявляется и уходит за 0,6 с — вместе с фоном (--ta/--tb — цвета выше и ниже линии)
   function txSplit(y,f){
-    const TXS=[['h1','#F7F1E8'],['h1 .ac','--gold-s'],['.hs','rgba(247,241,232,.85)']].map(([q,c])=>[hero.querySelector(q),c]).filter(x=>x[0]);
-    for(const [el] of TXS)el.style.cssText='';
+    const TXS=[['h1','#F7F1E8'],['h1 .ac','--gold-s'],['.hs','rgba(247,241,232,.85)']].map(([q,c])=>[hero.querySelector(q),c]).filter(x=>x[0]),
+      on=TXS[0][0].style.color==='transparent',TR='--ta .6s ease,--tb .6s ease',
+      own=el=>{el.style.transition='none';el.style.color='';const d=getComputedStyle(el).color;el.style.color='transparent';return d;};
     for(const a of hero.querySelectorAll('.hl a'))a.style.cssText='';
-    if(y==null)return;
-    for(const [el,c] of TXS){const r=el.getBoundingClientRect(),d=getComputedStyle(el).color,lt=c[0]==='-'?getComputedStyle(document.documentElement).getPropertyValue(c).trim():c,
-        yl=y-(r.top-f.hb.top);
-      el.style.cssText=`background:linear-gradient(${d} ${yl}px,${lt} ${yl}px);-webkit-background-clip:text;background-clip:text;color:transparent;transition:none`;}
+    clearTimeout(txT);
+    if(y==null){
+      if(!on)return;
+      for(const [el] of TXS){const d=own(el);el.style.transition=TR;el.style.setProperty('--ta',d);el.style.setProperty('--tb',d);}
+      txT=setTimeout(()=>{for(const [el] of TXS){el.style.cssText='transition:none';void el.offsetWidth;el.style.cssText='';}},650);
+      return;
+    }
+    for(const [el,c] of TXS){
+      const tb=on&&getComputedStyle(el).getPropertyValue('--tb').trim(),d=on?own(el):(el.style.cssText='transition:none',getComputedStyle(el).color),
+        r=el.getBoundingClientRect(),lt=c[0]==='-'?getComputedStyle(document.documentElement).getPropertyValue(c).trim():c,yl=(y-(r.top-f.hb.top)).toFixed(1);
+      // сначала без перехода (иначе цвета въезжают из прозрачного), затем нижний цвет плавно уходит в светлый
+      el.style.cssText=`background:linear-gradient(var(--ta) ${yl}px,var(--tb) ${yl}px);-webkit-background-clip:text;background-clip:text;color:transparent;--ta:${d};--tb:${tb||d};transition:none`;
+      getComputedStyle(el).getPropertyValue('--tb');el.style.transition=TR;el.style.setProperty('--tb',lt);}
     for(const a of hero.querySelectorAll('.hl a')){const r=a.getBoundingClientRect();
       if(r.top+r.height/2-f.hb.top>y)a.style.cssText='color:#F7F1E8;border-color:rgba(247,241,232,.35)';}
   }
   // новая сцена — в свободный набор слоёв, он проявляется поверх; старый прячем, когда новый закрыл его целиком
-  function bgSet(sc,f){
+  function bgSet(sc,f,lk){
     const nw=sc[0]!==bgKey;bgKey=sc[0];
     if(nw)ai=ai<0?0:ai^1;
-    fill(ai,sc,f);
+    if(!nw||prepK!==sc[0]+'|'+lk)fill(ai,sc,f);
+    prepK='';bpKey='';
     if(!nw)return;
     clearTimeout(tmo);
     const first=!G[0].s[ai^1].b.classList.contains('on');
@@ -820,30 +861,35 @@ function heroSync(){
   // фон вокруг ролика: основа — цвет сцены над и под роликом; фактура (HERO_TX), полосы (HERO_BD) или яркость краёв картины (HERO_PF);
   // на телефоне под роликом — профиль низа кадра (bpSet)
   function fill(i,sc,f){
-    const pf=HERO_PF[sc[0]],bd=HERO_BD[sc[0]],tx=sc[5]&&HERO_TX[sc[5]],k=f.sc;
+    const pf=HERO_PF[sc[0]],bd=HERO_BD[sc[0]],vp=HERO_VP[sc[0]],tx=sc[5]&&HERO_TX[sc[5]],k=f.sc;
     for(const g of G){const r=g.el.getBoundingClientRect(),ox=r.left-f.hb.left,oy=r.top-f.hb.top,{base,L,R,B}=g.s[i].l,
         X=u=>f.X(u)-ox,Y=vv=>f.Y(vv)-oy,yb=f.b-oy;
       for(const d of [L,R,B])d.style.cssText='';
-      base.style.background=`linear-gradient(${col(sc[2])} ${yb}px,${col(sc[3])} ${yb}px)`;
+      base.style.background=`linear-gradient(${col(sc[2])} ${P(yb)},${col(sc[3])} ${P(yb)})`;
       if(tx){
         [L,R].forEach((d,j)=>{d.style.backgroundImage=`url(${toned[tx[j]]||tx[j]})`;d.style.backgroundSize=`${540*k}px ${928*k}px`;d.style.backgroundRepeat='repeat';});
         L.style.backgroundPosition=`${X(0)-360*k}px ${Y(0)}px`;R.style.backgroundPosition=`${X(668/VW)}px ${Y(0)}px`;
         L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${X(.25)}px,transparent ${X(.75)}px)`;
       }else if(bd){
         // полосы с чёткими границами; над роликом — верхний цвет, под ним — нижний; левый край над и под роликом плавно уходит в правый
-        const gb=s=>'linear-gradient('+s.map(([,c],j)=>(j?`${col(c)} ${Y(s[j][0])}px`:'')+(j<s.length-1?`${j?',':''}${col(c)} ${Y(s[j+1][0])}px`:'')).join(',')+')';
+        const gb=s=>'linear-gradient('+s.map(([,c],j)=>(j?`${col(c)} ${P(Y(s[j][0]))}`:'')+(j<s.length-1?`${j?',':''}${col(c)} ${P(Y(s[j+1][0]))}`:'')).join(',')+')';
         L.style.background=gb(bd[0]);R.style.background=gb(bd[1]);
-        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${X(.25)}px,transparent ${X(.75)}px)`;
+        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${P(X(.25))},transparent ${P(X(.75))})`;
+      }else if(vp){
+        // край кадра по высоте, выше и ниже ролика — крайние цвета; левый край над и под роликом плавно уходит в правый
+        const y0=Y(0),y1=Y(1),gr=h=>'linear-gradient('+h.match(/.{6}/g).map((c,j,a)=>`${col(c)} ${P(y0+(y1-y0)*j/(a.length-1))}`).join(',')+')';
+        L.style.background=gr(vp[0]);R.style.background=gr(vp[1]);
+        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,#000 ${P(X(.25))},transparent ${P(X(.75))})`;
       }else if(pf){
         // у края — яркость картины по высоте; дальше от края и выше/ниже ролика — средняя яркость этого края,
         // а основа под всем плавно идёт от средней яркости левого края к правому (без ореола вокруг ролика)
         const y0=Y(0),y1=Y(1),rm=(y1-y0)*.15,cs=h=>h.match(/.{6}/g),
           avg=h=>col([0,2,4].map(j=>Math.round(cs(h).reduce((t,c)=>t+parseInt(c.substr(j,2),16),0)/cs(h).length).toString(16).padStart(2,'0')).join('')),
-          gr=(h,m)=>`linear-gradient(${m} ${y0-rm}px,`+cs(h).map((c,j,a)=>`${col(c)} ${y0+(y1-y0)*j/(a.length-1)}px`).join(',')+`,${m} ${y1+rm}px)`,
+          gr=(h,m)=>`linear-gradient(${m} ${P(y0-rm)},`+cs(h).map((c,j,a)=>`${col(c)} ${P(y0+(y1-y0)*j/(a.length-1))}`).join(',')+`,${m} ${P(y1+rm)})`,
           Lm=avg(pf[2]),Rm=avg(pf[3]),a=X(pf[0]),b=X(pf[1]),D=f.X(.2)-f.X(0);
-        L.style.backgroundImage=gr(pf[2],Lm);R.style.backgroundImage=gr(pf[3],Rm);base.style.background=`linear-gradient(to right,${Lm} ${a}px,${Rm} ${b}px)`;
-        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,transparent ${a-D}px,#000 ${a}px,transparent ${a+D}px)`;
-        R.style.webkitMaskImage=R.style.maskImage=`linear-gradient(to right,transparent ${b-D}px,#000 ${b}px,transparent ${b+D}px)`;
+        L.style.backgroundImage=gr(pf[2],Lm);R.style.backgroundImage=gr(pf[3],Rm);base.style.background=`linear-gradient(to right,${Lm} ${P(a)},${Rm} ${P(b)})`;
+        L.style.webkitMaskImage=L.style.maskImage=`linear-gradient(to right,transparent ${P(a-D)},#000 ${P(a)},transparent ${P(a+D)})`;
+        R.style.webkitMaskImage=R.style.maskImage=`linear-gradient(to right,transparent ${P(b-D)},#000 ${P(b)},transparent ${P(b+D)})`;
       }
       if(f.stack&&!tx)B.style.top=yb+'px';else B.style.display='none';
     }
@@ -858,24 +904,46 @@ function heroSync(){
     for(let q=0;q<48;q+=3)cs.push('rgb('+[0,1,2].map(e=>LUT[Math.round(p0[q+e]+(p1[q+e]-p0[q+e])*w)]).join(',')+')');
     const s=cs.join(',');if(s===bpKey)return;bpKey=s;
     for(const g of G){const ox=g.el.getBoundingClientRect().left-f.hb.left;
-      g.s[ai].l.B.style.backgroundImage='linear-gradient(to right,'+cs.map((c,q)=>`${c} ${f.X((q+.5)/16)-ox}px`).join(',')+')';}
+      g.s[ai].l.B.style.backgroundImage='linear-gradient(to right,'+cs.map((c,q)=>`${c} ${P(f.X((q+.5)/16)-ox)}`).join(',')+')';}
   }
-  let sheet=null,sheetT=null,drawn=false;
+  let sheet=null,sheetT=null,drawn=false,fxKey='';
+  // холст рыбы — только на её участке кадра (во весь экран Safari перерисовывает его с запаздыванием)
+  const FB=Object.values(FISH.c).flat().reduce((a,[,,w,h,x,y])=>[Math.min(a[0],x),Math.min(a[1],y),Math.max(a[2],x+w),Math.max(a[3],y+h)],[VW,VH,0,0]);
   function drawFish(t,f){
     const n=Math.floor(t*30+.01),cs=FISH.c[n];
     if(!sheet&&t>8){sheet=new Image();sheet.src=FISH.src;
       for(const u of Object.values(HERO_TX).flat()){new Image().src=u;if(IOS)tone(u).then(c=>c.toBlob(b=>{toned[u]=URL.createObjectURL(b);key='';}));}
       if(IOS)tone(FISH.src).then(c=>sheetT=c);}
     if(!cs||!sheet||!sheet.complete||!sheet.naturalWidth||(IOS&&!sheetT)){if(drawn){fc.clearRect(0,0,fx.width,fx.height);drawn=false;}return;}
-    // холст в пикселях экрана, а не CSS: иначе на ретине рыба мягче, чем в ролике
-    const dpr=devicePixelRatio||1,W2=Math.round(f.hb.width*dpr),H2=Math.round(f.hb.height*dpr);
-    if(fx.width!==W2||fx.height!==H2){fx.width=W2;fx.height=H2;}else fc.clearRect(0,0,W2,H2);
-    fc.setTransform(W2/f.hb.width,0,0,H2/f.hb.height,0,0);
-    const k=f.sc,X0=f.X(0),Y0=f.Y(0),src=sheetT||sheet;
+    // холст в пикселях экрана, а не CSS, и встаёт ровно по пикселям экрана: иначе на ретине рыба мягче, чем в ролике
+    const dpr=devicePixelRatio||1,k=f.sc,bx=Math.floor(f.X(FB[0]/VW)*dpr)/dpr,by=Math.floor(f.Y(FB[1]/VH)*dpr)/dpr,
+      W2=Math.ceil((FB[2]-FB[0])*k*dpr)+2,H2=Math.ceil((FB[3]-FB[1])*k*dpr)+2,fk=bx+'|'+by+'|'+W2+'|'+H2;
+    if(fk!==fxKey){fxKey=fk;fx.width=W2;fx.height=H2;fx.style.cssText=`left:${bx}px;top:${by}px;width:${W2/dpr}px;height:${H2/dpr}px`;}else fc.clearRect(0,0,W2,H2);
+    fc.setTransform(dpr,0,0,dpr,0,0);
+    const X0=f.X(0)-bx,Y0=f.Y(0)-by,src=sheetT||sheet;
     for(const [sx,sy,w,h,x,y] of cs)fc.drawImage(src,sx,sy,w,h,X0+x*k,Y0+y*k,w*k,h*k);
     fc.setTransform(1,0,0,1,0,0);drawn=true;
   }
-  const step=t=>{if(document.hidden)return;drawFish(t,apply(t));};
+  // склейка: за 0,2 с до неё кладём поверх ролика его текущий кадр (с той же обрезкой), после склейки он тает вместе с фоном.
+  // Запас в 0,2 с нужен Safari: он применяет стили на несколько кадров позже, чем показывает кадр ролика
+  function cut(t){
+    const D=v.duration||HERO_SC.at(-1)[0]+6,nc=HERO_CUT.find(c=>c>t)??D;
+    if(!dz&&nc-t<=.2&&nc-t>0){
+      // за краями картины в кадре «стена со швом» — там рисуем то же, что фон у края картины (HERO_PF или цвет сцены)
+      const {u0,u1,ct,zi,sc}=clipNow,pf=HERO_PF[sc[0]],
+        side=(j,x,w)=>{let g=sc[2];if(pf){g=oc.createLinearGradient(0,0,0,VH);pf[j].match(/.{6}/g).forEach((c,q,a)=>g.addColorStop(q/(a.length-1),'#'+c));}
+          oc.fillStyle=g;oc.fillRect(x,0,w,VH);};
+      try{oc.drawImage(v,0,0,VW,VH);
+        if(u0>0)side(2,0,u0*VW);
+        if(u1<1)side(3,u1*VW,VW-u1*VW);
+        if(IOS){const d=oc.getImageData(0,0,VW,VH),p=d.data;for(let i=0;i<p.length;i+=4){p[i]=LUT[p[i]];p[i+1]=LUT[p[i+1]];p[i+2]=LUT[p[i+2]];}oc.putImageData(d,0,0);}
+      }catch(e){return;}
+      const zp=(zi*100).toFixed(2)+'%',cp=`inset(${(ct*100).toFixed(2)}% ${zp} ${zp} ${zp})`;
+      ov.style.cssText=`left:${v.offsetLeft}px;top:${v.offsetTop}px;width:${v.offsetWidth}px;height:${v.offsetHeight}px;transform:${v.style.transform};clip-path:${cp};-webkit-clip-path:${cp}`;
+      ov.className='ha-ov on';dz=1;dc=nc;
+    }else if(dz===1&&(t>=dc||t<dc-1)){ov.className='ha-ov out';dz=2;clearTimeout(dzT);dzT=setTimeout(()=>{ov.className='ha-ov';dz=0;},700);}
+  }
+  const step=t=>{if(document.hidden)return;const f=apply(t);cut(t);drawFish(t,f);};
   // обновляемся по показанному кадру видео, а не по таймеру — обрезка и фон меняются ровно на склейке
   if(v.requestVideoFrameCallback){const cb=(n,m)=>{step(m.mediaTime);v.requestVideoFrameCallback(cb);};v.requestVideoFrameCallback(cb);}
   else{const raf=()=>{step(v.currentTime);requestAnimationFrame(raf);};requestAnimationFrame(raf);}
