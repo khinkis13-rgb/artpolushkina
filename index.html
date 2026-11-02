@@ -7,9 +7,22 @@
 <link rel="icon" type="image/png" sizes="32x32" href="site/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="site/images/favicon-192.png">
 <link rel="apple-touch-icon" href="site/images/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500&display=swap" rel="stylesheet">
+<link rel="preload" href="site/fonts/cormorant-n-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="site/fonts/nunito-n-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Шрифты лежат у нас (site/fonts, с Google Fonts без вьетнамского): внешний CSS шрифтов задерживал первую отрисовку */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(site/fonts/cormorant-i-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(site/fonts/cormorant-i-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(site/fonts/cormorant-n-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(site/fonts/cormorant-n-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(site/fonts/nunito-n-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(site/fonts/nunito-n-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 :root{
   --canvas:#F7F1E8;--canvas-w:#F2EADD;--navy:#4B6A8B;--navy-d:#2C3E5A;
   --steel:#8BA4B8;--burg:#8B4049;--mars:#7A3040;--terra:#C67858;
@@ -748,13 +761,18 @@ function heroOne(){
   v.addEventListener('error',toLow);
   if(navigator.mediaCapabilities)navigator.mediaCapabilities.decodingInfo({type:'file',video:{contentType:'video/mp4; codecs="avc1.640033"',
     width:720,height:2236,bitrate:720000,framerate:30}}).then(r=>{if(!r.supported){low=true;if(M===HERO_V.m)place();}}).catch(()=>{});
+  function start(){
+    if(v.dataset.src===M.src)return;const t=v.currentTime||0;v.dataset.src=M.src;v.src=M.src;if(t)v.currentTime=t;
+    if(!still)v.play().catch(e=>{if(e&&e.name==='NotAllowedError')rej=true;});
+    clearTimeout(lowT);if(M===HERO_V.m&&!still)lowT=setTimeout(()=>{if(!rej&&!document.hidden&&!(v.currentTime>0))toLow();},8000);
+  }
   // ставим ролик: картина кадра — ровно на место #heroBox; экран больше запаса кадра — картину в колонке делаем крупнее
   function place(){
     // крупный ролик — где картина в колонке выйдет больше ~1000 физических пикселей (retina, экраны от 2560)
     const m=PH.matches?(low?HERO_V.m1:HERO_V.m):innerWidth*(devicePixelRatio||1)>2200?HERO_V.d2:HERO_V.d;
-    if(m!==M){const t=v.currentTime||0;M=m;v.poster=m.poster;v.src=m.src;if(t)v.currentTime=t;
-      if(!still)v.play().catch(e=>{if(e&&e.name==='NotAllowedError')rej=true;});
-      clearTimeout(lowT);if(m===HERO_V.m&&!still)lowT=setTimeout(()=>{if(!rej&&!document.hidden&&!(v.currentTime>0))toLow();},8000);}
+    if(m!==M){M=m;v.poster=m.poster;
+      // сам ролик — после загрузки страницы: до этого виден кадр-заглушка, а шрифты и картинки не делят канал с роликом в 6–18 МБ
+      if(document.readyState==='complete')start();else addEventListener('load',start,{once:true});}
     box.style.width='';box.style.maxWidth='';
     let b,k,s;const y0=scrollY;
     const need=()=>{b=box.getBoundingClientRect();k=b.width/M.VW;const wr=wd.getBoundingClientRect(),

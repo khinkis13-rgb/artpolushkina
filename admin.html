@@ -902,7 +902,8 @@ function buildPressModal(p){
 function onPressPhotoSelected(input){
   const file=input.files[0];if(!file)return;
   toast('Обрабатываем…','info');
-  resizeImage(file,1400).then(b64=>{
+  // на сайте публикация — карточка 4:3 до ~400 px, 1000 px по длинной стороне хватает и для retina
+  resizeImage(file,1000).then(b64=>{
     pendingPressPhoto=b64;
     const preview=document.getElementById('pressPhotoPreview');
     const overlay=document.getElementById('pressPhotoOverlay');
