@@ -716,7 +716,9 @@ addEventListener('hashchange',openFromHash);
 // во всю ширину, сверху место под шапку, снизу под текст и волну
 const HERO_V={d:{src:'site/videos/hero-desktop.mp4?v=6',poster:'site/images/hero-desktop-poster.jpg?v=6',W:2808,H:1728,L:1341,T:549,VW:960,VH:540},
   d2:{src:'site/videos/hero-desktop-2x.mp4?v=6',poster:'site/images/hero-desktop-2x-poster.jpg?v=6',W:3744,H:2304,L:1788,T:732,VW:1280,VH:720},
-  m:{src:'site/videos/hero-phone.mp4?v=6',poster:'site/images/hero-phone-poster.jpg?v=6',W:720,H:2236,L:0,T:124,VW:720,VH:720,ph:1}};
+  m:{src:'site/videos/hero-phone.mp4?v=6',poster:'site/images/hero-phone-poster.jpg?v=6',W:720,H:2236,L:0,T:124,VW:720,VH:720,ph:1},
+  // запасной для телефонов, которые не тянут 2236 px по высоте (многие Android — до 1920): тот же кадр, ужатый до 618×1920
+  m1:{src:'site/videos/hero-phone-lite.mp4?v=6',poster:'site/images/hero-phone-poster.jpg?v=6',W:618,H:1920,L:0,T:106.48,VW:618,VH:618.25,ph:1}};
 // Сцены: [начало, id работы для подписи, цвет вокруг, цвет под роликом] — по ним тёмный/светлый текст
 const HERO_SC=[[0,25,'#f5f5e1','#f4f4e1'],[4.8,25,'#f5f5e9','#f5f5e9'],[7.37,65,'#f5f5e9','#f5f5e9'],[16.833,77,'#16a063','#16a063'],
   [22.333,37,'#f2efe4','#f1eee4'],[30.333,25,'#f5f5e1','#f4f4e1'],[35.333,18,'#f8f7e3','#f8f6e3'],[37.35,18,'#faf8e4','#f8f8e3'],
@@ -732,12 +734,19 @@ function heroOne(){
   if(still)v.removeAttribute('autoplay');
   const li=x=>{x=parseInt(x,16)/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;},lum=h=>.2126*li(h.slice(1,3))+.7152*li(h.slice(3,5))+.0722*li(h.slice(5,7));
   const scAt=t=>{let s=HERO_SC[0];for(const r of HERO_SC)if(t>=r[0])s=r;return s;};
-  let M=null,key='',capKey='',txT=0;
+  let M=null,key='',capKey='',txT=0,low=false,rej=false,lowT=0;
+  // телефон: основной ролик не запустился (ошибка декодера или 8 с без движения, хотя браузер не запрещал play) — берём запасной m1
+  const toLow=()=>{if(low||M!==HERO_V.m)return;low=true;place();};
+  v.addEventListener('error',toLow);
+  if(navigator.mediaCapabilities)navigator.mediaCapabilities.decodingInfo({type:'file',video:{contentType:'video/mp4; codecs="avc1.640033"',
+    width:720,height:2236,bitrate:720000,framerate:30}}).then(r=>{if(!r.supported){low=true;if(M===HERO_V.m)place();}}).catch(()=>{});
   // ставим ролик: картина кадра — ровно на место #heroBox; экран больше запаса кадра — картину в колонке делаем крупнее
   function place(){
     // крупный ролик — где картина в колонке выйдет больше ~1000 физических пикселей (retina, экраны от 2560)
-    const m=PH.matches?HERO_V.m:innerWidth*(devicePixelRatio||1)>2200?HERO_V.d2:HERO_V.d;
-    if(m!==M){const t=v.currentTime||0;M=m;v.poster=m.poster;v.src=m.src;if(t)v.currentTime=t;if(!still)v.play().catch(()=>{});}
+    const m=PH.matches?(low?HERO_V.m1:HERO_V.m):innerWidth*(devicePixelRatio||1)>2200?HERO_V.d2:HERO_V.d;
+    if(m!==M){const t=v.currentTime||0;M=m;v.poster=m.poster;v.src=m.src;if(t)v.currentTime=t;
+      if(!still)v.play().catch(e=>{if(e&&e.name==='NotAllowedError')rej=true;});
+      clearTimeout(lowT);if(m===HERO_V.m&&!still)lowT=setTimeout(()=>{if(!rej&&!document.hidden&&!(v.currentTime>0))toLow();},8000);}
     box.style.width='';box.style.maxWidth='';
     let b,k,s;const y0=scrollY;
     const need=()=>{b=box.getBoundingClientRect();k=b.width/M.VW;const wr=wd.getBoundingClientRect(),
