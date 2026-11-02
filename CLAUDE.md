@@ -9,6 +9,10 @@
   `khinkis13-rgb/artpolushkina` (до 30.10.2026 назывался `-Users-dmitrykhinkis-Documents-CURSOR-FLAG-ART`),
   домен — файл `CNAME`.
   Сборки нет: что запушено в `main`, то через ~1 мин на сайте.
+- **artpolushkina.ru** и **artpolushkina.art** (RU-CENTER, оплачены до 06.04.2027) — только редирект на .com с сохранением
+  пути и `#work-<id>`: репозитории `khinkis13-rgb/artpolushkina-ru` и `-art` на GitHub Pages (JS-редирект в `index.html`/`404.html`),
+  DNS — бесплатный DNS-хостинг Selectel (аккаунт Дмитрия 741037, проект My First Project; DNS-master в nic.ru платный),
+  у регистратора серверы `a/b/c/d.ns.selectel.ru`: `A @` на 4 адреса GitHub Pages, `CNAME www` на `khinkis13-rgb.github.io.`.
 - **`index.html`** — весь сайт (HTML + CSS + JS в одном файле). Данные тянет при загрузке
   из `catalog.json` и `content.json`; если они не загрузились — берёт запасные `W_FB` / `CT_FB`.
 - **`catalog.json`** — работы: `id`, `t`/`te` (название ru/en), `m`/`me` (техника),
