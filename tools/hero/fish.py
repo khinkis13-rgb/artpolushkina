@@ -73,8 +73,23 @@ def unline(sp,xr,yr,ys_fit):
     if len(q): l=min(l,q.min()-1)
     r=c+4; sp[y,l:r+1]=np.linspace(sp[y,l-1],sp[y,r+1],r-l+3)[1:-1]
   return sp
-def clean(sp,line=None):
+def defringe(sp,x0,x1):
+  # над тёмным контуром спинки у хвоста — серо-белая бахрома (бумага и тень кадра при вырезании): контур по столбцам
+  # сглаживается параболой, всё выше него — долой (иначе край рваный)
+  sp=sp.copy(); a=sp[...,3]; lum=sp[...,:3].mean(2); P=[]
+  for x in range(x0,x1):
+    o=np.nonzero(a[:,x]>40)[0]
+    if not len(o): continue
+    t0=o.min(); d=np.nonzero((a[t0:t0+14,x]>128)&(lum[t0:t0+14,x]<100))[0]   # контур — в верхних 14 px столбца
+    if len(d): P.append((x,t0+d.min()))
+  P=np.array(P,np.float64); k=np.polyfit(P[:,0],P[:,1],2); r=P[:,1]-np.polyval(k,P[:,0])
+  k=np.polyfit(P[np.abs(r)<2,0],P[np.abs(r)<2,1],2)   # без выбросов
+  ys=np.arange(a.shape[0])[:,None]; xs=np.arange(a.shape[1])[None,:]
+  cut=(xs>=x0)&(xs<x1)&(ys<np.polyval(k,xs)-.5)
+  sp[...,3]=np.where(cut,0,a); return sp
+def clean(sp,line=None,fringe=None):
   if line: sp=unline(sp,*line)
+  if fringe: sp=defringe(sp,*fringe)
   a=sp[...,3]/255; c=sp[...,:3]; lum=c.mean(2); sat=(c.max(2)-c.min(2))/np.maximum(c.max(2),1)
   keep=(a>.05)&~((lum>195)&(sat<.25))
   op=cv2.morphologyEx(keep.astype(np.uint8),cv2.MORPH_OPEN,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5)))
@@ -93,6 +108,7 @@ def clean(sp,line=None):
   return out
 # линия картины 55 поперёк головы выплывающей рыбы (px спрайта с полями): столбцы, строки поперёк тела, строки для хода линии
 LINE={'enter':((300,360),(90,150),list(range(56,96))+list(range(152,212)))}
+FRINGE={'exit':(95,165)}   # столбцы спинки уплывающей рыбы от хвоста до мозаики (px спрайта с полями)
 def tailx(plate,a,b):
   # у правого края картины 18 видна хвостовая часть уплывающей рыбы: левый край её самого крупного куска (кончик хвоста)
   out={}
@@ -137,7 +153,7 @@ if len(sys.argv)>2 and sys.argv[2]=='--fix':
   trE={int(n):tuple(e[1:4])+(None,) for n,v in J.items() for e in v if e[0]=='exit'}
   for nm in ('exit','enter'):
     sp=cv2.cvtColor(cv2.imread(f'{S}/assets/fish-{nm}.png',cv2.IMREAD_UNCHANGED),cv2.COLOR_BGRA2RGBA).astype(np.float32)
-    sp=clean(sp,LINE.get(nm))
+    sp=clean(sp,LINE.get(nm),FRINGE.get(nm))
     cv2.imwrite(f'{S}/assets/fish-{nm}.png',cv2.cvtColor(np.clip(sp+.5,0,255).astype(np.uint8),cv2.COLOR_RGBA2BGRA))
   trE=exitpath(trE,tailx(p7,1194,1206))
   spx=cv2.cvtColor(cv2.imread(f'{S}/assets/fish-exit.png',cv2.IMREAD_UNCHANGED),cv2.COLOR_BGRA2RGBA).astype(np.float32)
@@ -153,7 +169,7 @@ p7=np.median(fr(1125,1205)[::4],0); p8=np.median(fr(1215,1385)[::6],0)
 # уплывает: целиком в кадре 1183, слежение 1183–1216, край картины 18 справа
 f=fr(1183,1184)[0]; spE,ex,ey=sprite(f,p7,(990,360,1340,560))
 trE=track(fr(1183,1196),1183,p7,spE,ex,ey,CLIP[3][3]*BW,'R',19)
-trE=exitpath(trE,tailx(p7,1194,1206)); trE=refine(trE,p7,clean(np.pad(spE,((30,30),(30,30),(0,0)))),1196,1206)
+trE=exitpath(trE,tailx(p7,1194,1206)); trE=refine(trE,p7,clean(np.pad(spE,((30,30),(30,30),(0,0))),None,FRINGE['exit']),1196,1206)
 # выплывает: целиком в кадре 1237, слежение назад 1237→1205, край картины 55 слева
 f=fr(1237,1238)[0]; spN,nx,ny=sprite(f,p8,(530,360,880,560))
 frs=fr(1205,1238)[::-1]; trN=track(frs,0,p8,spN,nx,ny,CLIP[4][2]*BW,'L',-13)
@@ -161,12 +177,12 @@ trN={1237-k:v for k,v in trN.items()}
 J={}
 # спрайт хранится с полями 30 px (под поворот); x, y — его левый верх в px базового кадра, g — поворот, градусы
 for n,(x,y,g,e) in trE.items():
-  if n>=1186: J.setdefault(n,[]).append(['exit',x,y,g,round(float(np.clip((1216-n)/10,0,1)),3)])
+  if n>=1186: J.setdefault(n,[]).append(['exit',x,y,g,round(float(np.clip((1210-n)/6,0,1)),3)])  # к смене картины (1210) погасла
 for n,(x,y,g,e) in trN.items():
   if 1210<=n<=1237: J.setdefault(n,[]).append(['enter',x,y,g,round(float(np.clip((n-1209)/4,0,1)),3)])
 for nm,sp in (('exit',spE),('enter',spN)):
   sp=np.pad(sp,((30,30),(30,30),(0,0)))
-  sp=clean(sp,LINE.get(nm))  # бумага, куски соседнего рисунка, дырки в теле — долой
+  sp=clean(sp,LINE.get(nm),FRINGE.get(nm))  # бумага, куски соседнего рисунка, дырки в теле — долой
   cv2.imwrite(f'{S}/assets/fish-{nm}.png',cv2.cvtColor(np.clip(sp+.5,0,255).astype(np.uint8),cv2.COLOR_RGBA2BGRA))
 json.dump({str(k):[[a,float(x),float(y),g,al] for a,x,y,g,al in v] for k,v in sorted(J.items())},open(f'{S}/assets/fish.json','w'))
 for n in sorted(set(trE)|set(trN)): print(n,trE.get(n),trN.get(n))

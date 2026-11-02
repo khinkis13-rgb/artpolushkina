@@ -172,12 +172,19 @@ FE=2.5  # растушёвка края картины, px цели
 def compose(tg,n,frame):
   t=n/30+1e-3  # склейка 67,267 = кадр 2018,01 — кадр 2018 уже новая сцена
   i=scIdx(t); img=bgOf(i,tg,t)+drift(i,tg,t,n)
-  if SC[i][0] not in CUT and i>0 and t-SC[i][0]<.6:
-    w=ez((t-SC[i][0])/.6); img=bgOf(i-1,tg,SC[i][0]-.001)*(1-w)+img*w
+  if SC[i][0] not in CUT and i>0:
+    s0,d=BGX.get(SC[i][0],(SC[i][0],.6))
+    if t-s0<d or t<s0:
+      w=0. if t<s0 else ez((t-s0)/d) if d>=.2 else (t-s0)/d
+      img=bgOf(i-1,tg,SC[i][0]-.001)*(1-w)+img*w
   W,H=TG[tg]['W'],TG[tg]['H']; ox,oy,sc,pw,ph=place(tg,t)
   if i in WAVES: waves(img,tg,t,frame,WAVES[i])
   if BG[i]['rect'][1]>0 and WIRE['frames'][0]<=n<WIRE['frames'][1]: wire(img,tg,t,frame)
-  if str(n) in FISH: fish(img,tg,t,FISH[str(n)])
+  fi=FISH.get(str(n),[]); top_=[e for e in fi if e[0]=='exit']
+  if fi: fish(img,tg,t,[e for e in fi if e[0]!='exit'])
+  # уплывающая рыба — поверх картины целиком: её часть внутри картины в ролике стёрта (заполнена соседями под спрайтом),
+  # так что на краю картины нет стыка рыбы из ролика и дорисованной
+  if top_ and n<=1206: frame=unfish(frame,top_[0])
   vid=cv2.resize(frame,(pw,ph),interpolation=cv2.INTER_AREA).astype(np.float32)
   c=next((r for r in CLIP if r[0]<=t<r[1]),None); u0,u1=(c[2],c[3]) if c else (0,1)
   top=BG[i]['rect'][1]*sc if c else 0
@@ -191,6 +198,7 @@ def compose(tg,n,frame):
   X0,Y0=max(ox,0),max(oy,0); X1,Y1=min(ox+pw,W),min(oy+ph,H)
   sl=(slice(Y0,Y1),slice(X0,X1)); vs=(slice(Y0-oy,Y1-oy),slice(X0-ox,X1-ox))
   img[sl]=img[sl]*(1-a[vs])+vid[vs]*a[vs]
+  if top_: fish(img,tg,t,top_)
   return img
 
 def waves(img,tg,t,frame,wv):
@@ -240,6 +248,23 @@ def fish(img,tg,t,items):
     if a1<=a0 or b1<=b0: continue
     q=p[b0-yi:b1-yi,a0-xi:a1-xi]; a=q[...,3:]/255*op
     img[b0:b1,a0:a1]=img[b0:b1,a0:a1]*(1-a)+q[...,:3]*op
+def unfish(frame,it):
+  # маска спрайта в px базового кадра (с запасом 5 px) — внутри картины, левее её правого края; там кадр заполняется соседями
+  nm,x,y,g,_=it
+  if nm not in _fs: _fs[nm]=cv2.cvtColor(cv2.imread(f'{S}/assets/fish-{nm}.png',cv2.IMREAD_UNCHANGED),cv2.COLOR_BGRA2RGBA).astype(np.float32)
+  sp=_fs[nm]; h,w=sp.shape[:2]; M=cv2.getRotationMatrix2D((w/2,h/2),g,1); M[:,2]+=[x,y]
+  m=(cv2.warpAffine(sp[...,3],M,(BW,BH),flags=cv2.INTER_LINEAR)>8).astype(np.uint8)
+  # рыба в ролике может стоять на несколько px иначе (хвост) — стираем всё, что отличается от бумаги рядом со спрайтом
+  near=cv2.dilate(m,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(41,41)))>0
+  ys,xs=np.nonzero(near); pap=np.median(frame[ys.min():ys.max()+1:4,xs.min():xs.max()+1:4].reshape(-1,3),0)
+  diff=np.abs(frame.astype(np.float32)-pap).max(2)>22
+  # выше строки 385 — поля шляпы: их не трогать; у самого низа полей стираем только не сине-серое (кончик хвоста)
+  f32=frame.astype(np.float32); slate=((f32[...,2]>f32[...,0]+8)&(f32.mean(2)<170))|((f32.mean(2)<110)&(np.abs(f32[...,0]-f32[...,2])<14))  # поля и их контур
+  diff[:385]=False; diff[385:400]&=~cv2.dilate(slate.astype(np.uint8),np.ones((3,3),np.uint8))[385:400].astype(bool)
+  m=(cv2.dilate(m,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(11,11)))>0)|(near&diff)
+  m=cv2.dilate(m.astype(np.uint8),np.ones((5,5),np.uint8)); m[:,int(CLIP[3][3]*BW)+2:]=0
+  if not m.any(): return frame
+  return cv2.inpaint(np.ascontiguousarray(frame),m,5,cv2.INPAINT_TELEA)
 FISH=json.load(open(f'{S}/assets/fish.json')) if os.path.exists(f'{S}/assets/fish.json') else {}
 
 def frames(mz,a,b):
