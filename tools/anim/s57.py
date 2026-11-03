@@ -76,7 +76,9 @@ def layers():
     bs=[]
     for b in BOATS:
         inner=boat_mask(H,W,b,0); outer=boat_mask(H,W,b,2)&~(lm&~inner)
-        ba=np.where(inner,1.,np.clip((d-12)/60,0,1)*outer).astype(np.float32)
+        # сплошная только сердцевина (многоугольник чуть шире рисунка); край — по удалению от бумаги, без её остатков
+        core=cv2.erode(inner.astype(np.uint8),np.ones((5,5),np.uint8))>0
+        ba=np.where(core,1.,np.clip((d-25)/70,0,1)*outer).astype(np.float32)
         hull=np.array(b['hull'],np.float32)
         bs.append(Sprite.cut(clean(a,ba,tone),ba,tuple((hull[2]+hull[3])/2),0))   # опора — середина низа корпуса
     return dict(a=clean(a,al,tone),wa=al.astype(np.float32),tone=tone,lines=L,boats=bs)
