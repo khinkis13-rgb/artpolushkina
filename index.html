@@ -735,18 +735,30 @@ addEventListener('hashchange',openFromHash);
 // Кадр: W×H, картина VW×VH с левым верхним углом в (L, T). На компьютере запас фона закрывает экраны до 1920×1080
 // (d — обычный экран, d2 — retina и большие: картина 1280 px), на телефоне (до 600 px) — квадрат середины кадра
 // во всю ширину, сверху место под шапку, снизу под текст и волну
-const HERO_V={d:{src:'site/videos/hero-desktop.mp4?v=6',poster:'site/images/hero-desktop-poster.jpg?v=6',W:2808,H:1728,L:1341,T:549,VW:960,VH:540},
-  d2:{src:'site/videos/hero-desktop-2x.mp4?v=6',poster:'site/images/hero-desktop-2x-poster.jpg?v=6',W:3744,H:2304,L:1788,T:732,VW:1280,VH:720},
-  m:{src:'site/videos/hero-phone.mp4?v=6',poster:'site/images/hero-phone-poster.jpg?v=6',W:720,H:2236,L:0,T:124,VW:720,VH:720,ph:1},
+// Три ролика одной раскладки: hero — аниматора, hero2 и hero3 — собраны tools/anim. Пути: site/videos/<имя>-*.mp4,
+// кадры-заглушки site/images/<имя>-*-poster.jpg
+const heroV=(n,v)=>({d:{src:`site/videos/${n}-desktop.mp4?v=${v}`,poster:`site/images/${n}-desktop-poster.jpg?v=${v}`,W:2808,H:1728,L:1341,T:549,VW:960,VH:540},
+  d2:{src:`site/videos/${n}-desktop-2x.mp4?v=${v}`,poster:`site/images/${n}-desktop-2x-poster.jpg?v=${v}`,W:3744,H:2304,L:1788,T:732,VW:1280,VH:720},
+  m:{src:`site/videos/${n}-phone.mp4?v=${v}`,poster:`site/images/${n}-phone-poster.jpg?v=${v}`,W:720,H:2236,L:0,T:124,VW:720,VH:720,ph:1},
   // запасной для телефонов, которые не тянут 2236 px по высоте (многие Android — до 1920): тот же кадр, ужатый до 618×1920
-  m1:{src:'site/videos/hero-phone-lite.mp4?v=6',poster:'site/images/hero-phone-poster.jpg?v=6',W:618,H:1920,L:0,T:106.48,VW:618,VH:618.25,ph:1}};
-// Сцены: [начало, id работы для подписи, цвет вокруг, цвет под роликом] — по ним тёмный/светлый текст
-const HERO_SC=[[0,25,'#f5f5e1','#f4f4e1'],[4.8,25,'#f5f5e9','#f5f5e9'],[7.37,65,'#f5f5e9','#f5f5e9'],[16.833,77,'#16a063','#16a063'],
+  m1:{src:`site/videos/${n}-phone-lite.mp4?v=${v}`,poster:`site/images/${n}-phone-poster.jpg?v=${v}`,W:618,H:1920,L:0,T:106.48,VW:618,VH:618.25,ph:1}});
+// Сцены: [начало, id работы для подписи, цвет вокруг, цвет под роликом] — по ним тёмный/светлый текст.
+// HZ — море («Я с тобой!»): горизонт на картине (доля высоты), текст слева ниже него светлый
+const HERO_REELS=[{V:heroV('hero',6),
+  SC:[[0,25,'#f5f5e1','#f4f4e1'],[4.8,25,'#f5f5e9','#f5f5e9'],[7.37,65,'#f5f5e9','#f5f5e9'],[16.833,77,'#16a063','#16a063'],
   [22.333,37,'#f2efe4','#f1eee4'],[30.333,25,'#f5f5e1','#f4f4e1'],[35.333,18,'#f8f7e3','#f8f6e3'],[37.35,18,'#faf8e4','#f8f8e3'],
   [40.333,55,'#f7f5da','#f8f6da'],[46.3,25,'#f5f5e1','#f4f4e1'],[51.3,59,'#dbe9f7','#30638b'],[56.3,52,'#032b5a','#022a5a'],
-  [61.3,0,'#78a99a','#7aa99a'],[67.267,60,'#afbec7','#afbec7'],[72.267,24,'#e1a599','#e4a799'],[77.267,35,'#f3f3e7','#f1eedf']];
-// Море («Я с тобой!»): горизонт на картине (доля высоты) — текст слева ниже него светлый
-const HERO_HZ={51.3:.5894};
+  [61.3,0,'#78a99a','#7aa99a'],[67.267,60,'#afbec7','#afbec7'],[72.267,24,'#e1a599','#e4a799'],[77.267,35,'#f3f3e7','#f1eedf']],
+  HZ:{51.3:.5894}},
+  {V:heroV('hero2',3),SC:[[0,57,'#acc4b0','#acc4b0'],[7.133,66,'#e0aca6','#e0aca6'],[14.467,56,'#cfe0ea','#cfe0ea'],[23.3,26,'#d6b868','#d6b868'],
+  [33.767,58,'#f3c9c0','#26537d']],HZ:{33.767:.576}},
+  {V:heroV('hero3',3),SC:[[0,64,'#2f4858','#80523e'],[10.367,20,'#f4e8be','#1b4469'],[20.067,73,'#78a08c','#78a08c'],[30.267,68,'#d68c82','#d68c82']],
+  HZ:{10.367:.6}}];
+// каждый заход — следующий ролик (первый заход — ролик аниматора); без localStorage — случайный; ?reel=1..3 — показать нужный
+const HERO_R=HERO_REELS[(()=>{const n=HERO_REELS.length,q=+new URLSearchParams(location.search).get('reel');
+  if(q>=1&&q<=n)return q-1;
+  try{const p=localStorage.getItem('mp_reel'),i=p==null||isNaN(+p)?0:(+p+1)%n;localStorage.setItem('mp_reel',i);return i;}catch(_){return Math.floor(Math.random()*n);}})()];
+const HERO_V=HERO_R.V,HERO_SC=HERO_R.SC,HERO_HZ=HERO_R.HZ;
 function heroOne(){
   const v=document.getElementById('heroVid'),wrap=document.getElementById('heroOne'),box=document.getElementById('heroBox'),
     hero=document.getElementById('hero'),wd=document.querySelector('.wd.wh'),cap=document.getElementById('heroCap');
