@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /plan/
+Disallow: /tools/
+Disallow: /prompts/
+Disallow: /_local/
+
+Sitemap: https://artpolushkina.com/sitemap.xml

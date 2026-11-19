@@ -28,7 +28,8 @@ textarea{resize:vertical}
 .page{display:none}.page.active{display:block}
 
 /* ══ LOGIN ══ */
-#pg-login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+#pg-login{min-height:100vh;align-items:center;justify-content:center;padding:24px}
+#pg-login.active{display:flex} /* без .active — иначе id перебивает .page{display:none} и вход висит над админкой */
 .login-box{background:var(--canvas-w);border-radius:20px;padding:40px 36px;max-width:480px;width:100%;box-shadow:0 8px 40px rgba(45,42,38,.10);border:1px solid rgba(200,169,110,.18)}
 .login-logo{font-family:var(--fd);font-size:1.3rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:6px}
 .login-sub{text-align:center;font-size:.82rem;color:var(--wg);margin-bottom:28px}
@@ -82,6 +83,12 @@ textarea{resize:vertical}
 .card-img .no-photo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:.8rem;color:var(--lg);font-style:italic}
 .card-badge{position:absolute;bottom:5px;right:5px;background:rgba(45,42,38,.55);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:8px;backdrop-filter:blur(4px)}
 .card-vid-badge{position:absolute;top:5px;left:5px;background:rgba(58,106,139,.85);color:#fff;font-size:.6rem;padding:2px 6px;border-radius:8px}
+.card-sold-badge{position:absolute;top:5px;right:5px;background:var(--burg);color:#fff;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:8px;box-shadow:0 1px 4px rgba(45,42,38,.25)}
+.card.sold .card-img img,.card.sold .card-img video{opacity:.7}
+.card.sold .card-price{color:var(--wg);text-decoration:line-through}
+.fm .sold-toggle{display:flex;align-items:center;gap:10px;height:41px;padding:0 12px;border:1px solid var(--lg);border-radius:9px;background:var(--canvas-w);cursor:pointer;font-size:.9rem;color:var(--char);user-select:none;text-transform:none;letter-spacing:0;margin:0}
+.fm .sold-toggle input{width:18px!important;height:18px;padding:0!important;margin:0;accent-color:var(--burg);cursor:pointer;flex-shrink:0}
+.fm .sold-toggle.on{border-color:var(--burg);background:rgba(139,64,73,.07);color:var(--burg)}
 .card-info{padding:12px}
 .card-title{font-family:var(--fd);font-size:.95rem;font-weight:500;margin-bottom:2px;line-height:1.3}
 .card-year{font-size:.72rem;color:var(--wg);margin-bottom:6px}
@@ -441,9 +448,21 @@ async function loadAll(){
   if(!content.contacts)content.contacts={telegram:'',instagram:'',email:'',phone:''};
 }
 
-async function commitCatalog(msg){
-  const r=await ghPut(CATALOG_PATH,textToB64(JSON.stringify(catalog,null,2)),catSha,msg);
+// Пишет в репозиторий список работ (по умолчанию текущий). Глобальный catalog меняется
+// только после успешного коммита — при ошибке в памяти остаётся то, что лежит на сайте.
+async function commitCatalog(msg,list=catalog){
+  const r=await ghPut(CATALOG_PATH,textToB64(JSON.stringify(list,null,2)),catSha,msg);
   catSha=r.content.sha;
+  catalog=list;
+}
+
+// Работа после правки в форме: берём весь прежний объект (в нём могут быть поля, которых
+// нет в форме — sold, tags, story…) и поверх кладём только поля формы.
+// sold пишется только как true; снятая галочка удаляет поле, sold:false не храним.
+function mergeWork(prev,data,sold){
+  const w={...(prev||{}),...data};
+  if(sold)w.sold=true;else delete w.sold;
+  return w;
 }
 
 async function commitContent(msg){
@@ -500,8 +519,8 @@ function renderCatalogGrid(){
     const thumb=first.type==='img'
       ?`<img src="${RAW_BASE}/${first.path}" alt="${a.t}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
       :`<video src="${RAW_BASE}/${first.path}" muted preload="none" style="width:100%;height:100%;object-fit:cover"></video>`;
-    return`<div class="card" onclick="openCatalogEdit(${a.id})">
-      <div class="card-img">${thumb}<div class="no-photo" style="display:none">нет фото</div>${media.length>1?`<div class="card-badge">📎 ${media.length}</div>`:''}${hasVid?`<div class="card-vid-badge">▶</div>`:''}</div>
+    return`<div class="card${a.sold?' sold':''}" onclick="openCatalogEdit(${a.id})">
+      <div class="card-img">${thumb}<div class="no-photo" style="display:none">нет фото</div>${media.length>1?`<div class="card-badge">📎 ${media.length}</div>`:''}${hasVid?`<div class="card-vid-badge">▶</div>`:''}${a.sold?`<div class="card-sold-badge">Продано</div>`:''}</div>
       <div class="card-info"><div class="card-title">${a.t}</div><div class="card-year">${a.s} · ${a.y}</div><div class="card-price">${a.p.toLocaleString('ru-RU')} ₽</div></div>
     </div>`;
   }).join('');
@@ -552,8 +571,9 @@ function buildCatalogModal(a,state){
       <div class="fm"><label>Размер (см)</label><input type="text" id="fS" value="${esc(a.s||'')}"></div>
       <div class="fm"><label>Год</label><input type="number" id="fY" value="${a.y||''}"></div>
     </div>
-    <div class="form-row single">
+    <div class="form-row">
       <div class="fm"><label>Цена (₽)</label><input type="number" id="fP" value="${a.p||''}"></div>
+      <div class="fm"><label>Статус</label><label class="sold-toggle${a.sold?' on':''}" id="fSoldBox"><input type="checkbox" id="fSold"${a.sold?' checked':''} onchange="document.getElementById('fSoldBox').classList.toggle('on',this.checked)"> Продано</label></div>
     </div>`;
   document.getElementById('modalFooter').innerHTML=`
     ${editingId!==null?`<button class="btn-delete" onclick="deleteCatalogItem()">Удалить</button>`:''}
@@ -668,13 +688,14 @@ async function saveCatalogItem(){
     y:parseInt(document.getElementById('fY').value)||0,
     p:parseInt(document.getElementById('fP').value)||0,
   };
+  const sold=document.getElementById('fSold').checked;
   if(!data.t){toast('Введите название','err');return;}
   if(!data.y){toast('Укажите год','err');return;}
   if(!displayMedia.length){toast('Нужно хотя бы одно фото или видео','err');return;}
   btn.disabled=true;btn.innerHTML='<span class="spin"></span> Сохраняем…';
   try{
     let id=editingId;
-    if(id===null){id=catalog.length?Math.max(...catalog.map(a=>a.id))+1:1;data.id=id;}
+    if(id===null)id=catalog.length?Math.max(...catalog.map(a=>a.id))+1:1;
     // Upload new media
     const newItems=displayMedia.filter(m=>m.base64);
     if(newItems.length){
@@ -689,9 +710,16 @@ async function saveCatalogItem(){
     for(const d of deletedMedia){if(d.sha)await ghDelete(d.path,d.sha,`Удалено медиа: работа #${id}`).catch(()=>{});}
     // Build media array
     data.media=displayMedia.map(m=>({type:m.type,path:m.path}));
-    if(editingId===null){catalog.push(data);}
-    else{const idx=catalog.findIndex(a=>a.id===id);catalog[idx]={...catalog[idx],...data};}
-    await commitCatalog(editingId===null?`Добавлена работа: ${data.t}`:`Обновлена работа #${id}: ${data.t}`);
+    // Новый список собираем копией: если коммит не пройдёт, catalog в памяти не испорчен
+    // (раньше новая работа оставалась в памяти и повторное «Сохранить» дублировало её).
+    let next;
+    if(editingId===null){next=[...catalog,mergeWork({id},data,sold)];}
+    else{
+      const idx=catalog.findIndex(a=>a.id===id);
+      if(idx===-1)throw new Error('работа не найдена — обновите страницу');
+      next=catalog.map((a,i)=>i===idx?mergeWork(a,data,sold):a);
+    }
+    await commitCatalog(editingId===null?`Добавлена работа: ${data.t}`:`Обновлена работа #${id}: ${data.t}`,next);
     closeModal();renderCatalogGrid();
     toast('Сохранено ✓','ok');
   }catch(e){toast('Ошибка: '+e.message,'err');}
@@ -705,8 +733,7 @@ async function deleteCatalogItem(){
   btn.disabled=true;btn.textContent='…';
   try{
     const media=getMedia(a);
-    catalog=catalog.filter(x=>x.id!==editingId);
-    await commitCatalog(`Удалена работа #${editingId}: ${a.t}`);
+    await commitCatalog(`Удалена работа #${editingId}: ${a.t}`,catalog.filter(x=>x.id!==editingId));
     for(const m of media){try{const mt=await ghGetMeta(m.path);if(mt)await ghDelete(m.path,mt.sha,`Удалено: работа #${editingId}`);}catch(_){}}
     closeModal();renderCatalogGrid();
     toast(`«${a.t}» удалена`,'ok');

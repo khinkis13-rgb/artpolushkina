@@ -1,0 +1,49 @@
+# Раз в сутки обновляет fx.json — курс ЦБ для цен в € и $ на сайте.
+# Коммит только если курс изменился. Админка этот файл не трогает, так что
+# pull --rebase перед push конфликтов не даёт.
+name: Курс валют
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fx-update
+  cancel-in-progress: false
+
+jobs:
+  fx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Курс ЦБ → fx.json
+        run: python3 tools/fx/update_fx.py
+
+      - name: Коммит, если курс изменился
+        run: |
+          if git diff --quiet -- fx.json; then
+            echo "Курс не изменился — коммита нет"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fx.json
+          git commit -m 'Курс валют для цен в € и $'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            echo "push не прошёл (попытка $i), повторяю"
+            sleep 5
+          done
+          exit 1

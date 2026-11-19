@@ -98,6 +98,21 @@
   известной длины. Фото никуда не загружается. «Сохранить» / «Отправить художнице» —
   готовая картинка с подписью (на телефоне через системное «Поделиться»).
 
+## Продвижение (с 19.11.2026)
+
+- **План** — `_local/promo/PLAN.md` (не в git), согласован с Машей; презентация для неё — `plan/index.html`
+  (artpolushkina.com/plan/), опросник для её ответов — `plan/q/` (кнопка «Отправить Диме» → Telegram @Dmitry_Khinkis).
+  Обе страницы noindex и закрыты в `robots.txt`.
+- **SEO главной:** title/description ru/en (`META` в index.html, меняются при смене языка), Open Graph с `site/images/og-cover.jpg`,
+  canonical + hreflang (en = `?lang=en`), JSON-LD Person/WebSite, alt у всех картинок, `robots.txt`, `sitemap.xml`.
+- **Язык:** `?lang=` → `localStorage mp_lang` → язык браузера; поисковые роботы без `?lang` всегда получают русский.
+- **Цены в € и $** в EN: курс в `fx.json` (рублей за 1 EUR/USD), обновляет GitHub Action `.github/workflows/fx.yml`
+  (`tools/fx/update_fx.py`, курс ЦБ, раз в сутки). Отдельным файлом, чтобы не конфликтовать с коммитами админки в content.json.
+- **«Продано»:** `sold: true` у работы в catalog.json, галочка в админке; на сайте плашка, «Хочу похожую» вместо «Купить»,
+  фильтр «В наличии» появляется, когда есть проданные.
+- **Метрика:** `YM_ID` в начале скрипта index.html (0 = выключена), цели через `goal(name)`;
+  мета-теги Вебмастера и Search Console — закомментированные строки в `<head>`.
+
 ## Удалённое наследие
 
 30.10.2026 удалены неиспользуемые `images/art-*.jpg`, старая `site/index.html` и дубль

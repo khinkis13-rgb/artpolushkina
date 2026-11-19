@@ -3,7 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мария Полушкина — Художник</title>
+<title>Мария Полушкина - современная художница, Москва</title>
+<meta name="description" content="Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 10 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.">
+<!-- Подтверждение прав на сайт: вставить значения и раскомментировать -->
+<!-- <meta name="yandex-verification" content="ЗНАЧЕНИЕ_ИЗ_ЯНДЕКС_ВЕБМАСТЕРА"> -->
+<!-- <meta name="google-site-verification" content="ЗНАЧЕНИЕ_ИЗ_SEARCH_CONSOLE"> -->
+<link rel="canonical" href="https://artpolushkina.com/">
+<link rel="alternate" hreflang="ru" href="https://artpolushkina.com/">
+<link rel="alternate" hreflang="en" href="https://artpolushkina.com/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Мария Полушкина">
+<meta property="og:url" content="https://artpolushkina.com/">
+<meta property="og:title" content="Мария Полушкина - современная художница, Москва">
+<meta property="og:description" content="Картины Марии Полушкиной: холст, акрил. Каталог с ценами, примерка на стене, покупка напрямую у художницы.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://artpolushkina.com/site/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Мария Полушкина, картина «Поплыли!», холст, акрил">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Мария Полушкина - современная художница, Москва">
+<meta name="twitter:description" content="Картины Марии Полушкиной: холст, акрил. Каталог с ценами, примерка на стене, покупка напрямую у художницы.">
+<meta name="twitter:image" content="https://artpolushkina.com/site/images/og-cover.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Person","@id":"https://artpolushkina.com/#maria","name":"Мария Полушкина","alternateName":"Maria Polushkina","jobTitle":"Художница","birthDate":"1985","birthPlace":{"@type":"Place","name":"Москва"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Freie Universität Berlin"},"url":"https://artpolushkina.com/","image":"https://artpolushkina.com/site/images/artist-photo.jpg","sameAs":["https://instagram.com/artpolushkina","https://t.me/artpolushkina"]},
+{"@type":"WebSite","@id":"https://artpolushkina.com/#site","url":"https://artpolushkina.com/","name":"Мария Полушкина","alternateName":"Maria Polushkina","inLanguage":["ru","en"],"author":{"@id":"https://artpolushkina.com/#maria"},"publisher":{"@id":"https://artpolushkina.com/#maria"}}
+]}
+</script>
+<script>
+/* Язык выбирается до первой отрисовки: ?lang=en|ru → сохранённый выбор (mp_lang) → язык браузера. Английский — класс lx
+   прячет страницу, пока основной скрипт внизу не подставит тексты (запасной таймер на случай ошибки) */
+window.LANG0=(function(){
+  var q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase();if(q==='en'||q==='ru')return q;
+  try{var s=localStorage.getItem('mp_lang');if(s==='en'||s==='ru')return s;}catch(_){}
+  // поисковые роботы без ?lang — всегда русский (Googlebot ходит с en-US, иначе главная попала бы в индекс английской)
+  if(/googlebot|google-inspectiontool|adsbot-google|storebot-google|yandex(bot|images|metrika|\.com\/bots)|bingbot|duckduckbot|applebot|baiduspider|petalbot|crawler|spider|slurp|lighthouse/i.test(navigator.userAgent))return 'ru';
+  var b=((navigator.languages&&navigator.languages[0])||navigator.language||'ru').toLowerCase();
+  return b==='ro-md'||/^(ru|uk|be|kk|ky|uz|tg|hy|az|ka)\b/.test(b)?'ru':'en';
+})();
+if(LANG0==='en'){document.documentElement.lang='en';document.documentElement.classList.add('lx');
+  setTimeout(function(){document.documentElement.classList.remove('lx');},2500);}
+</script>
 <link rel="icon" type="image/png" sizes="32x32" href="site/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="site/images/favicon-192.png">
 <link rel="apple-touch-icon" href="site/images/apple-touch-icon.png">
@@ -34,6 +77,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--canvas);color:var(--char);font-weight:300;line-height:1.7;font-size:16px;overflow-x:hidden}
 ::selection{background:var(--terra);color:#fff}
+.lx body{visibility:hidden}
 img{max-width:100%;display:block}
 a{color:var(--burg);text-decoration:none;transition:.3s var(--e)}
 a:hover{color:var(--mars)}
@@ -154,6 +198,12 @@ a:hover{color:var(--mars)}
 .cp{font-family:var(--fd);font-size:1.1rem;font-weight:500;color:var(--burg)}
 .cby{padding:7px 16px;border-radius:20px;background:var(--burg);color:#fff;font-size:.75rem;font-weight:500;border:none;cursor:pointer;transition:.3s}
 .cby:hover{background:var(--mars)}
+/* цена в EN: рубли, под ними мельче ≈ € · $ (курс из fx.json) */
+.cp .fx,.mp .fx{display:block;font-family:var(--fb);font-weight:300;font-size:.7rem;color:var(--wg);line-height:1.3;letter-spacing:.01em}
+.mp .fx{font-size:.85rem;margin-top:2px}
+/* «Продано» вместо цены */
+.sold{display:inline-block;font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--wg);border:1px solid var(--lg);border-radius:20px;padding:3px 11px;line-height:1.5;white-space:nowrap}
+.mp .sold{font-size:.78rem;padding:5px 16px}
 
 /* ══ MODAL ══ */
 .ov{display:none;position:fixed;inset:0;z-index:200;background:rgba(45,42,38,.65);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px}
@@ -336,7 +386,7 @@ a:hover{color:var(--mars)}
   .mt{width:100%;justify-content:center;padding:12px 20px}
   .m-acts{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:10px}
   .m2{justify-content:center;padding:10px 14px}
-  #mFav span,.m2[aria-label="Поделиться"] span{display:none}
+  #mFav span,.m2.shr span{display:none}
   .ml{aspect-ratio:auto;max-height:none;height:min(46vh,calc((100vw - 40px)*var(--mh,1)))}
   .try-btn{padding:9px 13px;font-size:.78rem}
   .try-size input{width:100px}
@@ -346,6 +396,7 @@ a:hover{color:var(--mars)}
   .cfl{width:100%;display:grid;grid-template-columns:1fr 1fr}
   .cfl .cs{min-width:0;font-size:16px;padding:6px 8px}
   .cfl #cS{grid-column:1/-1}
+  .cfl.has-av #cS{grid-column:auto}
 }
 @media(max-width:400px){.cby{display:none}.cft{min-height:24px}}
 @media(max-width:340px){.csk{grid-template-columns:1fr}}
@@ -394,7 +445,7 @@ a:hover{color:var(--mars)}
     <div class="sh fi"><h2 class="st" data-ru="О художнике" data-en="About the artist">О художнике</h2><div class="gl"></div></div>
     <div class="ag">
       <div class="at fi">
-        <div class="ap-outer"><div class="ap-ring"><img class="ap-img" src="site/images/artist-photo.jpg" alt="Мария Полушкина"></div></div>
+        <div class="ap-outer"><div class="ap-ring"><img class="ap-img" src="site/images/artist-photo.jpg" alt="Мария Полушкина, художница"></div></div>
         <div id="aboutParas"></div>
       </div>
       <div class="as fi">
@@ -420,18 +471,22 @@ a:hover{color:var(--mars)}
     <div class="cf fi" id="cF"></div>
     <div class="cb fi"><span class="cc" id="cC"></span>
       <div class="cfl">
-      <select class="cs" id="cPr" onchange="rC()" aria-label="Цена">
+      <select class="cs" id="cPr" onchange="rC();goal('filter',{type:'price',value:this.value||'any'})" aria-label="Цена">
         <option value="" data-ru="Любая цена" data-en="Any price">Любая цена</option>
         <option value="a" data-ru="до 30 000 ₽" data-en="under ₽30,000">до 30 000 ₽</option>
         <option value="b" data-ru="30–70 тыс. ₽" data-en="₽30–70k">30–70 тыс. ₽</option>
         <option value="c" data-ru="70–100 тыс. ₽" data-en="₽70–100k">70–100 тыс. ₽</option>
         <option value="d" data-ru="от 100 тыс. ₽" data-en="₽100k and up">от 100 тыс. ₽</option>
       </select>
-      <select class="cs" id="cSz" onchange="rC()" aria-label="Размер">
+      <select class="cs" id="cSz" onchange="rC();goal('filter',{type:'size',value:this.value||'any'})" aria-label="Размер">
         <option value="" data-ru="Любой размер" data-en="Any size">Любой размер</option>
         <option value="s" data-ru="до 40 см" data-en="up to 40 cm">до 40 см</option>
         <option value="m" data-ru="50–70 см" data-en="50–70 cm">50–70 см</option>
         <option value="l" data-ru="от 80 см" data-en="80 cm+">от 80 см</option>
+      </select>
+      <select class="cs" id="cAv" onchange="rC();goal('filter',{type:'avail',value:this.value||'all'})" aria-label="Наличие" style="display:none">
+        <option value="" data-ru="Все работы" data-en="All works">Все работы</option>
+        <option value="a" data-ru="В наличии" data-en="Available">В наличии</option>
       </select>
       <select class="cs" id="cS" onchange="rC()" aria-label="Сортировка">
         <option value="d" data-ru="По умолчанию" data-en="Default">По умолчанию</option>
@@ -476,12 +531,12 @@ a:hover{color:var(--mars)}
       <div class="m-cta">
       <a href="#" class="mt" id="mB" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        <span data-ru="Купить в Telegram" data-en="Buy via Telegram">Купить в Telegram</span>
+        <span id="mBt" data-ru="Купить в Telegram" data-en="Buy via Telegram">Купить в Telegram</span>
       </a>
       <div class="m-acts">
         <button class="m2 try-go" onclick="tryOpen(curId)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg><span data-ru="Примерить на стене" data-en="Try on your wall">Примерить на стене</span></button>
         <button class="m2" id="mFav" onclick="tFav(curId)" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-ru="В избранное" data-en="Favorite">В избранное</span></button>
-        <button class="m2" onclick="shareWork(curId)" aria-label="Поделиться"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg><span data-ru="Поделиться" data-en="Share">Поделиться</span></button>
+        <button class="m2 shr" onclick="shareWork(curId)" aria-label="Поделиться"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg><span data-ru="Поделиться" data-en="Share">Поделиться</span></button>
       </div>
       </div>
     </div>
@@ -528,14 +583,32 @@ a:hover{color:var(--mars)}
 </div>
 
 <script>
+/* ── ЯНДЕКС МЕТРИКА ── */
+const YM_ID=0; // номер счётчика Метрики; 0 — счётчик выключен
+// очередь ym заводим сразу (цели до загрузки счётчика не теряются), сам tag.js — после load, как ролик заставки
+if(YM_ID>0){
+  window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments);};ym.l=+new Date;
+  ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  const ymLoad=()=>{const s=document.createElement('script');s.async=true;s.src='https://mc.yandex.ru/metrika/tag.js';document.head.appendChild(s);};
+  if(document.readyState==='complete')ymLoad();else addEventListener('load',ymLoad,{once:true});
+}
+// цель Метрики: без счётчика ничего не делает
+function goal(name,params){if(YM_ID>0&&typeof window.ym==='function')try{ym(YM_ID,'reachGoal',name,params);}catch(_){}}
+
 /* ── DATA ── */
-let W=[],CT={},L='ru',F='all';
+const SITE='https://artpolushkina.com';
+let W=[],CT={},L=window.LANG0==='en'?'en':'ru',F='all',FX=null;
 
 const W_FB=[{id:1,t:"ГАМАК",te:"Hammock",m:"Холст, акрил",me:"Canvas, acrylic",s:"70×60",y:2026,p:62000},{id:2,t:"СЕМЬЯ",te:"Family",m:"Холст, акрил",me:"Canvas, acrylic",s:"50×40",y:2026,p:25000},{id:3,t:"БУТОНЫ",te:"Buds",m:"Холст, акрил",me:"Canvas, acrylic",s:"70×60",y:2026,p:45000}];
 const CT_FB={about:{parasRu:["Мария Полушкина родилась в 1985 году в Москве."],parasEn:["Maria Polushkina was born in 1985 in Moscow."],quoteRu:"«Для меня работа художника — летопись событий.»",quoteEn:"'For me, the artist's work is a chronicle.'"},exhibitions:[],press:[],contacts:{telegram:"artpolushkina",instagram:"artpolushkina",email:"artpolushkina@gmail.com",phone:"+79260209744"}};
 
 async function loadAll(){
   const sk=document.getElementById('cSk');
+  // курс для цен в € и $ (fx.json: рублей за 1 EUR/USD) — не задерживает каталог; нет файла — только рубли
+  fetch('fx.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
+    const r=j&&j.rub_per;if(!(r&&r.EUR>0&&r.USD>0))return;
+    FX=r;if(W.length){rC();if(curId!=null)mPrice(W.find(x=>x.id===curId));}
+  }).catch(()=>{});
   const [catResp,ctResp]=await Promise.allSettled([
     fetch('catalog.json?t='+Date.now()),
     fetch('content.json?t='+Date.now())
@@ -557,14 +630,54 @@ function getMedia(a){
 /* ── RENDER ALL ── */
 function rAll(){rAbout();rExhibitions();rPress();rContacts();rF();rC();rFav();}
 
-function tL(){
-  L=L==='ru'?'en':'ru';
+/* ── ЯЗЫК ── */
+const META={
+  ru:{t:'Мария Полушкина - современная художница, Москва',d:'Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 10 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.'},
+  en:{t:'Maria Polushkina - Contemporary Artist, Moscow',d:'Original paintings by Maria Polushkina, acrylic on canvas. Works in private collections in 10 countries. Catalog with prices, try on your wall, buy directly from the artist.'}};
+// тексты страницы на языке L (без перерисовки каталога и разделов из данных — это rAll)
+function applyL(){
   document.getElementById('lB').textContent=L==='ru'?'EN':'RU';
   document.documentElement.lang=L;
   document.querySelectorAll('[data-ru]').forEach(el=>{const v=el.getAttribute('data-'+L);if(v)el.innerHTML=v;});
   document.querySelectorAll('.cs option').forEach(o=>{const v=o.getAttribute('data-'+L);if(v)o.textContent=v;});
-  rAll();
+  document.title=META[L].t;
+  const md=document.querySelector('meta[name="description"]');if(md)md.content=META[L].d;
+  // canonical и og — на версию текущего языка (совпадает с hreflang)
+  const cu=SITE+'/'+(L==='en'?'?lang=en':''),cl=document.querySelector('link[rel="canonical"]');if(cl)cl.href=cu;
+  [['og:url',cu],['og:title',META[L].t],['og:locale',L==='en'?'en_US':'ru_RU'],['og:locale:alternate',L==='en'?'ru_RU':'en_US']]
+    .forEach(([k,v])=>{const m=document.querySelector(`meta[property="${k}"]`);if(m)m.content=v;});
+  const ap=document.querySelector('.ap-img');if(ap)ap.alt=L==='ru'?'Мария Полушкина, художница':'Maria Polushkina, artist';
+  document.getElementById('heroVid').setAttribute('aria-label',L==='ru'?'Анимация работ Марии Полушкиной':'Animated paintings by Maria Polushkina');
+  document.documentElement.classList.remove('lx');
 }
+function tL(){
+  L=L==='ru'?'en':'ru';
+  try{localStorage.setItem('mp_lang',L);}catch(_){}
+  // адрес: ?lang=en для английского, для русского без параметра; #work-<id> и прочие параметры сохраняются
+  try{const u=new URL(location.href);if(L==='en')u.searchParams.set('lang','en');else u.searchParams.delete('lang');
+    history.replaceState(history.state,'',u.pathname+u.search+u.hash);}catch(_){}
+  applyL();
+  rAll();
+  goal('lang_'+L);
+}
+// цена: рубли; в EN — «₽68,000» и под ними мельче «≈ €720 · $780» (если есть курс)
+const r10=x=>Math.max(10,Math.round(x/10)*10);
+function fxLine(p){return FX&&p>0?`≈ €${r10(p/FX.EUR).toLocaleString('en-US')} · $${r10(p/FX.USD).toLocaleString('en-US')}`:'';}
+function priceTxt(p){return L==='ru'?`${p.toLocaleString('ru-RU')} ₽`:`₽${p.toLocaleString('en-US')}`;}
+function priceHTML(a){
+  if(a.sold)return`<span class="sold">${L==='ru'?'Продано':'Sold'}</span>`;
+  const fx=L==='en'?fxLine(a.p):'';
+  return priceTxt(a.p)+(fx?`<span class="fx">${fx}</span>`:'');
+}
+// заглавные названия («ГАМАК») — для alt в обычном регистре
+function capT(t){t=String(t||'');return /\p{L}/u.test(t)&&t===t.toUpperCase()?t.charAt(0)+t.slice(1).toLowerCase():t;}
+// подпись картинки работы: «Гамак - Мария Полушкина, холст, акрил, 70×60 см»
+function workAlt(a){
+  const ru=L==='ru',mm=String((ru?a.m:a.me)||'').replace(/\.\s*/g,', ').replace(/,\s*$/,'').toLowerCase();
+  return`${capT(ru?a.t:(a.te||a.t))} - ${ru?'Мария Полушкина':'Maria Polushkina'}${mm?', '+mm:''}${a.s?`, ${a.s} ${ru?'см':'cm'}`:''}`;
+}
+const escA=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+if(L==='en')applyL();
 
 function rAbout(){
   const ab=CT.about||CT_FB.about;
@@ -588,7 +701,7 @@ function rPress(){
   const pb=CT.press||[];
   document.getElementById('pG').innerHTML=pb.map(p=>`
     <div class="pc fi">
-      <div class="pi"><img src="${p.img}" alt="${L==='ru'?p.r:p.e}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="pi"><img src="${p.img}" alt="${escA((L==='ru'?'Работы Марии Полушкиной в публикации: ':'Maria Polushkina featured in ')+(L==='ru'?p.r:p.e)+(p.y?', '+p.y:''))}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
       <div class="pb2">
         <span class="py">${p.y}</span>
         <div class="pn">${L==='ru'?p.r:p.e}</div>
@@ -630,12 +743,16 @@ function rF(){
   document.getElementById('cF').innerHTML=`<button class="fb ${F==='all'?'on':''}" onclick="sF('all')">${L==='ru'?'Все':'All'}</button>`+yrs.map(y=>`<button class="fb ${F==y?'on':''}" onclick="sF(${y})">${y}</button>`).join('')
     +(FAV.size||F==='fav'?`<button class="fb fv-f ${F==='fav'?'on':''}" onclick="sF('fav')">${HEART}${L==='ru'?'Избранное':'Favorites'} · ${FAV.size}</button>`:'');
 }
-function sF(f){F=f;rF();rC();}
+function sF(f){F=f;rF();rC();goal('filter',{type:f==='fav'?'fav':f==='all'?'all':'year',value:String(f)});}
 function rC(){
   let items=F==='all'?[...W]:F==='fav'?W.filter(a=>FAV.has(a.id)):W.filter(a=>a.y==F);
   const pr=document.getElementById('cPr').value,sz=document.getElementById('cSz').value;
   if(pr)items=items.filter(a=>pr==='a'?a.p<30000:pr==='b'?a.p>=30000&&a.p<70000:pr==='c'?a.p>=70000&&a.p<100000:a.p>=100000);
   if(sz)items=items.filter(a=>{const m=Math.max(...dims(a));return sz==='s'?m<=40:sz==='m'?m>40&&m<80:m>=80;});
+  // «Все работы / В наличии» — показываем, только когда есть проданные; в общем режиме проданные на своих местах
+  const avS=document.getElementById('cAv'),anySold=W.some(a=>a.sold);
+  avS.style.display=anySold?'':'none';avS.parentNode.classList.toggle('has-av',anySold);
+  if(anySold&&avS.value==='a')items=items.filter(a=>!a.sold);
   const s=document.getElementById('cS').value;
   if(s==='pa')items.sort((a,b)=>a.p-b.p);
   else if(s==='pd')items.sort((a,b)=>b.p-a.p);
@@ -649,7 +766,8 @@ function rC(){
     const media=getMedia(a);
     const first=media[0];
     const hasVid=media.some(m=>m.type==='vid');
-    const thumb=first.type==='img'?`<img src="${first.path}" alt="${tt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" style="width:100%;height:100%;object-fit:cover"></video>`;
+    const alt=escA(workAlt(a));
+    const thumb=first.type==='img'?`<img src="${first.path}" alt="${alt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" aria-label="${alt}" style="width:100%;height:100%;object-fit:cover"></video>`;
     const countBadge=media.length>1?`<div class="media-badge">🖼 ${media.length}</div>`:'';
     const vidBadge=hasVid?`<div class="vid-badge">▶ видео</div>`:'';
     return`<div class="cd" onclick="oM(${a.id})">
@@ -657,7 +775,7 @@ function rC(){
       <div class="cb2">
         <div class="ctt">${tt}</div>
         <div class="cm">${mm}. ${a.s} ${u}. ${a.y}</div>
-        <div class="cft"><span class="cp">${a.p.toLocaleString('ru-RU')} ₽</span><span class="cby">${L==='ru'?'Купить':'Buy'}</span></div>
+        <div class="cft"><span class="cp">${priceHTML(a)}</span>${a.sold?'':`<span class="cby">${L==='ru'?'Купить':'Buy'}</span>`}</div>
       </div>
     </div>`;
   });
@@ -670,7 +788,7 @@ function rC(){
   ob();
 }
 let catN=0;
-function resetF(){F='all';document.getElementById('cPr').value='';document.getElementById('cSz').value='';rF();rC();}
+function resetF(){F='all';['cPr','cSz','cAv'].forEach(i=>document.getElementById(i).value='');rF();rC();}
 // размеры в см [высота, ширина]; у диптиха «40×30 + 40×30» ширины складываются
 function dims(a){
   const ps=[...String(a.s||'').matchAll(/(\d+(?:[.,]\d+)?)\s*[×xх*]\s*(\d+(?:[.,]\d+)?)/g)].map(m=>[parseFloat(m[1].replace(',','.')),parseFloat(m[2].replace(',','.'))]);
@@ -680,11 +798,10 @@ function dims(a){
 
 /* ── FAVORITES ── */
 const HEART=`<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>`;
-const SITE='https://artpolushkina.com';
 let FAV=new Set();
 try{FAV=new Set(JSON.parse(localStorage.getItem('mp_fav')||'[]'));}catch(_){}
 function tFav(id){
-  FAV.has(id)?FAV.delete(id):FAV.add(id);
+  if(FAV.has(id))FAV.delete(id);else{FAV.add(id);goal('fav_add',{id});}
   try{localStorage.setItem('mp_fav',JSON.stringify([...FAV]));}catch(_){}
   document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.classList.toggle('on',FAV.has(id)));
   if(F==='fav'&&!FAV.size)F='all';
@@ -700,11 +817,13 @@ function rFav(){
   if(curId!=null){mf.classList.toggle('on',FAV.has(curId));mf.querySelector('span').textContent=FAV.has(curId)?(L==='ru'?'В избранном':'Saved'):(L==='ru'?'В избранное':'Favorite');}
 }
 function showFav(){F='fav';rF();rC();document.getElementById('catalog').scrollIntoView({behavior:'smooth'});}
-function workLine(a){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}, ${a.p.toLocaleString('ru-RU')} ₽ - ${SITE}/#work-${a.id}`;}
+// строка о работе для сообщения Маше; проданная — «продано» вместо цены, noPrice — без цены и пометки
+function workLine(a,noPrice){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}${noPrice?'':a.sold?(L==='ru'?', продано':', sold'):`, ${a.p.toLocaleString('ru-RU')} ₽`} - ${SITE}/#work-${a.id}`;}
 function askFav(){
   const ws=W.filter(a=>FAV.has(a.id));
   const head=L==='ru'?'Здравствуйте, Мария! Меня заинтересовали работы с вашего сайта:':'Hello Maria! I am interested in these works from your website:';
-  tgMsg(head+'\n'+ws.map(workLine).join('\n'));
+  tgMsg(head+'\n'+ws.map(a=>workLine(a)).join('\n'));
+  goal('fav_send',{n:ws.length});
 }
 function dmHandle(){const c=CT.contacts||CT_FB.contacts;return(c.telegramDm||c.telegram||'artpolushkina').replace('@','');}
 // личка в Telegram: текст подставляется в ссылку и дублируется в буфер — вставить, если клиент его не подхватил
@@ -722,7 +841,8 @@ function toast(t){const el=document.getElementById('toast');el.textContent=t;el.
 /* ── LINK TO A WORK ── */
 function shareWork(id){
   const a=W.find(x=>x.id===id);if(!a)return;
-  const url=`${SITE}/#work-${id}`,title=`${L==='ru'?a.t:a.te} - ${L==='ru'?'Мария Полушкина':'Maria Polushkina'}`;
+  goal('share',{id});
+  const url=`${SITE}/${L==='en'?'?lang=en':''}#work-${id}`,title=`${L==='ru'?a.t:a.te} - ${L==='ru'?'Мария Полушкина':'Maria Polushkina'}`;
   if(navigator.share){navigator.share({title,url}).catch(()=>{});return;}
   copyText(url).then(ok=>toast(ok?(L==='ru'?'Ссылка на работу скопирована':'Link copied'):url));
 }
@@ -866,9 +986,9 @@ function carBuild(media,title){
 
   track.innerHTML=media.map((m,i)=>{
     if(m.type==='vid'){
-      return`<div class="car-slide"><video src="${m.path}" controls muted loop playsinline preload="${i===0?'auto':'none'}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;background:#111"></video></div>`;
+      return`<div class="car-slide"><video src="${m.path}" aria-label="${escA(title)}" controls muted loop playsinline preload="${i===0?'auto':'none'}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;background:#111"></video></div>`;
     }
-    return`<div class="car-slide"><img src="${m.path}" alt="${title} ${i+1}" loading="${i===0?'eager':'lazy'}" onerror="this.onerror=null;this.style.display='none'"></div>`;
+    return`<div class="car-slide"><img src="${m.path}" alt="${escA(i?`${title} (${i+1})`:title)}" loading="${i===0?'eager':'lazy'}" onerror="this.onerror=null;this.style.display='none'"></div>`;
   }).join('');
 
   dots.style.display=n>1?'flex':'none';
@@ -913,14 +1033,21 @@ function oM(id){
   const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me,u=L==='ru'?'см':'cm';
   document.querySelector('.ml').style.setProperty('--mr',`1/${catRatio(a)}`);
   document.querySelector('.ml').style.setProperty('--mh',catRatio(a));
-  carBuild(getMedia(a),tt);
+  carBuild(getMedia(a),workAlt(a));
+function mPrice(a){if(a)document.getElementById('mP').innerHTML=priceHTML(a);}
   document.getElementById('mT').textContent=tt;
   document.getElementById('mM').innerHTML=`<span>${mm}</span><span>${a.s} ${u}</span><span>${a.y}</span>`;
-  document.getElementById('mP').textContent=a.p.toLocaleString('ru-RU')+' ₽';
-  const buy=(L==='ru'?'Здравствуйте, Мария! Хочу купить работу ':'Hello Maria! I would like to buy ')+workLine(a);
-  const mB=document.getElementById('mB');
+  mPrice(a);
+  // проданная: вместо «Купить» — «Хочу похожую» тем же путём в личку Маши
+  const buy=a.sold
+    ?(L==='ru'?`Здравствуйте, Мария! Мне очень понравилась ваша работа ${workLine(a,true)}. Вижу, что она продана - есть ли похожие?`
+      :`Hello Maria! I really love your work ${workLine(a,true)}. I see it has been sold - do you have anything similar?`)
+    :(L==='ru'?'Здравствуйте, Мария! Хочу купить работу ':'Hello Maria! I would like to buy ')+workLine(a);
+  const mB=document.getElementById('mB'),mBt=document.getElementById('mBt');
+  mBt.setAttribute('data-ru',a.sold?'Хочу похожую':'Купить в Telegram');mBt.setAttribute('data-en',a.sold?'Ask about similar':'Buy via Telegram');
+  mBt.textContent=mBt.getAttribute('data-'+L);
   mB.href=`https://t.me/${dmHandle()}?text=${encodeURIComponent(buy)}`;
-  mB.onclick=()=>tgMsg(buy,true);
+  mB.onclick=()=>{tgMsg(buy,true);goal(a.sold?'sold_ask':'buy',{id:a.id});};
   rFav();
   document.getElementById('ov').classList.add('on');
   document.body.style.overflow='hidden';
@@ -930,6 +1057,7 @@ function xM(){
   if(/^#work-/.test(location.hash))history.replaceState(null,'',location.pathname+location.search);
   document.getElementById('ov').classList.remove('on');
   document.body.style.overflow='';
+  goal('work_open',{id});
   document.querySelectorAll('#carTrack video').forEach(v=>v.pause());
   document.getElementById('carTrack').innerHTML='';
   document.getElementById('carDots').innerHTML='';
@@ -963,7 +1091,8 @@ function tryOpen(id){
   T.a=a;[T.hc,T.wc]=dims(a);T.ar=T.hc/T.wc;
   const u=L==='ru'?'см':'cm';
   document.getElementById('tryT').textContent=L==='ru'?a.t:a.te;
-  document.getElementById('tryS').textContent=`${a.s} ${u} · ${a.p.toLocaleString('ru-RU')} ₽`;
+  document.getElementById('tryS').textContent=`${a.s} ${u} · ${a.sold?(L==='ru'?'продано':'sold'):priceTxt(a.p)}`;
+  goal('try_open',{id});
   [['tryFileL','file'],['trySampleB','sample'],['trySzL','size'],['tryRotL','rot'],['trySaveB','save'],['trySendB','send'],['tryCalL','calL'],['tryCalOk','ok'],['tryCalNo','no']]
     .forEach(([i,k])=>document.getElementById(i).textContent=tx(k));
   document.getElementById('tryCmU').textContent=u;
@@ -976,12 +1105,14 @@ function tryOpen(id){
   };
   art.src=(getMedia(a).find(m=>m.type==='img')||{path:`site/images/work-${a.id}.jpg`}).path;
   document.getElementById('try').classList.add('on');
+  art.alt=workAlt(a);
   if(T.photo&&!T.sample){if(T.pxcm)T.w=T.wc*T.pxcm;tryHint(T.pxcm?'hintReal':'hintPhoto');tryRender();}
   else trySample();
 }
 function tryClose(){if(T.cal)tryCalEnd();document.getElementById('try').classList.remove('on');}
 
-function tryBg(url,w,h,pxcm,sample){T.bw=w;T.bh=h;T.pxcm=pxcm;T.sample=sample;document.getElementById('tryBg').src=url;}
+function tryBg(url,w,h,pxcm,sample){T.bw=w;T.bh=h;T.pxcm=pxcm;T.sample=sample;const b=document.getElementById('tryBg');
+  b.alt=sample?(L==='ru'?'Пример интерьера с диваном':'Sample interior with a sofa'):(L==='ru'?'Фото вашей стены':'Photo of your wall');b.src=url;}
 let ROOM=null;const ROOMS={};
 function trySample(){
   // узкий экран — берём узкую комнату, если в ней картина выйдет заметно крупнее
@@ -1103,7 +1234,7 @@ function tryCompose(){
 }
 const tryName=()=>`polushkina-${T.a.id}-na-stene.jpg`;
 function dl(b,name){const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);}
-function trySave(){tryCompose().then(b=>{dl(b,tryName());toast(tx('saved'));});}
+function trySave(){goal('try_save',{id:T.a.id});tryCompose().then(b=>{dl(b,tryName());toast(tx('saved'));});}
 function trySend(){
   const text=tx('sendMsg')+workLine(T.a);
   const canFiles=navigator.canShare&&navigator.canShare({files:[new File([new Blob(['x'])],'a.jpg',{type:'image/jpeg'})]});
@@ -1113,6 +1244,7 @@ function trySend(){
     return;
   }
   tgMsg(text);
+  goal('try_send',{id:T.a.id});
   tryCompose().then(b=>{dl(b,tryName());setTimeout(()=>toast(tx('sendToast')),400);});
 }
 
@@ -1169,6 +1301,14 @@ function ob(){document.querySelectorAll('.fi:not(.v)').forEach(el=>io.observe(el
 setInterval(ob,800);
 
 /* ── РЫБА ПОВЕРХ САЙТА ──
+// цели Метрики на переходы в контакты (шапка заставки, блок «Связаться», подвал); «Купить» (#mB) считается отдельно
+document.addEventListener('click',e=>{
+  const a=e.target.closest&&e.target.closest('a[href]');if(!a||a.id==='mB')return;
+  const h=a.getAttribute('href')||'',where=a.closest('#hero')?'hero':a.closest('#contact')?'contact':a.closest('footer')?'footer':'other';
+  const g=/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//.test(h)?'contact_wa':/^https?:\/\/t\.me\//.test(h)?'contact_tg':/instagram\.com\//.test(h)?'contact_ig'
+    :/^mailto:/.test(h)?'contact_mail':/^tel:/.test(h)?'contact_phone':'';
+  if(g)goal(g,{where});
+},true);
    Раз в 10–24 с, когда заставка уже прокручена, рыба заплывает с края экрана, проплывает над 1–2 картинами, которые сейчас
    видны, и уплывает за другой край. Курсор или палец рядом — пугается и уходит быстрее. Поворот ограничен, хвост машет
    тем чаще, чем быстрее плывёт. При прокрутке чуть отстаёт от страницы, картины-цели едут вместе со страницей */

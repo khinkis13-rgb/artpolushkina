@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Вопросы по сайту</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;--sel:#EEF2F6;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--navy-d)}
+b,strong{font-weight:500}
+[hidden]{display:none!important}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+
+/* прогресс */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px}
+#cnt{font:400 14px/1.2 var(--fb);color:var(--wg);font-variant-numeric:lining-nums tabular-nums}
+#cnt b{color:var(--navy-d)}
+.go{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font:500 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--burg);text-decoration:none;white-space:nowrap}
+.pb{height:3px;background:var(--line)}
+.pb i{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));transition:width .25s}
+
+/* шапка */
+header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h1,h2{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
+.lead{font-size:18px;color:#4a443d;max-width:640px}
+.lead+.lead{margin-top:10px}
+.back{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:16px}
+.muted{color:var(--wg);font-size:14.5px}
+
+/* вопросы */
+.q{padding:34px 0 36px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
+.q .n{display:flex;align-items:center;gap:12px;font:italic 400 30px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+.q.done .n::after{content:"есть ответ";font:500 11px/1 var(--fb);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:5px 8px;border-radius:3px}
+.q h2{font-size:clamp(26px,5.6vw,34px);line-height:1.12;margin-bottom:6px}
+.q h2 small{display:block;font:italic 400 .62em/1.3 var(--fd);color:var(--burg);margin-top:4px}
+.why{font-size:15.5px;color:#5b544c;margin-bottom:16px}
+.warn{font-size:15px;color:var(--burg);background:#F6ECEC;border-left:3px solid var(--burg);padding:10px 12px;margin:-4px 0 16px}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;padding:11px 14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:16px;line-height:1.35;font-weight:400;transition:border-color .15s,background .15s}
+.opt::before{content:"";flex:none;width:20px;height:20px;border:1.5px solid #b3a99c;border-radius:50%;background:#fff;transition:all .15s}
+.opts.multi .opt::before{border-radius:5px}
+.opt[aria-checked="true"]{border-color:var(--navy);background:var(--sel);color:var(--navy-d)}
+.opt[aria-checked="true"]::before{border-color:var(--navy);background:var(--navy);box-shadow:inset 0 0 0 4px #fff}
+.opts.multi .opt[aria-checked="true"]::before{box-shadow:none;background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.opt .th{flex:none;width:44px;height:44px;object-fit:cover;border-radius:4px;background:#ece6dc}
+.opt span{min-width:0;overflow-wrap:anywhere}
+@media (hover:hover){.opt:hover{border-color:#c9bca8}}
+.opt:focus-visible,.tile:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.fld{display:block;margin-top:14px}
+.fld>span{display:block;font-size:14.5px;color:var(--wg);margin-bottom:6px}
+textarea,input[type=text],input[type=search],input[type=number]{width:100%;font-size:16px;font-weight:400;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:48px;-webkit-appearance:none;appearance:none;outline:none}
+textarea{resize:vertical;line-height:1.45;min-height:56px;display:block}
+textarea.big{min-height:110px}
+textarea:focus,input:focus{border-color:var(--navy)}
+.pct{display:flex;align-items:center;gap:10px;margin:0 0 4px 46px;font-size:15.5px;color:#4a443d}
+.pct input{width:96px;text-align:center}
+.pct[hidden]{display:none}
+
+/* работы */
+.tools{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+.tools input{flex:1;min-width:0}
+.cnt2{font-size:14.5px;color:var(--wg);margin:0 0 10px;min-height:22px}
+.cnt2 b{color:var(--navy-d)}
+.cnt2.full{color:var(--burg)}
+.picked{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.picked:empty{display:none}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:6px 10px 6px 12px;background:#fff;border:1px solid var(--navy);border-radius:40px;font-size:13.5px;line-height:1.2;font-weight:400;color:var(--navy-d);max-width:100%;text-align:left}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.chip i{font-style:normal;font-size:18px;line-height:1;color:var(--wg);flex:none}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 8px}
+.tile{position:relative;display:flex;flex-direction:column;text-align:left;background:none;border:0;padding:0;min-width:0}
+.tile .ph{position:relative;width:100%;aspect-ratio:1;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.tile img{width:100%;height:100%;object-fit:contain;padding:4px}
+.tile .tt{font-size:12.5px;line-height:1.25;font-weight:400;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+.tile .mt{font-size:11.5px;color:var(--wg);line-height:1.3;margin-top:2px}
+.tile .bd{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;display:none;align-items:center;justify-content:center;background:var(--navy);color:#fff;font:500 13px/1 var(--fb);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.tile.on .ph{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.tile.on .bd{display:flex}
+.tile.on.sold .ph::after{content:"продано";position:absolute;left:0;right:0;bottom:0;background:rgba(44,62,90,.86);color:#fff;font:500 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:6px 0}
+.tile.dim{opacity:.45}
+.more{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:14px;background:transparent;border:1px dashed #c9bca8;border-radius:10px;font-size:15px;font-weight:400;color:var(--navy-d)}
+.empty{font-size:15px;color:var(--wg);padding:8px 0}
+.err{font-size:15px;color:var(--burg)}
+
+/* отправка */
+#send{padding:38px 0 30px;scroll-margin-top:60px}
+#send h2{font-family:var(--fd);font-weight:400;font-size:clamp(30px,6.4vw,40px);line-height:1.1;margin-bottom:8px;color:var(--navy-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:12px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:17px;font-weight:500;letter-spacing:.01em;text-decoration:none}
+.btn.big{width:100%;min-height:58px;font-size:18px;margin-top:16px}
+.btn.lite{background:#fff;color:var(--navy-d);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:default}
+#sendNote{margin-top:10px;min-height:22px}
+#out{margin-top:22px}
+#out[hidden]{display:none}
+.thanks{font:italic 400 30px/1.15 var(--fd);color:var(--burg);margin-bottom:6px}
+#outTxt{min-height:220px;font-size:14.5px;line-height:1.45;background:var(--paper);color:#3b3731;margin-top:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.reset{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.reset button{min-height:44px;background:none;border:0;padding:0 2px;font-size:15px;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+.sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
+
+@media (min-width:560px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 12px}
+  .tile .tt{font-size:13.5px}
+}
+@media (min-width:760px){
+  body{font-size:18px}
+  header{padding:56px 0 44px}
+  .q{padding:46px 0 48px}
+  .grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .opts.inline{flex-direction:row;flex-wrap:wrap}
+  .opts.inline .opt{width:auto;padding-right:20px}
+  .opts .pct{flex-basis:100%}
+  .btn.big{width:auto;min-width:320px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top" role="status" aria-live="polite">
+  <div class="wrap"><span id="cnt">Отвечено <b>0</b> из 14</span><a class="go" href="#send">К отправке</a></div>
+  <div class="pb"><i id="pb"></i></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <img class="sig" src="../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
+    <div class="k">artpolushkina.com · вопросы</div>
+    <h1>Вопросы по сайту</h1>
+    <p class="lead">Мань, тут всё, что мне от тебя нужно для продвижения сайта. Отвечай когда удобно и по частям - ответы сохраняются в этом браузере. В конце одна кнопка - и всё придёт мне в Telegram.</p>
+    <p class="lead muted">В основном просто ткни в подходящий вариант. Ни один вопрос не обязателен, порядок любой.</p>
+    <a class="back" href="../">Что и зачем мы делаем - в презентации</a>
+  </header>
+
+  <main id="qs"></main>
+
+  <section id="send">
+    <div class="k">Готово?</div>
+    <h2>Отправить ответы</h2>
+    <p class="why">Соберу всё, что ты ответила, в одно сообщение: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
+    <button class="btn big" id="sendBtn" type="button">Отправить Диме</button>
+    <p class="muted" id="sendNote"></p>
+    <div id="out" hidden>
+      <p class="thanks" id="thanks">Спасибо, Мань!)</p>
+      <p class="why" id="outHint">Если в Telegram текст не подставился - вставь его в чат со мной. Если что-то вспомнишь или передумаешь - дополняй здесь и отправляй ещё раз.</p>
+      <textarea id="outTxt" readonly aria-label="Текст для отправки"></textarea>
+      <div class="row">
+        <button class="btn lite" id="copyBtn" type="button">Скопировать</button>
+        <a class="btn lite" id="tgLink" href="https://t.me/Dmitry_Khinkis" target="_blank" rel="noopener">Открыть чат</a>
+      </div>
+    </div>
+    <div class="reset">
+      <span class="muted" id="lastSent"></span>
+      <button type="button" id="resetBtn">Начать заново</button>
+    </div>
+  </section>
+
+  <div class="sign">Made by Dmitry Khinkis</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var KEY='mp_q1', TG='Dmitry_Khinkis', MAXURL=3500, FOLD=12;
+try{ if(matchMedia('(min-width:760px)').matches) FOLD=15; }catch(e){}
+
+/* вопросы */
+var Q=[
+ {id:'sold',type:'works',title:'Какие работы уже проданы?',
+  why:'Поставим на сайте плашку «Продано» вместо кнопки «Купить» - видно, что работы покупают. Отметь их в списке.',
+  note:'Если проданной работы уже нет на сайте - напиши её название здесь',noteSum:'Ещё'},
+ {id:'cyprus',type:'pick',title:'Какая из них ушла на Кипр?',
+  why:'Первая продажа через сайт - хочу понимать, какие работы цепляют иностранцев.',
+  none:'Ещё не решено / пока не продана',
+  note:'Или напиши название, если её нет в списке',noteSum:'Комментарий'},
+ {id:'pay',type:'one',title:'Как получать оплату из-за рубежа?',
+  why:'От этого зависит, выходим ли на зарубежные площадки и что писать иностранцам про оплату.',
+  opts:['Через родителей - у них счёт/карта за границей','Есть своя иностранная карта или счёт','Пока через Диму (USDT и т.п.)','Не знаю, давай обсудим'],
+  note:'Комментарий, если хочешь'},
+ {id:'price',type:'one',title:'Цены для иностранцев',
+  why:'В английской версии рядом с рублями будет цена в € и $.',
+  opts:['Те же, сайт покажет примерно в € и $ по курсу',{t:'Для иностранцев выше на ...%',pct:true},'Хочу свои круглые цены в €'],
+  note:'Комментарий, если хочешь'},
+ {id:'ship',type:'one',title:'Доставка за рубеж',
+  why:'DHL и FedEx из России не возят, остаются СДЭК, EMS или с оказией. Напишу об этом в английской версии.',
+  opts:['Доставку оплачивает покупатель, считаем по запросу','Включаю в цену','Только с оказией / самовывоз','Не знаю'],
+  note:'Комментарий, если хочешь'},
+ {id:'contact',type:'many',title:'Как иностранцам с тобой связаться, кроме Telegram?',
+  why:'Telegram за границей есть не у всех. Покажу в английской версии то, что выберешь. Можно несколько.',
+  opts:['WhatsApp +7 926 020-97-44','Почта artpolushkina@gmail.com','Instagram @artpolushkina',{t:'Только Telegram',solo:true}],
+  note:'Комментарий, если хочешь'},
+ {id:'saatchi',type:'one',title:'Saatchi Art',sub:'у тебя там старый профиль',
+  why:'Сейчас по твоему имени Google находит его, а не сайт. Обновлю профиль и поставлю ссылку на сайт.',
+  warn:'Пароль сюда не пиши - пришли его мне лично в Telegram.',
+  opts:['Помню вход, логин и пароль пришлю Диме лично','Не помню, восстановим через почту','Не хочу там быть'],
+  note:'Комментарий, если хочешь (без пароля)'},
+ {id:'press',type:'one',title:'Письма в журналы и музей',sub:'просьба поставить ссылку на сайт',
+  why:'Salon, My Decor, «Идеи вашего дома», Design Mate, In My Room, музей Цветаевой. Ссылки с таких сайтов поднимают твой в поиске.',
+  opts:['Пришли текст, отправлю со своей почты','Пусть Дима пишет от моего имени','Пусть Дима пишет от своего имени'],
+  note:'Контакты в журналах и галереях, если есть',noteSum:'Контакты'},
+ {id:'pin',type:'one',title:'Pinterest от твоего имени',inline:true,
+  why:'Для картин в интерьер это поисковик картинок: каждая работа со ссылкой на сайт. Заведу и наполню сам.',
+  opts:['Да, заводи','Нет','Давай обсудим'],note:'Комментарий, если хочешь'},
+ {id:'ru',type:'one',title:'Российские площадки',sub:'Gallerix, Vernissage 365, Artlot24',inline:true,
+  why:'Те же работы со ссылкой на сайт: и продажи, и ссылки для поиска. Комиссия около 15-20%.',
+  opts:['Да','Нет','Позже'],note:'Комментарий, если хочешь'},
+ {id:'stories',type:'works',limit:10,title:'Истории картин: выбери до 10 любимых работ',
+  why:'К каждой напишем 2-3 абзаца: как появилась, что в ней. Такие страницы любят и люди, и поисковики.',
+  note:'Комментарий, если хочешь',noteSum:'Комментарий'},
+ {id:'storyhow',type:'one',title:'Как удобнее рассказывать истории?',inline:true,
+  why:'Зачем: у твоих любимых работ на сайте появится короткая история - как картина появилась и что в ней. Людям интересно это читать, покупают охотнее, когда знают историю, а поисковики выше показывают страницы с живым текстом. От тебя только рассказ, как удобно, - текст на русском и английском оформлю сам.',
+  opts:['Голосовыми в Telegram','Текстом'],note:'Комментарий, если хочешь'},
+ {id:'anim',type:'text',title:'Анимации на главной - что поправить?',
+  why:'Ты хотела прислать мысли по заставке. Пиши всё, что заметила: какой ролик, какой момент, что не так.',
+  ph:'Например: во втором ролике рыба слишком быстрая'},
+ {id:'more',type:'text',title:'Что-то ещё?',
+  why:'Любые мысли, вопросы и пожелания по сайту.',ph:''}
+];
+Q.forEach(function(q){ if(q.opts) q.opts=q.opts.map(function(o){return typeof o==='string'?{t:o}:o;}); });
+
+/* хранилище */
+function load(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s&&typeof s==='object'&&s.a) return s; }catch(e){} return {a:{}}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+var S=load();
+function A(id){ var a=S.a[id]; if(!a||typeof a!=='object'){ a=S.a[id]={}; } return a; }
+
+/* каталог */
+var W=[], WM={}, catOk=null;
+function img(w){
+  var m=(w.media||[]).filter(function(x){return x&&x.type==='img'&&x.path;})[0];
+  return '../../'+(m?m.path:'site/images/work-'+w.id+'.jpg');
+}
+function wl(id){ var w=WM[id]; return w?'№'+id+' «'+w.t+'»':'№'+id; }
+function norm(s){ return String(s||'').toLowerCase().replace(/ё/g,'е').trim(); }
+
+/* разметка */
+function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+var root=document.getElementById('qs'), UI={};
+
+function answered(q){
+  var a=S.a[q.id]; if(!a) return false;
+  if(a.note&&String(a.note).trim()) return true;
+  if(q.type==='works'||q.type==='many') return !!(a.v&&a.v.length);
+  if(q.type==='pick'){ return a.v==='none'||(a.v!=null&&soldList().indexOf(a.v)>=0); }
+  if(q.type==='one') return !!a.v;
+  return false;
+}
+function soldList(){ var a=S.a.sold; return (a&&Array.isArray(a.v))?a.v:[]; }
+
+function progress(){
+  var n=0;
+  Q.forEach(function(q){ var d=answered(q); if(d) n++; UI[q.id].sec.classList.toggle('done',d); });
+  document.getElementById('cnt').innerHTML='Отвечено <b>'+n+'</b> из '+Q.length;
+  document.getElementById('pb').style.width=(n/Q.length*100)+'%';
+  var b=document.getElementById('sendBtn'), sn=document.getElementById('sendNote');
+  b.disabled=n===0;
+  sn.textContent=n===0?'Пока нет ни одного ответа - отметь что-нибудь выше.':'Уйдут ответы на '+n+' '+plural(n,'вопрос','вопроса','вопросов')+' из '+Q.length+'.';
+}
+function plural(n,a,b,c){ var m=n%10,h=n%100; return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c; }
+function changed(){ save(); progress(); }
+
+function autosize(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
+function noteField(q,label,ph,big){
+  var lab=el('label','fld'); lab.appendChild(el('span',null,label));
+  var t=el('textarea',big?'big':null); t.rows=big?4:1; if(ph) t.placeholder=ph;
+  t.value=A(q.id).note||'';
+  t.addEventListener('input',function(){ A(q.id).note=t.value; autosize(t); changed(); });
+  lab.appendChild(t); setTimeout(function(){ autosize(t); },0);
+  return lab;
+}
+function optBtn(text,checked,role){
+  var b=el('button','opt'); b.type='button'; b.setAttribute('role',role); b.setAttribute('aria-checked',checked?'true':'false');
+  b.appendChild(el('span',null,text)); return b;
+}
+
+function build(){
+  Q.forEach(function(q,i){
+    var sec=el('section','q'); sec.id='q-'+q.id;
+    sec.appendChild(el('div','n',String(i+1)));
+    var h=el('h2',null,q.title); if(q.sub){ h.appendChild(el('small',null,q.sub)); } sec.appendChild(h);
+    sec.appendChild(el('p','why',q.why));
+    if(q.warn) sec.appendChild(el('p','warn',q.warn));
+    UI[q.id]={sec:sec};
+    var body=el('div'); sec.appendChild(body); UI[q.id].body=body;
+    if(q.type==='one'||q.type==='many') buildOpts(q,body);
+    if(q.type==='pick') { UI[q.id].list=el('div','opts'); body.appendChild(UI[q.id].list); renderPick(q); }
+    if(q.type==='works') buildWorks(q,body);
+    if(q.type==='text') body.appendChild(noteField(q,'Твой ответ',q.ph,true));
+    else if(q.note) body.appendChild(noteField(q,q.note,'',false));
+    root.appendChild(sec);
+  });
+}
+
+function buildOpts(q,body){
+  var multi=q.type==='many', box=el('div','opts'+(multi?' multi':'')+(q.inline?' inline':''));
+  box.setAttribute('role',multi?'group':'radiogroup'); box.setAttribute('aria-label',q.title);
+  var a=A(q.id), pctRow=null, pctIn=null, btns=[];
+  function sync(){
+    btns.forEach(function(p){
+      var on=multi?((a.v||[]).indexOf(p.o.t)>=0):a.v===p.o.t;
+      p.b.setAttribute('aria-checked',on?'true':'false');
+    });
+    if(pctRow){ var o=q.opts.filter(function(o){return o.pct;})[0]; pctRow.hidden=a.v!==o.t; }
+  }
+  q.opts.forEach(function(o){
+    var b=optBtn(o.t,false,multi?'checkbox':'radio');
+    b.addEventListener('click',function(){
+      if(multi){
+        var v=(a.v||[]).slice(), k=v.indexOf(o.t);
+        if(k>=0) v.splice(k,1);
+        else{
+          if(o.solo) v=[];
+          else v=v.filter(function(x){ return !q.opts.some(function(p){return p.solo&&p.t===x;}); });
+          v.push(o.t);
+        }
+        a.v=v;
+      } else {
+        a.v=(a.v===o.t)?null:o.t;
+      }
+      sync(); changed();
+      if(o.pct&&a.v===o.t&&pctIn){ try{ pctIn.focus({preventScroll:true}); }catch(e){} }
+    });
+    btns.push({b:b,o:o}); box.appendChild(b);
+    if(o.pct){
+      pctRow=el('label','pct'); pctRow.appendChild(el('span',null,'На сколько выше:'));
+      pctIn=el('input'); pctIn.type='text'; pctIn.inputMode='numeric'; pctIn.placeholder='20'; pctIn.setAttribute('aria-label','Процент');
+      pctIn.value=a.pct||'';
+      pctIn.addEventListener('input',function(){ a.pct=pctIn.value.replace(/[^\d.,]/g,'').slice(0,5); if(pctIn.value!==a.pct) pctIn.value=a.pct; changed(); });
+      pctRow.appendChild(pctIn); pctRow.appendChild(el('span',null,'%'));
+      box.appendChild(pctRow);
+    }
+  });
+  body.appendChild(box);
+  sync();
+}
+
+function renderPick(q){
+  var box=UI[q.id].list, a=A(q.id), sold=soldList();
+  box.innerHTML=''; box.setAttribute('role','radiogroup'); box.setAttribute('aria-label',q.title);
+  if(a.v!=null&&a.v!=='none'&&sold.indexOf(a.v)<0){ a.v=null; save(); }
+  if(!sold.length) box.appendChild(el('p','empty','Отметь проданные работы в вопросе 1 - они появятся здесь.'));
+  sold.forEach(function(id){
+    var b=optBtn(wl(id),a.v===id,'radio'), w=WM[id];
+    if(w){ var im=el('img','th'); im.src=img(w); im.alt=''; im.loading='lazy'; b.insertBefore(im,b.lastChild); }
+    b.addEventListener('click',function(){ a.v=(a.v===id)?null:id; renderPick(q); changed(); });
+    box.appendChild(b);
+  });
+  var nb=optBtn(q.none,a.v==='none','radio');
+  nb.addEventListener('click',function(){ a.v=(a.v==='none')?null:'none'; renderPick(q); changed(); });
+  box.appendChild(nb);
+}
+
+function buildWorks(q,body){
+  var u=UI[q.id], a=A(q.id); if(!Array.isArray(a.v)) a.v=[];
+  var tools=el('div','tools'), s=el('input'); s.type='search'; s.placeholder='Поиск по названию или номеру'; s.setAttribute('aria-label','Поиск работ');
+  tools.appendChild(s); body.appendChild(tools);
+  u.cnt=el('p','cnt2'); body.appendChild(u.cnt);
+  u.picked=el('div','picked'); body.appendChild(u.picked);
+  u.grid=el('div','grid'); body.appendChild(u.grid);
+  u.more=el('button','more'); u.more.type='button'; body.appendChild(u.more);
+  u.open=false; u.q=''; u.tiles={}; u.search=s;
+  s.addEventListener('input',function(){ u.q=norm(s.value); filter(q); });
+  u.more.addEventListener('click',function(){
+    u.open=!u.open; filter(q);
+    if(!u.open) u.sec.scrollIntoView({block:'start'});
+  });
+  u.grid.appendChild(el('p','empty','Загружаю работы...'));
+  u.more.hidden=true;
+}
+
+function fillWorks(q){
+  var u=UI[q.id];
+  u.grid.innerHTML='';
+  if(!catOk){
+    u.grid.appendChild(el('p','err','Не получилось загрузить список работ. Обнови страницу или напиши названия в поле ниже.'));
+    u.more.hidden=true; return;
+  }
+  var a=A(q.id);
+  a.v=a.v.filter(function(id){ return WM[id]; });
+  W.forEach(function(w){
+    var t=el('button','tile'+(q.limit?'':' sold')); t.type='button'; t.setAttribute('aria-pressed','false');
+    var ph=el('span','ph'), im=el('img'); im.src=img(w); im.alt=''; im.loading='lazy'; im.decoding='async';
+    ph.appendChild(im); ph.appendChild(el('span','bd',''));
+    t.appendChild(ph);
+    t.appendChild(el('span','tt',w.t));
+    t.appendChild(el('span','mt','№'+w.id+(w.s?' · '+w.s:'')));
+    t.setAttribute('aria-label','№'+w.id+' '+w.t);
+    t.addEventListener('click',function(){ toggleWork(q,w.id); });
+    u.tiles[w.id]=t; u.grid.appendChild(t);
+  });
+  u.none=el('p','empty','Ничего не нашлось.'); u.none.hidden=true; u.grid.appendChild(u.none);
+  syncWorks(q); filter(q);
+}
+
+function toggleWork(q,id){
+  var a=A(q.id), k=a.v.indexOf(id), u=UI[q.id];
+  if(k>=0) a.v.splice(k,1);
+  else if(q.limit&&a.v.length>=q.limit){ u.full=true; syncWorks(q); return; }
+  else a.v.push(id);
+  u.full=false;
+  syncWorks(q); changed();
+  if(q.id==='sold') renderPick(Q[1]);
+}
+
+function syncWorks(q){
+  var u=UI[q.id], a=A(q.id), lim=q.limit, n=a.v.length;
+  Object.keys(u.tiles).forEach(function(k){
+    var id=+k, t=u.tiles[k], i=a.v.indexOf(id), on=i>=0;
+    t.classList.toggle('on',on); t.setAttribute('aria-pressed',on?'true':'false');
+    t.querySelector('.bd').textContent=on?(lim?String(i+1):'✓'):'';
+    t.classList.toggle('dim',!!lim&&!on&&n>=lim);
+  });
+  u.cnt.classList.toggle('full',!!u.full);
+  if(lim){
+    u.cnt.innerHTML=u.full?'Уже '+lim+' - сними отметку с одной, чтобы выбрать другую.':'Выбрано <b>'+n+'</b> из '+lim;
+  } else {
+    u.cnt.innerHTML=n?'Отмечено: <b>'+n+'</b>':'Нажми на работу, чтобы отметить. Ещё раз - снять отметку.';
+  }
+  u.picked.innerHTML='';
+  a.v.forEach(function(id,i){
+    var c=el('button','chip'); c.type='button'; c.setAttribute('aria-label','Снять отметку: '+wl(id));
+    c.appendChild(el('span',null,(lim?(i+1)+'. ':'')+wl(id))); c.appendChild(el('i',null,'×'));
+    c.addEventListener('click',function(){ toggleWork(q,id); });
+    u.picked.appendChild(c);
+  });
+}
+
+function filter(q){
+  var u=UI[q.id], shown=0, total=0;
+  W.forEach(function(w,i){
+    var t=u.tiles[w.id]; if(!t) return;
+    var m=!u.q||norm(w.t).indexOf(u.q)>=0||norm(w.te).indexOf(u.q)>=0||String(w.id)===u.q.replace(/^№\s*/,'');
+    if(m) total++;
+    var vis=m&&(u.q||u.open||i<FOLD);
+    t.hidden=!vis; if(vis) shown++;
+  });
+  u.none.hidden=total>0;
+  if(u.q){ u.more.hidden=true; }
+  else { u.more.hidden=W.length<=FOLD; u.more.textContent=u.open?'Свернуть':'Показать все работы ('+W.length+')'; }
+}
+
+/* итоговый текст */
+function lines(q){
+  var a=S.a[q.id]||{}, L=[];
+  if(q.type==='works') (a.v||[]).forEach(function(id){ L.push(wl(id)); });
+  if(q.type==='pick'){ if(a.v==='none') L.push(q.none); else if(a.v!=null&&soldList().indexOf(a.v)>=0) L.push(wl(a.v)); }
+  if(q.type==='one'&&a.v){
+    var o=q.opts.filter(function(o){return o.t===a.v;})[0];
+    if(o&&o.pct) L.push(a.pct?'Для иностранцев выше на '+a.pct+'%':'Для иностранцев выше (процент пока не решила)');
+    else L.push(a.v);
+  }
+  if(q.type==='many') (a.v||[]).forEach(function(x){ L.push(x); });
+  var n=String(a.note||'').trim();
+  if(n) L.push(q.type==='text'?n:(q.noteSum||'Комментарий')+': '+n);
+  return L;
+}
+function summary(){
+  var d=new Date(), dd=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();
+  var out=['Ответы по сайту, '+dd];
+  Q.forEach(function(q,i){
+    var L=lines(q); if(!L.length) return;
+    out.push(''); out.push((i+1)+'. '+q.title+(q.sub?' ('+q.sub+')':''));
+    out=out.concat(L);
+  });
+  return out.join('\n');
+}
+
+/* копирование */
+function legacyCopy(text){
+  var t=document.createElement('textarea'); t.value=text; t.setAttribute('readonly','');
+  t.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+  document.body.appendChild(t); var ok=false;
+  try{ t.focus(); t.select(); t.setSelectionRange(0,text.length); ok=document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(t); return ok;
+}
+function copy(text,done){
+  var fin=function(ok){ if(done) done(ok); };
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){fin(true);},function(){ fin(legacyCopy(text)); });
+      return;
+    }
+  }catch(e){}
+  fin(legacyCopy(text));
+}
+
+function stamp(ts){ var d=new Date(ts); return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+' в '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+function showLast(){ document.getElementById('lastSent').textContent=S.sent?'Последний раз отправляла '+stamp(S.sent):''; }
+
+document.getElementById('sendBtn').addEventListener('click',function(){
+  var text=summary(), long=text.length>MAXURL;
+  var url='https://t.me/'+TG+(long?'':'?text='+encodeURIComponent(text));
+  var out=document.getElementById('out'), ta=document.getElementById('outTxt');
+  ta.value=text; out.hidden=false; autosize(ta);
+  document.getElementById('tgLink').href=url;
+  document.getElementById('outHint').textContent=long
+    ? 'Ответов много, поэтому Telegram откроется просто чатом со мной. Текст уже скопирован - вставь его туда. Если не скопировался - нажми «Скопировать» ниже. Дополнять и отправлять ещё раз можно сколько угодно.'
+    : 'Если в Telegram текст не подставился - вставь его в чат со мной (он уже скопирован). Если что-то вспомнишь или передумаешь - дополняй здесь и отправляй ещё раз.';
+  copy(text,function(ok){ if(!ok) document.getElementById('copyBtn').textContent='Скопировать'; });
+  S.sent=Date.now(); save(); showLast();
+  var w=null; try{ w=window.open(url,'_blank'); }catch(e){}
+  if(!w) location.href=url;
+  setTimeout(function(){ out.scrollIntoView({block:'start',behavior:'smooth'}); },50);
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this, ta=document.getElementById('outTxt');
+  copy(ta.value,function(ok){
+    if(!ok){ try{ ta.focus(); ta.select(); ta.setSelectionRange(0,ta.value.length); }catch(e){} }
+    b.textContent=ok?'Скопировано':'Выдели текст и скопируй';
+    setTimeout(function(){ b.textContent='Скопировать'; },2500);
+  });
+});
+document.getElementById('resetBtn').addEventListener('click',function(){
+  if(!confirm('Стереть все ответы и начать заново?')) return;
+  S={a:{}}; try{ localStorage.removeItem(KEY); }catch(e){}
+  location.reload();
+});
+
+/* запуск */
+build(); progress(); showLast();
+fetch('../../catalog.json',{cache:'no-cache'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+  W=(Array.isArray(d)?d:[]).filter(function(w){ return w&&w.id!=null; });
+  W.forEach(function(w){ WM[w.id]=w; }); catOk=W.length>0;
+}).catch(function(){ catOk=false; }).then(function(){
+  Q.forEach(function(q){ if(q.type==='works') fillWorks(q); });
+  renderPick(Q[1]); progress();
+});
+})();
+</script>
+</body>
+</html>
