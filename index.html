@@ -906,6 +906,10 @@ function heroOne(){
   const arm=()=>{if(armed||still)return;armed=true;for(const e of GEV)addEventListener(e,kick,{passive:true,capture:true});};
   const unarm=()=>{if(!armed)return;armed=false;for(const e of GEV)removeEventListener(e,kick,{capture:true});};
   v.addEventListener('playing',unarm);
+  // ?debug — окошко с состоянием ролика (диагностика «заставка стоит» на чужом компьютере)
+  if(/[?&]debug\b/.test(location.search)){const dbg=document.createElement('pre');dbg.style.cssText='position:fixed;left:8px;bottom:8px;z-index:9999;background:rgba(0,0,0,.8);color:#fff;font:12px/1.4 monospace;padding:8px;max-width:92vw;white-space:pre-wrap;margin:0';document.body.appendChild(dbg);const t0=performance.now(),log=[];
+    ['loadstart','loadedmetadata','canplay','playing','waiting','stalled','suspend','pause','error'].forEach(e=>v.addEventListener(e,()=>{log.push(e+' '+((performance.now()-t0)/1000).toFixed(1)+'с');}));
+    setInterval(()=>{dbg.textContent=`файл: ${(v.currentSrc||'нет').split('/').pop()}\nэкран: ${innerWidth}×${innerHeight} dpr ${devicePixelRatio}\nвремя ролика: ${v.currentTime.toFixed(1)} пауза: ${v.paused} готовность: ${v.readyState}\nошибка: ${v.error?v.error.code+' '+(v.error.message||''):'нет'}\n${navigator.userAgent.slice(-60)}\n${log.slice(-8).join(' · ')}`;},500);}
   function start(){
     if(v.dataset.src===M.src)return;const t=v.currentTime||0;v.dataset.src=M.src;v.src=M.src;if(t)v.currentTime=t;
     if(!still){v.play().catch(e=>{if(e&&e.name==='NotAllowedError'){rej=true;arm();}});setTimeout(()=>{if(v.paused)arm();},4000);}
