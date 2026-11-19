@@ -913,7 +913,9 @@ function heroOne(){
     const m=PH.matches?(low?HERO_V.m1:HERO_V.m):innerWidth*(devicePixelRatio||1)>2200?HERO_V.d2:HERO_V.d;
     if(m!==M){M=m;v.poster=m.poster;
       // сам ролик — после загрузки страницы: до этого виден кадр-заглушка, а шрифты и картинки не делят канал с роликом в 6–18 МБ
-      if(document.readyState==='complete')start();else addEventListener('load',start,{once:true});}
+      // но не позже 1,2 с: на долгой загрузке (картинки каталога, медленная сеть) заставка иначе стоит заглушкой
+      if(document.readyState==='complete')start();else{let go=false;const once=()=>{if(go)return;go=true;start();};
+        addEventListener('load',once,{once:true});setTimeout(once,1200);}}
     box.style.width='';box.style.maxWidth='';
     let b,k,s;const y0=scrollY;
     const need=()=>{b=box.getBoundingClientRect();k=b.width/M.VW;const wr=wd.getBoundingClientRect(),
