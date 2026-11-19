@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Сайт: что дальше</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--navy-d)}
+b,strong{font-weight:500}
+
+/* прогресс и навигация */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));z-index:20;transition:width .15s}
+#dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:20}
+#dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--navy);background:transparent;cursor:pointer;padding:0;transition:all .2s}
+#dots button.on{background:var(--navy);transform:scale(1.25)}
+#cnt{position:fixed;left:22px;bottom:18px;font:400 13px/1 var(--fb);letter-spacing:.12em;color:var(--wg);z-index:20}
+
+/* слайды */
+.s{min-height:100vh;min-height:100svh;padding:72px 7vw;display:flex;flex-direction:column;justify-content:center;position:relative;border-bottom:1px solid var(--line)}
+.s:nth-child(even){background:var(--paper)}
+.in{max-width:1120px;width:100%;margin:0 auto}
+.k{font:500 12px/1 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+h1,h2,h3,.nums b,.big,.card .n{font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1,h2,h3{font-family:var(--fd);font-weight:400;line-height:1.08;color:var(--navy-d)}
+h1{font-size:clamp(44px,7vw,92px)}
+h2{font-size:clamp(34px,4.6vw,60px);margin-bottom:22px}
+h3{font-size:clamp(23px,2.2vw,28px);margin-bottom:8px;font-weight:500}
+.lead{font-size:clamp(18px,1.6vw,21px);max-width:720px;color:#4a443d}
+.lead+.lead{margin-top:14px}
+em{font-family:var(--fd);font-style:italic;font-size:1.15em;color:var(--burg)}
+.muted{color:var(--wg);font-size:14px}
+
+/* обложка */
+.cover{display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:center}
+.sig{width:min(300px,60vw);margin-bottom:34px}
+.cover h1 span{display:block;font-style:italic;color:var(--burg);font-size:.55em;margin-top:14px}
+.cover .for{margin-top:34px;font-size:15px;color:var(--wg);letter-spacing:.04em}
+.art{background:#fff;padding:14px;box-shadow:0 1px 2px rgba(45,42,38,.08),0 18px 40px -18px rgba(45,42,38,.35)}
+.cap{font:italic 400 17px/1.3 var(--fd);color:var(--wg);margin-top:12px;text-align:center}
+
+/* две колонки с картиной */
+.duo{display:grid;grid-template-columns:1fr 360px;gap:6vw;align-items:center}
+.big{font:400 clamp(64px,9vw,128px)/.95 var(--fd);color:var(--burg)}
+.big small{display:block;font:500 13px/1 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:30px}
+
+/* хроника */
+.tl{list-style:none;margin-top:12px;border-left:1px solid var(--gold-s);padding-left:28px}
+.tl li{position:relative;padding:0 0 22px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-33px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--canvas);border:1.5px solid var(--gold)}
+.tl li.hot::before{background:var(--burg);border-color:var(--burg)}
+.tl .d{font:500 13px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.tl .t{font-size:16px;max-width:760px}
+.tl li.hot .t{color:var(--burg);font-weight:400}
+
+/* цифры */
+.nums{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:8px 0 34px}
+.nums div{background:var(--paper);padding:22px 16px}
+.nums b{display:block;font:400 clamp(40px,4.4vw,58px)/1 var(--fd);color:var(--navy-d)}
+.nums span{font-size:14px;color:var(--wg)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{border:1px solid var(--line);background:#fff;border-radius:40px;padding:8px 16px;font-size:15px}
+
+/* карточки */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+.grid.g2{grid-template-columns:repeat(2,1fr)}
+.grid.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);padding:24px 24px 22px;position:relative}
+.card p{font-size:15.5px;color:#4a443d}
+.card .n{font:italic 400 34px/1 var(--fd);color:var(--gold);margin-bottom:10px}
+.card.warn{border-top:3px solid var(--burg)}
+.card.ok{border-top:3px solid var(--navy)}
+.who{display:inline-block;margin-top:14px;font:500 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:#EEF2F6;padding:6px 10px}
+.who.you{color:var(--burg);background:#F6ECEC}
+.who.we{color:#7a6230;background:#F5EEDF}
+
+/* отчёт-пример */
+.rep{background:#fff;border:1px solid var(--line);padding:26px;box-shadow:0 18px 40px -24px rgba(45,42,38,.35)}
+.rep .h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+.rep .h b{font:500 22px/1 var(--fd);color:var(--navy-d)}
+.rep .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.rep .row:last-child{border:0}
+.rep .row i{font-style:normal;color:var(--wg)}
+
+/* запросы */
+.q{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 30px}
+.q span{font-size:15px;background:#fff;border:1px solid var(--line);padding:9px 15px 9px 36px;position:relative;border-radius:3px}
+.q span::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:10px;border:1.5px solid var(--wg);border-radius:50%;transform:translateY(-62%)}
+.q span::after{content:"";position:absolute;left:22px;top:58%;width:5px;height:1.5px;background:var(--wg);transform:rotate(45deg)}
+.q span.en{font-style:italic}
+
+/* как работает поиск */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;border-top:1px solid var(--line)}
+.flow>div{padding:20px 26px 0 0;position:relative}
+.flow>div+div{padding-left:26px;border-left:1px solid var(--line)}
+.flow b{display:block;font:italic 400 34px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums}
+.flow p{font-size:15.5px;color:#4a443d}
+
+/* макеты выдачи */
+.look{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:26px;margin-top:6px;align-items:start}
+.lbl{font:500 12px/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;color:var(--navy);margin-bottom:12px}
+.mock{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;box-shadow:0 18px 40px -26px rgba(45,42,38,.4);font-family:Arial,Helvetica,sans-serif}
+.sb{border:1px solid #d9d4cc;border-radius:22px;padding:8px 14px 8px 34px;font-size:14px;color:#222;position:relative;margin-bottom:12px}
+.sb::before{content:"";position:absolute;left:13px;top:50%;width:9px;height:9px;border:1.5px solid #888;border-radius:50%;transform:translateY(-62%)}
+.sb::after{content:"";position:absolute;left:22px;top:60%;width:5px;height:1.5px;background:#888;transform:rotate(45deg)}
+.sb .en{font-style:italic}
+.res{display:flex;gap:12px;padding:10px 4px;border-top:1px solid #f0ece6}
+.res .rt{flex:1;min-width:0}
+.url{font-size:12px;color:#5f6b5f;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.fav{display:inline-flex;width:18px;height:18px;border-radius:50%;overflow:hidden;background:#2C3E5A}
+.fav img{width:18px;height:18px}
+.ttl{font-size:16px;line-height:1.3;color:#1a0dab;margin-bottom:4px}
+.dsc{font-size:13px;line-height:1.45;color:#4d5156}
+.th{width:76px;height:86px;object-fit:cover;border-radius:6px;flex:none}
+.ghost .bar{height:10px;background:#eee;border-radius:5px;margin:8px 0;width:80%}
+.ghost .bar.short{width:55%}
+.imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.imgs i{display:block;aspect-ratio:1;background:#ece8e1;border-radius:4px}
+.imgs i:nth-child(2n){background:#e2ddd4}
+.imgs b{grid-row:span 2;position:relative;border-radius:4px;overflow:hidden;outline:3px solid var(--gold);outline-offset:-3px}
+.imgs b img{width:100%;height:100%;object-fit:cover}
+.imgs b span{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.92);font-size:10.5px;color:#333;padding:4px 6px}
+.chat{background:#DCE6EE}
+.bub{background:#EFFDDE;border-radius:12px 12px 4px 12px;padding:9px 10px;margin-left:16%;font-size:13.5px}
+.bub a{color:#2678b6;text-decoration:underline;word-break:break-all}
+.card-l{border-left:3px solid #4fae4e;padding-left:9px;margin-top:6px}
+.card-l b{display:block;color:#4fae4e;font-size:13px}
+.card-l span{display:block;color:#222;margin:2px 0 6px;line-height:1.35}
+.card-l img{border-radius:6px;width:100%}
+.note{font-size:14.5px;color:#4a443d;margin-top:14px}
+
+/* сроки */
+.when{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
+.when>div{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);padding:22px 24px}
+.when .d{font:500 12px/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.when p{font-size:15.5px;color:#4a443d}
+.funnel{display:flex;margin-top:30px}
+.funnel>div{flex:1;padding:16px 30px 16px 22px;background:var(--navy-d);color:#fff;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%,18px 50%)}
+.funnel>div:first-child{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%)}
+.funnel>div:nth-child(2){background:var(--navy)}
+.funnel>div:nth-child(3){background:var(--burg)}
+.funnel b{display:block;font:400 24px/1.1 var(--fd)}
+.funnel span{font-size:13.5px;opacity:.85}
+
+/* план */
+.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--navy-d)}
+.plan>div{padding:22px 22px 0 0}
+.plan>div+div{padding-left:22px;border-left:1px solid var(--line)}
+.plan h3{font-size:24px}
+.plan ul{list-style:none;margin-top:10px}
+.plan li{font-size:15px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.plan li:last-child{border:0}
+
+/* кто что */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.two .card h3{margin-bottom:14px}
+.two ol,.two ul{padding-left:20px}
+.two li{padding:5px 0;font-size:16px}
+
+/* финал */
+.fin{text-align:center;align-items:center}
+.fin .art{width:min(320px,70vw);margin:0 auto 34px}
+.fin h2{margin-bottom:12px}
+.fin .lead{margin:0 auto}
+.sign{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em}
+
+/* появление */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.vis{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (min-width:900px) and (min-height:640px){html{scroll-snap-type:y proximity}.s{scroll-snap-align:start}}
+@media (max-width:1000px){
+  .nums{grid-template-columns:repeat(3,1fr)}
+  .grid,.grid.g4{grid-template-columns:repeat(2,1fr)}
+  .plan{grid-template-columns:1fr 1fr}
+  .look{grid-template-columns:1fr 1fr}
+  .look>div:first-child{grid-column:1/-1}
+  .plan>div:nth-child(3){padding-left:0;border-left:0}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .s{padding:64px 16px 56px;min-height:auto}
+  .s.first{min-height:100svh}
+  #dots{display:none}
+  #cnt{left:16px;bottom:12px}
+  .cover,.duo,.two{grid-template-columns:1fr}
+  .cover .art{max-width:340px}
+  .duo .art{max-width:300px}
+  .grid,.grid.g2,.grid.g4{grid-template-columns:1fr}
+  .nums{grid-template-columns:repeat(2,1fr)}
+  .plan{grid-template-columns:1fr}
+  .flow,.look,.when{grid-template-columns:1fr}
+  .look>div:first-child{grid-column:auto}
+  .flow>div,.flow>div+div{padding:16px 0 4px;border-left:0}
+  .flow>div+div{border-top:1px solid var(--line)}
+  .funnel{flex-direction:column;gap:4px}
+  .funnel>div,.funnel>div:first-child{clip-path:none;padding:14px 18px}
+  .plan>div,.plan>div+div{padding:18px 0 4px;border-left:0}
+  .plan>div+div{border-top:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav id="dots" aria-label="Слайды"></nav>
+<div id="cnt"></div>
+
+<main>
+
+<!-- 1 -->
+<section class="s first">
+  <div class="in cover">
+    <div class="rv">
+      <img class="sig" src="../site/images/logo-signature.svg" alt="M. Polushkina">
+      <h1>artpolushkina.com<span>что уже есть и куда расти</span></h1>
+      <p class="lead" style="margin-top:28px">Мань, собрал в одном месте: что сделали за полгода, что сейчас мешает сайту продавать больше и что я предлагаю дальше - по России и за рубежом</p>
+      <p class="for">Дмитрий Хинкис · ноябрь 2026</p>
+    </div>
+    <figure class="rv">
+      <div class="art"><img src="../site/images/work-57.jpg" alt="Поплыли!" width="900" height="784"></div>
+      <figcaption class="cap">«Поплыли!», 2023</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="s">
+  <div class="in duo">
+    <div class="rv">
+      <div class="k">19 ноября 2026</div>
+      <div class="big">Первая продажа<small>через сайт</small></div>
+      <p class="lead" style="margin-top:30px">Девушка с Кипра нашла сайт, выбрала работу и написала тебе через кнопку «Купить». Значит, сайт продаёт, и не только в России</p>
+      <p class="lead">Дальше задача понятная: чтобы таких людей было больше и чтобы мы видели, откуда они приходят</p>
+    </div>
+    <figure class="rv">
+      <div class="art"><img src="../site/images/work-66.jpg" alt="CHEERS!" width="786" height="900"></div>
+      <figcaption class="cap">CHEERS!</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">История</div>
+    <h2 class="rv">Как рос сайт</h2>
+    <ul class="tl rv">
+      <li><div class="d">Апрель</div><div class="t">Запустили artpolushkina.com: каталог, биография, выставки, публикации и админка, где ты сама добавляешь работы и меняешь цены</div></li>
+      <li><div class="d">Июнь - октябрь</div><div class="t">Сайт живёт: больше 200 правок, в основном твоих, через админку</div></li>
+      <li><div class="d">30-31 октября</div><div class="t">Сайт стал удобным для покупателя: картины в настоящих пропорциях, фильтры по цене и размеру, избранное, своя ссылка у каждой работы, «Купить» сразу в твой Telegram, примерка картины на стене</div></li>
+      <li><div class="d">31 октября - 2 ноября</div><div class="t">У сайта появилось лицо: заставка из ролика аниматора, логотип из твоей подписи золотом, золотая рыба на вкладке браузера</div></li>
+      <li><div class="d">2-3 ноября</div><div class="t">Сайт открывается быстрее, рыба проплывает над картинами, artpolushkina.ru и .art ведут на сайт, ещё два ролика из твоих работ - при каждом заходе новый</div></li>
+      <li class="hot"><div class="d">19 ноября</div><div class="t">Первая продажа. В тот же день починил artpolushkina.ru: браузер ругался на защищённое соединение и не пускал на сайт</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">Сейчас</div>
+    <h2 class="rv">Что есть на сайте</h2>
+    <div class="nums rv">
+      <div><b>75</b><span>работ в каталоге</span></div>
+      <div><b>20</b><span>выставок</span></div>
+      <div><b>11</b><span>публикаций</span></div>
+      <div><b>3</b><span>ролика заставки</span></div>
+      <div><b>2</b><span>языка</span></div>
+      <div><b>3</b><span>адреса: .com .ru .art</span></div>
+    </div>
+    <div class="chips rv">
+      <span>Фильтр по цене и размеру</span><span>Избранное и «Написать о работах»</span><span>Ссылка на каждую работу</span><span>«Купить» в Telegram</span><span>Примерка на стене</span><span>Админка для тебя</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">Честно</div>
+    <h2 class="rv">Что мешает продавать больше</h2>
+    <div class="grid rv">
+      <div class="card warn"><h3>Мы не видим посетителей</h3><p>На сайте нет счётчика. Сколько людей заходит, из каких стран, что смотрят - мы не знаем. Продажа на Кипр - пока единственный сигнал</p></div>
+      <div class="card warn"><h3>Поисковики почти не знают сайт</h3><p>По запросу «Maria Polushkina artist» находится только старый профиль на Saatchi Art, а не твой сайт</p></div>
+      <div class="card warn"><h3>Ссылка выглядит пустой</h3><p>Когда кидаешь artpolushkina.com в Telegram или WhatsApp, нет ни картины, ни описания - просто адрес</p></div>
+      <div class="card warn"><h3>Иностранец видит русский</h3><p>Сайт всегда открывается на русском, английский только по кнопке, и цены только в рублях</p></div>
+      <div class="card warn"><h3>Нельзя отметить «Продано»</h3><p>Проданную работу приходится удалять. А в каталоге с пометкой она бы показывала, что твои работы покупают</p></div>
+      <div class="card warn"><h3>Оплата из-за рубежа</h3><p>Каждый раз решаем заново. Сейчас USDT принимаю я - для одной продажи нормально, но нужна постоянная схема</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="s">
+  <div class="in duo" style="grid-template-columns:1fr 400px">
+    <div class="rv">
+      <div class="k">Шаг первый</div>
+      <h2>Сделать сайт измеримым</h2>
+      <p class="lead"><b>Яндекс Метрика</b> покажет, сколько людей пришло, из каких стран и городов, с телефона или компьютера, какие работы открывают и сколько раз нажали «Купить», «Примерить» и «Поделиться»</p>
+      <p class="lead"><b>Яндекс Вебмастер и Google Search Console</b> покажут, по каким запросам сайт находят и какие страницы есть в поиске</p>
+      <p class="lead">Ставлю всё сам. Раз в месяц присылаю тебе короткий отчёт - как справа</p>
+    </div>
+    <div class="rep rv">
+      <div class="h"><b>Отчёт за месяц</b><span class="muted">пример</span></div>
+      <div class="row"><span>Посетителей</span><i>сколько</i></div>
+      <div class="row"><span>Из России / из-за рубежа</span><i>доля</i></div>
+      <div class="row"><span>Главные страны</span><i>топ-5</i></div>
+      <div class="row"><span>Откуда пришли</span><i>поиск, Instagram, ссылки</i></div>
+      <div class="row"><span>Самые просматриваемые работы</span><i>топ-5</i></div>
+      <div class="row"><span>Нажали «Купить»</span><i>сколько раз</i></div>
+      <div class="row"><span>Примеряли на стене</span><i>сколько раз</i></div>
+      <div class="row"><span>По каким запросам нашли</span><i>список</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">SEO простыми словами</div>
+    <h2 class="rv">Чтобы сайт находили сами</h2>
+    <p class="lead rv">SEO - это работа над сайтом, после которой Яндекс и Google сами показывают его людям, которые ищут картину. Без рекламы: за каждого пришедшего мы не платим</p>
+    <div class="flow rv">
+      <div><b>1</b><h3>Робот обходит сайты</h3><p>У Яндекса и Google есть программы-роботы, которые всё время ходят по интернету и читают страницы</p></div>
+      <div><b>2</b><h3>Запоминает, что где</h3><p>Каждую страницу они кладут в свою базу: о чём она, какие на ней картинки, кто на неё ссылается</p></div>
+      <div><b>3</b><h3>Отвечает на запрос</h3><p>Человек пишет «картина в подарок» - поисковик за долю секунды выбирает из базы самые подходящие и надёжные страницы</p></div>
+    </div>
+    <p class="lead rv" style="margin-top:26px">Наша задача - чтобы робот нашёл все твои работы, правильно их понял и считал сайт надёжным. Вот такие запросы могут вести к тебе:</p>
+    <div class="q rv">
+      <span>картина в подарок купить</span><span>картина в гостиную 70×60</span><span>современная художница Москва</span><span>Мария Полушкина картины</span><span class="en">buy contemporary painting woman</span><span class="en">Russian artist acrylic on canvas</span>
+    </div>
+    <div class="grid rv">
+      <div class="card ok"><div class="n">1</div><h3>Понимает</h3><p>Поисковик должен понять, что на странице: название работы, автор, техника, размер, цена. Это техническая часть, её делаю я</p></div>
+      <div class="card ok"><div class="n">2</div><h3>Доверяет</h3><p>Чем больше хороших сайтов ссылаются на твой - журналы, музей, площадки, - тем выше он в поиске</p></div>
+      <div class="card ok"><div class="n">3</div><h3>Интересно</h3><p>Поисковики любят живое содержание: истории картин, подборки. И люди тоже это читают</p></div>
+    </div>
+    <p class="muted rv" style="margin-top:22px">SEO - это не реклама, не накрутка и не покупка ссылок. Поисковики за такое наказывают. Это честная работа над тем, чтобы сайт был понятным и полезным</p>
+  </div>
+</section>
+
+<!-- 7б -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">SEO на практике</div>
+    <h2 class="rv">Как это будет выглядеть</h2>
+    <div class="look rv">
+      <div>
+        <div class="lbl">В поиске Яндекса и Google</div>
+        <div class="mock">
+          <div class="sb"><span>картина с бокалами купить</span></div>
+          <div class="res">
+            <div class="rt">
+              <div class="url"><i class="fav"><img src="../site/images/favicon-32.png" alt=""></i>artpolushkina.com › work › 66</div>
+              <div class="ttl">CHEERS! - Мария Полушкина, холст, акрил, 80×70 см</div>
+              <div class="dsc">Картина современной художницы Марии Полушкиной, 2023. 105 000 ₽. Примерить на стене и купить напрямую у автора</div>
+            </div>
+            <img class="th" src="../site/images/work-66.jpg" alt="">
+          </div>
+          <div class="res ghost"><div class="rt"><div class="url">другой сайт</div><div class="bar"></div><div class="bar short"></div></div></div>
+        </div>
+        <p class="note">Сейчас по таким запросам сайта нет. Свою страницу у каждой работы поисковик может показать отдельно - с названием, размером, ценой и картинкой</p>
+      </div>
+      <div>
+        <div class="lbl">В поиске по картинкам</div>
+        <div class="mock">
+          <div class="sb"><span class="en">painting woman blue hat sailboats</span></div>
+          <div class="imgs">
+            <i></i><i></i><b><img src="../site/images/work-57.jpg" alt=""><span>artpolushkina.com</span></b><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+        <p class="note">Для живописи это главный вход: люди ищут глазами. Человек кликает на картинку и попадает на страницу работы с кнопкой «Купить»</p>
+      </div>
+      <div>
+        <div class="lbl">Когда кто-то делится ссылкой</div>
+        <div class="mock chat">
+          <div class="bub">
+            <a>artpolushkina.com/work/57</a>
+            <div class="card-l">
+              <b>Мария Полушкина</b>
+              <span>«Поплыли!» - холст, акрил, 70×80 см</span>
+              <img src="../site/images/work-57.jpg" alt="">
+            </div>
+          </div>
+        </div>
+        <p class="note">Сейчас в Telegram и WhatsApp приходит голый адрес. Будет карточка с картиной - на такую ссылку нажимают заметно охотнее</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">SEO по шагам</div>
+    <h2 class="rv">Как предлагаю это сделать</h2>
+    <div class="grid g2 rv">
+      <div class="card"><div class="n">1</div><h3>Техническая база</h3><p>Описание сайта для поиска, превью ссылки с картиной, карта сайта, разметка «художник - картина - цена» для Яндекса и Google, подписи к картинкам</p><span class="who">я · 1-2 дня</span></div>
+      <div class="card"><div class="n">2</div><h3>Своя страница у каждой работы</h3><p>75 страниц вида «Гамак - Мария Полушкина, холст, акрил, 70×60 см» на русском и английском. Каждая попадает в поиск и в Яндекс и Google Картинки - для живописи это главный вход. Страницы собираются сами из каталога, в админке ты работаешь как раньше</p><span class="who">я · около недели</span></div>
+      <div class="card"><div class="n">3</div><h3>Ссылки на сайт</h3><p>Salon, My Decor, «Идеи вашего дома», Design Mate, In My Room уже писали о квартирах с твоими работами - попросить их добавить ссылку на сайт. Плюс музей Цветаевой, галерея на Трубной, «Пальчики», Saatchi Art, Instagram, Telegram-канал</p><span class="who we">вместе</span></div>
+      <div class="card"><div class="n">4</div><h3>Истории картин</h3><p>2-3 абзаца к любимым работам: как появилась, что в ней. Можно надиктовать голосом, я оформлю и выложу на страницу работы</p><span class="who you">ты + я</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7в -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">SEO во времени</div>
+    <h2 class="rv">Чего ждать и когда</h2>
+    <div class="when rv">
+      <div><div class="d">Первый месяц</div><h3>Сайт в базе поисковиков</h3><p>Все работы попадают в Яндекс и Google. По твоему имени и названиям работ сверху должен быть твой сайт, а не старый профиль на Saatchi Art</p></div>
+      <div><div class="d">2-3 месяца</div><h3>Первые люди из поиска</h3><p>Сайт начинают показывать по описаниям картин и в поиске по картинкам, в России и за рубежом</p></div>
+      <div><div class="d">3-6 месяцев</div><h3>Общие запросы</h3><p>По мере того как появляются ссылки из журналов и истории картин, сайт поднимается по запросам вроде «картина в подарок» и «современная художница»</p></div>
+    </div>
+    <div class="funnel rv">
+      <div><b>Показы</b><span>сколько раз сайт появился в поиске</span></div>
+      <div><b>Переходы</b><span>сколько людей нажали и пришли</span></div>
+      <div><b>«Купить»</b><span>сколько написали тебе</span></div>
+    </div>
+    <p class="muted rv" style="margin-top:18px">Каждый из этих шагов будет виден в ежемесячном отчёте. Сроки примерные: поисковики решают сами, но обычно так</p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">За рубежом</div>
+    <h2 class="rv">Как выйти к покупателям за границей</h2>
+    <div class="grid rv">
+      <div class="card"><h3>Сайт</h3><p>Иностранец сразу видит английскую версию - по языку своего браузера. Рядом с рублями цена примерно в € и $. Английские страницы работ попадают в Google</p><span class="who">я</span></div>
+      <div class="card"><h3>Площадки</h3><p><b>Saatchi Art</b> - профиль у тебя уже есть, обновить его и связать с сайтом. <b>Singulart</b> и <b>Artmajeur</b> - площадки с покупателями из Европы и США, комиссия около 30-35%. <b>Pinterest</b> - для картин в интерьер это поисковик картинок, каждая работа со ссылкой на сайт</p><span class="who we">вместе</span></div>
+      <div class="card"><h3>Оплата и доставка</h3><p>Главный вопрос - куда получать деньги из-за рубежа. Может быть, через родителей? От этого зависит, выходим ли на площадки. Доставка: DHL и FedEx из России не возят, остаются СДЭК, EMS или передать с оказией</p><span class="who you">нужно твоё решение</span></div>
+    </div>
+    <p class="muted rv" style="margin-top:18px">Комиссии - по открытым обзорам, при регистрации проверим на самих площадках</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">В России</div>
+    <h2 class="rv">Что можно добавить здесь</h2>
+    <div class="grid rv">
+      <div class="card"><h3>Яндекс</h3><p>Метрика, Вебмастер и Яндекс Картинки. В России большинство ищет через Яндекс, поэтому техническую базу делаем сразу под него</p><span class="who">я</span></div>
+      <div class="card"><h3>Площадки</h3><p>Gallerix и Vernissage 365 (около 15%), Artlot24 (около 20%, есть аукционы). Те же работы, в описании ссылка на сайт - это и продажи, и ссылки для поиска</p><span class="who we">вместе</span></div>
+      <div class="card"><h3>Дизайнеры интерьеров</h3><p>Твои работы уже в пяти журналах про интерьеры. Дизайнер покупает не один раз, а под каждый проект. Можно сделать для них страницу: подбор по размерам и цветам, условия, каталог в PDF</p><span class="who we">потом, если захочешь</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">План</div>
+    <h2 class="rv">С чего начинаем</h2>
+    <div class="plan rv">
+      <div><h3>Неделя 1</h3><ul><li>Метрика, Вебмастер, Search Console</li><li>Техническая база и превью ссылок</li><li>Пометка «Продано»</li><li>Английский для иностранцев, цены в € и $</li></ul></div>
+      <div><h3>Недели 2-3</h3><ul><li>Страницы работ на двух языках</li><li>Отправить их в Яндекс и Google</li><li>Решить, как получать оплату из-за рубежа</li></ul></div>
+      <div><h3>Месяц 1-2</h3><ul><li>Ссылки из журналов и площадок</li><li>Обновить Saatchi Art, завести Pinterest</li><li>Истории первых 10 работ</li></ul></div>
+      <div><h3>Каждый месяц</h3><ul><li>Отчёт: сколько пришло, откуда, что смотрели, сколько написали</li><li>По цифрам решаем, что усиливать</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="s">
+  <div class="in">
+    <div class="k rv">Кто что делает</div>
+    <h2 class="rv">Что беру на себя и что нужно от тебя</h2>
+    <div class="two rv">
+      <div class="card ok"><h3>Делаю я</h3><ul>
+        <li>Всё на сайте: счётчики, SEO, страницы работ, английский, «Продано»</li>
+        <li>Отчёт раз в месяц, простыми словами</li>
+        <li>Помогаю с площадками: тексты на английском, фото, регистрация</li>
+        <li>Слежу, чтобы сайт и все три адреса работали</li>
+      </ul></div>
+      <div class="card warn"><h3>Нужно от тебя</h3><ol>
+        <li>Подумать, как получать оплату из-за рубежа - может, через родителей</li>
+        <li>Доступ к профилю на Saatchi Art, если помнишь</li>
+        <li>Контакты в журналах, где были публикации</li>
+        <li>Истории картин - голосом или текстом, как удобно</li>
+        <li>Отмечать проданные работы в админке - кнопка появится</li>
+      </ol></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="s fin">
+  <div class="in">
+    <div class="art rv"><img src="../site/images/work-64.jpg" alt="В предвкушении" width="769" height="899"></div>
+    <h2 class="rv">В предвкушении</h2>
+    <p class="lead rv">Если ок - начинаю с первой недели, а ты пока подумай про оплату из-за рубежа)</p>
+  </div>
+  <div class="sign">Made by Dmitry Khinkis</div>
+</section>
+
+</main>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var S=[].slice.call(document.querySelectorAll('.s')),dots=document.getElementById('dots'),cnt=document.getElementById('cnt'),bar=document.getElementById('bar'),cur=0;
+  S.forEach(function(s,i){var b=document.createElement('button');b.setAttribute('aria-label','Слайд '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
+  function go(i){i=Math.max(0,Math.min(S.length-1,i));S[i].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+  function upd(){
+    var y=window.scrollY+window.innerHeight*.4,i=0;
+    S.forEach(function(s,k){if(s.offsetTop<=y)i=k});
+    cur=i;
+    [].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});
+    cnt.textContent=String(i+1).padStart(2,'0')+' / '+String(S.length).padStart(2,'0');
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?window.scrollY/h*100:0)+'%';
+  }
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(cur+1)}
+    else if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(S.length-1)}
+  });
+  var R=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
+    R.forEach(function(r){io.observe(r)});
+  }else R.forEach(function(r){r.classList.add('vis')});
+})();
+</script>
+</body>
+</html>
