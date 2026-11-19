@@ -1,7 +1,7 @@
 # «YOU CAN LEAVE YOUR HAT ON» (работа 20). Море целиком нарисовано заново по контурам картины — плоские полосы с
 # контуром на весь экран (внутри картины, под фигурой и до краёв экрана), из фото — только фигура, шляпа и подпись.
 # Волны плавно ходят, женщина покачивается. Порыв ветра срывает шляпу — она кувыркаясь улетает за правый край экрана,
-# под ней открывается голова (вытянутый овал); потом шляпа, качаясь как лист, падает сверху и садится обратно на голову
+# под ней открывается голова («лампочка», как на «Привязанности»); потом шляпа, качаясь как лист, падает сверху и садится обратно на голову
 # («шляпу можно оставить»). Движение — с первого кадра до последнего (сборщик сливает сцены без пауз).
 import numpy as np, cv2
 from lib import *
@@ -15,10 +15,11 @@ SKY,HAT,SKIN,NAVY,LB,ST,LINE=range(7)
 LINE_RGB=np.array([16,34,44],np.float32); LW=2.0           # контур: цвет и толщина, px картины
 WAIST=(345.,600.)                                          # опора покачивания женщины
 HAT_ANC=(321.,262.)                                        # опора шляпы (середина полей)
-# голова: вытянутое вверх яйцо узким концом вниз (как у всех голов Маши; круг она забраковала) — полуоси rx, ry
-# (верх) и ryb (низ), самое широкое место на cy; под полями ширина как на фото (~49 px), ниже — плавно в линии
-# шеи на y=yj; макушка под тульей шляпы
-HEAD=dict(cx=325.5,cy=286.,rx=26.5,ry=50.,ryb=62.,yj=346,lw=1.5,ink=.62)
+# голова: «лампочка» как у голов Маши («Привязанность»): скруглённый верх, почти прямые параллельные бока, внизу вогнутой
+# линией в шею. Ниже полей (y ≥ yb) контур — по линиям фото (их сглаженный ход), выше — прямые бока на ширине W (по
+# серединам линий; шея ~18 px — голова в ~2,7 раза шире, как на «Привязанности»), переход к ним на ys..yb; высота
+# H от макушки до шеи (≈2,2·W), купол — полуэллипс высотой dome·W; стык с линиями шеи фото на y=yj
+HEAD=dict(W=50.,H=110.,dome=.44,ys=293,yb=311,yj=350,lw=1.3,ink=.8)
 # полосы моря в картине от дальней к ближней: точка внутри каждой
 BANDS=[('navyB',(100,600)),('lbB',(650,550)),('stM',(340,650)),('lbL',(150,740)),('navyR',(650,720)),('stL',(150,850)),
        ('lbF',(550,860))]
@@ -124,24 +125,33 @@ def layers():
         al=np.maximum(inside,ln); rgb=skin*(1-ln[:,None])+LINE_RGB*ln[:,None]
         put_=(~wm[y])&(al>0)&(xf>270)&(xf<430)
         wrgb[y,put_]=rgb[put_]; wa[y,put_]=al[put_]
-    # голова целиком заново: вытянутый овал по видимой нижней части лица, ниже — гладко в линии шеи из фото
+    # голова целиком заново: «лампочка» сверху, ниже полей — по линиям фото, на y=yj — в линии шеи фото
     skin=med(c,cv2.erode(wm.astype(np.uint8),disk(3))>0)
-    cx,cy,rx,ry,ryb=[HEAD[k] for k in ('cx','cy','rx','ry','ryb')]; yj=HEAD['yj']; yc=cy+ryb*.5   # овал до yc, стык с шеей на yj
-    def neck(y):                                            # середины линий шеи в строке y (по краю кожи)
-        sk=np.flatnonzero(wm[y,290:362])+290; return sk[0]-.8,sk[-1]+.8
-    nl=np.array([neck(y) for y in range(yj,yj+9)]); sl=np.polyfit(np.arange(9),nl[:,0],1)[0]; sr=np.polyfit(np.arange(9),nl[:,1],1)[0]
-    ys_=np.arange(cy-ry,yj+.01,.25); hw=rx*np.sqrt(np.maximum(1-((ys_-cy)/np.where(ys_<cy,ry,ryb))**2,0))
-    xl_,xr_=cx-hw,cx+hw
-    uc=(yc-cy)/ryb; hwc=rx*np.sqrt(1-uc*uc); dc=rx*uc/(ryb*np.sqrt(1-uc*uc))   # полуширина и dx/dy овала в точке стыка
-    tt=ys_>yc; hl0,hr0=cx-hwc,cx+hwc
-    xl_[tt]=hermite(yc,hl0,dc,yj,nl[0,0],sl,ys_[tt]); xr_[tt]=hermite(yc,hr0,-dc,yj,nl[0,1],sr,ys_[tt])
+    Wd,Hd,ys0,yb,yj=HEAD['W'],HEAD['H'],HEAD['ys'],HEAD['yb'],HEAD['yj']
+    Lr=a.mean(2); yv=np.arange(yb,yj+4)                    # середины тёмных линий фото по строкам под полями
+    def line_x(y,x0,x1):
+        w=np.clip(170-Lr[y,x0:x1],0,None); w[w<40]=0; return (w*np.arange(x0,x1)).sum()/max(w.sum(),1e-6) if w.sum()>0 else np.nan
+    side=[]
+    for x0,x1 in ((292,326),(328,360)):
+        xv=np.array([line_x(y,x0,x1) for y in yv]); ok=~np.isnan(xv)
+        side.append(np.polyfit(yv[ok]-yb,xv[ok],3))         # сглаженный ход линии: x(y−yb)
+    f=lambda k,y: np.polyval(side[k],y-yb); df=lambda k,y: np.polyval(np.polyder(side[k]),y-yb)
+    cx=(f(0,yb)+f(1,yb))/2; R=Wd/2; top=yj-Hd; ry=HEAD['dome']*Wd; yd=top+ry
+    def half(k):                                            # одна сторона от макушки до yj: точки (x, y)
+        sg=-1 if k==0 else 1
+        ang=np.linspace(0,np.pi/2,60)                       # купол
+        P=[np.stack([cx+sg*R*np.sin(ang),yd-ry*np.cos(ang)],1)]
+        y1=np.arange(yd+.25,ys0,.25); P.append(np.stack([np.full_like(y1,cx+sg*R),y1],1))          # прямой бок
+        y2=np.arange(ys0,yb,.25); P.append(np.stack([hermite(ys0,cx+sg*R,0.,yb,f(k,yb),df(k,yb),y2),y2],1))
+        y3=np.arange(yb,yj+.01,.25); P.append(np.stack([f(k,y3),y3],1))                            # как на фото
+        return np.concatenate(P)
+    Lp,Rp=half(0),half(1)
     S=4; hm=np.zeros((H*S,W*S),np.uint8); hl=np.zeros_like(hm)
-    poly=np.concatenate([np.stack([xl_,ys_],1),np.stack([xr_,ys_],1)[::-1]])
+    poly=np.concatenate([Lp,Rp[::-1]])
     cv2.fillPoly(hm,[np.int32(np.round(poly*S))],255,cv2.LINE_AA)
-    cv2.polylines(hl,[np.int32(np.round(poly[:-1]*S))[1:] if False else np.int32(np.round(np.concatenate([np.stack([xl_,ys_],1)[::-1],np.stack([xr_,ys_],1)[1:]])*S))],
-                  False,255,int(round(HEAD['lw']*S)),cv2.LINE_AA)
+    cv2.polylines(hl,[np.int32(np.round(np.concatenate([Lp[::-1],Rp[1:]])*S))],False,255,int(round(HEAD['lw']*S)),cv2.LINE_AA)
     hm=cv2.resize(hm,(W,H),interpolation=cv2.INTER_AREA)/255.; hl=cv2.resize(hl,(W,H),interpolation=cv2.INTER_AREA)/255.*HEAD['ink']
-    head=(yy<yj)&(xx>=290)&(xx<=362)&(yy>=cy-ry-4)          # фото головы (под полями и неровное) — убрать
+    head=(yy<yj)&(xx>=290)&(xx<=362)&(yy>=top-4)            # фото головы (под полями и неровное) — убрать
     wa[head]=0; wrgb[head]=skin
     dome=hm>0; wrgb[dome]=skin; wa[dome]=np.maximum(wa[dome],hm[dome])
     hl[yy>=yj+1]=0
@@ -324,15 +334,16 @@ class Scene:
         # верх шляпы над экраном / правый край экрана (px картины)
         s.y_top=cv.y_top; s.x_right=cv.x_right
 
-    # море ходит всё время, в порыв — чуть сильнее. Волны спокойные (просьба Маши — плавнее): длинные, медленные,
-    # обе бегут в одну сторону, полосы почти не сжимаются по вертикали; периоды делят T — конец сцены равен началу
+    # море ходит всё время, в порыв — чуть сильнее. Волны плавные, но заметные (между первой версией и «еле-еле»):
+    # длинные, обе бегут в одну сторону; сдвиг до ~0,9 px картины за кадр, полосы сжимаются по вертикали до ~19 %;
+    # периоды делят T — конец сцены равен началу
     def amp(s,t): return 1+.25*win(t,1.0,2.2,3.0,5.0)
     def D(s,x,y,t):
         """вертикальное смещение моря (px картины) в точке картины (x, y)"""
         A=s.amp(t)
         if A<=0: return 0*x
         wy=ease((y-330)/150)
-        return A*wy*(6*np.sin(2*np.pi*(x/640-t/5.25)+y/150)+2.5*np.sin(2*np.pi*(x/400-t/3.5)+y/110+1.3))
+        return A*wy*(9*np.sin(2*np.pi*(x/600-t/5.25)+y/105)+4.2*np.sin(2*np.pi*(x/380-t/2.625)+y/80+1.3))
 
     def body(s,t):
         """покачивание женщины: (сдвиг по y px картины, поворот °)"""
