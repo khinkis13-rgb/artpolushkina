@@ -6,7 +6,7 @@ import numpy as np, cv2
 from lib import *
 
 SRC='site/images/work-66.jpg'
-BG=(224,172,166)                               # фон сцены: пыльно-розовый вместо кремовой бумаги
+BG=(249,244,214)           # фон сцены — кремовая бумага картины (тон оригинала)
 BGC=np.array([247,242,214],np.float32)         # бумага на фото (для разбора)
 WINE=np.array([226,180,74],np.float32)        # игристое: на бордовом и синем видно, на бумаге — тоже
 FOAM=np.array([250,238,196],np.float32)
@@ -160,10 +160,10 @@ def layers():
     body[:520]=0
     body=cv2.morphologyEx(body.astype(np.uint8),cv2.MORPH_CLOSE,np.ones((9,9),np.uint8))>0
     base=repaper(base,tone,BG,skin_all)
-    # подпись художницы: светло-серая на бумаге почти тонет в розовом — тот же штрих, но темнее
+    # подпись художницы: тот же штрих её цветом с фото (на бумаге картины, как в оригинале)
     sy,sx=slice(815,H),slice(600,W); sub=a[sy,sx]; ds=np.abs(sub-tone).sum(2)
     SG=np.median(sub[ds>np.percentile(ds,99)],0); sa=soft_alpha(sub,SG,tone)*(ds>12)
-    base[sy,sx]=np.float32(BG)*(1-sa[...,None])+np.float32([92,70,70])*sa[...,None]
+    base[sy,sx]=np.float32(BG)*(1-sa[...,None])+SG*sa[...,None]
     return dict(a=a,base=base,tone=np.float32(BG),otone=tone,head=(hrgb,ha),body=body,bot=(brgb,ba),cork=(crgb,ca),dash=(drgb,da),bowls=bowls,gold=(a,ga),
                 heads=heads,m2=m2,D=D,N=N,tip=tip,noff=noff,low=low,cc=cc,cang=cang,clen=clen,dc=dc,
                 bang=np.degrees(np.arctan2(-D[1],D[0])))
