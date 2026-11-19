@@ -1266,5 +1266,37 @@
         "path": "site/images/work-86.jpg"
       }
     ]
+  },
+  {
+    "t": "Подлинность",
+    "te": "Authenticity",
+    "m": "Холст, акрил",
+    "me": "Canvas, acrylic",
+    "s": "60х70",
+    "y": 2026,
+    "p": 66000,
+    "id": 87,
+    "media": [
+      {
+        "type": "img",
+        "path": "site/images/work-87.jpg"
+      },
+      {
+        "type": "img",
+        "path": "site/images/work-87-2.jpg"
+      },
+      {
+        "type": "img",
+        "path": "site/images/work-87-3.jpg"
+      },
+      {
+        "type": "img",
+        "path": "site/images/work-87-4.jpg"
+      },
+      {
+        "type": "img",
+        "path": "site/images/work-87-5.jpg"
+      }
+    ]
   }
 ]
