@@ -47,8 +47,18 @@ h1,h2{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-num
 h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
 .lead{font-size:18px;color:#4a443d;max-width:640px}
 .lead+.lead{margin-top:10px}
+.got{margin-top:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);padding:12px 14px;font-size:15px;color:#4a443d}
+.got b{font-weight:500;color:var(--navy-d)}
+.got ul{margin:6px 0 0 18px}.got li{padding:2px 0}
 .back{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:16px}
 .muted{color:var(--wg);font-size:14.5px}
+
+/* что Маша уже прислала - вопросы об этом убраны из списка ниже (опросник держим актуальным) */
+var GOT=[
+ 'Правки по анимациям на главной - сделаны 19.11: фоны как на картинах, плавные волны, вытянутая голова, запуск по касанию'
+];
+(function(){var ul=document.getElementById('gotList');if(!ul)return;if(!GOT.length){ul.parentNode.hidden=true;return;}
+ GOT.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});})();
 
 /* вопросы */
 .q{padding:34px 0 36px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
@@ -144,7 +154,7 @@ textarea:focus,input:focus{border-color:var(--navy)}
 <body>
 
 <div class="top" role="status" aria-live="polite">
-  <div class="wrap"><span id="cnt">Отвечено <b>0</b> из 14</span><a class="go" href="#send">К отправке</a></div>
+  <div class="wrap"><span id="cnt">Отвечено <b>0</b></span><a class="go" href="#send">К отправке</a></div>
   <div class="pb"><i id="pb"></i></div>
 </div>
 
@@ -154,8 +164,9 @@ textarea:focus,input:focus{border-color:var(--navy)}
     <div class="k">artpolushkina.com · вопросы</div>
     <h1>Вопросы по сайту</h1>
     <p class="lead">Мань, тут всё, что мне от тебя нужно для продвижения сайта. Отвечай когда удобно и по частям - ответы сохраняются в этом браузере. В конце одна кнопка - и всё придёт мне в Telegram.</p>
-    <p class="lead muted">В основном просто ткни в подходящий вариант. Ни один вопрос не обязателен, порядок любой.</p>
+    <p class="lead muted">Для поиска почти всё беру с сайта, тут только то, чего там нет. В основном просто ткни в подходящий вариант. Ни один вопрос не обязателен, порядок любой.</p>
     <a class="back" href="../">Что и зачем мы делаем - в презентации</a>
+    <div class="got"><b>Уже получил, спасибо:</b><ul id="gotList"></ul></div>
   </header>
 
   <main id="qs"></main>
@@ -189,6 +200,13 @@ textarea:focus,input:focus{border-color:var(--navy)}
 'use strict';
 var KEY='mp_q1', TG='Dmitry_Khinkis', MAXURL=3500, FOLD=12;
 try{ if(matchMedia('(min-width:760px)').matches) FOLD=15; }catch(e){}
+
+/* что Маша уже прислала - вопросы об этом убраны из списка ниже (опросник держим актуальным) */
+var GOT=[
+ 'Правки по анимациям на главной - сделаны 19.11: фоны как на картинах, плавные волны, вытянутая голова, запуск по касанию'
+];
+(function(){var ul=document.getElementById('gotList');if(!ul)return;if(!GOT.length){ul.parentNode.hidden=true;return;}
+ GOT.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});})();
 
 /* вопросы */
 var Q=[
@@ -236,9 +254,15 @@ var Q=[
  {id:'storyhow',type:'one',title:'Как удобнее рассказывать истории?',inline:true,
   why:'Зачем: у твоих любимых работ на сайте появится короткая история - как картина появилась и что в ней. Людям интересно это читать, покупают охотнее, когда знают историю, а поисковики выше показывают страницы с живым текстом. От тебя только рассказ, как удобно, - текст на русском и английском оформлю сам.',
   opts:['Голосовыми в Telegram','Текстом'],note:'Комментарий, если хочешь'},
- {id:'anim',type:'text',title:'Анимации на главной - что поправить?',
-  why:'Ты хотела прислать мысли по заставке. Пиши всё, что заметила: какой ролик, какой момент, что не так.',
-  ph:'Например: во втором ролике рыба слишком быстрая'},
+ {id:'links',type:'text',title:'Где ещё о тебе есть в интернете?',
+  why:'Для поиска почти всё беру с сайта. Но поисковики доверяют сайту, на который ссылаются другие: статьи, интервью, страницы выставок, книги с Анной Аркатовой, музей Copelouzos. Пришли ссылки или просто названия - найду сам, покажу на сайте и попрошу поставить ссылку на тебя.',
+  ph:'Например: интервью в ..., страница выставки в музее Цветаевой, книга «Женщины внутри женщины» на сайте издательства'},
+ {id:'words',type:'text',title:'Как люди описывают твои картины?',
+  why:'Подскажи слова, которыми о твоих работах говорят покупатели и друзья, - по ним сделаю подборки на сайте, чтобы такие запросы вели к тебе.',
+  ph:'Например: женщины в шляпах, яркий минимализм, картина в подарок, для спальни'},
+ {id:'countries',type:'one',title:'В скольких странах твои работы?',inline:true,
+  why:'На главной написано «10 стран», а в биографии перечислено 11 вместе с Россией. Хочу, чтобы везде было одинаково, в том числе в поиске.',
+  opts:['10, как на главной','11, как в биографии'],note:'Комментарий, если хочешь'},
  {id:'more',type:'text',title:'Что-то ещё?',
   why:'Любые мысли, вопросы и пожелания по сайту.',ph:''}
 ];
