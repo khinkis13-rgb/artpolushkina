@@ -588,13 +588,15 @@ a:hover{color:var(--mars)}
 
 <script>
 /* ── ЯНДЕКС МЕТРИКА ── */
-const YM_ID=0; // номер счётчика Метрики; 0 — счётчик выключен
-// очередь ym заводим сразу (цели до загрузки счётчика не теряются), сам tag.js — после load, как ролик заставки
+const YM_ID=114487567; // номер счётчика Метрики (создан 21.11.2026); 0 — счётчик выключен
+// очередь ym заводим сразу (цели до загрузки счётчика не теряются), сам tag.js — после load или через 1,5 с,
+// чтобы на долгой загрузке не потерять тех, кто ушёл, не дождавшись конца
 if(YM_ID>0){
   window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments);};ym.l=+new Date;
   ym(YM_ID,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
   const ymLoad=()=>{const s=document.createElement('script');s.async=true;s.src='https://mc.yandex.ru/metrika/tag.js';document.head.appendChild(s);};
-  if(document.readyState==='complete')ymLoad();else addEventListener('load',ymLoad,{once:true});
+  if(document.readyState==='complete')ymLoad();else{let on=false;const once=()=>{if(on)return;on=true;ymLoad();};
+    addEventListener('load',once,{once:true});setTimeout(once,1500);}
 }
 // цель Метрики: без счётчика ничего не делает
 function goal(name,params){if(YM_ID>0&&typeof window.ym==='function')try{ym(YM_ID,'reachGoal',name,params);}catch(_){}}
