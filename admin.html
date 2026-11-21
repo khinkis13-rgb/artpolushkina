@@ -713,7 +713,7 @@ async function saveCatalogItem(){
     // Новый список собираем копией: если коммит не пройдёт, catalog в памяти не испорчен
     // (раньше новая работа оставалась в памяти и повторное «Сохранить» дублировало её).
     let next;
-    if(editingId===null){next=[...catalog,mergeWork({id},data,sold)];}
+    if(editingId===null){next=[mergeWork({id},data,sold),...catalog];} // новая работа — первой в каталоге (просьба Маши 21.11)
     else{
       const idx=catalog.findIndex(a=>a.id===id);
       if(idx===-1)throw new Error('работа не найдена — обновите страницу');
