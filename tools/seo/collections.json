@@ -1,0 +1,176 @@
+[
+ {
+  "slug": "sea",
+  "ru": "Картины с морем",
+  "en": "Paintings with the sea",
+  "descRu": "Море, волны, лодки и прыжки в воду в работах Марии Полушкиной. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "The sea, waves, boats and dives into the water in paintings by Maria Polushkina. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   1,
+   20,
+   52,
+   57,
+   58,
+   59,
+   73
+  ]
+ },
+ {
+  "slug": "flowers",
+  "ru": "Картины с цветами",
+  "en": "Paintings with flowers",
+  "descRu": "Цветы в вазе, мак и бутоны в работах Марии Полушкиной. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "Flowers in a vase, a poppy and buds in paintings by Maria Polushkina. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   3,
+   38,
+   72,
+   86
+  ]
+ },
+ {
+  "slug": "hat",
+  "ru": "Женщина в шляпе",
+  "en": "Woman in a hat",
+  "descRu": "Женские фигуры в широкополых шляпах - одна из узнаваемых тем Марии Полушкиной. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "Women in wide-brimmed hats, one of Maria Polushkina's recognisable themes. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   18,
+   20,
+   26,
+   28,
+   41,
+   51,
+   54,
+   57
+  ]
+ },
+ {
+  "slug": "trees",
+  "ru": "Картины с деревьями",
+  "en": "Paintings with trees",
+  "descRu": "Кипарисы, пинии и ели - в пейзажах, интерьерах и отдельными деревьями на овальном холсте. Оригиналы, акрил, покупка напрямую у художницы.",
+  "descEn": "Cypresses, stone pines and fir trees - in landscapes, interiors and as single trees on oval canvases. Original acrylic paintings, sold directly by the artist.",
+  "ids": [
+   1,
+   9,
+   10,
+   23,
+   53,
+   59,
+   62,
+   64
+  ]
+ },
+ {
+  "slug": "two",
+  "ru": "Картины про двоих",
+  "en": "Paintings of two figures",
+  "descRu": "Две фигуры рядом: в объятии, под одной рыбой, с бутылкой вина, с нотами или пластинкой. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "Two figures side by side: embracing, under one fish, with a bottle of wine, with musical notes or a record. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   32,
+   37,
+   55,
+   66,
+   68,
+   77,
+   82,
+   85
+  ]
+ },
+ {
+  "slug": "woman",
+  "ru": "Картины с девушкой",
+  "en": "Paintings of women",
+  "descRu": "Женская фигура в центре композиции: в шляпе, с каре, в пальто или платье. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "A woman at the centre of the composition: in a hat, with a bob, in a coat or a dress. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   13,
+   18,
+   26,
+   35,
+   41,
+   50,
+   51,
+   83,
+   84
+  ]
+ },
+ {
+  "slug": "city",
+  "ru": "Дома и город",
+  "en": "Houses and the city",
+  "descRu": "Дома с золотыми окнами, узкие фасады и силуэты города. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "Houses with golden windows, narrow facades and city skylines. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   29,
+   53,
+   56,
+   62,
+   71
+  ]
+ },
+ {
+  "slug": "yoga",
+  "ru": "Картины с йогой",
+  "en": "Yoga paintings",
+  "descRu": "Серия YOGA: фигуры в позах йоги на однотонном цветном фоне, небольшие форматы. Оригиналы, акрил на холсте, покупка напрямую у художницы.",
+  "descEn": "The YOGA series: figures in yoga poses on plain coloured backgrounds, small formats. Original acrylic paintings on canvas, sold directly by the artist.",
+  "ids": [
+   39,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49
+  ]
+ },
+ {
+  "slug": "gold-black",
+  "ru": "Золото на чёрном",
+  "en": "Gold on black",
+  "descRu": "Тонкая золотая линия на чёрном холсте: фигуры, луна, лестница. Оригиналы, акрил, покупка напрямую у художницы.",
+  "descEn": "A thin gold line on black canvas: figures, the moon, a ladder. Original acrylic paintings, sold directly by the artist.",
+  "ids": [
+   17,
+   31,
+   32,
+   33,
+   34
+  ]
+ },
+ {
+  "slug": "large",
+  "ru": "Большие картины",
+  "en": "Large paintings",
+  "descRu": "Работы Марии Полушкиной размером от 80 см по большей стороне - для гостиной, столовой или кабинета. Оригиналы, холст, акрил, покупка напрямую у художницы.",
+  "descEn": "Works by Maria Polushkina measuring 80 cm or more on the longest side - for a living room, dining room or study. Originals, acrylic on canvas, bought directly from the artist.",
+  "rule": {
+   "minSide": 80
+  }
+ },
+ {
+  "slug": "small",
+  "ru": "Небольшие картины в подарок",
+  "en": "Small paintings for a gift",
+  "descRu": "Работы Марии Полушкиной до 40 см по большей стороне - в подарок, на полку, рабочий стол или небольшую стену. Оригиналы, покупка напрямую у художницы.",
+  "descEn": "Works by Maria Polushkina up to 40 cm on the longest side - as a gift, for a shelf, a desk or a small wall. Originals, bought directly from the artist.",
+  "rule": {
+   "maxSide": 40
+  }
+ },
+ {
+  "slug": "under-30000",
+  "ru": "Картины до 30 000 ₽",
+  "en": "Paintings under ₽30,000",
+  "descRu": "Оригинальные работы Марии Полушкиной в наличии по цене до 30 000 ₽. Размер и цена указаны у каждой работы, покупка напрямую у художницы.",
+  "descEn": "Original works by Maria Polushkina available for under ₽30,000. Size and price are listed for every work, bought directly from the artist.",
+  "rule": {
+   "maxPrice": 29999
+  }
+ }
+]

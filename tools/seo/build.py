@@ -5,10 +5,19 @@
 Читает catalog.json и content.json, НИКОГДА их не переписывает (и index.html тоже). Пишет только своё:
   work/<id>/index.html, en/work/<id>/index.html   — страница работы (ru / en)
   work/index.html, en/work/index.html             — «Все работы»
+  collection/<slug>/index.html, en/collection/<slug>/index.html — подборки из tools/seo/collections.json
   site/og/work-<id>.jpg                           — превью 1200×630 для ссылок (одно на оба языка)
   sitemap.xml                                     — карта сайта целиком
   tools/seo/state.json                            — манифест: хеши страниц и даты lastmod, хеши исходников превью
-Устаревшие work/<число>/, en/work/<число>/ и site/og/work-<число>.jpg удаляются.
+Устаревшие work/<число>/, en/work/<число>/, collection/<slug>/, en/collection/<slug>/ и site/og/work-<число>.jpg удаляются.
+
+Подборки (tools/seo/collections.json, необязателен — без него подборок нет): список объектов
+  {"slug": "large", "ru": "...", "en": "...", "descRu": "...", "descEn": "...",
+   "titleRu": "...", "titleEn": "...",          — необязательно: свой <title> вместо «<ru> - Мария Полушкина, купить оригинал»
+   "rule": {"minSide": 80, "maxSide": 40, "minPrice": 0, "maxPrice": 29999},   — любые из условий, все сразу
+   "ids": [57, 58]}                             — явный список (вместе с rule — пересечение)
+Сторона — большая сторона из dims() (как фильтр размера на главной), цена — p; в правиле по цене только непроданные.
+Порядок работ — как в catalog.json, отсутствующие id пропускаются, подборка меньше MIN_COL работ не генерируется.
 Список изменённых в этом прогоне адресов печатается в stdout и, с --changed <файл>, пишется в файл
 (для IndexNow в GitHub Action). Повторный запуск без изменений входа ничего не меняет.
 
@@ -38,6 +47,8 @@ OG_BG = (247, 241, 232)   # --canvas
 BOT_RE = (r'googlebot|google-inspectiontool|adsbot-google|storebot-google|yandex(bot|images|metrika|\.com\/bots)|'
           r'bingbot|duckduckbot|applebot|baiduspider|petalbot|crawler|spider|slurp|lighthouse')
 NBSP = '\u00a0'
+MIN_COL = 4               # подборка, где работ меньше, не генерируется
+SLUG_RE = r'[a-z0-9]+(?:-[a-z0-9]+)*'
 
 # ───────────────────────── данные ─────────────────────────
 
@@ -102,6 +113,10 @@ def list_path(lang):
     return '/work/' if lang == 'ru' else '/en/work/'
 
 
+def col_path(slug, lang):
+    return f'/collection/{slug}/' if lang == 'ru' else f'/en/collection/{slug}/'
+
+
 def home_path(lang):
     return '/' if lang == 'ru' else '/?lang=en'
 
@@ -127,6 +142,8 @@ class Ctx:
         self.root, self.out, self.works, self.contacts = root, out, works, contacts
         self._sizes = {}
         self.og = {}   # id → (published path, version tag) or None
+        self.cols = []        # [(подборка, [работы])] — только те, что генерируются
+        self.work_cols = {}   # id работы → [подборки, где она есть]
 
     def img_size(self, rel):
         if rel not in self._sizes:
@@ -287,6 +304,18 @@ main{flex:1;width:100%;max-width:var(--mw);margin:0 auto;padding:22px 28px 72px}
 @media(max-width:360px){.nk .na{display:none}.th,.more .th{height:140px}.m2{padding:9px 13px;font-size:.8rem}}
 """
 
+# Подборки: кнопки-ссылки и строка «В подборках» (в CSS страницы — только когда подборки есть)
+CSS_COL = """.chips{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:-8px auto 34px;max-width:52em}
+.chips b{font-weight:400;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--wg);margin-right:4px}
+.chips a{display:inline-block;padding:6px 16px;border:1px solid var(--lg);border-radius:20px;font-size:.84rem;line-height:1.4;color:var(--char);overflow-wrap:anywhere}
+.chips a:hover{border-color:var(--burg);color:var(--burg)}
+.chips.bot{margin:56px auto 0}
+.inc{margin-top:14px;font-size:.84rem;color:var(--wg)}
+.inc a{color:var(--wg);border-bottom:1px solid var(--lg)}
+.inc a:hover{color:var(--burg);border-color:var(--burg)}
+@media(max-width:600px){.chips a{padding:5px 13px;font-size:.8rem}}
+"""
+
 TG_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>')
 TRY_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg>')
 SHARE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg>')
@@ -330,7 +359,7 @@ document.querySelectorAll('.gt').forEach(function(x){x.classList.toggle('on',x==
 })();"""
 
 
-def head(lang, title, desc, canon_path, alt_path, ru_path, extra_meta, ld):
+def head(lang, title, desc, canon_path, alt_path, ru_path, extra_meta, ld, css=CSS):
     preload = ['cormorant-n-cyrillic', 'nunito-n-cyrillic', 'nunito-n-latin'] if lang == 'ru' else ['cormorant-n-latin', 'nunito-n-latin']
     en_path = canon_path if lang == 'en' else alt_path
     out = [
@@ -356,7 +385,7 @@ def head(lang, title, desc, canon_path, alt_path, ru_path, extra_meta, ld):
         '<link rel="apple-touch-icon" href="/site/images/apple-touch-icon.png">',
         *[f'<link rel="preload" href="/site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in preload],
         f'<script type="application/ld+json">{js_json(ld)}</script>',
-        f'<style>\n{CSS}</style>',
+        f'<style>\n{css}</style>',
         '</head>',
     ]
     return '\n'.join(out)
@@ -380,6 +409,23 @@ def nav(lang, alt_path):
 def footer(lang):
     return ('<footer class="ft"><div>© 2026 ' + ('Мария Полушкина' if lang == 'ru' else 'Maria Polushkina') +
             '</div><div class="mk">Made by Dmitry Khinkis</div></footer>\n<div class="toast" id="toast" role="status" aria-live="polite"></div>')
+
+
+def page_css(ctx):
+    return CSS + CSS_COL if ctx.cols else CSS
+
+
+def col_name(c, lang):
+    return c['ru'] if lang == 'ru' else c['en']
+
+
+def chips_html(ctx, lang, label, skip=None, cls='chips'):
+    """Строка кнопок-ссылок на подборки; пусто, если подборок (кроме skip) нет."""
+    cs = [c for c, _ in ctx.cols if c['slug'] != skip]
+    if not cs:
+        return ''
+    return (f'<nav class="{cls}" aria-label="{esc(label)}"><b>{esc(label)}:</b>'
+            + ''.join(f'<a href="{col_path(c["slug"], lang)}">{esc(col_name(c, lang))}</a>' for c in cs) + '</nav>')
 
 
 def tail(data):
@@ -524,7 +570,7 @@ def render_work(ctx, i, lang):
     ld = {'@context': 'https://schema.org', '@graph': [art, breadcrumbs_ld(crumbs)]}
 
     ru_path = page_path(wid, 'ru')
-    h = [head(lang, title, desc, path, alt_path, ru_path, extra, ld), '<body>', nav(lang, alt_path), '<main>',
+    h = [head(lang, title, desc, path, alt_path, ru_path, extra, ld, page_css(ctx)), '<body>', nav(lang, alt_path), '<main>',
          breadcrumbs_html(crumbs), '<article class="wk">', '<div class="wm">']
 
     # главное фото + галерея остальных (переключение лёгким JS; без JS — все фото всё равно в разметке)
@@ -575,6 +621,10 @@ def render_work(ctx, i, lang):
           f'<a class="m2 try" href="{try_href}">{TRY_SVG}<span>{try_txt}</span></a>',
           f'<button type="button" class="m2" id="share">{SHARE_SVG}<span>{share_txt}</span></button>',
           '</div>', f'<p class="ds">{esc(ds)}</p>']
+    inc = ctx.work_cols.get(wid)
+    if inc:
+        h.append(f'<p class="inc">{"В подборках" if ru else "In collections"}: ' + ', '.join(
+            f'<a href="{col_path(c["slug"], lang)}">{esc(col_name(c, lang))}</a>' for c in inc) + '</p>')
 
     prev_a = ctx.works[i - 1] if i > 0 else None
     next_a = ctx.works[i + 1] if i + 1 < len(ctx.works) else None
@@ -644,10 +694,125 @@ def render_list(ctx, lang):
              {'@type': 'ListItem', 'position': k + 1, 'url': abs_url(page_path(a['id'], lang)), 'name': cap_t(title_of(a, lang))}
              for k, a in enumerate(ctx.works)]}},
         breadcrumbs_ld(crumbs)]}
-    h = [head(lang, title, desc, path, alt_path, list_path('ru'), extra, ld), '<body>', nav(lang, alt_path), '<main>',
+    h = [head(lang, title, desc, path, alt_path, list_path('ru'), extra, ld, page_css(ctx)), '<body>', nav(lang, alt_path), '<main>',
          breadcrumbs_html(crumbs), f'<h1 class="st" style="margin-top:8px">{h1}</h1>', '<div class="gl"></div>',
          f'<p class="lead">{esc(lead)} <span style="white-space:nowrap">{cnt}.</span></p>',
+         chips_html(ctx, lang, 'Подборки' if ru else 'Collections'),
          '<div class="grid">', *[card(ctx, a, lang) for a in ctx.works], '</div>', '</main>', footer(lang)]
+    h = [x for x in h if x]
+    h.append(tail({'lang': lang}))
+    return '\n'.join(h)
+
+
+# ───────────────────────── подборки ─────────────────────────
+
+def load_collections(path):
+    """Читает collections.json; нет файла — подборок нет. Кривые записи пропускаются с предупреждением."""
+    try:
+        with open(path, encoding='utf-8') as f:
+            raw = json.load(f)
+    except FileNotFoundError:
+        return []
+    if not isinstance(raw, list):
+        sys.exit(f'{path}: ожидается список подборок')
+    out, seen = [], set()
+    for c in raw:
+        slug = c.get('slug') if isinstance(c, dict) else None
+        if not (isinstance(slug, str) and re.fullmatch(SLUG_RE, slug)) or slug in seen:
+            print(f'подборки: пропуск записи со slug={slug!r} (нужны a-z, 0-9, дефис; без повторов)', file=sys.stderr)
+            continue
+        if not (str(c.get('ru') or '').strip() and str(c.get('en') or '').strip()):
+            print(f'подборки: пропуск {slug} - нет названия ru/en', file=sys.stderr)
+            continue
+        rule, ids = c.get('rule'), c.get('ids')
+        if not isinstance(rule, dict) and not isinstance(ids, list):
+            print(f'подборки: пропуск {slug} - нет ни rule, ни ids', file=sys.stderr)
+            continue
+        seen.add(slug)
+        out.append({**c, 'ru': str(c['ru']).strip(), 'en': str(c['en']).strip()})
+    return out
+
+
+def col_works(works, c):
+    """Работы подборки в порядке каталога."""
+    rule = c.get('rule') if isinstance(c.get('rule'), dict) else {}
+    ids = c.get('ids')
+    if isinstance(ids, list):
+        want = {int(x) for x in ids if isinstance(x, int) and not isinstance(x, bool)
+                or isinstance(x, str) and x.isdigit()}
+    else:
+        want = None
+    res = []
+    for a in works:
+        if want is not None and a['id'] not in want:
+            continue
+        if 'minSide' in rule or 'maxSide' in rule:
+            d = dims(a)
+            if not d:
+                continue
+            side = max(d)
+            if 'minSide' in rule and side < rule['minSide']:
+                continue
+            if 'maxSide' in rule and side > rule['maxSide']:
+                continue
+        if 'minPrice' in rule or 'maxPrice' in rule:
+            if a.get('sold') or not has_price(a):
+                continue
+            if 'minPrice' in rule and a['p'] < rule['minPrice']:
+                continue
+            if 'maxPrice' in rule and a['p'] > rule['maxPrice']:
+                continue
+        res.append(a)
+    return res
+
+
+def render_collection(ctx, c, ws, lang):
+    ru = lang == 'ru'
+    slug = c['slug']
+    path, alt_path = col_path(slug, lang), col_path(slug, 'en' if ru else 'ru')
+    name = col_name(c, lang)
+    n = len(ws)
+    title = str(c.get('titleRu' if ru else 'titleEn') or '').strip() or (
+        f'{name} - Мария Полушкина, купить оригинал' if ru else f'{name} - Maria Polushkina, original art')
+    desc = str(c.get('descRu' if ru else 'descEn') or '').strip() or (
+        f'{name}: оригинальные работы Марии Полушкиной с ценами и размерами. Покупка напрямую у художницы.' if ru
+        else f'{name}: original works by Maria Polushkina with sizes and prices. Buy directly from the artist.')
+    cnt = f'{n} {plural_ru(n, "работа", "работы", "работ")}' if ru else f'{n} works'
+    og = ctx.og.get(ws[0]['id'])
+    og_img = abs_url(og) if og else f'{SITE}/site/images/og-cover.jpg'
+    extra = [
+        '<meta property="og:type" content="website">',
+        f'<meta property="og:title" content="{esc(title)}">',
+        f'<meta property="og:description" content="{esc(desc)}">',
+        f'<meta property="og:image" content="{esc(og_img)}">',
+        f'<meta property="og:image:width" content="{OG_W}">',
+        f'<meta property="og:image:height" content="{OG_H}">',
+        f'<meta property="og:image:alt" content="{esc(work_alt(ws[0], lang))}">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{esc(title)}">',
+        f'<meta name="twitter:description" content="{esc(desc)}">',
+        f'<meta name="twitter:image" content="{esc(og_img)}">',
+    ]
+    crumbs = [('Главная' if ru else 'Home', home_path(lang)), ('Все работы' if ru else 'All works', list_path(lang)),
+              (name, path)]
+    ld = {'@context': 'https://schema.org', '@graph': [
+        {'@type': 'CollectionPage', '@id': abs_url(path), 'url': abs_url(path), 'name': title, 'headline': name,
+         'description': desc, 'inLanguage': lang, 'author': {'@id': SITE + '/#maria'},
+         'isPartOf': {'@type': 'CollectionPage', '@id': abs_url(list_path(lang))},
+         'primaryImageOfPage': og_img,
+         'mainEntity': {'@type': 'ItemList', 'numberOfItems': n, 'itemListElement': [
+             {'@type': 'ListItem', 'position': k + 1, 'url': abs_url(page_path(a['id'], lang)), 'name': cap_t(title_of(a, lang))}
+             for k, a in enumerate(ws)]}},
+        breadcrumbs_ld(crumbs)]}
+    h = [head(lang, title, desc, path, alt_path, col_path(slug, 'ru'), extra, ld, page_css(ctx)), '<body>',
+         nav(lang, alt_path), '<main>', breadcrumbs_html(crumbs),
+         f'<h1 class="st" style="margin-top:8px">{esc(name)}</h1>', '<div class="gl"></div>',
+         f'<p class="lead">{esc(desc)} <span style="white-space:nowrap">{cnt}.</span></p>',
+         '<div class="grid">', *[card(ctx, a, lang) for a in ws], '</div>',
+         chips_html(ctx, lang, 'Другие подборки' if ru else 'Other collections', skip=slug, cls='chips bot'),
+         f'<div class="all"><a href="{list_path(lang)}">{"Все работы" if ru else "All works"} →</a></div>',
+         '</main>', footer(lang)]
+    h = [x for x in h if x]
     h.append(tail({'lang': lang}))
     return '\n'.join(h)
 
@@ -725,6 +890,7 @@ def main():
     ap.add_argument('--root', default=os.path.dirname(os.path.dirname(here)), help='корень репозитория (исходные картинки)')
     ap.add_argument('--catalog', help='catalog.json (по умолчанию <root>/catalog.json)')
     ap.add_argument('--content', help='content.json (по умолчанию <root>/content.json)')
+    ap.add_argument('--collections', help='файл подборок (по умолчанию <root>/tools/seo/collections.json; нет файла - нет подборок)')
     ap.add_argument('--out', help='куда писать (по умолчанию <root>); для проверок — папка в скратчпаде')
     ap.add_argument('--changed', help='файл, куда записать изменённые адреса (по одному на строку)')
     ap.add_argument('--today', help='дата для lastmod, ГГГГ-ММ-ДД (по умолчанию сегодня по UTC)')
@@ -756,6 +922,17 @@ def main():
     contacts = content.get('contacts') or {}
     ctx = Ctx(root, out, works, contacts)
     ctx.dm = str(contacts.get('telegramDm') or contacts.get('telegram') or 'artpolushkina').lstrip('@')
+
+    # подборки: считаем состав до страниц работ — на них строка «В подборках»
+    col_file = args.collections or os.path.join(root, 'tools', 'seo', 'collections.json')
+    for c in load_collections(col_file):
+        ws = col_works(works, c)
+        if len(ws) < MIN_COL:
+            print(f'подборка {c["slug"]}: {len(ws)} работ (< {MIN_COL}) - не генерируется', file=sys.stderr)
+            continue
+        ctx.cols.append((c, ws))
+        for a in ws:
+            ctx.work_cols.setdefault(a['id'], []).append(c)
 
     state_path = os.path.join(out, 'tools', 'seo', 'state.json')
     try:
@@ -804,6 +981,10 @@ def main():
     for lang in ('ru', 'en'):
         p = list_path(lang)
         emit(p, p.strip('/') + '/index.html', render_list(ctx, lang))
+    for c, ws in ctx.cols:
+        for lang in ('ru', 'en'):
+            p = col_path(c['slug'], lang)
+            emit(p, p.strip('/') + '/index.html', render_collection(ctx, c, ws, lang))
 
     # главная: lastmod — когда менялись index.html или данные, которые она показывает
     hb = b''
@@ -839,6 +1020,24 @@ def main():
         m = re.fullmatch(r'/(?:en/)?work/(\d+)/', p)
         if m and m.group(1) not in ids and abs_url(p) not in changed:
             changed.append(abs_url(p))
+    # устаревшие подборки — только внутри collection/ и en/collection/
+    slugs = {c['slug'] for c, _ in ctx.cols}
+    for base, prefix in (('collection', '/collection/'), (os.path.join('en', 'collection'), '/en/collection/')):
+        d = os.path.join(out, base)
+        if not os.path.isdir(d):
+            continue
+        for name in sorted(os.listdir(d)):
+            if re.fullmatch(SLUG_RE, name) and name not in slugs and os.path.isdir(os.path.join(d, name)):
+                shutil.rmtree(os.path.join(d, name))
+                if abs_url(f'{prefix}{name}/') not in changed:
+                    changed.append(abs_url(f'{prefix}{name}/'))
+                removed += 1
+        if not os.listdir(d):
+            os.rmdir(d)
+    for p in list(old_pages):
+        m = re.fullmatch(r'/(?:en/)?collection/([^/]+)/', p)
+        if m and m.group(1) not in slugs and abs_url(p) not in changed:
+            changed.append(abs_url(p))
 
     # sitemap.xml
     entries = []
@@ -847,6 +1046,11 @@ def main():
     for lang in ('ru', 'en'):
         p = list_path(lang)
         entries.append({'path': p, 'ru': '/work/', 'en': '/en/work/', 'lastmod': new_pages[p]['lastmod']})
+    for c, _ in ctx.cols:
+        for lang in ('ru', 'en'):
+            p = col_path(c['slug'], lang)
+            entries.append({'path': p, 'ru': col_path(c['slug'], 'ru'), 'en': col_path(c['slug'], 'en'),
+                            'lastmod': new_pages[p]['lastmod']})
     for a in works:
         imgs = [SITE + file_url(x) for x in images_of(a) if os.path.isfile(os.path.join(root, x))]
         for lang in ('ru', 'en'):
@@ -862,7 +1066,8 @@ def main():
     if args.changed:
         with open(args.changed, 'w', encoding='utf-8') as f:
             f.write(''.join(u + '\n' for u in changed))
-    print(f'работ: {len(works)}; страниц записано: {written}; превью пересчитано: {og_made}; '
+    print(f'работ: {len(works)}; подборок: {len(ctx.cols)} ('
+          + ', '.join(f'{c["slug"]} {len(ws)}' for c, ws in ctx.cols) + f'); страниц записано: {written}; превью пересчитано: {og_made}; '
           f'удалено страниц: {removed}; sitemap.xml {"обновлён" if sm_changed else "без изменений"}; '
           f'изменённых адресов: {len(changed)}', file=sys.stderr)
     for u in changed:
