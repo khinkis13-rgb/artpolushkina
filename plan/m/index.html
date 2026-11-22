@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Письма в журналы</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;--sel:#EEF2F6;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--navy-d)}
+b,strong{font-weight:500}
+[hidden]{display:none!important}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+
+/* прогресс */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px}
+#cnt{font:400 14px/1.2 var(--fb);color:var(--wg);font-variant-numeric:lining-nums tabular-nums}
+#cnt b{color:var(--navy-d)}
+.go{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font:500 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--burg);text-decoration:none;white-space:nowrap}
+.pb{height:3px;background:var(--line)}
+.pb i{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));transition:width .25s}
+
+/* шапка */
+header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.toq{display:inline-flex;align-items:center;min-height:44px;margin:-6px 0 8px;font-size:15px;color:var(--navy-d)}
+.k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h1,h2,h3{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
+.lead{font-size:18px;color:#4a443d;max-width:660px}
+.lead+.lead{margin-top:12px}
+.lead b{color:var(--navy-d)}
+.muted{color:var(--wg);font-size:14.5px}
+.why{font-size:15.5px;color:#5b544c;margin-bottom:16px;max-width:660px}
+
+/* группы */
+.grp{padding-top:40px}
+.grp>h2{font-size:clamp(28px,6vw,38px);line-height:1.1;margin-bottom:6px}
+.grp>.why{margin-bottom:6px}
+
+/* письмо */
+.m{margin-top:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:16px 16px 14px;min-width:0;scroll-margin-top:60px;transition:border-color .2s}
+.m.done{border-left-color:var(--navy);background:#FCFDFE}
+.mh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.mh .n{font:italic 400 26px/1 var(--fd);color:var(--gold);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+.mh h3{font-size:clamp(25px,5.4vw,30px);line-height:1.1;min-width:0;overflow-wrap:anywhere}
+.tag{font:500 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--burg);background:#F6ECEC;padding:4px 7px;border-radius:3px;align-self:center}
+.m.done .mh::after{content:"отправлено";font:500 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:4px 7px;border-radius:3px;align-self:center}
+.sub{font:italic 400 19px/1.3 var(--fd);color:var(--burg);margin-top:2px}
+.to{font-size:13.5px;color:var(--wg);margin-top:8px;overflow-wrap:anywhere}
+.to b{font-weight:400;color:#5b544c}
+.note{font-size:15px;color:#4a443d;background:var(--paper);border-left:3px solid var(--gold-s);padding:9px 12px;margin-top:10px;border-radius:0 6px 6px 0}
+.subj{font-size:15.5px;margin-top:12px;color:var(--char);overflow-wrap:anywhere}
+.subj span{color:var(--wg)}
+.txt{margin-top:6px}
+.txt summary{display:inline-flex;align-items:center;gap:8px;min-height:40px;cursor:pointer;list-style:none;font-size:15px;color:var(--navy-d);text-decoration:underline;text-underline-offset:3px}
+.txt summary::-webkit-details-marker{display:none}
+.txt summary::after{content:"";width:7px;height:7px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.txt[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.txt.tr summary{color:var(--wg)}
+.full{white-space:pre-wrap;font-size:14.5px;line-height:1.5;color:#3b3731;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:4px 0 6px;overflow-wrap:anywhere}
+.full .fs{display:block;color:var(--wg);margin-bottom:8px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:12px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:17px;font-weight:500;letter-spacing:.01em;text-decoration:none;text-align:center}
+.btn.big{width:100%;min-height:58px;font-size:18px;margin-top:16px}
+.btn.lite{background:#fff;color:var(--navy-d);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:default}
+.acts .btn{flex:1 1 200px}
+.chk{flex:1 1 160px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:10px 16px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:16px;font-weight:400;transition:border-color .15s,background .15s}
+.chk::before{content:"";flex:none;width:20px;height:20px;border:1.5px solid #b3a99c;border-radius:5px;background:#fff;transition:all .15s}
+.chk[aria-checked="true"]{border-color:var(--navy);background:var(--sel);color:var(--navy-d)}
+.chk[aria-checked="true"]::before{border-color:var(--navy);background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.chk.ask{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-s)}
+.mini{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:6px}
+.mini button,.mini a{display:inline-flex;align-items:center;min-height:40px;background:none;border:0;padding:0;font-size:13.5px;font-weight:400;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+.mini .ok{color:var(--navy);text-decoration:none}
+@media (hover:hover){.chk:hover{border-color:#c9bca8}.mini button:hover,.mini a:hover{color:var(--navy-d)}}
+.btn:focus-visible,.chk:focus-visible,.mini button:focus-visible,.mini a:focus-visible,.txt summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* отправка */
+#send{padding:44px 0 30px;scroll-margin-top:60px}
+#send h2{font-size:clamp(30px,6.4vw,40px);line-height:1.1;margin-bottom:8px}
+.fld{display:block;margin-top:14px}
+.fld>span{display:block;font-size:14.5px;color:var(--wg);margin-bottom:6px}
+textarea{width:100%;font-size:16px;font-weight:400;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:56px;-webkit-appearance:none;appearance:none;outline:none;resize:vertical;line-height:1.45;display:block}
+textarea:focus{border-color:var(--navy)}
+#sendNote{margin-top:10px;min-height:22px}
+#out{margin-top:22px}
+.thanks{font:italic 400 30px/1.15 var(--fd);color:var(--burg);margin-bottom:6px}
+#outTxt{min-height:200px;font-size:14.5px;line-height:1.45;background:var(--paper);color:#3b3731;margin-top:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.reset{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.reset button{min-height:44px;background:none;border:0;padding:0 2px;font-size:15px;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+.sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
+
+@media (min-width:760px){
+  body{font-size:18px}
+  header{padding:56px 0 44px}
+  .m{padding:20px 22px 16px}
+  .acts .btn{flex:0 1 auto;min-width:240px}
+  .chk{flex:0 1 auto;min-width:180px}
+  .btn.big{width:auto;min-width:320px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top" role="status" aria-live="polite">
+  <div class="wrap"><span id="cnt">Отправлено <b>0</b></span><a class="go" href="#send">К отправке</a></div>
+  <div class="pb"><i id="pb"></i></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <img class="sig" src="../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
+    <a class="toq" href="../q/">← Вопросы по сайту</a>
+    <div class="k">artpolushkina.com · письма в журналы</div>
+    <h1>Письма в журналы</h1>
+    <p class="lead">Мань, твои картины были в Salon, Marie Claire Maison, In My Room и ещё десятке изданий, но ни один материал не ссылается на твой сайт. А ссылки с журналов хорошо поднимают сайт в поиске. Я написал короткие письма от тебя, просьба в каждом одна - <b>добавить ссылку на сайт рядом с упоминанием картины</b>.</p>
+    <p class="lead">Как отправить: нажимаешь «Открыть письмо» - откроется твоя почта, адрес, тема и текст уже заполнены, остаётся нажать «Отправить». Потом отметь «Отправила», чтобы не запутаться.</p>
+    <p class="lead muted" style="font-size:15.5px">Можно по одному, когда удобно, отметки сохраняются в этом браузере. Хочешь что-то поменять в тексте - поправь прямо в почте перед отправкой. Проверь только, что письмо уходит с artpolushkina@gmail.com. Если почта не открылась - у каждого письма есть «Скопировать» и «Открыть в Gmail».</p>
+  </header>
+
+  <main id="list"></main>
+
+  <section id="send">
+    <div class="k">Когда будет удобно</div>
+    <h2>Отправить Диме</h2>
+    <p class="why">Соберу, какие письма ушли, в одно сообщение: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
+    <label class="fld"><span>Если ответили - напиши кто</span><textarea id="reply" rows="2"></textarea></label>
+    <button class="btn big" id="sendBtn" type="button">Отправить Диме</button>
+    <p class="muted" id="sendNote"></p>
+    <div id="out" hidden>
+      <p class="thanks">Спасибо, Мань!)</p>
+      <p class="why" id="outHint"></p>
+      <textarea id="outTxt" readonly aria-label="Текст для отправки"></textarea>
+      <div class="row">
+        <button class="btn lite" id="copyBtn" type="button">Скопировать</button>
+        <a class="btn lite" id="tgLink" href="https://t.me/Dmitry_Khinkis" target="_blank" rel="noopener">Открыть чат</a>
+      </div>
+    </div>
+    <div class="reset">
+      <span class="muted" id="lastSent"></span>
+      <button type="button" id="resetBtn">Снять все отметки</button>
+    </div>
+  </section>
+
+  <div class="sign">Made by Dmitry Khinkis</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var KEY='mp_m1', TG='Dmitry_Khinkis', MAXURL=3500, FROM='artpolushkina@gmail.com';
+
+/* тексты писем: тема и текст как в черновиках, без правок */
+var RAW=[
+{
+"num": "1",
+"subject": "Ссылка на сайт художницы в материале о квартире в доме 1936 года",
+"body": "Здравствуйте, Ольга!\n\nМеня зовут Мария Полушкина, я художница. В вашем материале «Минимализм с элементами mid-century: квартира в доме 1936 года» от 30 апреля 2025 года есть моя картина «Италия», спасибо, что указали автора.\n\nЕсли есть возможность, добавьте, пожалуйста, к подписи ссылку на мой сайт https://artpolushkina.com - там все мои работы с размерами и ценами.\n\nМатериал: https://salon.ru/article/minimalizm-s-elementami-mid-century-kvartira-v-dome-1936-goda-74182\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "2",
+"subject": "Ссылка на сайт художницы в трёх материалах Marie Claire Maison",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. Мои картины есть в трёх ваших материалах, спасибо за публикации:\n«Яркая квартира 40 м² под сдачу в Москве» (28 марта 2024), там меня упоминает дизайнер;\n«Нескучный минимализм: квартира 47 м² в Москве» (15 мая 2025), картина «Трогательность» над обеденным столом, автор не указан;\n«Бирюзовая квартира в московской сталинке для семьи с тремя детьми» (29 мая 2026), картина «Путь» над обеденным столом, в подписи к фото меня указали.\n\nЕсли есть возможность, добавьте, пожалуйста, к упоминаниям ссылку на мой сайт https://artpolushkina.com, а где имени нет - подпись «Картина: художница Мария Полушкина» с этой ссылкой.\n\nhttps://mcmaison.ru/interior/flats/yarkaya-kvartira-40-m-pod-sdachu-v-moskve/\nhttps://mcmaison.ru/interior-flats/neskuchnyi-minimalizm-kvartira-47-m-v-moskve/\nhttps://mcmaison.ru/interior-flats/biryuzovaya-kvartira-v-moskovskoi-stalinke-dlya-semi-s-tremya-detmi/\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "3",
+"subject": "Ссылка на сайт художницы в трёх проектах In My Room",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. Мои картины есть в трёх ваших проектах, спасибо за публикации:\n«Семейная квартира в Красногорске с проходной гостиной и двумя детскими» (8 июня 2023), в списке декора «картина над комодом, художница Мария Полушкина»;\n«Светлая квартира 115 м² с яркими акцентами для семейной пары с двумя детьми» (1 апреля 2025), картина в детской, автор не указан;\n«Как без глобальных переделок преобразили дом 330 м² с устаревшим ремонтом» (7 августа 2026), овальные картины «Кипарис» и «Пиния» в спальне и в ванной, автор не указан.\n\nЕсли есть возможность, сделайте, пожалуйста, моё имя ссылкой на сайт https://artpolushkina.com, а где имени нет - добавьте подпись «Картина: художница Мария Полушкина» с этой ссылкой.\n\nhttps://www.inmyroom.ru/posts/36789-semejnaya-kvartira-v-krasnogorske-s-prohodnoj-gostinoj-i-dvumya-detskimi\nhttps://www.inmyroom.ru/posts/40431-svetlaya-kvartira-115-m-s-yarkimi-akcentami-dlya-semejnoj-pary-s-dvumya-detmi\nhttps://www.inmyroom.ru/posts/45311-kak-bez-globalnyh-peredelok-preobrazili-dom-330-m-s-ustarevshim-remontom\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "4",
+"subject": "Автор картин в двух материалах ivd.ru",
+"body": "Здравствуйте, Анастасия!\n\nМеня зовут Мария Полушкина, я художница. Мои картины есть в двух ваших материалах, но автор в них не указан:\n«Из трех комнат - почти пять! Яркая квартира мечты для семьи с двумя детьми» (25 января 2024), три картины: овальная над кроватью в спальне, «Одиночество» над диваном на кухне и небольшая на столе в детской;\n«Уместили все: нескучный минимализм в квартире 47 кв. м с «тайной» гардеробной» (22 декабря 2025), картина «Трогательность» над обеденным столом.\n\nЕсли есть возможность, добавьте, пожалуйста, подпись «Картина: художница Мария Полушкина» со ссылкой на мой сайт https://artpolushkina.com\n\nhttps://www.ivd.ru/dizajn-i-dekor/kvartira/iz-treh-komnat-pochti-pyat-yarkaya-kvartira-mechty-dlya-semi-s-dvumya-detmi-123972\nhttps://www.ivd.ru/dizajn-i-dekor/kvartira/umestili-vse-neskuchnyj-minimalizm-v-kvartire-47-kv-m-s-tajnoj-garderobnoj-142812\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "5",
+"subject": "Ссылка на сайт художницы в двух материалах Design Mate",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. Спасибо, что упомянули мои картины в двух материалах:\n«Пастельные тона и небанальные визуальные приемы в интерьере небольшой квартиры» (3 мая 2024);\n«Зеленые пейзажи Поволжья как основа интерьера семейной квартиры - проект Марии Трещуковой» (16 января 2025).\n\nЕсли есть возможность, добавьте, пожалуйста, к моему имени ссылку на сайт https://artpolushkina.com\n\nhttps://design-mate.ru/read/objects/interior-of-small-apartment--project-by-art-studio-mir\nhttps://design-mate.ru/read/objects/interior-of-family-apartment--project-by-maria-treshchukova\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "6",
+"subject": "Autora de los cuadros del salón en «Esta casa de 64 metros…»",
+"body": "Estimada María Jesús:\n\nMe llamo Maria Polushkina y soy artista de Moscú. En su artículo «Esta casa de 64 metros demuestra cómo el color y los muebles a medida potencian los espacios pequeños», del 23 de junio de 2026, sobre el proyecto de Kristina Kvartalnova, los dos cuadros que cuelgan sobre el sofá del salón son míos. Muchas gracias por la publicación.\n\nSi fuera posible, le agradecería que añadiera el crédito «Cuadros: Maria Polushkina» con un enlace a mi web https://artpolushkina.com (tiene versión en inglés).\n\nArtículo: https://www.elledecor.com/es/casas/a71634301/casa-64-metros-color/\n\nUn cordial saludo,\nMaria Polushkina",
+"trSubject": "Автор картин в гостиной в статье «Этот дом площадью 64 метра…»",
+"trBody": "Уважаемая Мария Хесус!\n\nМеня зовут Мария Полушкина, я художница из Москвы. В вашей статье «Этот дом площадью 64 метра показывает, как цвет и мебель на заказ раскрывают маленькие пространства» от 23 июня 2026 года о проекте Кристины Квартальновой две картины над диваном в гостиной - мои. Большое спасибо за публикацию.\n\nЕсли возможно, буду благодарна, если вы добавите подпись «Картины: Мария Полушкина» со ссылкой на мой сайт https://artpolushkina.com (есть английская версия).\n\nСтатья: https://www.elledecor.com/es/casas/a71634301/casa-64-metros-color/\n\nС наилучшими пожеланиями,\nМария Полушкина"
+},
+{
+"num": "7",
+"subject": "Arquitectura y Diseño - autora de los cuadros en el apartamento de Kristina Kvartalnova",
+"body": "Estimada redacción de Arquitectura y Diseño, a la atención de Júlia Vicente Piqué:\n\nMe llamo Maria Polushkina y soy artista de Moscú. En el artículo «Entramos en un apartamento donde el color turquesa se integra con elegancia», del 30 de abril de 2026, los dos cuadros que cuelgan sobre el sofá del salón son míos. Muchas gracias por la publicación.\n\nSi fuera posible, les agradecería que añadieran el crédito «Cuadros: Maria Polushkina» con un enlace a mi web https://artpolushkina.com (tiene versión en inglés).\n\nArtículo: https://www.arquitecturaydiseno.es/casas/entramos-apartamento-color-se-integra-elegancia-equilibrio-clasico-interior-contemporaneo_13538\n\nUn cordial saludo,\nMaria Polushkina",
+"trSubject": "Arquitectura y Diseño - автор картин в квартире Кристины Квартальновой",
+"trBody": "Уважаемая редакция Arquitectura y Diseño, вниманию Жулии Висенте Пике!\n\nМеня зовут Мария Полушкина, я художница из Москвы. В статье «Заглядываем в квартиру, где бирюзовый цвет элегантно вписан в интерьер» от 30 апреля 2026 года две картины над диваном в гостиной - мои. Большое спасибо за публикацию.\n\nЕсли возможно, буду благодарна, если вы добавите подпись «Картины: Мария Полушкина» со ссылкой на мой сайт https://artpolushkina.com (есть английская версия).\n\nСтатья: https://www.arquitecturaydiseno.es/casas/entramos-apartamento-color-se-integra-elegancia-equilibrio-clasico-interior-contemporaneo_13538\n\nС наилучшими пожеланиями,\nМария Полушкина"
+},
+{
+"num": "8",
+"subject": "Revista Interiores - autora de las «dos obras de arte» del salón (piso de Kristina Kvartalnova)",
+"body": "Estimada redacción de Interiores, a la atención de Charlie Masdeu:\n\nMe llamo Maria Polushkina y soy artista de Moscú. En el artículo «Diseña este pequeño piso con una premisa clara de la propietaria», del 21 de abril de 2026, se mencionan en el salón «dos obras de arte de trazo ligero y composición minimalista»: son mis cuadros. Muchas gracias por la publicación.\n\nSi fuera posible, les agradecería que añadieran el nombre de la autora, Maria Polushkina, con un enlace a mi web https://artpolushkina.com (tiene versión en inglés).\n\nArtículo: https://www.revistainteriores.es/casas/convertir-un-piso-en-moscu-en-un-espacio-contemporaneo-sin-renunciar-al-color_13324\n\nUn cordial saludo,\nMaria Polushkina",
+"trSubject": "Revista Interiores - автор «двух произведений искусства» в гостиной (квартира Кристины Квартальновой)",
+"trBody": "Уважаемая редакция Interiores, вниманию Чарли Масдеу!\n\nМеня зовут Мария Полушкина, я художница из Москвы. В статье «Она оформляет эту маленькую квартиру с ясным условием владелицы» от 21 апреля 2026 года в гостиной упомянуты «два произведения искусства с лёгкой линией и минималистичной композицией» - это мои картины. Большое спасибо за публикацию.\n\nЕсли возможно, буду благодарна, если вы добавите имя автора, Мария Полушкина, со ссылкой на мой сайт https://artpolushkina.com (есть английская версия).\n\nСтатья: https://www.revistainteriores.es/casas/convertir-un-piso-en-moscu-en-un-espacio-contemporaneo-sin-renunciar-al-color_13324\n\nС наилучшими пожеланиями,\nМария Полушкина"
+},
+{
+"num": "9",
+"subject": "Автор картины в материале «Нескучный минимализм с открытой планировкой в квартире 47 кв.м»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. В вашем материале «Нескучный минимализм с открытой планировкой в квартире 47 кв.м» от 25 мая 2026 года над обеденным столом висит моя картина «Трогательность», но автор не указан.\n\nЕсли есть возможность, добавьте, пожалуйста, подпись «Картина: художница Мария Полушкина» со ссылкой на мой сайт https://artpolushkina.com - так же, как указаны дизайнер и бренды.\n\nМатериал: https://www.divan.ru/idei-i-trendy/minimalistic-open-space-in-a-46-meter-apartment\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "9а",
+"subject": "Картина «Трогательность» в публикациях вашего проекта 47 м²",
+"body": "Здравствуйте, Анна!\n\nМеня зовут Мария Полушкина, я автор картины «Трогательность», которая висит над обеденным столом в вашем проекте квартиры 47 м². Спасибо, что выбрали её, очень рада видеть проект в Marie Claire Maison, «Идеях вашего дома» и на Divan.ru.\n\nВо всех трёх публикациях автор картины не указан. Если вам удобно, при случае попросите, пожалуйста, редакции добавить подпись «Картина: художница Мария Полушкина» со ссылкой на мой сайт https://artpolushkina.com. Я им тоже напишу.\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "10",
+"subject": "Просьба к редакции МОСТ - ссылка на сайт в статье о выставке",
+"body": "Валерия, здравствуйте!\n\nПомните чудесную статью в МОСТ о моей выставке «Женщины внутри женщины» (22 апреля 2025)? Если у вас есть контакт редакции, перешлите им, пожалуйста, небольшую просьбу.\n\nВ статье моё имя ведёт на bizar.art и ag-artgallery. С тех пор у меня появился свой сайт https://artpolushkina.com - было бы здорово, если бы ссылка с имени вела на него, а картины «Отбрось всё!» и «В унисон» - на их страницы: https://artpolushkina.com/work/58/ и https://artpolushkina.com/work/68/\n\nСтатья: https://mostmag.ru/chuvstva-znakomye-kazhdoj-vystavka-marii-polushkinoj-zhenshhiny-vnutri-zhenshhiny-otkrylas-v-moskovskoj-galeree-na-trubnoj/\n\nСпасибо!\nМария Полушкина"
+},
+{
+"num": "11",
+"subject": "Ссылка на сайт художницы в новости о витринах «Пальчиков»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. 24 мая 2021 года у вас вышла новость «Игривое настроение и яркие краски заиграли на окнах салонов «Пальчики»» о моей коллаборации с сетью. Спасибо за неё.\n\nЕсли есть возможность, добавьте, пожалуйста, к моему имени ссылку на сайт https://artpolushkina.com\n\nНовость: https://www.thevoicemag.ru/beauty/news/24-05-2021/igrivoe-nastroenie-i-yarkie-kraski-zaigrali-na-oknah-salonov-palchiki/\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "12",
+"subject": "Ссылка на сайт художницы в материале о витринах «Пальчиков»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. 26 мая 2021 года у вас вышел материал «Художница Мария Полушкина разукрасила витрины салонов «Пальчики»». Спасибо за него.\n\nЕсли есть возможность, добавьте, пожалуйста, в текст ссылку на мой сайт https://artpolushkina.com\n\nМатериал: https://instyle.ru/stars/za-kadrom/khudozhnitsa-mariya-polushkina-razukrasila-vitriny-salonov-palchiki/\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "13",
+"subject": "Ссылка на сайт художницы - выставка «Женщины внутри женщины»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, весной 2025 года в галерее прошла моя персональная выставка «Женщины внутри женщины». Ещё раз спасибо галерее и Валерии Гониковой.\n\nЕсли есть возможность, добавьте, пожалуйста, ссылку на мой сайт https://artpolushkina.com на страницу выставки, рядом с моим именем, и в пост от 14 апреля 2025 года, где уже есть ссылка на мой Telegram-канал.\n\nСтраница выставки: https://trubnaya.vzmoscow.ru/zhenshchhiny\nПост: https://t.me/trubnayagallery/253\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "14",
+"subject": "Ссылка на сайт художницы - выставка «Ничего подобного»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, я художница. С 17 декабря по 11 января в Доме-музее проходила моя выставка «Ничего подобного». Спасибо, что приняли её.\n\nЕсли на сайте или в соцсетях музея остались анонс или фотографии выставки, добавьте к ним, пожалуйста, ссылку на мой сайт https://artpolushkina.com\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "15",
+"subject": "Ссылка на сайт художницы - «Пальчики Concept Art»",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, с 2021 года мои работы участвуют в проекте «Пальчики Concept Art» и украшают ваши салоны. Спасибо за это сотрудничество.\n\nУ меня есть сайт со всеми работами: https://artpolushkina.com. Если есть возможность, добавьте, пожалуйста, ссылку на него там, где на вашем сайте или в соцсетях упоминается проект или мои работы.\n\nС уважением,\nМария Полушкина"
+}
+];
+
+/* кому и пояснения для Маши */
+var META={
+ '1':{t:'Salon',to:'o.vologdina@lvls.ru',cc:'editor@salon.ru'},
+ '2':{t:'Marie Claire Maison',s:'бывший My Decor · три материала',to:'mcmaison@shkulev.ru'},
+ '3':{t:'In My Room',s:'три материала',to:'wow@inmyroom.ru',n:'Если не ответят - можно отправить то же самое на relax@inmyroom.ru.'},
+ '4':{t:'«Идеи вашего дома»',s:'ivd.ru · два материала',to:'editor@ivd.ru',cc:'ivd@burda.ru'},
+ '5':{t:'Design Mate',s:'два материала',to:'hi@design-mate.ru'},
+ '6':{t:'Elle Decor España',s:'Испания',to:'mjrevilla@hearst.es',cc:'comunidad@elledecor.es',n:'Письмо на испанском, автору статьи. Перевод для тебя - под текстом, его не отправлять.'},
+ '7':{t:'Arquitectura y Diseño',s:'Испания',to:'arquitecturaydiseno@rba.es',n:'Письмо на испанском. Перевод для тебя - под текстом, его не отправлять.'},
+ '8':{t:'Revista Interiores',s:'Испания',to:'forum-ngme@rba.es',n:'Письмо на испанском. Адрес общий у нескольких журналов, поэтому журнал назван в теме. Перевод для тебя - под текстом, его не отправлять.'},
+ '9':{t:'Divan.ru',to:'roomtour@divan.ru'},
+ '9а':{t:'Анна Лагутина',s:'дизайнер проекта 47 м²',to:'ural.interior@mail.ru',tag:'по желанию',n:'Это не журнал, а дизайнер проекта с «Трогательностью». Проект вышел в трёх изданиях без твоего имени, ей проще попросить редакции. Отправляй, если вы знакомы или ты не против написать первой. Письма 2, 4 и 9 это не отменяет.'},
+ '10':{t:'МОСТ',s:'mostmag.ru · через Валерию Гоникову',to:'',tag:'без адреса',n:'Адреса редакции МОСТ нет, поэтому это сообщение Валерии Гониковой - попросить переслать. Удобнее в мессенджер: «Скопировать текст» и вставь в чат с ней. Или «Открыть письмо» и впиши её адрес.'},
+ '11':{t:'The Voice',s:'бывший Cosmopolitan',to:'info@thevoicemag.ru'},
+ '12':{t:'InStyle',to:'',tag:'без адреса',n:'Адреса редакции я не нашёл. Отправляй, только если у тебя есть контакт в InStyle: «Открыть письмо» и впиши адрес.'},
+ '13':{t:'Галерея на Трубной',to:'trubnaya@vzmoscow.ru',cc:'n.kalmykova@vzmoscow.ru'},
+ '14':{t:'Дом-музей Марины Цветаевой',to:'muzeicvetaevoi@culture.mos.ru',n:'Если помнишь, где музей писал о выставке, - можешь вставить ссылку в письмо перед отправкой.'},
+ '15':{t:'«Пальчики»',to:'marketing@palchiki.com',n:'Лучше своему контакту в «Пальчиках» - тогда впиши его адрес вместо этого. Если контакта нет, отправляй как есть.'}
+};
+var FIRST=['1','2','3','4','5','6','7','8','9','9а'];
+
+var L=RAW.map(function(r){ var m=META[r.num]||{}; return {
+  id:r.num, t:m.t||r.num, s:m.s||'', to:m.to||'', cc:m.cc||'', n:m.n||'', tag:m.tag||'',
+  subject:r.subject, body:r.body, trSubject:r.trSubject||'', trBody:r.trBody||'' }; });
+
+/* хранилище */
+function load(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s&&typeof s==='object'&&s.d&&typeof s.d==='object') return s; }catch(e){} return {d:{},r:''}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+var S=load();
+
+/* ссылки */
+function enc(s){ return encodeURIComponent(s).replace(/%0A/g,'%0D%0A'); }
+function mailto(l){
+  var q=[]; if(l.cc) q.push('cc='+l.cc);
+  q.push('subject='+enc(l.subject)); q.push('body='+enc(l.body));
+  return 'mailto:'+l.to+'?'+q.join('&');
+}
+function gmail(l){
+  var q=['authuser='+encodeURIComponent(FROM),'view=cm','fs=1'];
+  if(l.to) q.push('to='+encodeURIComponent(l.to));
+  if(l.cc) q.push('cc='+encodeURIComponent(l.cc));
+  q.push('su='+encodeURIComponent(l.subject)); q.push('body='+encodeURIComponent(l.body));
+  return 'https://mail.google.com/mail/?'+q.join('&');
+}
+window.__letters={L:L,mailto:mailto,gmail:gmail};
+
+/* разметка */
+function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+var root=document.getElementById('list'), UI={};
+
+function details(label,openLabel,subjLabel,subj,body,cls){
+  var d=el('details','txt'+(cls?' '+cls:'')), s=el('summary',null,label), f=el('div','full');
+  if(subj){ f.appendChild(el('span','fs',subjLabel+' '+subj)); }
+  f.appendChild(document.createTextNode(body));
+  d.appendChild(s); d.appendChild(f);
+  d.addEventListener('toggle',function(){ s.textContent=d.open?openLabel:label; });
+  return d;
+}
+function miniBtn(label,getText){
+  var b=el('button',null,label); b.type='button';
+  b.addEventListener('click',function(){
+    copy(getText(),function(ok){
+      b.textContent=ok?'Скопировано':'Не скопировалось - выдели вручную';
+      b.classList.toggle('ok',ok);
+      setTimeout(function(){ b.textContent=label; b.classList.remove('ok'); },2200);
+    });
+  });
+  return b;
+}
+
+function card(l){
+  var a=el('article','m'); a.id='m-'+l.id;
+  var h=el('div','mh'); h.appendChild(el('span','n',l.id)); h.appendChild(el('h3',null,l.t));
+  if(l.tag) h.appendChild(el('span','tag',l.tag));
+  a.appendChild(h);
+  if(l.s) a.appendChild(el('p','sub',l.s));
+  var to=el('p','to');
+  if(l.to){ to.appendChild(document.createTextNode('Кому: ')); to.appendChild(el('b',null,l.to)); if(l.cc){ to.appendChild(document.createTextNode(' · копия: ')); to.appendChild(el('b',null,l.cc)); } }
+  else to.textContent='Кому: адрес впишешь сама';
+  a.appendChild(to);
+  if(l.n) a.appendChild(el('p','note',l.n));
+  var sj=el('p','subj'); sj.appendChild(el('span',null,(l.trBody?'Asunto':'Тема')+': ')); sj.appendChild(document.createTextNode(l.subject)); a.appendChild(sj);
+  a.appendChild(details('Показать текст','Скрыть текст','',null,l.body));
+  if(l.trBody) a.appendChild(details('Перевод на русский (не отправлять)','Скрыть перевод','Тема:',l.trSubject,l.trBody,'tr'));
+
+  var acts=el('div','acts');
+  var open=el('a','btn','Открыть письмо'); open.href=mailto(l);
+  var chk=el('button','chk','Отправила'); chk.type='button'; chk.setAttribute('role','checkbox');
+  open.addEventListener('click',function(){ if(!S.d[l.id]) chk.classList.add('ask'); });
+  chk.addEventListener('click',function(){
+    if(S.d[l.id]) delete S.d[l.id]; else S.d[l.id]=Date.now();
+    chk.classList.remove('ask'); sync(); save();
+  });
+  acts.appendChild(open); acts.appendChild(chk); a.appendChild(acts);
+
+  var mini=el('div','mini');
+  if(l.to) mini.appendChild(miniBtn(l.cc?'Скопировать адреса':'Скопировать адрес',function(){ return l.cc?l.to+', '+l.cc:l.to; }));
+  mini.appendChild(miniBtn('Скопировать тему',function(){ return l.subject; }));
+  mini.appendChild(miniBtn('Скопировать текст',function(){ return l.body; }));
+  var gm=el('a',null,'Открыть в Gmail'); gm.href=gmail(l); gm.target='_blank'; gm.rel='noopener';
+  gm.addEventListener('click',function(){ if(!S.d[l.id]) chk.classList.add('ask'); });
+  mini.appendChild(gm);
+  a.appendChild(mini);
+  UI[l.id]={a:a,chk:chk};
+  return a;
+}
+
+function group(title,why,items){
+  var g=el('section','grp'); g.appendChild(el('h2',null,title)); if(why) g.appendChild(el('p','why',why));
+  items.forEach(function(l){ g.appendChild(card(l)); });
+  root.appendChild(g);
+}
+
+function plural(n,a,b,c){ var m=n%10,h=n%100; return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c; }
+function sync(){
+  var n=0;
+  L.forEach(function(l){ var on=!!S.d[l.id]; if(on) n++; UI[l.id].a.classList.toggle('done',on); UI[l.id].chk.setAttribute('aria-checked',on?'true':'false'); });
+  document.getElementById('cnt').innerHTML='Отправлено <b>'+n+'</b> из '+L.length;
+  document.getElementById('pb').style.width=(n/L.length*100)+'%';
+  var r=String(S.r||'').trim();
+  document.getElementById('sendBtn').disabled=!n&&!r;
+  document.getElementById('sendNote').textContent=(!n&&!r)?'Пока ни одно письмо не отмечено - отметь «Отправила» у тех, что ушли.':'Уйдёт: отправлено '+n+' '+plural(n,'письмо','письма','писем')+' из '+L.length+(r?', и кто ответил.':'.');
+}
+
+/* сообщение Диме */
+function ln(l){ return l.id+'. '+l.t; }
+function summary(){
+  var d=new Date(), dd=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();
+  var yes=L.filter(function(l){return S.d[l.id];}), no=L.filter(function(l){return !S.d[l.id];});
+  var out=['Письма в журналы, '+dd,'Отправлено '+yes.length+' из '+L.length];
+  if(yes.length){ out.push(''); out.push('Отправила:'); yes.forEach(function(l){ out.push(ln(l)); }); }
+  if(no.length){ out.push(''); out.push('Не отправлены:'); no.forEach(function(l){ out.push(ln(l)); }); }
+  var r=String(S.r||'').trim();
+  if(r){ out.push(''); out.push('Ответили: '+r); }
+  return out.join('\n');
+}
+window.__letters.summary=summary;
+
+/* копирование */
+function legacyCopy(text){
+  var t=document.createElement('textarea'); t.value=text; t.setAttribute('readonly','');
+  t.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+  document.body.appendChild(t); var ok=false;
+  try{ t.focus(); t.select(); t.setSelectionRange(0,text.length); ok=document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(t); return ok;
+}
+function copy(text,done){
+  var fin=function(ok){ if(done) done(ok); };
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){fin(true);},function(){ fin(legacyCopy(text)); });
+      return;
+    }
+  }catch(e){}
+  fin(legacyCopy(text));
+}
+function autosize(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
+function stamp(ts){ var d=new Date(ts); return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+' в '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+function showLast(){ document.getElementById('lastSent').textContent=S.sent?'Последний раз отправляла Диме '+stamp(S.sent):''; }
+
+var rep=document.getElementById('reply');
+rep.value=S.r||''; setTimeout(function(){ autosize(rep); },0);
+rep.addEventListener('input',function(){ S.r=rep.value; autosize(rep); save(); sync(); });
+
+document.getElementById('sendBtn').addEventListener('click',function(){
+  var text=summary(), long=text.length>MAXURL;
+  var url='https://t.me/'+TG+(long?'':'?text='+encodeURIComponent(text));
+  var out=document.getElementById('out'), ta=document.getElementById('outTxt');
+  ta.value=text; out.hidden=false; autosize(ta);
+  document.getElementById('tgLink').href=url;
+  document.getElementById('outHint').textContent=long
+    ? 'Текст длинный, поэтому Telegram откроется просто чатом со мной. Текст уже скопирован - вставь его туда. Если не скопировался - нажми «Скопировать» ниже.'
+    : 'Если в Telegram текст не подставился - вставь его в чат со мной (он уже скопирован). Отправишь ещё письма - отмечай и присылай ещё раз.';
+  copy(text);
+  S.sent=Date.now(); save(); showLast();
+  var w=null; try{ w=window.open(url,'_blank'); }catch(e){}
+  if(!w) location.href=url;
+  setTimeout(function(){ out.scrollIntoView({block:'start',behavior:'smooth'}); },50);
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this, ta=document.getElementById('outTxt');
+  copy(ta.value,function(ok){
+    if(!ok){ try{ ta.focus(); ta.select(); ta.setSelectionRange(0,ta.value.length); }catch(e){} }
+    b.textContent=ok?'Скопировано':'Выдели текст и скопируй';
+    setTimeout(function(){ b.textContent='Скопировать'; },2500);
+  });
+});
+document.getElementById('resetBtn').addEventListener('click',function(){
+  if(!confirm('Снять все отметки «Отправила»?')) return;
+  S.d={}; save(); sync();
+});
+
+/* запуск */
+group('В первую очередь','Журналы, где картины видно лучше всего.',L.filter(function(l){ return FIRST.indexOf(l.id)>=0; }));
+group('Потом, когда будет время','Новости, выставки и проекты - тоже полезно, но не срочно.',L.filter(function(l){ return FIRST.indexOf(l.id)<0; }));
+sync(); showLast();
+})();
+</script>
+</body>
+</html>
