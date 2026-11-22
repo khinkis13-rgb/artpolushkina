@@ -47,6 +47,9 @@ h1,h2{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-num
 h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
 .lead{font-size:18px;color:#4a443d;max-width:640px}
 .lead+.lead{margin-top:10px}
+.sect{margin-top:22px;background:#fff;border:1px solid var(--gold-s);border-left:4px solid var(--gold);border-radius:4px;padding:18px 18px 20px}
+.sect .k{margin-bottom:6px}.sect h2{font-size:30px;line-height:1.1;margin-bottom:8px}.sect p{font-size:16px;color:#4a443d;margin-bottom:14px}
+.sect .btn{width:100%;max-width:340px}
 .got{margin-top:18px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);padding:12px 14px;font-size:15px;color:#4a443d}
 .got b{font-weight:500;color:var(--navy-d)}
 .got ul{margin:6px 0 0 18px}.got li{padding:2px 0}
@@ -160,7 +163,12 @@ textarea:focus,input:focus{border-color:var(--navy)}
     <p class="lead">Мань, тут всё, что мне от тебя нужно для продвижения сайта. Отвечай когда удобно и по частям - ответы сохраняются в этом браузере. В конце одна кнопка - и всё придёт мне в Telegram.</p>
     <p class="lead muted">Для поиска почти всё беру с сайта, тут только то, чего там нет. В основном просто ткни в подходящий вариант. Ни один вопрос не обязателен, порядок любой.</p>
     <a class="back" href="../">Что и зачем мы делаем - в презентации</a>
-    <div class="got"><b>Новое: тексты к картинам.</b> Есть идея коротких подписей к работам - сделал пробы на четырёх, интересно, как тебе. Совсем не обязательно. <a href="../d/">Посмотреть</a></div>
+    <div class="sect">
+      <div class="k">Новый раздел</div>
+      <h2>Тексты к картинам</h2>
+      <p>Есть идея коротких подписей к работам - в тон им и с воздухом. Сделал пробы на четырёх картинах: выбери вариант, напиши свой или отметь «без подписи». Это отдельная страница со своей кнопкой «Отправить Диме», там 4 картины и 3 вопроса. Совсем не обязательно.</p>
+      <a class="btn" href="../d/">Открыть раздел →</a>
+    </div>
     <div class="got"><b>Уже получил, спасибо:</b><ul id="gotList"></ul></div>
   </header>
 
@@ -169,6 +177,7 @@ textarea:focus,input:focus{border-color:var(--navy)}
   <section id="send">
     <div class="k">Готово?</div>
     <h2>Отправить ответы</h2>
+    <p class="why">Раздел «Тексты к картинам» отправляется отдельно, со своей страницы: <a href="../d/">открыть</a>.</p>
     <p class="why">Соберу всё, что ты ответила, в одно сообщение: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
     <button class="btn big" id="sendBtn" type="button">Отправить Диме</button>
     <p class="muted" id="sendNote"></p>
