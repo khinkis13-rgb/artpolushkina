@@ -187,6 +187,8 @@ a:hover{color:var(--mars)}
 .cg-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px}
 .cd{background:var(--canvas);border-radius:14px;overflow:hidden;border:1px solid rgba(200,169,110,.08);transition:.3s var(--e);cursor:pointer}
 .cd:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(45,42,38,.09)}
+/* карточка — ссылка на страницу работы (/work/<id>/): вид как у прежнего div, цвет ссылок не наследует */
+a.cd,a.cd:hover{display:block;color:inherit}
 .ci{width:100%;overflow:hidden;background:linear-gradient(135deg,var(--canvas-w),var(--lg));position:relative}
 .ci img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s var(--e)}
 .cd:hover .ci img{transform:scale(1.04)}
@@ -247,6 +249,8 @@ a:hover{color:var(--mars)}
 .mr h2{font-family:var(--fd);font-size:1.5rem;font-weight:400;margin-bottom:14px}
 .mr .meta{font-size:.85rem;color:var(--wg);margin-bottom:20px;line-height:1.9}
 .mr .meta span{display:block}
+.mwp{display:inline-block;margin:-10px 0 20px;font-size:.8rem;color:var(--wg);text-decoration:underline;text-decoration-color:var(--lg);text-underline-offset:3px}
+.mwp:hover{color:var(--burg);text-decoration-color:currentColor}
 .mp{font-family:var(--fd);font-size:1.7rem;font-weight:500;color:var(--burg);margin-bottom:24px}
 .mt{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;border:none;cursor:pointer;transition:.3s;text-decoration:none}
 .mt:hover{background:var(--mars);color:#fff;transform:translateY(-2px)}
@@ -385,6 +389,7 @@ a:hover{color:var(--mars)}
   .mr .meta{margin-bottom:6px;line-height:1.6}
   .mr .meta span{display:inline}
   .mr .meta span+span::before{content:' · '}
+  .mwp{margin:0 0 6px;font-size:.78rem}
   .mp{font-size:1.45rem;margin-bottom:0}
   .m-cta{position:sticky;bottom:0;z-index:5;margin:0 -20px;padding:12px 20px calc(14px + env(safe-area-inset-bottom));background:var(--canvas);box-shadow:0 -8px 16px -8px rgba(45,42,38,.12)}
   .mt{width:100%;justify-content:center;padding:12px 20px}
@@ -531,6 +536,7 @@ a:hover{color:var(--mars)}
     <div class="mr">
       <h2 id="mT"></h2>
       <div class="meta" id="mM"></div>
+      <a class="mwp" id="mW" href="/work/"><span data-ru="Страница работы →" data-en="Work page →">Страница работы →</span></a>
       <div class="mp" id="mP"></div>
       <div class="m-cta">
       <a href="#" class="mt" id="mB" target="_blank" rel="noopener">
@@ -604,6 +610,8 @@ function goal(name,params){if(YM_ID>0&&typeof window.ym==='function')try{ym(YM_I
 /* ── DATA ── */
 const SITE='https://artpolushkina.com';
 let W=[],CT={},L=window.LANG0==='en'?'en':'ru',F='all',FX=null;
+// своя страница работы (генерируется в work/ и en/work/): ссылки карточек, «Поделиться», текст в Telegram
+const workPath=id=>`${L==='en'?'/en':''}/work/${id}/`;
 
 const W_FB=[{id:1,t:"ГАМАК",te:"Hammock",m:"Холст, акрил",me:"Canvas, acrylic",s:"70×60",y:2026,p:62000},{id:2,t:"СЕМЬЯ",te:"Family",m:"Холст, акрил",me:"Canvas, acrylic",s:"50×40",y:2026,p:25000},{id:3,t:"БУТОНЫ",te:"Buds",m:"Холст, акрил",me:"Canvas, acrylic",s:"70×60",y:2026,p:45000}];
 const CT_FB={about:{parasRu:["Мария Полушкина родилась в 1985 году в Москве."],parasEn:["Maria Polushkina was born in 1985 in Moscow."],quoteRu:"«Для меня работа художника — летопись событий.»",quoteEn:"'For me, the artist's work is a chronicle.'"},exhibitions:[],press:[],contacts:{telegram:"artpolushkina",instagram:"artpolushkina",email:"artpolushkina@gmail.com",phone:"+79260209744"}};
@@ -664,6 +672,7 @@ function tL(){
     history.replaceState(history.state,'',u.pathname+u.search+u.hash);}catch(_){}
   applyL();
   rAll();
+  if(curId!=null)document.getElementById('mW').href=workPath(curId);
   goal('lang_'+L);
 }
 // цена: рубли; в EN — «₽68,000» и под ними мельче «≈ €720 · $780» (если есть курс)
@@ -739,8 +748,8 @@ function rContacts(){
     <a href="mailto:${c.email}" class="cl">${emSvg}${c.email}</a>
     <a href="https://instagram.com/${igHandle}" target="_blank" rel="noopener" class="cl">${igSvg}@${igHandle}</a>
     ${c.phone?`<a href="tel:${c.phone}" class="cl">${phSvg}${c.phone}</a>`:''}`;
-  document.getElementById('footerText').innerHTML=`© 2026 ${L==='ru'?'Мария Полушкина':'Maria Polushkina'} · <a href="mailto:${c.email}" style="color:var(--wg)">${c.email}</a>`;
-  document.getElementById('mB').href=dmUrl;
+  document.getElementById('footerText').innerHTML=`© 2026 ${L==='ru'?'Мария Полушкина':'Maria Polushkina'} · <a href="mailto:${c.email}" style="color:var(--wg)">${c.email}</a> · <a href="${L==='en'?'/en':''}/work/" style="color:var(--wg);white-space:nowrap">${L==='ru'?'Все работы списком':'All works'}</a>`;
+  if(curId==null)document.getElementById('mB').href=dmUrl; // открытое окно работы держит ссылку с текстом «Купить» (её ставит oM)
 }
 
 /* ── CATALOG ── */
@@ -776,14 +785,14 @@ function rC(){
     const thumb=first.type==='img'?`<img src="${first.path}" alt="${alt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" aria-label="${alt}" style="width:100%;height:100%;object-fit:cover"></video>`;
     const countBadge=media.length>1?`<div class="media-badge">🖼 ${media.length}</div>`:'';
     const vidBadge=hasVid?`<div class="vid-badge">▶ видео</div>`:'';
-    return`<div class="cd" onclick="oM(${a.id})">
-      <div class="ci" style="aspect-ratio:1/${catRatio(a)}">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}<button class="fv ${FAV.has(a.id)?'on':''}" data-fav="${a.id}" onclick="event.stopPropagation();tFav(${a.id})" aria-label="${L==='ru'?'В избранное':'Favorite'}">${HEART}</button></div>
+    return`<a class="cd" href="${workPath(a.id)}" onclick="return cdClick(event,${a.id})">
+      <div class="ci" style="aspect-ratio:1/${catRatio(a)}">${thumb}<span class="ph" style="display:none">${tt}</span>${countBadge}${vidBadge}<button class="fv ${FAV.has(a.id)?'on':''}" data-fav="${a.id}" onclick="event.preventDefault();event.stopPropagation();tFav(${a.id})" aria-label="${L==='ru'?'В избранное':'Favorite'}">${HEART}</button></div>
       <div class="cb2">
         <div class="ctt">${tt}</div>
         <div class="cm">${mm}. ${a.s} ${u}. ${a.y}</div>
         <div class="cft"><span class="cp">${priceHTML(a)}</span>${a.sold?'':`<span class="cby">${L==='ru'?'Купить':'Buy'}</span>`}</div>
       </div>
-    </div>`;
+    </a>`;
   });
   // раскладка по колонкам: каждую карточку — в самую короткую, высоту считаем по размеру холста
   const n=catCols(),hs=Array(n).fill(0),cols=Array.from({length:n},()=>[]);
@@ -794,6 +803,8 @@ function rC(){
   ob();
 }
 let catN=0;
+// клик по карточке: обычный — окно работы без перехода; Ctrl/Cmd/Shift/Alt — браузер сам откроет страницу работы
+function cdClick(e,id){if(e.button||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return true;e.preventDefault();oM(id);return false;}
 function resetF(){F='all';['cPr','cSz','cAv'].forEach(i=>document.getElementById(i).value='');rF();rC();}
 // размеры в см [высота, ширина]; у диптиха «40×30 + 40×30» ширины складываются
 function dims(a){
@@ -824,7 +835,7 @@ function rFav(){
 }
 function showFav(){F='fav';rF();rC();document.getElementById('catalog').scrollIntoView({behavior:'smooth'});}
 // строка о работе для сообщения Маше; проданная — «продано» вместо цены, noPrice — без цены и пометки
-function workLine(a,noPrice){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}${noPrice?'':a.sold?(L==='ru'?', продано':', sold'):`, ${a.p.toLocaleString('ru-RU')} ₽`} - ${SITE}/#work-${a.id}`;}
+function workLine(a,noPrice){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}${noPrice?'':a.sold?(L==='ru'?', продано':', sold'):`, ${a.p.toLocaleString('ru-RU')} ₽`} - ${SITE}${workPath(a.id)}`;}
 function askFav(){
   const ws=W.filter(a=>FAV.has(a.id));
   const head=L==='ru'?'Здравствуйте, Мария! Меня заинтересовали работы с вашего сайта:':'Hello Maria! I am interested in these works from your website:';
@@ -848,11 +859,12 @@ function toast(t){const el=document.getElementById('toast');el.textContent=t;el.
 function shareWork(id){
   const a=W.find(x=>x.id===id);if(!a)return;
   goal('share',{id});
-  const url=`${SITE}/${L==='en'?'?lang=en':''}#work-${id}`,title=`${L==='ru'?a.t:a.te} - ${L==='ru'?'Мария Полушкина':'Maria Polushkina'}`;
+  const url=SITE+workPath(id),title=`${L==='ru'?a.t:a.te} - ${L==='ru'?'Мария Полушкина':'Maria Polushkina'}`;
   if(navigator.share){navigator.share({title,url}).catch(()=>{});return;}
   copyText(url).then(ok=>toast(ok?(L==='ru'?'Ссылка на работу скопирована':'Link copied'):url));
 }
-function openFromHash(){const m=location.hash.match(/^#work-(\d+)$/);if(m&&W.length)oM(+m[1]);}
+// #work-<id> — окно работы (старые ссылки), #try-<id> — сразу примерка (кнопка со страницы работы /work/<id>/)
+function openFromHash(){const m=location.hash.match(/^#(work|try)-(\d+)$/);if(m&&W.length)m[1]==='try'?tryOpen(+m[2]):oM(+m[2]);}
 addEventListener('hashchange',openFromHash);
 
 /* Заставка — один ролик за текстом (tools/hero собирает его заранее из оригинала аниматора): картина, фон вокруг, края, фактура, море с волнами,
@@ -1058,6 +1070,7 @@ function oM(id){
   carBuild(getMedia(a),workAlt(a));
   document.getElementById('mT').textContent=tt;
   document.getElementById('mM').innerHTML=`<span>${mm}</span><span>${a.s} ${u}</span><span>${a.y}</span>`;
+  document.getElementById('mW').href=workPath(id);
   mPrice(a);
   // проданная: вместо «Купить» — «Хочу похожую» тем же путём в личку Маши
   const buy=a.sold
@@ -1130,7 +1143,8 @@ function tryOpen(id){
   if(T.photo&&!T.sample){if(T.pxcm)T.w=T.wc*T.pxcm;tryHint(T.pxcm?'hintReal':'hintPhoto');tryRender();}
   else trySample();
 }
-function tryClose(){if(T.cal)tryCalEnd();document.getElementById('try').classList.remove('on');}
+function tryClose(){if(T.cal)tryCalEnd();document.getElementById('try').classList.remove('on');
+  if(/^#try-/.test(location.hash))history.replaceState(null,'',location.pathname+location.search);}
 
 function tryBg(url,w,h,pxcm,sample){T.bw=w;T.bh=h;T.pxcm=pxcm;T.sample=sample;const b=document.getElementById('tryBg');
   b.alt=sample?(L==='ru'?'Пример интерьера с диваном':'Sample interior with a sofa'):(L==='ru'?'Фото вашей стены':'Photo of your wall');b.src=url;}

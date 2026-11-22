@@ -1,17 +1,1341 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://artpolushkina.com/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/"/>
   </url>
   <url>
     <loc>https://artpolushkina.com/?lang=en</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/"/>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/"/>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/"/>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/87/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/87/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/87/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/87/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-5.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/87/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/87/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/87/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/87/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-87-5.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/86/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/86/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/86/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/86/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-86.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/86/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/86/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/86/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/86/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-86.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/85/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/85/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/85/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/85/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-4.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/85/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/85/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/85/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/85/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-85-4.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/84/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/84/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/84/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/84/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-84.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/84/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/84/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/84/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/84/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-84.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/83/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/83/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/83/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/83/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-83.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/83/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/83/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/83/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/83/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-83.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/82/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/82/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/82/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/82/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-82.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/82/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/82/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/82/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/82/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-82.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/1/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/1/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/1/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-1.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/1/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/1/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/1/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-1.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/3/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/3/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-3-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/3/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/3/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-3-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/4/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/4/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/4/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-4.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/4/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/4/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/4/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-4.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/5/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/5/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-5.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/5/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/5/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-5.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/6/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/6/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/6/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-6.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/6/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/6/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/6/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-6.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/7/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/7/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/7/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-7.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/7/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/7/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/7/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-7.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/8/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/8/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/8/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-8.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/8/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/8/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/8/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/8/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-8.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/9/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/9/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/9/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-9.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/9/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/9/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/9/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/9/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-9.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/10/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/10/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/10/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/10/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-10.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/10/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/10/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/10/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/10/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-10.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/11/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/11/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/11/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/11/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-11.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/11/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/11/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/11/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/11/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-11.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/12/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/12/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/12/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/12/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-12.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/12/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/12/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/12/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/12/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-12.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/13/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/13/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/13/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/13/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-13.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/13/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/13/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/13/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/13/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-13.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/14/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/14/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/14/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/14/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-14.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/14/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/14/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/14/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/14/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-14.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/16/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/16/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/16/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/16/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-16.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/16/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/16/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/16/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/16/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-16.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/17/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/17/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/17/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/17/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-17.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/17/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/17/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/17/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/17/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-17.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/18/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/18/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/18/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/18/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-18.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/18/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/18/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/18/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/18/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-18.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/19/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/19/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/19/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/19/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-19.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/19/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/19/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/19/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/19/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-19.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/20/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/20/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/20/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/20/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-20.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/20/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/20/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/20/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/20/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-20.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/21/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/21/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/21/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/21/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-21.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/21/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/21/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/21/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/21/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-21.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/23/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/23/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/23/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/23/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-23.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/23/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/23/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/23/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/23/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-23.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/24/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/24/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/24/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/24/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-24.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/24/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/24/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/24/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/24/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-24.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/25/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/25/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/25/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/25/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-25.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/25/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/25/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/25/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/25/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-25.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/26/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/26/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/26/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/26/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-26.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/26/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/26/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/26/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/26/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-26.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/27/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/27/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/27/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/27/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-27.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/27/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/27/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/27/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/27/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-27.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/28/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/28/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/28/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/28/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-28.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/28/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/28/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/28/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/28/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-28.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/29/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/29/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/29/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/29/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-29-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/29/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/29/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/29/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/29/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-29-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/30/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/30/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-30.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/30/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/30/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-30.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/31/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/31/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/31/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/31/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-31.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/31/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/31/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/31/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/31/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-31.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/32/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/32/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/32/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/32/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-32.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/32/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/32/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/32/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/32/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-32.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/33/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/33/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/33/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/33/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-33.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/33/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/33/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/33/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/33/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-33.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/34/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/34/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/34/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/34/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-34.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/34/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/34/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/34/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/34/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-34.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/35/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/35/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/35/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/35/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-35.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/35/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/35/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/35/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/35/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-35.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/36/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/36/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/36/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/36/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-36-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/36/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/36/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/36/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/36/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-36-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/37/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/37/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/37/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/37/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-37.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/37/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/37/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/37/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/37/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-37.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/38/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/38/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/38/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/38/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-38.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/38/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/38/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/38/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/38/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-38.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/39/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/39/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/39/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/39/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-39.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/39/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/39/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/39/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/39/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-39.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/41/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/41/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/41/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/41/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-41.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/41/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/41/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/41/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/41/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-41.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/42/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/42/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/42/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/42/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-42.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/42/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/42/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/42/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/42/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-42.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/43/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/43/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/43/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/43/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-43.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/43/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/43/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/43/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/43/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-43.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/44/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/44/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/44/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/44/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-44.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/44/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/44/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/44/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/44/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-44.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/45/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/45/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/45/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/45/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-45.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/45/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/45/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/45/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/45/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-45.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/46/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/46/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/46/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/46/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-46.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/46/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/46/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/46/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/46/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-46.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/47/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/47/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/47/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/47/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-47.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/47/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/47/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/47/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/47/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-47.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/48/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/48/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/48/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/48/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-48.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/48/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/48/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/48/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/48/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-48.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/49/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/49/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/49/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/49/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-49.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/49/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/49/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/49/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/49/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-49.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/50/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/50/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/50/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/50/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-50.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/50/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/50/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/50/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/50/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-50.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/51/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/51/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/51/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/51/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-51.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/51/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/51/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/51/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/51/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-51.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/52/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/52/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/52/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/52/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-52.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/52/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/52/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/52/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/52/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-52.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/53/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/53/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/53/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/53/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-53.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/53/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/53/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/53/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/53/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-53.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/54/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/54/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/54/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/54/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-54.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/54/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/54/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/54/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/54/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-54.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/55/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/55/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/55/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/55/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-55.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/55/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/55/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/55/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/55/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-55.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/56/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/56/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/56/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/56/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-56.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/56/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/56/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/56/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/56/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-56.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/57/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/57/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/57/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/57/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-57.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/57/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/57/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/57/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/57/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-57.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/58/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/58/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/58/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/58/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-58.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/58/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/58/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/58/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/58/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-58.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/59/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/59/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/59/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/59/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-59.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/59/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/59/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/59/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/59/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-59.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/60/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/60/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/60/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/60/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-60.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/60/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/60/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/60/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/60/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-60.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/61/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/61/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/61/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/61/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-61.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/61/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/61/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/61/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/61/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-61.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/62/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/62/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/62/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/62/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-62.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/62/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/62/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/62/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/62/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-62.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/63/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/63/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/63/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/63/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-63.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/63/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/63/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/63/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/63/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-63.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/64/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/64/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/64/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/64/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-64.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/64/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/64/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/64/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/64/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-64.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/65/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/65/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/65/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/65/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-65.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/65/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/65/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/65/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/65/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-65.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/66/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/66/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/66/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/66/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-66.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/66/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/66/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/66/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/66/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-66.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/68/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/68/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/68/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/68/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-68.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/68/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/68/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/68/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/68/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-68.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/69/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/69/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/69/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/69/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-69.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/69/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/69/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/69/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/69/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-69.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/70/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/70/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/70/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/70/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-70.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/70/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/70/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/70/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/70/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-70.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/71/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/71/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/71/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/71/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-71.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/71/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/71/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/71/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/71/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-71.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/72/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/72/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/72/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/72/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-72.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/72/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/72/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/72/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/72/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-72.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/73/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/73/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/73/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/73/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-73-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/73/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/73/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/73/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/73/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-73-2.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/74/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/74/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/74/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/74/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-74.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/74/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/74/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/74/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/74/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-74.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/75/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/75/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/75/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/75/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-75.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/75/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/75/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/75/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/75/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-75.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/76/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/76/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/76/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/76/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-76.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/76/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/76/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/76/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/76/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-76.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/77/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/77/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/77/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/77/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-77.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/77/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/77/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/77/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/77/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-77.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/78/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/78/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/78/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/78/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-78.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/78/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/78/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/78/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/78/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-78.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/79/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/79/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/79/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/79/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-79.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/79/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/79/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/79/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/79/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-79.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/work/80/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/80/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/80/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/80/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-80.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://artpolushkina.com/en/work/80/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://artpolushkina.com/work/80/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://artpolushkina.com/en/work/80/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://artpolushkina.com/work/80/"/>
+    <image:image><image:loc>https://artpolushkina.com/site/images/work-80.jpg</image:loc></image:image>
   </url>
 </urlset>
