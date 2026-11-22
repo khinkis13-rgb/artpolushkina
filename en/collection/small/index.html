@@ -182,8 +182,9 @@ try{localStorage.setItem('mp_lang',a.getAttribute('data-lang'));}catch(_){e.prev
 var r10=function(x){return Math.max(10,Math.round(x/10)*10);};
 if(!ru){var fx=document.querySelectorAll('.fx[data-p]');if(fx.length)fetch('/fx.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
 var r=j&&j.rub_per;if(!(r&&r.EUR>0&&r.USD>0))return;fx.forEach(function(el){var p=+el.getAttribute('data-p');if(p>0)el.textContent='\u2248 \u20ac'+r10(p/r.EUR).toLocaleString('en-US')+' \u00b7 $'+r10(p/r.USD).toLocaleString('en-US');});}).catch(function(){});}
-var buy=document.getElementById('buy');
-if(buy)buy.addEventListener('click',function(){copyText(P.msg).then(function(ok){if(ok)toast(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear');});goal(P.sold?'sold_ask':'buy',{id:P.id});});
+document.querySelectorAll('[data-ch]').forEach(function(b){b.addEventListener('click',function(){var ch=b.getAttribute('data-ch');
+copyText(P.msg).then(function(ok){if(ok)toast(ch==='mail'?(ru?'Текст письма скопирован - вставьте его в письмо, если он не появился сам':'Message copied - paste it into the email if it did not appear')
+:(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear'));});goal(P.sold?'sold_ask':'buy',{id:P.id,ch:ch});});});
 var sh=document.getElementById('share');
 if(sh)sh.addEventListener('click',function(){goal('share',{id:P.id});
 var done=function(){copyText(P.url).then(function(ok){toast(ok?(ru?'Ссылка на работу скопирована':'Link copied'):P.url);});};

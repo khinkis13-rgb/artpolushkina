@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Мария Полушкина - современная художница, Москва</title>
-<meta name="description" content="Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 10 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.">
+<meta name="description" content="Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 11 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.">
 <!-- Подтверждение прав на сайт: вставить значения и раскомментировать -->
 <meta name="yandex-verification" content="b8d1f227ca43ce27">
 <!-- <meta name="google-site-verification" content="ЗНАЧЕНИЕ_ИЗ_SEARCH_CONSOLE"> -->
@@ -29,7 +29,7 @@
 <meta name="twitter:image" content="https://artpolushkina.com/site/images/og-cover.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Person","@id":"https://artpolushkina.com/#maria","name":"Мария Полушкина","alternateName":"Maria Polushkina","jobTitle":"Художница","birthDate":"1985","birthPlace":{"@type":"Place","name":"Москва"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Freie Universität Berlin"},"url":"https://artpolushkina.com/","image":"https://artpolushkina.com/site/images/artist-photo.jpg","sameAs":["https://instagram.com/artpolushkina","https://t.me/artpolushkina"]},
+{"@type":"Person","@id":"https://artpolushkina.com/#maria","name":"Мария Полушкина","alternateName":"Maria Polushkina","jobTitle":"Художница","birthDate":"1985","birthPlace":{"@type":"Place","name":"Москва"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Freie Universität Berlin"},"url":"https://artpolushkina.com/","image":"https://artpolushkina.com/site/images/artist-photo.jpg","sameAs":["https://instagram.com/artpolushkina","https://t.me/artpolushkina","https://www.saatchiart.com/mariapolushkina","https://cube.market/artists/mariia-polushkina","https://bizar.art/author/mariya-polushkina-p8t9","https://moongallery.eu/artist/maria-polushkina/","https://kvartiras.com/dn10/"]},
 {"@type":"WebSite","@id":"https://artpolushkina.com/#site","url":"https://artpolushkina.com/","name":"Мария Полушкина","alternateName":"Maria Polushkina","inLanguage":["ru","en"],"author":{"@id":"https://artpolushkina.com/#maria"},"publisher":{"@id":"https://artpolushkina.com/#maria"}}
 ]}
 </script>
@@ -254,7 +254,14 @@ a.cd,a.cd:hover{display:block;color:inherit}
 .mp{font-family:var(--fd);font-size:1.7rem;font-weight:500;color:var(--burg);margin-bottom:24px}
 .mt{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:28px;background:var(--burg);color:#fff;font-size:.88rem;border:none;cursor:pointer;transition:.3s;text-decoration:none}
 .mt:hover{background:var(--mars);color:#fff;transform:translateY(-2px)}
-.mt svg{width:18px;height:18px;fill:#fff}
+.mt svg{width:18px;height:18px;fill:#fff;flex:none}
+/* строка доставки под ценой и другие каналы под «Купить» (WhatsApp, почта / Email, Telegram) */
+.m-ship{font-size:.8rem;color:var(--wg);line-height:1.5;margin:-16px 0 22px}
+.m-ship:empty{display:none}
+.m-ch{margin-top:10px;font-size:.8rem;color:var(--wg);line-height:1.5}
+.m-ch:empty{display:none}
+.m-ch a{color:var(--char);text-decoration:underline;text-decoration-color:var(--lg);text-underline-offset:3px}
+.m-ch a:hover{color:var(--burg);text-decoration-color:currentColor}
 
 /* CONTACT */
 .co{background:var(--navy-d);color:var(--canvas);text-align:center}
@@ -309,6 +316,10 @@ a.cd,a.cd:hover{display:block;color:inherit}
 .fbar .fb-n svg{width:14px;height:14px;color:var(--terra)}
 .fbar .fb-go{background:var(--burg);color:#fff}
 .fbar .fb-go:hover{background:var(--mars)}
+.fbar .fb-go{display:inline-flex;align-items:center;gap:7px}
+.fbar .fb-go svg,.fbar .fb-i svg{width:14px;height:14px;fill:currentColor;flex:none}
+.fbar .fb-i{background:transparent;color:var(--canvas);padding:9px;display:inline-flex;align-items:center;opacity:.8}
+.fbar .fb-i:hover{opacity:1;color:var(--gold-s)}
 .toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);z-index:400;background:var(--char);color:var(--canvas);padding:11px 18px;border-radius:12px;font-size:.84rem;max-width:calc(100% - 32px);text-align:center;opacity:0;pointer-events:none;transition:.3s var(--e)}
 .toast.vis{opacity:1;transform:translate(-50%,0)}
 .m-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
@@ -391,6 +402,8 @@ a.cd,a.cd:hover{display:block;color:inherit}
   .mr .meta span+span::before{content:' · '}
   .mwp{margin:0 0 6px;font-size:.78rem}
   .mp{font-size:1.45rem;margin-bottom:0}
+  .m-ship{margin:2px 0 0;font-size:.76rem}
+  .m-ch{text-align:center;margin-top:8px}
   .m-cta{position:sticky;bottom:0;z-index:5;margin:0 -20px;padding:12px 20px calc(14px + env(safe-area-inset-bottom));background:var(--canvas);box-shadow:0 -8px 16px -8px rgba(45,42,38,.12)}
   .mt{width:100%;justify-content:center;padding:12px 20px}
   .m-acts{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:10px}
@@ -432,7 +445,7 @@ a.cd,a.cd:hover{display:block;color:inherit}
   <div class="hi">
     <div class="ht">
       <h1 data-ru="Мария<br><span class='ac'>Полушкина</span>" data-en="Maria<br><span class='ac'>Polushkina</span>">Мария<br><span class="ac">Полушкина</span></h1>
-      <p class="hs" data-ru="Художник. Живёт и работает в Москве. Работы в частных коллекциях 10 стран и в Copelouzos Family Art Museum, Афины." data-en="Artist based in Moscow. Works in private collections across 10 countries and the Copelouzos Family Art Museum, Athens.">Художник. Живёт и работает в Москве. Работы в частных коллекциях 10 стран и в Copelouzos Family Art Museum, Афины.</p>
+      <p class="hs" data-ru="Художник. Живёт и работает в Москве. Работы в частных коллекциях 11 стран и в Copelouzos Family Art Museum, Афины." data-en="Artist based in Moscow. Works in private collections across 11 countries and the Copelouzos Family Art Museum, Athens.">Художник. Живёт и работает в Москве. Работы в частных коллекциях 11 стран и в Copelouzos Family Art Museum, Афины.</p>
       <div class="hl">
         <a href="#" id="heroTg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a>
         <a href="#" id="heroIg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instagram</a>
@@ -538,11 +551,13 @@ a.cd,a.cd:hover{display:block;color:inherit}
       <div class="meta" id="mM"></div>
       <a class="mwp" id="mW" href="/work/"><span data-ru="Страница работы →" data-en="Work page →">Страница работы →</span></a>
       <div class="mp" id="mP"></div>
+      <p class="m-ship" id="mShip"></p>
       <div class="m-cta">
       <a href="#" class="mt" id="mB" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        <span id="mBt" data-ru="Купить в Telegram" data-en="Buy via Telegram">Купить в Telegram</span>
+        <span id="mBt">Купить в Telegram</span>
       </a>
+      <p class="m-ch" id="mCh"></p>
       <div class="m-acts">
         <button class="m2 try-go" onclick="tryOpen(curId)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg><span data-ru="Примерить на стене" data-en="Try on your wall">Примерить на стене</span></button>
         <button class="m2" id="mFav" onclick="tFav(curId)" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-ru="В избранное" data-en="Favorite">В избранное</span></button>
@@ -557,6 +572,7 @@ a.cd,a.cd:hover{display:block;color:inherit}
 <div class="fbar" id="fbar">
   <button class="fb-n" onclick="showFav()"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z" fill="currentColor"/></svg><span id="fbarN"></span></button>
   <button class="fb-go" onclick="askFav()" id="fbarGo"></button>
+  <span id="fbarCh" style="display:contents"></span>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -646,8 +662,8 @@ function rAll(){rAbout();rExhibitions();rPress();rContacts();rF();rC();rFav();}
 
 /* ── ЯЗЫК ── */
 const META={
-  ru:{t:'Мария Полушкина - современная художница, Москва',d:'Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 10 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.'},
-  en:{t:'Maria Polushkina - Contemporary Artist, Moscow',d:'Original paintings by Maria Polushkina, acrylic on canvas. Works in private collections in 10 countries. Catalog with prices, try on your wall, buy directly from the artist.'}};
+  ru:{t:'Мария Полушкина - современная художница, Москва',d:'Картины Марии Полушкиной: холст, акрил. Работы в частных коллекциях 11 стран. Каталог с ценами, примерка на стене, покупка напрямую у художницы.'},
+  en:{t:'Maria Polushkina - Contemporary Artist, Moscow',d:'Original paintings by Maria Polushkina, acrylic on canvas. Works in private collections in 11 countries. Catalog with prices, try on your wall, buy directly from the artist.'}};
 // тексты страницы на языке L (без перерисовки каталога и разделов из данных — это rAll)
 function applyL(){
   document.getElementById('lB').textContent=L==='ru'?'EN':'RU';
@@ -672,7 +688,7 @@ function tL(){
     history.replaceState(history.state,'',u.pathname+u.search+u.hash);}catch(_){}
   applyL();
   rAll();
-  if(curId!=null)document.getElementById('mW').href=workPath(curId);
+  if(curId!=null){document.getElementById('mW').href=workPath(curId);const a=W.find(x=>x.id===curId);if(a){mPrice(a);mBuy(a);}}
   goal('lang_'+L);
 }
 // цена: рубли; в EN — «₽68,000» и под ними мельче «≈ €720 · $780» (если есть курс)
@@ -742,14 +758,14 @@ function rContacts(){
   const tgSvg=`<svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`;
   const igSvg=`<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>`;
   const emSvg=`<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`;
-  const phSvg=`<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`;
-  document.getElementById('contactLinks').innerHTML=`
-    <a href="${dmUrl}" target="_blank" rel="noopener" class="cl">${tgSvg}<span>${L==='ru'?'Написать в Telegram':'Message on Telegram'}</span></a>
-    <a href="mailto:${c.email}" class="cl">${emSvg}${c.email}</a>
-    <a href="https://instagram.com/${igHandle}" target="_blank" rel="noopener" class="cl">${igSvg}@${igHandle}</a>
-    ${c.phone?`<a href="tel:${c.phone}" class="cl">${phSvg}${c.phone}</a>`:''}`;
+  // телефон Маши — это WhatsApp (её ответ 22.11); иностранцам первыми WhatsApp и почта, у своих первым Telegram
+  const cl={
+    tg:`<a href="${dmUrl}" target="_blank" rel="noopener" class="cl">${tgSvg}<span>${L==='ru'?'Написать в Telegram':'Message on Telegram'}</span></a>`,
+    wa:waNum()?`<a href="https://wa.me/${waNum()}" target="_blank" rel="noopener" class="cl" title="${phoneTxt(c.phone)}">${CH_SVG.wa}<span>WhatsApp ${phoneTxt(c.phone)}</span></a>`:'',
+    mail:`<a href="mailto:${c.email}" class="cl">${emSvg}${c.email}</a>`,
+    ig:`<a href="https://instagram.com/${igHandle}" target="_blank" rel="noopener" class="cl">${igSvg}@${igHandle}</a>`};
+  document.getElementById('contactLinks').innerHTML=(L==='en'?['wa','mail','tg','ig']:['tg','wa','mail','ig']).map(k=>cl[k]).join('\n');
   document.getElementById('footerText').innerHTML=`© 2026 ${L==='ru'?'Мария Полушкина':'Maria Polushkina'} · <a href="mailto:${c.email}" style="color:var(--wg)">${c.email}</a> · <a href="${L==='en'?'/en':''}/work/" style="color:var(--wg);white-space:nowrap">${L==='ru'?'Все работы списком':'All works'}</a>`;
-  if(curId==null)document.getElementById('mB').href=dmUrl; // открытое окно работы держит ссылку с текстом «Купить» (её ставит oM)
 }
 
 /* ── CATALOG ── */
@@ -829,24 +845,55 @@ function rFav(){
   const n=FAV.size;
   document.getElementById('fbar').classList.toggle('vis',n>0);
   document.getElementById('fbarN').textContent=n;
-  document.getElementById('fbarGo').textContent=L==='ru'?(n===1?'Написать о работе':'Написать о работах'):'Ask the artist';
+  const chs=chList();
+  document.getElementById('fbarGo').innerHTML=CH_SVG[chs[0]]+(L==='ru'?(n===1?'Написать о работе':'Написать о работах'):'Ask the artist');
+  document.getElementById('fbarGo').title=chName(chs[0]);
+  document.getElementById('fbarCh').innerHTML=chs.slice(1).map(ch=>`<button class="fb-i" onclick="askFav('${ch}')" aria-label="${chName(ch)}" title="${chName(ch)}">${CH_SVG[ch]}</button>`).join('');
   const mf=document.getElementById('mFav');
   if(curId!=null){mf.classList.toggle('on',FAV.has(curId));mf.querySelector('span').textContent=FAV.has(curId)?(L==='ru'?'В избранном':'Saved'):(L==='ru'?'В избранное':'Favorite');}
 }
 function showFav(){F='fav';rF();rC();document.getElementById('catalog').scrollIntoView({behavior:'smooth'});}
 // строка о работе для сообщения Маше; проданная — «продано» вместо цены, noPrice — без цены и пометки
 function workLine(a,noPrice){return`«${L==='ru'?a.t:a.te}» (№${a.id}), ${a.s} ${L==='ru'?'см':'cm'}${noPrice?'':a.sold?(L==='ru'?', продано':', sold'):`, ${a.p.toLocaleString('ru-RU')} ₽`} - ${SITE}${workPath(a.id)}`;}
-function askFav(){
+function askFav(ch){
+  ch=ch||chList()[0];
   const ws=W.filter(a=>FAV.has(a.id));
   const head=L==='ru'?'Здравствуйте, Мария! Меня заинтересовали работы с вашего сайта:':'Hello Maria! I am interested in these works from your website:';
-  tgMsg(head+'\n'+ws.map(a=>workLine(a)).join('\n'));
-  goal('fav_send',{n:ws.length});
+  sendCh(ch,head+'\n'+ws.map(a=>workLine(a)).join('\n'),L==='ru'?'Работы с сайта':'Works from your website');
+  goal('fav_send',{n:ws.length,ch});
 }
+/* Каналы связи с Машей — один и тот же готовый текст: Telegram (личка), WhatsApp (номер из contacts.phone), почта.
+   У своих первым Telegram, иностранцам — WhatsApp и почта (Telegram у них реже); номер и почта — только из content.json */
+const CH_SVG={tg:`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`,
+  wa:`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>`,
+  mail:`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`};
 function dmHandle(){const c=CT.contacts||CT_FB.contacts;return(c.telegramDm||c.telegram||'artpolushkina').replace('@','');}
-// личка в Telegram: текст подставляется в ссылку и дублируется в буфер — вставить, если клиент его не подхватил
-function tgMsg(text,noOpen){
-  if(!noOpen)window.open(`https://t.me/${dmHandle()}?text=${encodeURIComponent(text)}`,'_blank','noopener');
-  copyText(text).then(ok=>{if(ok)toast(L==='ru'?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear');});
+function waNum(){const c=CT.contacts||CT_FB.contacts;return String(c.phone||'').replace(/\D/g,'').replace(/^8(\d{10})$/,'7$1');}  // «8 926…» из админки → 7926…
+function mailTo(){const c=CT.contacts||CT_FB.contacts;return c.email||'';}
+// +79260209744 → +7 926 020-97-44 (другие номера — как есть)
+function phoneTxt(p){const d=String(p||'').replace(/\D/g,'');return /^7\d{10}$/.test(d)?`+7 ${d.slice(1,4)} ${d.slice(4,7)}-${d.slice(7,9)}-${d.slice(9)}`:String(p||'');}
+function chList(){return(L==='en'?['wa','mail','tg']:['tg','wa','mail']).filter(ch=>ch==='wa'?waNum():ch==='mail'?mailTo():true);}
+function chName(ch){return ch==='tg'?'Telegram':ch==='wa'?'WhatsApp':L==='ru'?'почта':'Email';}
+function chUrl(ch,text,subj){
+  const q=encodeURIComponent(text);
+  return ch==='wa'?`https://wa.me/${waNum()}?text=${q}`
+    :ch==='mail'?`mailto:${mailTo()}?subject=${encodeURIComponent(subj||'')}&body=${q}`
+    :`https://t.me/${dmHandle()}?text=${q}`;
+}
+// ссылка на канал; клики по [data-ch] не считаются целями contact_* (их считает buy / sold_ask / fav_send)
+function chA(ch,text,subj,cls,inner){
+  return`<a${cls?` class="${cls}"`:''} data-ch="${ch}" href="${chUrl(ch,text,subj).replace(/&/g,'&amp;').replace(/"/g,'%22')}"${ch==='mail'?'':' target="_blank" rel="noopener"'}>${inner}</a>`;
+}
+// текст дублируется в буфер — вставить, если мессенджер или почта его не подхватили
+function copyMsg(text,ch){
+  copyText(text).then(ok=>{if(ok)toast(ch==='mail'
+    ?(L==='ru'?'Текст письма скопирован - вставьте его в письмо, если он не появился сам':'Message copied - paste it into the email if it did not appear')
+    :(L==='ru'?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear'));});
+}
+function sendCh(ch,text,subj){
+  const u=chUrl(ch,text,subj);
+  if(ch==='mail')location.href=u;else window.open(u,'_blank','noopener');
+  copyMsg(text,ch);
 }
 function copyText(t){
   if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).then(()=>true,()=>false);
@@ -1072,20 +1119,28 @@ function oM(id){
   document.getElementById('mM').innerHTML=`<span>${mm}</span><span>${a.s} ${u}</span><span>${a.y}</span>`;
   document.getElementById('mW').href=workPath(id);
   mPrice(a);
-  // проданная: вместо «Купить» — «Хочу похожую» тем же путём в личку Маши
-  const buy=a.sold
-    ?(L==='ru'?`Здравствуйте, Мария! Мне очень понравилась ваша работа ${workLine(a,true)}. Вижу, что она продана - есть ли похожие?`
-      :`Hello Maria! I really love your work ${workLine(a,true)}. I see it has been sold - do you have anything similar?`)
-    :(L==='ru'?'Здравствуйте, Мария! Хочу купить работу ':'Hello Maria! I would like to buy ')+workLine(a);
-  const mB=document.getElementById('mB'),mBt=document.getElementById('mBt');
-  mBt.setAttribute('data-ru',a.sold?'Хочу похожую':'Купить в Telegram');mBt.setAttribute('data-en',a.sold?'Ask about similar':'Buy via Telegram');
-  mBt.textContent=mBt.getAttribute('data-'+L);
-  mB.href=`https://t.me/${dmHandle()}?text=${encodeURIComponent(buy)}`;
-  mB.onclick=()=>{tgMsg(buy,true);goal(a.sold?'sold_ask':'buy',{id:a.id});};
+  mBuy(a);
   rFav();
   goal('work_open',{id});
   document.getElementById('ov').classList.add('on');
   document.body.style.overflow='hidden';
+}
+// «Купить»: главная кнопка — первый канал языка, под ней остальные ссылками; тот же текст во всех.
+// Проданная: вместо «Купить» — «Хочу похожую» теми же путями. Доставка — строкой под ценой (не у проданных)
+function mBuy(a){
+  const t=L==='ru'?a.t:a.te;
+  const buy=a.sold
+    ?(L==='ru'?`Здравствуйте, Мария! Мне очень понравилась ваша работа ${workLine(a,true)}. Вижу, что она продана - есть ли похожие?`
+      :`Hello Maria! I really love your work ${workLine(a,true)}. I see it has been sold - do you have anything similar?`)
+    :(L==='ru'?'Здравствуйте, Мария! Хочу купить работу ':'Hello Maria! I would like to buy ')+workLine(a);
+  const subj=L==='ru'?(a.sold?`Похожая на «${t}» (№${a.id})`:`Работа «${t}» (№${a.id})`):(a.sold?`Similar to “${t}” (No. ${a.id})`:`Painting “${t}” (No. ${a.id})`);
+  const chs=chList(),ch0=chs[0],mB=document.getElementById('mB');
+  mB.href=chUrl(ch0,buy,subj);mB.dataset.ch=ch0;
+  if(ch0==='mail'){mB.removeAttribute('target');mB.removeAttribute('rel');}else{mB.target='_blank';mB.rel='noopener';}
+  mB.innerHTML=CH_SVG[ch0]+`<span id="mBt">${a.sold?(L==='ru'?'Хочу похожую':'Ask about similar'):(L==='ru'?'Купить в ':'Buy via ')+(ch0==='mail'&&L==='ru'?'письме':chName(ch0))}</span>`;
+  document.getElementById('mCh').innerHTML=chs.length>1?(L==='ru'?'или ':'or ')+chs.slice(1).map(ch=>chA(ch,buy,subj,'',chName(ch))).join(' · '):'';
+  document.getElementById('mShip').textContent=a.sold?'':L==='ru'?'Доставка по России и в другие страны - стоимость по запросу.':'Worldwide shipping - cost on request.';
+  document.querySelectorAll('.m-cta [data-ch]').forEach(el=>el.onclick=()=>{copyMsg(buy,el.dataset.ch);goal(a.sold?'sold_ask':'buy',{id:a.id,ch:el.dataset.ch});});
 }
 function xM(){
   curId=null;
@@ -1115,7 +1170,7 @@ const TX={
     hintPhoto:'Drag the painting into place and adjust the size with the slider; rotate with the slider or two fingers. For exact size tap “Set the scale”. Your photo stays on your device.',
     hintReal:'The painting at real size. Drag it along the wall; tilt it with the Rotate slider or two fingers.',hintCal:'Put the red dots on the edges of the object',
     real:'Real size',saved:'Image saved',badLen:'Stretch the line and enter its length in centimetres',
-    sendMsg:'Hello Maria! I am trying on my wall the work ',sendToast:'Image saved - attach it to your Telegram message',badPhoto:'Could not open the photo'}
+    sendMsg:'Hello Maria! I am trying on my wall the work ',sendToast:'Image saved - attach it to your message',badPhoto:'Could not open the photo'}
 };
 const tx=k=>TX[L][k];
 function tryHint(k){document.getElementById('tryHint').textContent=tx(k);}
@@ -1275,11 +1330,11 @@ function trySend(){
   const text=tx('sendMsg')+workLine(T.a);
   const canFiles=navigator.canShare&&navigator.canShare({files:[new File([new Blob(['x'])],'a.jpg',{type:'image/jpeg'})]});
   if(canFiles){
-    const go=b=>navigator.share({files:[new File([b],tryName(),{type:'image/jpeg'})],text}).catch(e=>{if(e.name!=='AbortError'){dl(b,tryName());tgMsg(text,true);toast(tx('sendToast'));}});
+    const go=b=>navigator.share({files:[new File([b],tryName(),{type:'image/jpeg'})],text}).catch(e=>{if(e.name!=='AbortError'){dl(b,tryName());copyText(text);toast(tx('sendToast'));}});
     T.blob?go(T.blob):tryCompose().then(go);
     return;
   }
-  tgMsg(text);
+  sendCh(chList()[0],text,L==='ru'?'Примерка на стене':'Trying it on my wall');
   tryCompose().then(b=>{dl(b,tryName());setTimeout(()=>toast(tx('sendToast')),400);});
 }
 
@@ -1328,9 +1383,9 @@ function toggleMenu(){
   else{sp[0].style.cssText='';sp[1].style.cssText='';sp[2].style.cssText='';}
 }
 document.querySelectorAll('.nk a').forEach(a=>a.addEventListener('click',closeMenu));
-// цели Метрики на переходы в контакты (шапка заставки, блок «Связаться», подвал); «Купить» (#mB) считается отдельно
+// цели Метрики на переходы в контакты (шапка заставки, блок «Связаться», подвал); «Купить» и его каналы ([data-ch]) считаются отдельно
 document.addEventListener('click',e=>{
-  const a=e.target.closest&&e.target.closest('a[href]');if(!a||a.id==='mB')return;
+  const a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('data-ch'))return;
   const h=a.getAttribute('href')||'',where=a.closest('#hero')?'hero':a.closest('#contact')?'contact':a.closest('footer')?'footer':'other';
   const g=/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//.test(h)?'contact_wa':/^https?:\/\/t\.me\//.test(h)?'contact_tg':/instagram\.com\//.test(h)?'contact_ig'
     :/^mailto:/.test(h)?'contact_mail':/^tel:/.test(h)?'contact_phone':'';

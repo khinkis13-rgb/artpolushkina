@@ -241,6 +241,39 @@ def buy_text(a, lang, dm):
     return ('Здравствуйте, Мария! Хочу купить работу ' if ru else 'Hello Maria! I would like to buy ') + line
 
 
+def buy_subj(a, lang):
+    """Тема письма — как mBuy в index.html."""
+    t, n = title_of(a, lang), a['id']
+    if lang == 'ru':
+        return f'Похожая на «{t}» (№{n})' if a.get('sold') else f'Работа «{t}» (№{n})'
+    return f'Similar to “{t}” (No. {n})' if a.get('sold') else f'Painting “{t}” (No. {n})'
+
+
+def channels(ctx, lang):
+    """Каналы связи по порядку языка: у своих первым Telegram, иностранцам — WhatsApp и почта (как chList в index.html)."""
+    order = ['tg', 'wa', 'mail'] if lang == 'ru' else ['wa', 'mail', 'tg']
+    return [c for c in order if (c != 'wa' or ctx.wa) and (c != 'mail' or ctx.email)]
+
+
+def ch_url(ctx, ch, msg, subj):
+    q = urllib.parse.quote(msg, safe='')
+    if ch == 'wa':
+        return f'https://wa.me/{ctx.wa}?text={q}'
+    if ch == 'mail':
+        return f'mailto:{ctx.email}?subject={urllib.parse.quote(subj, safe="")}&body={q}'
+    return f'https://t.me/{ctx.dm}?text={q}'
+
+
+def ch_name(ch, lang):
+    return {'tg': 'Telegram', 'wa': 'WhatsApp'}.get(ch) or ('почта' if lang == 'ru' else 'Email')
+
+
+def ch_link(ctx, ch, msg, subj, cls, inner, id_=''):
+    attrs = (f' class="{cls}"' if cls else '') + (f' id="{id_}"' if id_ else '')
+    tgt = '' if ch == 'mail' else ' target="_blank" rel="noopener"'
+    return f'<a{attrs} data-ch="{ch}" href="{esc(ch_url(ctx, ch, msg, subj))}"{tgt}>{inner}</a>'
+
+
 # ───────────────────────── общие куски страницы ─────────────────────────
 
 FONTS = [('Cormorant Garamond', 'cormorant-n', '300 600'), ('Nunito Sans', 'nunito-n', '300 500')]
@@ -354,6 +387,16 @@ CSS_DESC = """.wd{font-size:1rem;line-height:1.75;color:var(--char);margin:-4px 
 @media(max-width:600px){.wd{font-size:.96rem;margin-bottom:20px}}
 """
 
+# «Купить»: строка доставки под ценой и другие каналы под кнопкой — только на страницах работ
+CSS_BUY = """.ship{font-size:.84rem;color:var(--wg);line-height:1.5;margin:-14px 0 22px}
+.och{margin-top:10px;font-size:.84rem;color:var(--wg);line-height:1.5}
+.och a{color:var(--char);text-decoration:underline;text-decoration-color:var(--lg);text-underline-offset:3px}
+.och a:hover{color:var(--burg);text-decoration-color:currentColor}
+@media(max-width:600px){.och{text-align:center}}
+"""
+
+WA_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>')
+MAIL_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>')
 TG_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>')
 TRY_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg>')
 SHARE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg>')
@@ -384,8 +427,9 @@ try{localStorage.setItem('mp_lang',a.getAttribute('data-lang'));}catch(_){e.prev
 var r10=function(x){return Math.max(10,Math.round(x/10)*10);};
 if(!ru){var fx=document.querySelectorAll('.fx[data-p]');if(fx.length)fetch('/fx.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
 var r=j&&j.rub_per;if(!(r&&r.EUR>0&&r.USD>0))return;fx.forEach(function(el){var p=+el.getAttribute('data-p');if(p>0)el.textContent='\\u2248 \\u20ac'+r10(p/r.EUR).toLocaleString('en-US')+' \\u00b7 $'+r10(p/r.USD).toLocaleString('en-US');});}).catch(function(){});}
-var buy=document.getElementById('buy');
-if(buy)buy.addEventListener('click',function(){copyText(P.msg).then(function(ok){if(ok)toast(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear');});goal(P.sold?'sold_ask':'buy',{id:P.id});});
+document.querySelectorAll('[data-ch]').forEach(function(b){b.addEventListener('click',function(){var ch=b.getAttribute('data-ch');
+copyText(P.msg).then(function(ok){if(ok)toast(ch==='mail'?(ru?'Текст письма скопирован - вставьте его в письмо, если он не появился сам':'Message copied - paste it into the email if it did not appear')
+:(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear'));});goal(P.sold?'sold_ask':'buy',{id:P.id,ch:ch});});});
 var sh=document.getElementById('share');
 if(sh)sh.addEventListener('click',function(){goal('share',{id:P.id});
 var done=function(){copyText(P.url).then(function(ok){toast(ok?(ru?'Ссылка на работу скопирована':'Link copied'):P.url);});};
@@ -546,9 +590,10 @@ def render_work(ctx, i, lang):
     og_desc = ' · '.join(x for x in [facts, ptxt.rstrip('.')] if x)
     wd = (ctx.desc.get(wid) or {}).get(lang, '')   # одобренная видимая подпись; пусто — страница как была
     wa = (ctx.alt.get(wid) or {}).get(lang, '')    # что изображено — только alt главного фото и JSON-LD
-    ld_desc = wd or wa or desc
-    if wd:
-        desc = og_desc = clip(wd)
+    ld_desc = wa or wd or desc        # для разметки — что изображено; подпись короткая и образная
+    if wd:                            # подпись Маши — первой, факты и цена остаются (иначе сниппет без сути)
+        desc = clip(f'{wd} {desc}')
+        og_desc = clip(f"{wd.rstrip('.')} · {og_desc}")
     main_alt = work_alt(a, lang) + (f'. {wa}' if wa else '')
 
     imgs = images_of(a)
@@ -614,7 +659,7 @@ def render_work(ctx, i, lang):
     ld = {'@context': 'https://schema.org', '@graph': [art, breadcrumbs_ld(crumbs)]}
 
     ru_path = page_path(wid, 'ru')
-    css = page_css(ctx) + (CSS_DESC if wd else '')
+    css = page_css(ctx) + CSS_BUY + (CSS_DESC if wd else '')
     h = [head(lang, title, desc, path, alt_path, ru_path, extra, ld, css), '<body>', nav(lang, alt_path), '<main>',
          breadcrumbs_html(crumbs), '<article class="wk">', '<div class="wm">']
 
@@ -644,28 +689,35 @@ def render_work(ctx, i, lang):
     # описание и покупка
     meta = ''.join(f'<span>{esc(x)}</span>' for x in [
         (mm[:1].upper() + mm[1:]) if mm else '', f'{sz} {cm}' if sz else '', str(year) if year else ''] if x)
-    msg = buy_text(a, lang, ctx.dm)
-    tg = f'https://t.me/{ctx.dm}?text={urllib.parse.quote(msg, safe="")}'
+    msg, subj = buy_text(a, lang, ctx.dm), buy_subj(a, lang)
+    chs = channels(ctx, lang)
+    ch0 = chs[0]
     if ru:
-        btn = 'Хочу похожую' if a.get('sold') else 'Купить в Telegram'
+        btn = 'Хочу похожую' if a.get('sold') else 'Купить в ' + ('письме' if ch0 == 'mail' else ch_name(ch0, lang))
         try_href, try_txt, share_txt = f'/#try-{wid}', 'Примерить на стене', 'Поделиться'
     else:
-        btn = 'Ask about similar' if a.get('sold') else 'Buy via Telegram'
+        btn = 'Ask about similar' if a.get('sold') else 'Buy via ' + ch_name(ch0, lang)
         try_href, try_txt, share_txt = f'/?lang=en#try-{wid}', 'Try on your wall', 'Share'
+    icon = {'tg': TG_SVG, 'wa': WA_SVG, 'mail': MAIL_SVG}[ch0]
+    buy_html = [ch_link(ctx, ch0, msg, subj, 'mt', f'{icon}<span>{btn}</span>', 'buy')]
+    if len(chs) > 1:
+        buy_html.append(f'<p class="och">{"или" if ru else "or"} ' + ' · '.join(
+            ch_link(ctx, c, msg, subj, '', ch_name(c, lang)) for c in chs[1:]) + '</p>')
+    ship = [] if a.get('sold') else [
+        f'<p class="ship">{"Доставка по России и в другие страны - стоимость по запросу." if ru else "Worldwide shipping - cost on request."}</p>']
     ds_facts = ', '.join(x for x in [mm, f'{sz} {cm}' if sz else '', str(year) if year else ''] if x)
     if ru:
-        ds = (f'Оригинальная работа Марии Полушкиной, {ds_facts}. Работы художницы находятся в частных коллекциях 10 стран. '
+        ds = (f'Оригинальная работа Марии Полушкиной, {ds_facts}. Работы художницы находятся в частных коллекциях 11 стран. '
               + ('Работа продана - можно спросить художницу о похожих.' if a.get('sold')
                  else 'Покупка напрямую у художницы, примерка на стене - на сайте.'))
     else:
-        ds = (f"Original work by Maria Polushkina, {ds_facts}. The artist's works are held in private collections in 10 countries. "
+        ds = (f"Original work by Maria Polushkina, {ds_facts}. The artist's works are held in private collections in 11 countries. "
               + ('This work has been sold - you can ask the artist about similar ones.' if a.get('sold')
                  else 'Buy directly from the artist and try the painting on your wall right on the website.'))
     h += ['<div class="wi">', f'<h1>{esc(t_raw)}</h1>', f'<div class="meta">{meta}</div>']
     if wd:
         h.append(f'<p class="wd">{esc(wd)}</p>')
-    h += [price_block(a, lang, 'mp'),
-          f'<a class="mt" id="buy" href="{esc(tg)}" target="_blank" rel="noopener">{TG_SVG}<span>{btn}</span></a>',
+    h += [price_block(a, lang, 'mp'), *ship, *buy_html,
           '<div class="acts">',
           f'<a class="m2 try" href="{try_href}">{TRY_SVG}<span>{try_txt}</span></a>',
           f'<button type="button" class="m2" id="share">{SHARE_SVG}<span>{share_txt}</span></button>',
@@ -711,7 +763,7 @@ def render_list(ctx, lang):
         title = 'Все работы - Мария Полушкина, картины с ценами'
         desc = (f'Все работы Марии Полушкиной: {n} {plural_ru(n, "картина", "картины", "картин")}, холст, акрил. '
                 'Размеры и цены, примерка на стене, покупка напрямую у художницы.')
-        lead = ('Оригинальные работы Марии Полушкиной. Работы художницы находятся в частных коллекциях 10 стран. '
+        lead = ('Оригинальные работы Марии Полушкиной. Работы художницы находятся в частных коллекциях 11 стран. '
                 'Покупка напрямую у художницы.')
         h1 = 'Все работы'
         cnt = f'{n} {plural_ru(n, "работа", "работы", "работ")}'
@@ -719,7 +771,7 @@ def render_list(ctx, lang):
         title = 'All works - Maria Polushkina, paintings with prices'
         desc = (f'All works by Maria Polushkina: {n} paintings, canvas, acrylic. '
                 'Sizes and prices, try a painting on your wall, buy directly from the artist.')
-        lead = ("Original works by Maria Polushkina. The artist's works are held in private collections in 10 countries. "
+        lead = ("Original works by Maria Polushkina. The artist's works are held in private collections in 11 countries. "
                 'Buy directly from the artist.')
         h1 = 'All works'
         cnt = f'{n} works'
@@ -1004,6 +1056,8 @@ def main():
     contacts = content.get('contacts') or {}
     ctx = Ctx(root, out, works, contacts)
     ctx.dm = str(contacts.get('telegramDm') or contacts.get('telegram') or 'artpolushkina').lstrip('@')
+    ctx.wa = re.sub(r'^8(\d{10})$', r'7\1', re.sub(r'\D', '', str(contacts.get('phone') or '')))   # телефон Маши — WhatsApp
+    ctx.email = str(contacts.get('email') or '').strip()
 
     wids = {a['id'] for a in works}
     ctx.desc = load_texts(args.descriptions or os.path.join(root, 'tools', 'seo', 'descriptions.json'), wids, True)

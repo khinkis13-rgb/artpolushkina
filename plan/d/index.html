@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Тексты к картинам</title>
+<title>Подписи к картинам</title>
 <link rel="icon" type="image/png" sizes="32x32" href="../../site/images/favicon-32.png">
 <style>
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
@@ -28,7 +28,7 @@ b,strong{font-weight:500}
 [hidden]{display:none!important}
 button,textarea{font:inherit;color:inherit}
 button{cursor:pointer;-webkit-tap-highlight-color:transparent}
-.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
 
 /* прогресс */
 .top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -42,56 +42,82 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 /* шапка */
 header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
 .sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.toq{display:inline-flex;align-items:center;min-height:44px;margin:-6px 0 8px;font-size:15px;color:var(--navy-d)}
 .k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-h1,h2{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1,h2,h3{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
 h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
-.lead{font-size:18px;color:#4a443d;max-width:640px}
-.lead+.lead,.lead+.lst,.lst+.lead{margin-top:12px}
+.lead{font-size:18px;color:#4a443d;max-width:660px}
+.lead+.lead{margin-top:12px}
 .lead b{color:var(--navy-d)}
-.lst{max-width:640px;margin-left:20px;font-size:17px;color:#4a443d}
-.lst li{padding:3px 0}
-.lead.muted{font-size:16px;color:var(--wg)}
 .muted{color:var(--wg);font-size:14.5px}
-.why{font-size:15.5px;color:#5b544c;margin-bottom:16px}
+.why{font-size:15.5px;color:#5b544c;margin-bottom:16px;max-width:660px}
 .sec{padding-top:40px}
-.sec>.k{margin-bottom:0}
+.sec>h2{font-size:clamp(28px,6vw,38px);line-height:1.1;margin-bottom:8px}
 
-/* пробы и вопросы */
-.q{padding:30px 0 34px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
-.q .n{display:flex;align-items:center;gap:12px;font:italic 400 30px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
-.q.done .n::after{content:"есть ответ";font:500 11px/1 var(--fb);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:5px 8px;border-radius:3px}
-.q h2{font-size:clamp(26px,5.6vw,34px);line-height:1.12;margin-bottom:12px;overflow-wrap:anywhere}
-.q h2 small{display:block;font:italic 400 .62em/1.3 var(--fd);color:var(--burg);margin-top:4px}
-.wh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.wh .ph{flex:none;display:block;width:96px;height:96px;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.wh .ph img{width:100%;height:100%;object-fit:contain;padding:3px}
-.wh .n{margin:0 0 4px}
-.wh h2{margin:0}
+/* уже на сайте */
+.live{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+.lv{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:8px;padding:12px 14px;min-width:0}
+.lv .ph{flex:none;width:72px;height:72px}
+.lv .ph img{width:100%;height:100%;object-fit:contain}
+.lv div{min-width:0}
+.lv .tt{font:500 12px/1.3 var(--fb);letter-spacing:.06em;color:var(--wg)}
+.lv .cp{font:italic 400 21px/1.25 var(--fd);color:var(--navy-d);margin-top:3px;overflow-wrap:break-word}
+.badge{display:inline-block;margin-left:6px;font:500 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:4px 7px;border-radius:3px;vertical-align:1px}
 
-.opts{display:flex;flex-direction:column;gap:8px}
-.opt{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:50px;padding:12px 14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:16px;line-height:1.4;font-weight:400;transition:border-color .15s,background .15s}
-.opt::before{content:"";flex:none;width:20px;height:20px;margin-top:1px;border:1.5px solid #b3a99c;border-radius:50%;background:#fff;transition:all .15s}
-.opts.multi .opt::before{border-radius:5px}
+/* кандидаты */
+.q{padding:28px 0 30px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
+.wh{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.ph{flex:none;display:block;width:88px;height:88px;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:contain;padding:3px}
+.wh .n{font:italic 400 22px/1 var(--fd);color:var(--gold);margin-bottom:4px;font-variant-numeric:lining-nums;font-feature-settings:'lnum';display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.q.done .wh .n::after{content:"отмечено";font:500 10.5px/1 var(--fb);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:4px 7px;border-radius:3px}
+.wh h3{font-size:clamp(22px,5vw,28px);line-height:1.12;overflow-wrap:anywhere}
+.cap{font:italic 400 clamp(24px,5.4vw,31px)/1.25 var(--fd);color:var(--char);margin:4px 0 8px;overflow-wrap:break-word}
+.cap::before{content:"«";color:var(--gold)}.cap::after{content:"»";color:var(--gold)}
+.src{font-size:13.5px;color:var(--wg);margin-bottom:14px}
+.src a{color:var(--wg)}
+.src details{margin-top:4px}
+.src summary{display:inline-flex;align-items:center;min-height:36px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;list-style:none}
+.src summary::-webkit-details-marker{display:none}
+.src .full{white-space:pre-wrap;font-size:14.5px;line-height:1.5;color:#4a443d;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-top:6px;overflow-wrap:break-word}
+
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{flex:1 1 150px;display:flex;align-items:center;gap:10px;min-height:48px;padding:10px 14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:16px;line-height:1.3;font-weight:400;transition:border-color .15s,background .15s}
+.opt::before{content:"";flex:none;width:20px;height:20px;border:1.5px solid #b3a99c;border-radius:50%;background:#fff;transition:all .15s}
 .opt[aria-checked="true"]{border-color:var(--navy);background:var(--sel);color:var(--navy-d)}
 .opt[aria-checked="true"]::before{border-color:var(--navy);background:var(--navy);box-shadow:inset 0 0 0 4px #fff}
-.opts.multi .opt[aria-checked="true"]::before{box-shadow:none;background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
-.opt>span{min-width:0;overflow-wrap:break-word}
-.opt small{display:block;font:500 11.5px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.opt .tx{font-size:17px;line-height:1.5;font-weight:300;color:var(--char)}
-.opt[aria-checked="true"] .tx{color:var(--navy-d)}
+.opt.no[aria-checked="true"]{border-color:#b9aea1;background:#F1ECE4;color:#5b544c}
+.opt.no[aria-checked="true"]::before{border-color:#9a8f82;background:#9a8f82}
 @media (hover:hover){.opt:hover{border-color:#c9bca8}}
-.opt:focus-visible,.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.fld{display:block;margin-top:12px}
+.opt:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.fld{display:block;margin-top:10px}
 .fld>span{display:block;font-size:14.5px;color:var(--wg);margin-bottom:6px}
-textarea{width:100%;font-size:16px;font-weight:400;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:56px;-webkit-appearance:none;appearance:none;outline:none;resize:vertical;line-height:1.45;display:block}
-textarea.big{min-height:110px}
+textarea{width:100%;font-size:16px;font-weight:400;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;min-height:52px;-webkit-appearance:none;appearance:none;outline:none;resize:vertical;line-height:1.45;display:block}
+textarea.big{min-height:120px}
 textarea:focus{border-color:var(--navy)}
+
+/* другие работы */
+.more{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.more>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:12px 16px;cursor:pointer;list-style:none;font-size:17px;font-weight:400;color:var(--navy-d)}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::after{content:"";flex:none;width:10px;height:10px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+.more[open]>summary::after{transform:rotate(-135deg) translateY(-3px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:4px 12px 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;min-width:0}
+.card.has{border-color:var(--navy)}
+.card .ph{width:100%;height:150px;border:0;border-radius:4px}
+.card .tt{font:400 15px/1.3 var(--fb);color:var(--navy-d);margin:8px 0 6px;overflow-wrap:anywhere}
+.card .tt i{font-style:normal;color:var(--gold);margin-right:4px}
+.card textarea{min-height:48px;font-size:15.5px;padding:9px 11px}
+
+.ark{margin-top:6px}
+.ark .hint{font-size:15px;color:#5b544c;background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px;margin:10px 0 4px;white-space:pre-line}
 
 /* отправка */
 #send{padding:38px 0 30px;scroll-margin-top:60px}
 #send h2{font-size:clamp(30px,6.4vw,40px);line-height:1.1;margin-bottom:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:12px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:17px;font-weight:500;letter-spacing:.01em;text-decoration:none}
-.btn.big{width:100%;min-height:58px;font-size:18px;margin-top:16px}
+.btn.big{width:100%;min-height:58px;font-size:18px;margin-top:6px}
 .btn.lite{background:#fff;color:var(--navy-d);border-color:var(--line)}
 .btn[disabled]{opacity:.45;cursor:default}
 #sendNote{margin-top:10px;min-height:22px}
@@ -104,26 +130,26 @@ textarea:focus{border-color:var(--navy)}
 .sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
 
 @media (max-width:359px){
-  .wh .ph{width:76px;height:76px}
-  .opt{padding:11px 12px;gap:10px}
-  .opt .tx{font-size:16px}
+  .ph{width:72px;height:72px}
+  .opt{padding:9px 12px;font-size:15.5px}
+  .grid{grid-template-columns:1fr;padding:4px 8px 12px}
 }
+@media (min-width:640px){.live{grid-template-columns:1fr 1fr}}
 @media (min-width:760px){
   body{font-size:18px}
   header{padding:56px 0 44px}
-  .q{padding:42px 0 46px}
-  .wh{gap:22px}
-  .wh .ph{width:140px;height:140px}
+  .q{padding:36px 0 38px}
+  .wh{gap:20px}
+  .wh .ph{width:120px;height:120px}
   .btn.big{width:auto;min-width:320px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.toq{display:inline-flex;align-items:center;min-height:44px;margin:-6px 0 8px;font-size:15px;color:var(--navy-d)}
 </style>
 </head>
 <body>
 
 <div class="top" role="status" aria-live="polite">
-  <div class="wrap"><span id="cnt">Отвечено <b>0</b></span><a class="go" href="#send">К отправке</a></div>
+  <div class="wrap"><span id="cnt">Отмечено <b>0</b></span><a class="go" href="#send">К отправке</a></div>
   <div class="pb"><i id="pb"></i></div>
 </div>
 
@@ -131,28 +157,46 @@ textarea:focus{border-color:var(--navy)}
   <header>
     <img class="sig" src="../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
     <a class="toq" href="../q/">← Вопросы по сайту</a>
-    <div class="k">artpolushkina.com · тексты к картинам</div>
-    <h1>Тексты к картинам</h1>
-    <p class="lead">Мань, у каждой работы на сайте теперь своя страница: её находят в Google и Яндексе, ей делятся ссылкой, на неё будут вести Pinterest и площадки. Сейчас там название, техника, размер и цена.</p>
-    <p class="lead"><b>Что уже сделано.</b> К каждой картине написал, что на ней изображено, - сухо и по делу. Этот текст видят только поисковики (например, Google Картинки) и программы для незрячих, на странице его нет. Тут от тебя ничего не нужно.</p>
-    <p class="lead"><b>Что предлагаю обсудить.</b> Короткую подпись, которую видит гость. Не объяснение смысла, а одну-две фразы в тон работе, с воздухом, чтобы было что додумать. Ниже - мои пробы на четырёх работах, по три варианта. Я мог промахнуться мимо того, что ты вкладывала, - тогда так и скажи, это тоже ответ.</p>
-    <p class="lead"><b>Зачем это может пригодиться</b></p>
-    <ul class="lst">
-      <li>Площадки вроде Saatchi Art просят текст к каждой работе. Если он будет, выложим быстро и в одном тоне.</li>
-      <li>Игра слов в названиях при переводе на английский теряется, а одна фраза возвращает иностранцу часть смысла.</li>
-      <li>С подписью у работы проще задержаться и ею поделиться.</li>
-      <li>Поисковикам нравятся страницы с живым текстом, но это вторично: основное для поиска уже сделано.</li>
-    </ul>
-    <p class="lead muted">Это совсем не обязательно. Без подписей сайт работает как сейчас.</p>
+    <div class="k">artpolushkina.com · подписи к картинам</div>
+    <h1>Подписи к картинам</h1>
+    <p class="lead">Мань, спасибо за ответы! Как договорились - подписи пишешь ты, я только подправляю. Две уже стоят на сайте:</p>
+    <div class="live" id="live"></div>
+    <p class="lead" style="margin-top:22px">Ниже - то, что я нашёл в твоём канале: к <b id="nCand">0</b> работам ты уже писала что-то своими словами. Я только вырезал по фразе-две, ничего не переписывал. Отметь, что ставим, что поправить, а что не нужно.</p>
+    <p class="lead">К любой другой работе можно написать своё - список ниже, он свёрнут. Не ко всем нужны: пустые так и останутся без подписи.</p>
+    <p class="lead muted" style="font-size:15.5px">Всё сохраняется в этом браузере, можно по частям. В конце одна кнопка - и придёт мне в Telegram.</p>
   </header>
 
-  <section class="sec"><div class="k">Пробы</div><div id="tries"></div></section>
-  <section class="sec"><div class="k">Вопросы</div><div id="qs"></div></section>
+  <section class="sec" id="fromTg">
+    <div class="k">Из твоего канала</div>
+    <h2>Твои слова о картинах</h2>
+    <p class="why">Крупно - что предлагаю поставить. Под ним ссылка на пост и весь текст, если захочешь взять другой кусок.</p>
+    <div id="cands"></div>
+  </section>
+
+  <section class="sec" id="others">
+    <div class="k">Свои подписи</div>
+    <h2>Написать к другим работам</h2>
+    <p class="why">Здесь работы, к которым в канале подходящего не нашлось. Пиши, к каким захочешь, остальные оставь пустыми.</p>
+    <details class="more" id="moreBox">
+      <summary><span id="moreSum">Показать работы</span></summary>
+      <div class="grid" id="grid"></div>
+    </details>
+  </section>
+
+  <section class="sec" id="arkSec">
+    <div class="k">Стихи</div>
+    <h2>Строки Анны Аркатовой</h2>
+    <div class="ark">
+      <p class="hint" id="arkHint"></p>
+      <label class="fld"><span>Если Аня разрешит - вставь строки и напиши, к какой работе</span>
+        <textarea class="big" id="arkTa" rows="4" placeholder="Например: к «Время» - …"></textarea></label>
+    </div>
+  </section>
 
   <section id="send">
     <div class="k">Готово?</div>
-    <h2>Отправить ответы</h2>
-    <p class="why">Соберу всё, что ты ответила, в одно сообщение: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
+    <h2>Отправить Диме</h2>
+    <p class="why">Соберу в одно сообщение только то, что ты отметила или написала: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
     <button class="btn big" id="sendBtn" type="button">Отправить Диме</button>
     <p class="muted" id="sendNote"></p>
     <div id="out" hidden>
@@ -176,183 +220,157 @@ textarea:focus{border-color:var(--navy)}
 <script>
 (function(){
 'use strict';
-var KEY='mp_d2', TG='Dmitry_Khinkis', MAXURL=3500;
+var KEY='mp_d3', TG='Dmitry_Khinkis', MAXURL=3500, CH='https://t.me/artpolushkina/';
 
-/* пробы подписей: три варианта к каждой работе (картинки - прямо из site/images) */
-var VL=['А - с улыбкой','Б - тише','В - одной фразой'], VK=['А','Б','В'];
-var T=[
- {id:87,name:'«Подлинность»',v:[
-  'Маска получилась внушительная. Держать её приходится на вытянутых руках. Зато со стороны не отличить.',
-  'Чем больше маска, тем меньше того, кто под ней. Но держит её он сам.',
-  'Самое настоящее здесь - усилие.']},
- {id:66,name:'CHEERS!',v:[
-  'Одна бутылка на двоих, и голова, кажется, тоже одна. Пробка уже в полёте. Бокалы посчитаны: два и один. Кто-то начал раньше.',
-  'Бывают люди, с которыми одна бутылка - и одна голова на двоих. За них.',
-  'Кто-то начал раньше.']},
- {id:58,name:'«Отбрось всё!»',v:[
-  'Если уж отбрасывать, то всё. Доска позади, верх купальника чуть выше, впереди только синее.',
-  'Решиться - это секунда между доской и водой. Всё лишнее успевает отлететь.',
-  'Лишнее отлетает первым.']},
- {id:8,name:'«Дождаться»',v:[
-  'Когда ждёшь письма, больше ни о чём не думается. Буквально.',
-  'Ожидание занимает всю голову. Даже то место, где было лицо.',
-  'Голова занята.']}
-];
-var Q=[
- {id:'idea',type:'one',title:'Как тебе идея подписей?',opts:[
-  'Нравится, пиши ко всем - я поправлю, где не так',
-  'Только к некоторым, где точно попадает',
-  'Хочу писать сама, а ты подправишь',
-  'Не надо подписей']},
- {id:'whose',type:'many',title:'Чьи ещё слова могли бы стоять рядом с картиной?',sub:'с именем автора, если это не ты',opts:[
-  'Мои собственные - напишу к некоторым работам',
-  'Строки Анны Аркатовой из наших книг (спрошу у неё)',
-  'Отзывы тех, у кого живут мои работы',
-  'Кто-то ещё - напишу ниже',
-  {t:'Никого, не надо',solo:true}],note:'Комментарий, если хочешь'},
- {id:'ready',type:'text',title:'Есть уже готовые тексты или отзывы о работах?',
-  ph:'Например, подписи из книг, посты, слова покупателей. Можно просто написать, где посмотреть.'}
-];
-Q.forEach(function(q){ if(q.opts) q.opts=q.opts.map(function(o){ return typeof o==='string'?{t:o}:o; }); });
-var TOTAL=T.length+Q.length;
+/* уже на сайте (tools/seo/descriptions.json, ok:true) */
+var LIVE=[{"id":87,"t":"Подлинность","img":"site/images/work-87.jpg","cap":"Держать лицо, надеть маску, делать вид."},{"id":58,"t":"ОТБРОСЬ ВСЁ!","img":"site/images/work-58.jpg","cap":"Про лёгкость, свободу и принятие себя."}];
+/* кандидаты из канала @artpolushkina: id, t, img, cand, post, date, full */
+var CAND=[{"id":86,"t":"Ваза с цветами","img":"site/images/work-86.jpg","cand":"Экспериментирую с цветами (во всех смыслах).","post":392,"date":"17.08.2026","full":"Экспериментирую с цветами (во всех смыслах).\n\nВАЗА С ЦВЕТАМИ\nХолст, акрил. 50х40 см.\n\nВ наличии 📩"},{"id":85,"t":"Расходимся (диптих)","img":"site/images/work-85.jpg","cand":"Диптих, в котором картины можно менять местами!","post":376,"date":"23.05.2026","full":"Ещё один диптих, в котором картины можно менять местами!\n\nРАСХОДИМСЯ\nДиптих. Холст, акрил. 40х60 см.\n\nВ наличии"},{"id":84,"t":"Неопределённость","img":"site/images/work-84.jpg","cand":"В этом во всём чувствуется некая неопределённость.","post":370,"date":"03.05.2026","full":"В этом во всём чувствуется некая\n\nНЕОПРЕДЕЛЁННОСТЬ\nХолст, акрил. 70х50 см.\n\nДоступна\n\nКаталог с ценами по запросу📩"},{"id":83,"t":"Девушка","img":"site/images/work-83.jpg","cand":"Кажется, эта lady следит за трендами.","post":363,"date":"29.03.2026","full":"Что такое вкус? Что есть мода? Такими вопросами задаюсь. Кажется, эта lady следит за трендами.\n\nДЕВУШКА\nХолст, акрил. 50х40 см.\n\nДоступна"},{"id":82,"t":"Музыка нас связала","img":"site/images/work-82.jpg","cand":"Картина, которую можно перевернуть и повесить вверх ногами.","post":366,"date":"07.04.2026","full":"Картина, которую можно перевернуть и повесить вверх ногами. Сзади специально есть два подвеса.\n\nМУЗЫКА НАС СВЯЗАЛА\nХолст, акрил. 70х50 см.\n\nДоступна"},{"id":1,"t":"ГАМАК","img":"site/images/work-1.jpg","cand":"Ишь, как высоко забрались!","post":361,"date":"22.03.2026","full":"Ишь, как высоко забрались!\n\nГАМАК\nХолст, акрил. 70х60 см.\n\nДоступна"},{"id":3,"t":"БУТОНЫ","img":"site/images/work-3-2.jpg","cand":"Солнце, весна и пробуждение.","post":357,"date":"07.03.2026","full":"Солнце, весна и пробуждение на моей новой картине.\n\nБУТОНЫ\nХолст, акрил. 70х60 см.\n\nДоступна."},{"id":4,"t":"The Man Who Sold the World","img":"site/images/work-4.jpg","cand":"Есть ещё песня такая.","post":311,"date":"13.02.2026","full":"Есть ещё песня такая.\n\nThe Man Who Sold The World\nХолст, акрил. 70х60 см.\n\nДоступна."},{"id":5,"t":"ПЕРСПЕКТИВНЫЙ МОЛОДОЙ ЧЕЛОВЕК","img":"site/images/work-5.jpg","cand":"Играюсь с перспективой.","post":309,"date":"08.02.2026","full":"Новая картина. Играюсь с перспективой.\n\nПЕРСПЕКТИВНЫЙ МОЛОДОЙ ЧЕЛОВЕК\nХолст, акрил. 50х50 см.\n\nДоступна"},{"id":6,"t":"МОЛИТВА","img":"site/images/work-6.jpg","cand":"Для меня молитва – это прежде всего про благодарность, которая меня переполняет.","post":368,"date":"12.04.2026","full":"Я так люблю картину «Молитва». Я вижу её сразу, как захожу домой. Специально повесила её прямо напротив двери. Мне нравится ощущать приятное тепло, когда я на неё смотрю. Для меня молитва – это прежде всего про благодарность, которая меня переполняет. А вокруг такая красочная, яркая, наполненная жизнь. Спасибо!\n\nМОЛИТВА\nХолст, акрил. 90х80 см.\n\nДоступна для приобретения, чтобы вы тоже могли это ощутить!❤️"},{"id":7,"t":"На расПУТЬе","img":"site/images/work-7.jpg","cand":"Шаткое положение, да и ситуация непростая.","post":275,"date":"13.01.2026","full":"Когда смотришь на картину «На расПУТЬе», то сначала видишь прямоугольник красивого серо-голубого цвета. Потом подходишь ближе и видишь две пересекающиеся линии. Подходишь ещё ближе и видишь, что это настоящие золотые нити.\n\nПосередине расположена еле заметная фигура человека. На плечах у него коромысло, а на нём груз. Что это? Мешки или, может, капли? Представим, что это капли. Получается, что если одна капля лопнет, то человек потеряет равновесие. А если лопнут обе капли, то баланс сохранится. Шаткое положение, да и ситуация непростая.\n\nОднако, как и всегда в жизни, нужно принимать решения и делать выбор. Идти вверх или вниз, по одной дороге или по другой – решать только вам.\n\nНа расПУТЬе\nХолст, акрил, золотая нить. 100х80 см.\n\nВ наличии."},{"id":9,"t":"КИПАРИС","img":"site/images/work-9.jpg","cand":"Кипарис получается!","post":176,"date":"24.11.2025","full":"Кипарис получается!😄\n\nКИПАРИС\nХолст, акрил. 40х30 см.\n\nОчень доступна"},{"id":10,"t":"ПИНИЯ","img":"site/images/work-10.jpg","cand":"Как? Не кипарис получается?)","post":175,"date":"20.11.2025","full":"«Бордовый» период продолжается!\n\nКак? Не кипарис получается?)\n\nПИНИЯ\nХолст, акрил. 40х30 см.\n\nОчень доступна"},{"id":12,"t":"УКРАДКОЙ","img":"site/images/work-12.jpg","cand":"Она как бы украдкой, но очень заинтересованно заглядывает в картину.","post":352,"date":"24.02.2026","full":"Она как бы украдкой, но очень заинтересованно заглядывает в картину.\n\nУКРАДКОЙ\nХолст, акрил. 30х25 см.\n\nДоступна"},{"id":13,"t":"НАКРЫЛО","img":"site/images/work-13.jpg","cand":"Хотелось как-то намекнуть на кипарисы. В итоге снова перевесила игра слов.","post":151,"date":"29.09.2025","full":"Долго думала над названием. Хотелось опять же как-то намекнуть на кипарисы. А то заходили друзья и говорят: «Ой, что это у неё за ёлки на голове?»😂\n\nВ итоге снова перевесила игра слов.\n\nНАКРЫЛО\nХолст, акрил. 90х70 см.\n\nДоступна"},{"id":14,"t":"САД КАМНЕЙ","img":"site/images/work-14.jpg","cand":"Лица людей словно камни, которые пытаются балансировать.","post":152,"date":"03.10.2025","full":"Картина «Сад камней» заставляет нас задуматься о том, как меняется наше общество. Лица людей словно камни, которые пытаются балансировать.\n\nЛюди становятся более холодными и безразличными, перестают в полной мере испытывать искренние эмоции. Они научились их прятать, чтобы не показать уязвимость, в результате становясь похожими на камни – твёрдыми и неподвижными.\n\nХочется не терять это драгоценное умение чувствовать – радоваться, любить, сопереживать, быть благодарным, жить.\n\nСАД КАМНЕЙ\nХолст, акрил. 105х75 см.\n\nДоступна"},{"id":16,"t":"В ПОДВЕШЕННОМ СОСТОЯНИИ","img":"site/images/work-16.jpg","cand":"Немного концептуального искусства. Детали? Да, ищите их!","post":149,"date":"23.09.2025","full":"Немного концептуального искусства. Детали? Да, ищите их!\n\nВ ПОДВЕШЕННОМ СОСТОЯНИИ\nХолст, акрил. 60х70 см.\n\nДоступна."},{"id":18,"t":"ЗАТМЕНИЕ","img":"site/images/work-18.jpg","cand":"Что делать, когда внезапно прилетает рыба в лицо? К тому же золотая..","post":382,"date":"26.07.2026","full":"Что делать, когда внезапно прилетает рыба в лицо? К тому же золотая..\n\nЗАТМЕНИЕ\nХолст, акрил. 90х70 см.\n\nВ наличии.\n\nКартина участвовала в моей персональной выставке «Женщины внутри женщины» в Галерее на Трубной в 2025 году.\n\nКаталог работ по запросу 📩"},{"id":19,"t":"БАЛАНС","img":"site/images/work-19.jpg","cand":"Балансировать в такой позе едва ли получится в реальной жизни. Хотя сисечки и пытаются уравновесить эту незамысловатую конструкцию!","post":81,"date":"30.06.2025","full":"Балансировать в такой позе едва ли получится в реальной жизни. Хотя сисечки и пытаются уравновесить эту незамысловатую конструкцию!😅\n\nДа, это непросто, да, это не всегда удобно, да, нужно приложить неимоверные усилия. Но все мы знаем, что на самом деле возможно всё!\n\nБАЛАНС\nХолст, акрил. 80х90 см.\n\nBALANCE\nAcrylic on canvas. 80x90 cm.\n\nВ наличии / For sale"},{"id":20,"t":"YOU CAN LEAVE YOUR HAT ON","img":"site/images/work-20.jpg","cand":"Well…","post":61,"date":"23.05.2025","full":"Well…\n\nYOU CAN LEAVE YOUR HAT ON\nAcrylic on canvas. 90x70 cm.\n\nFor sale"},{"id":21,"t":"ТАНЦЫ","img":"site/images/work-21.jpg","cand":"Ну что, кто узнал себя?","post":353,"date":"27.02.2026","full":"Ну что, кто узнал себя?😄💃🏽\n\nТАНЦЫ\nХолст, акрил. 80х100 см.\n\nDANCING\nAcrylic on canvas. 80x100 cm.\n\nПолный каталог работ по ссылке в профиле 🔝"},{"id":23,"t":"ГОЛУБОЙ БАРХАТНЫЙ ДИВАН","img":"site/images/work-23.jpg","cand":"Давно люблю сюрреализм. Пусть и у меня будет кусочек.","post":12,"date":"17.03.2025","full":"Давно люблю сюрреализм. Пусть и у меня будет кусочек.\n\nПомню, много лет назад мы большой компанией играли в Скрабл и я составила слово «сюр». А оказалось, что такого слова нет. «Парапарапам», подумала я.\n\nНе стесняйтесь писать про рояль, я уже привыкла!😅 А так это\n\nГОЛУБОЙ БАРХАТНЫЙ ДИВАН\nХолст, акрил. 80х90 см.\n\nBLUE VELVET SOFA\nAcrylic on canvas. 80x90 cm."},{"id":24,"t":"SHE IS ALWAYS A GOOD IDEA","img":"site/images/work-24.jpg","cand":"Каждая женщина — это источник света и креативности, способный вдохновлять и менять мир.","post":42,"date":"28.04.2025","full":"Сегодня расскажу ещё про одну работу из серии «Женщины внутри женщины».\n\nФигура женщины, заключенная в лампочку, напоминает нам о том, как важны наши идеи и мечты, и как они могут освещать путь не только нам, но и окружающим.\n\nКаждая женщина — это источник света и креативности, способный вдохновлять и менять мир.\n\nSHE IS ALWAYS A GOOD IDEA\nAcrylic on canvas. 90x70 cm.\n\nВ наличии / Available"},{"id":25,"t":"ТОЛЬКО ВПЕРЁД!","img":"site/images/work-25.jpg","cand":"Она не сдаётся и продолжает движение с высоко поднятой головой.","post":73,"date":"14.06.2025","full":"Одна из самых важных для меня картин из серии «Женщины внутри женщины». Пожалуй, расскажу про неё немного.\n\nОна смелая, стильная, красивая, успешная, загорелая, она движется вперёд, преодолевая тяжёлые моменты, которые обрушиваются на неё в течение жизни. Она не сдаётся и продолжает движение с высоко поднятой головой. Её платье развивается, а шаг широкий. Возможно, внутри она хрупкая, нежная, ранимая. Но она продолжает уверенно двигаться вперёд не смотря ни на что.\n\nТОЛЬКО ВПЕРЁД\nХолст, акрил. 90х110 см.\n\nВ наличии"},{"id":27,"t":"ВРЕМЯ","img":"site/images/work-27.jpg","cand":"ВРЕМЯ неудобных вопросов или всему своё ВРЕМЯ.","post":390,"date":"07.08.2026","full":"Женщине в жизни чаще приходится сталкиваться с неудобными вопросами. Ну когда ты уже найдёшь себе кого-то? А когда замуж? А когда рожать планируете? А когда «за вторым»? А когда?\n\nИ люди, задавая эти вопросы, порой даже не думают о том, что они неуместны и даже неприличны. Задавая эти вопросы люди не предполагают, что могут ранить человека, который, возможно, уже много лет пытается завести детей, но по какой-то причине это у него не получается.\n\nА у женщин же ещё эти, как его, «часики тикают» (фу).\n\nТак вот эта картина про очередную очень сильную женщину. Мы все есть она в каком-то смысле.\n\nВРЕМЯ неудобных вопросов\nили всему своё ВРЕМЯ.\n\nВРЕМЯ\nХолст, акрил. 90х70 см.\nСерия картин «Женщины внутри женщины»\n\nДоступна!📩"},{"id":28,"t":"ЗАПУТАЛАСЬ","img":"site/images/work-28.jpg","cand":"Порой мы все оказываемся в такой ситуации!","post":178,"date":"27.11.2025","full":"Порой мы все оказываемся в такой ситуации!🧶\n\nЗАПУТАЛАСЬ\nХолст, акрил, золотая нить. 90х70 см.\n\nДоступна.\n\nСмотреть каталог работ"},{"id":30,"t":"ОДИНОЧЕСТВО","img":"site/images/work-30.jpg","cand":"Иногда это я. А так и не скажешь.","post":48,"date":"09.05.2025","full":"Иногда это я. А так и не скажешь.\n\nОДИНОЧЕСТВО\nХолст, акрил. 90х70 см.\n\nLONELINESS\nAcrylic on canvas. 90x70 cm.\n\nВ наличии / For sale"},{"id":32,"t":"ОБНЯТЬ","img":"site/images/work-32.jpg","cand":"Иногда просто хочется обнять.","post":58,"date":"18.05.2025","full":"Иногда просто хочется\n\nОБНЯТЬ\nХолст, акрил. 30х24 см.\n\nTO HUG\nAcrylic on canvas. 30x24 cm.\n\nВ наличии / For sale"},{"id":33,"t":"ОДНА","img":"site/images/work-33.jpg","cand":"Но не все ноты звучат в унисон..","post":54,"date":"15.05.2025","full":"Но не все ноты звучат в унисон..\n\nОДНА\nХолст, акрил. 30х30 см.\n\nALONE\nAcrylic on canvas. 30x30 cm.\n\nВ наличии / For sale"},{"id":34,"t":"ВЗЛЕТЕТЬ","img":"site/images/work-34.jpg","cand":"Стремиться, мечтать, отпускать, лететь, отрываться, вверх, легко","post":62,"date":"26.05.2025","full":"Стремиться, мечтать, отпускать, лететь, отрываться, вверх, легко\n\nВЗЛЕТЕТЬ\nХолст, акрил. 30х24 см.\n\nВ наличии"},{"id":35,"t":"МЕЖДУ","img":"site/images/work-35.jpg","cand":"Я решила назвать игриво, чтобы каждый мог додумать сам.","post":355,"date":"03.03.2026","full":"Вариантов названия было много. Друзья и знакомые в комментариях предлагали свои варианты. Там было и «Межгорье», и «Твин Пикс», и «Лазейка», и “Just do it”, и «Перевал», и «Меч в сердце», и почему-то «Палка в колёсах»!😂\n\nНо я решила назвать игриво, чтобы каждый мог додумать сам.\n\nМЕЖДУ\nХолст, акрил. 70х50 см.\n\nBETWEEN\nAcrylic on canvas. 70x50 cm.\n\nДоступна / For sale"},{"id":36,"t":"УСТАЛА","img":"site/images/work-36-2.jpg","cand":"Хочется только одного – вот так полежать.","post":15,"date":"25.03.2025","full":"В этот пасмурный весенний день хочется только одного – вот так полежать.\n\nУСТАЛА\nХолст, акрил. 70х90 см.\n\nTIRED\nAcrylic on canvas. 70x90 cm."},{"id":37,"t":"СОЗАВИСИМОСТЬ / СЕПАРАЦИЯ","img":"site/images/work-37.jpg","cand":"Эта связь может быть как источником силы, так и ловушкой, ограничивающей свободу.","post":76,"date":"17.06.2025","full":"На картине мы видим двух людей, связанных настоящей золотой нитью. Эта связь может быть как источником силы, так и ловушкой, ограничивающей свободу. Кто это – папа и дочь, мама и сын, пара в отношениях? Что же между ними – созависимость или сепарация?\n\nСозависимость – это тонкая грань между поддержкой и контролем. Говорят, свобода – это умение сохранять свою индивидуальность в отношениях.\n\nСепарация же является важным этапом в нашем развитии. Она позволяет нам стать самостоятельным, обрести свою идентичность и научиться жить не только для других, но и для себя.\n\nОднако все мы знаем, что истинная любовь не ограничивает, а вдохновляет.\n\nНа выставке, один из посетителей заметил: «А ведь если они слегка приблизятся друг к другу, то нити ослабнут и сами спадут!»🤍\n\nСОЗАВИСИМОСТЬ / СЕПАРАЦИЯ\nХолст, акрил, золотая нить. 90х70 см.\n\nВ наличии"},{"id":50,"t":"ПУТЬ","img":"site/images/work-50.jpg","cand":"У каждого в жизни свой уникальный путь.","post":282,"date":"15.01.2026","full":"Становиться/быть художником – это несомненно путь. Ошибки, эксперименты, разочарования, глубокое изучение себя, упорство, цели, мечты. А самое интересное, что каждый день, не смотря ни на что, ты убеждаешься, что сделал правильный выбор.\n\nУ каждого в жизни свой уникальный путь. Плывём дальше с попутным ветром и высоко поднятыми парусами!⛵️\n\nПУТЬ\nХолст, акрил. 90х70 см.\n\nДоступна!\n\nКаталог по ссылке в профиле 📄"},{"id":51,"t":"ГДЕ-ТО В ТБИЛИСИ","img":"site/images/work-51.jpg","cand":"Доброта, забота, искренность. Безусловно одни из лучших воспоминаний юности.","post":413,"date":"06.10.2026","full":"Первый и единственный раз я была в Тбилиси в 1998 на гастролях с театром. Мы жили в грузинских семьях. Дети из этих семей играли в дружественном театре. Я жила у Натии. Помню, как мы с её бабушкой вместе делали чурчхелу и не могли дождаться утра, пока она остынет и можно уже будет её съесть! Доброта, забота, искренность. Безусловно одни из лучших воспоминаний юности.\n\nГДЕ-ТО В ТБИЛИСИ\nХолст, акрил. 30х20 см.\n\nДоступна"},{"id":52,"t":"ЛЕТО","img":"site/images/work-52.jpg","cand":"Кажется, оно уже вот-вот наступит!","post":19,"date":"31.03.2025","full":"Кажется, оно уже вот-вот наступит!☀️🌿\n\nЛЕТО\nХолст, акрил. 60х60 см.\n\nSUMMER\nAcrylic on canvas. 60x60 cm.\n\nВ наличии / Available"},{"id":53,"t":"ГДЕ-ТО В ИТАЛИИ","img":"site/images/work-53.jpg","cand":"Хотелось бы сейчас оказаться где-то в Италии.","post":66,"date":"02.06.2025","full":"Хотелось бы сейчас оказаться\n\nГДЕ-ТО В ИТАЛИИ\nХолст, акрил. 90х70 см.\n\nВ наличии"},{"id":54,"t":"ПОДРУГИ","img":"site/images/work-54.jpg","cand":"Девочки такие девочки, даже украшения себе одинаковые купили в знак дружбы!","post":106,"date":"15.07.2025","full":"Особенность диптиха «Подруги» в том, что если менять картины местами, руки всё равно будут соединяться, тянуться друг к другу.\n\nДевочки такие девочки, даже украшения себе одинаковые купили в знак дружбы!😄\n\nВы тоже так делали с близкими подругами?\n\nПОДРУГИ\nХолст, акрил. 40х60 см.\n\nРабота в наличии"},{"id":56,"t":"ПОСЛЕДНЯЯ КАПЛЯ","img":"site/images/work-56.jpg","cand":"Она про силу и про то, что всегда есть выход. Пусть один, но он есть.","post":174,"date":"18.11.2025","full":"Я точно помню момент, когда я придумала эту картину. Вечер, я укладываю Гошу спать (ему на тот момент 8 лет). Выключен свет, я молча глажу его по голове. Я так вымотана морально и физически, я так устала… И я помню, что сижу в этой темноте и у меня текут слёзы. Ты плачешь тихо, не издавая звуков, чтобы никто не видел и не слышал. И вот я закрываю глаза, а передо мной эта картина.\n\nОна про силу и про то, что всегда есть выход. Пусть один, но он есть. И да, подняться по верёвочной лестнице не всегда легко, расстояние между перекладинами разное – где-то надо чуть больше сил, а местами легче. Всё как в жизни.\n\nПОСЛЕДНЯЯ КАПЛЯ\nХолст, акрил. 90х80 см.\n\nДоступна.\n\nВся информация о картинах вот тут 🤍"},{"id":57,"t":"ПОПЛЫЛИ!","img":"site/images/work-57.jpg","cand":"Что бы ни случилось в жизни, нужно двигаться вперёд.","post":285,"date":"21.01.2026","full":"Что бы ни случилось в жизни, нужно двигаться вперёд. Не останавливаться, идти, бежать, замедляться, плыть по течению или против него, но всё время быть в движении.\n\nПОПЛЫЛИ!\nХолст, акрил. 70х80 см.\n\nДоступна"},{"id":60,"t":"ХОРОШИЙ МУЗЫКАЛЬНЫЙ ВКУС","img":"site/images/work-60.jpg","cand":"Любовь к джазу говорит о том, что у вас хороший музыкальный вкус.","post":137,"date":"31.08.2025","full":"Вчера спонтанно заглянула в лучший джазовый бар The Bix с тайной надеждой встретить там Игоря Ямпольского и вот он, сидит играет на барабанах.\n\nМы вместе учились в Класс-Центре и даже вместе выступали. Сейчас Игорь один из лучших джазовых музыкантов нашей страны. В итоге до двух часов ночи мы болтали, обсуждая в основном, конечно, Класс-Центр, но также музыку и любимые музыкальные стили.\n\nЧто я хочу сказать (и это исключительное моё мнение) – любовь к джазу говорит о том, что у вас\n\nХОРОШИЙ МУЗЫКАЛЬНЫЙ ВКУС\nХолст, акрил. 50х40 см.\n\nКартину можно приобрести."},{"id":61,"t":"ПОСЛЕ","img":"site/images/work-61.jpg","cand":"Обычно «после» хочется прижаться друг к другу, взять за руку, ещё раз прикоснуться, не терять эту связь ещё какое-то время..","post":169,"date":"07.11.2025","full":"Обычно «после» хочется прижаться друг к другу, взять за руку, ещё раз прикоснуться, не терять эту связь ещё какое-то время..\n\nПОСЛЕ\nХолст, акрил. 90х70 см.\n\nДоступна."},{"id":62,"t":"ДОМ","img":"site/images/work-62.jpg","cand":"Не переставайте мечтать!","post":280,"date":"14.01.2026","full":"Со Старым Новым годом, друзья!🌲\n\nНе переставайте мечтать!✨\n\nДОМ\nХолст, акрил. 60х40 см.\n\nДоступна."},{"id":68,"t":"В УНИСОН","img":"site/images/work-68.jpg","cand":"Как здорово найти кого-то в этой жизни, с кем ты сможешь зазвучать в унисон. И вообще зазвучать!","post":290,"date":"28.01.2026","full":"Картина «В унисон» про то, как здорово найти кого-то в этой жизни, с кем ты сможешь зазвучать в унисон. И вообще зазвучать!\n\nВ УНИСОН\nХолст, акрил. 150х100 см.\n\nДоступна.\n\nВсе картины в каталоге в профиле ↑\n\nФото: Ольга Лан"},{"id":70,"t":"КОНТРАСТНЫЙ ДУШ","img":"site/images/work-70.jpg","cand":"Ну что, кто любит петь в душе?","post":394,"date":"04.09.2026","full":"Ну что, кто любит петь в душе?\n\nКОНТРАСТНЫЙ ДУШ\nХолст, акрил. 100х50 см.\n\nДоступна"},{"id":71,"t":"ДОМИКИ","img":"site/images/work-71.jpg","cand":"Такие немного осенние.","post":157,"date":"13.10.2025","full":"Такие немного осенние\n\nДОМИКИ\nХолст, акрил. 60х40 см.\n\nДоступна.\n\nКаталог с работами по ссылке в профиле."},{"id":72,"t":"ЦВЕТЫ","img":"site/images/work-72.jpg","cand":"Давно хотела нарисовать цветы именно на чёрном.","post":110,"date":"22.07.2025","full":"В галереях меня часто привлекают картины с чёрным фоном. У меня же в основном цвет. Давно хотела нарисовать цветы именно на чёрном.\n\nЦВЕТЫ\nХолст, акрил. 50х40 см.\n\nFLOWERS\nAcrylic on canvas. 50x40 cm.\n\nВ наличии 🙌"},{"id":73,"t":"ЧЕРЕЗ МОНОКЛЬ","img":"site/images/work-73-2.jpg","cand":"Мечтательное настроение. Примерно каждый день.","post":125,"date":"25.08.2025","full":"Мечтательное настроение. Примерно каждый день.\n\nЧЕРЕЗ МОНОКЛЬ\nХолст, акрил. 50х50 см.\n\nКартину можно приобрести.\n\nКаталог с ценами по ссылке 🫶"}];
+/* каталог на случай, если catalog.json не загрузится: id, t, img */
+var FB=[{"id":87,"t":"Подлинность","img":"site/images/work-87.jpg"},{"id":86,"t":"Ваза с цветами","img":"site/images/work-86.jpg"},{"id":85,"t":"Расходимся (диптих)","img":"site/images/work-85.jpg"},{"id":84,"t":"Неопределённость","img":"site/images/work-84.jpg"},{"id":83,"t":"Девушка","img":"site/images/work-83.jpg"},{"id":82,"t":"Музыка нас связала","img":"site/images/work-82.jpg"},{"id":1,"t":"ГАМАК","img":"site/images/work-1.jpg"},{"id":3,"t":"БУТОНЫ","img":"site/images/work-3-2.jpg"},{"id":4,"t":"The Man Who Sold the World","img":"site/images/work-4.jpg"},{"id":5,"t":"ПЕРСПЕКТИВНЫЙ МОЛОДОЙ ЧЕЛОВЕК","img":"site/images/work-5.jpg"},{"id":6,"t":"МОЛИТВА","img":"site/images/work-6.jpg"},{"id":7,"t":"На расПУТЬе","img":"site/images/work-7.jpg"},{"id":8,"t":"ДОЖДАТЬСЯ","img":"site/images/work-8.jpg"},{"id":9,"t":"КИПАРИС","img":"site/images/work-9.jpg"},{"id":10,"t":"ПИНИЯ","img":"site/images/work-10.jpg"},{"id":11,"t":"МОРЯК","img":"site/images/work-11.jpg"},{"id":12,"t":"УКРАДКОЙ","img":"site/images/work-12.jpg"},{"id":13,"t":"НАКРЫЛО","img":"site/images/work-13.jpg"},{"id":14,"t":"САД КАМНЕЙ","img":"site/images/work-14.jpg"},{"id":16,"t":"В ПОДВЕШЕННОМ СОСТОЯНИИ","img":"site/images/work-16.jpg"},{"id":17,"t":"ДЕРЖИСЬ","img":"site/images/work-17.jpg"},{"id":18,"t":"ЗАТМЕНИЕ","img":"site/images/work-18.jpg"},{"id":19,"t":"БАЛАНС","img":"site/images/work-19.jpg"},{"id":20,"t":"YOU CAN LEAVE YOUR HAT ON","img":"site/images/work-20.jpg"},{"id":21,"t":"ТАНЦЫ","img":"site/images/work-21.jpg"},{"id":23,"t":"ГОЛУБОЙ БАРХАТНЫЙ ДИВАН","img":"site/images/work-23.jpg"},{"id":24,"t":"SHE IS ALWAYS A GOOD IDEA","img":"site/images/work-24.jpg"},{"id":25,"t":"ТОЛЬКО ВПЕРЁД!","img":"site/images/work-25.jpg"},{"id":26,"t":"ОНА ЖДАЛА ДОЖДЯ","img":"site/images/work-26.jpg"},{"id":27,"t":"ВРЕМЯ","img":"site/images/work-27.jpg"},{"id":28,"t":"ЗАПУТАЛАСЬ","img":"site/images/work-28.jpg"},{"id":29,"t":"НАСКВОЗЬ","img":"site/images/work-29-2.jpg"},{"id":30,"t":"ОДИНОЧЕСТВО","img":"site/images/work-30.jpg"},{"id":31,"t":"УБЫВАЮЩИЙ","img":"site/images/work-31.jpg"},{"id":32,"t":"ОБНЯТЬ","img":"site/images/work-32.jpg"},{"id":33,"t":"ОДНА","img":"site/images/work-33.jpg"},{"id":34,"t":"ВЗЛЕТЕТЬ","img":"site/images/work-34.jpg"},{"id":35,"t":"МЕЖДУ","img":"site/images/work-35.jpg"},{"id":36,"t":"УСТАЛА","img":"site/images/work-36-2.jpg"},{"id":37,"t":"СОЗАВИСИМОСТЬ / СЕПАРАЦИЯ","img":"site/images/work-37.jpg"},{"id":38,"t":"THE ONE","img":"site/images/work-38.jpg"},{"id":39,"t":"YOGA 14","img":"site/images/work-39.jpg"},{"id":41,"t":"КРАСНАЯ ШЛЯПА","img":"site/images/work-41.jpg"},{"id":42,"t":"YOGA 12","img":"site/images/work-42.jpg"},{"id":43,"t":"YOGA 11","img":"site/images/work-43.jpg"},{"id":44,"t":"YOGA 10","img":"site/images/work-44.jpg"},{"id":45,"t":"YOGA 9","img":"site/images/work-45.jpg"},{"id":46,"t":"YOGA 7","img":"site/images/work-46.jpg"},{"id":47,"t":"YOGA 6","img":"site/images/work-47.jpg"},{"id":48,"t":"YOGA 4","img":"site/images/work-48.jpg"},{"id":49,"t":"YOGA 3","img":"site/images/work-49.jpg"},{"id":50,"t":"ПУТЬ","img":"site/images/work-50.jpg"},{"id":51,"t":"ГДЕ-ТО В ТБИЛИСИ","img":"site/images/work-51.jpg"},{"id":52,"t":"ЛЕТО","img":"site/images/work-52.jpg"},{"id":53,"t":"ГДЕ-ТО В ИТАЛИИ","img":"site/images/work-53.jpg"},{"id":54,"t":"ПОДРУГИ","img":"site/images/work-54.jpg"},{"id":55,"t":"ПРИВЯЗАННОСТЬ","img":"site/images/work-55.jpg"},{"id":56,"t":"ПОСЛЕДНЯЯ КАПЛЯ","img":"site/images/work-56.jpg"},{"id":57,"t":"ПОПЛЫЛИ!","img":"site/images/work-57.jpg"},{"id":58,"t":"ОТБРОСЬ ВСЁ!","img":"site/images/work-58.jpg"},{"id":59,"t":"Я С ТОБОЙ!","img":"site/images/work-59.jpg"},{"id":60,"t":"ХОРОШИЙ МУЗЫКАЛЬНЫЙ ВКУС","img":"site/images/work-60.jpg"},{"id":61,"t":"ПОСЛЕ","img":"site/images/work-61.jpg"},{"id":62,"t":"ДОМ","img":"site/images/work-62.jpg"},{"id":63,"t":"ОЖИДАНИЕ","img":"site/images/work-63.jpg"},{"id":64,"t":"В ПРЕДВКУШЕНИИ","img":"site/images/work-64.jpg"},{"id":65,"t":"ДЕРЖИСЬ","img":"site/images/work-65.jpg"},{"id":66,"t":"CHEERS!","img":"site/images/work-66.jpg"},{"id":68,"t":"В УНИСОН","img":"site/images/work-68.jpg"},{"id":69,"t":"ВСЁ СВЯЗАНО","img":"site/images/work-69.jpg"},{"id":70,"t":"КОНТРАСТНЫЙ ДУШ","img":"site/images/work-70.jpg"},{"id":71,"t":"ДОМИКИ","img":"site/images/work-71.jpg"},{"id":72,"t":"ЦВЕТЫ","img":"site/images/work-72.jpg"},{"id":73,"t":"ЧЕРЕЗ МОНОКЛЬ","img":"site/images/work-73-2.jpg"},{"id":74,"t":"БУТЫЛКА","img":"site/images/work-74.jpg"},{"id":75,"t":"ОДИНОЧЕСТВО","img":"site/images/work-75.jpg"},{"id":76,"t":"ПОСЛЕ","img":"site/images/work-76.jpg"},{"id":77,"t":"ВСЁ ПРОХОДИТ","img":"site/images/work-77.jpg"},{"id":78,"t":"НЕСОВЕРШЕНСТВО","img":"site/images/work-78.jpg"},{"id":79,"t":"ЛИЦО","img":"site/images/work-79.jpg"},{"id":80,"t":"СВИДАНИЕ ПОД ДОЖДЁМ","img":"site/images/work-80.jpg"}];
+var ARK_HINT='К CHEERS! ты уже публиковала в канале Анино:\n«Стоит люпин нарядный мальчик – / Оса вцепилась в одуванчик, / И дело даже не в осе, / А так во всём, / И так ведь все.»\nЕсли хочешь его на сайт - просто напиши здесь.';
 
-/* хранилище: {t:{<id>:{v:0|1|2|'own'|'none', own:''}}, q:{<id>:{v, note}}, sent} */
-function load(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s&&typeof s==='object'&&s.t&&s.q) return s; }catch(e){} return {t:{},q:{}}; }
+var CIDS={}; CAND.forEach(function(c){ CIDS[c.id]=1; });
+var LIDS={}; LIVE.forEach(function(c){ LIDS[c.id]=1; });
+var NAMES={}; FB.forEach(function(w){ NAMES[w.id]=w.t; }); CAND.forEach(function(c){ NAMES[c.id]=c.t; });
+var NC=CAND.length;
+
+/* хранилище: {c:{<id>:{v:'ok'|'edit'|'no', txt}}, o:{<id>:'текст'}, ark:'', sent} */
+function load(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s&&typeof s==='object'&&s.c&&s.o) return s; }catch(e){} return {c:{},o:{},ark:''}; }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
 var S=load();
-function AT(id){ var a=S.t[id]; if(!a||typeof a!=='object') a=S.t[id]={}; return a; }
-function AQ(id){ var a=S.q[id]; if(!a||typeof a!=='object') a=S.q[id]={}; return a; }
+function AC(id){ var a=S.c[id]; if(!a||typeof a!=='object') a=S.c[id]={}; return a; }
 
 function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
 function plural(n,a,b,c){ var m=n%10,h=n%100; return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c; }
 function autosize(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
-function optBtn(role,checked){ var b=el('button','opt'); b.type='button'; b.setAttribute('role',role); b.setAttribute('aria-checked',checked?'true':'false'); return b; }
+function clean(s){ return String(s||'').trim(); }
+/* «ГАМАК» -> «Гамак», смешанный регистр не трогаем */
+function nice(t){ t=String(t||''); return (t===t.toUpperCase()&&t!==t.toLowerCase())?t.charAt(0)+t.slice(1).toLowerCase():t; }
+function thumb(id,img,cls){
+  var a=el('a',cls||'ph'); a.href='../../work/'+id+'/'; a.target='_blank'; a.rel='noopener';
+  a.setAttribute('aria-label','Открыть работу на сайте');
+  var im=el('img'); im.src='../../'+img; im.alt=''; im.loading='lazy'; im.decoding='async'; a.appendChild(im);
+  return a;
+}
 var UI={};
 
-function tDone(t){ var a=S.t[t.id]; return !!(a&&(a.v===0||a.v===1||a.v===2||a.v==='none'||a.v==='own')); }
-function qDone(q){ var a=S.q[q.id]; if(!a) return false;
-  if(String(a.note||'').trim()) return true;
-  if(q.type==='one') return !!a.v;
-  if(q.type==='many') return !!(a.v&&a.v.length);
-  return false; }
-
-function progress(){
-  var n=0;
-  T.forEach(function(t){ var d=tDone(t); if(d) n++; UI['t'+t.id].sec.classList.toggle('done',d); });
-  Q.forEach(function(q){ var d=qDone(q); if(d) n++; UI['q'+q.id].sec.classList.toggle('done',d); });
-  document.getElementById('cnt').innerHTML='Отвечено <b>'+n+'</b> из '+TOTAL;
-  document.getElementById('pb').style.width=(n/TOTAL*100)+'%';
-  var b=document.getElementById('sendBtn'), sn=document.getElementById('sendNote');
-  b.disabled=n===0;
-  sn.textContent=n===0?'Пока нет ни одного ответа - отметь что-нибудь выше.':'Уйдут ответы на '+n+' '+plural(n,'вопрос','вопроса','вопросов')+' из '+TOTAL+'.';
+/* уже на сайте */
+function buildLive(){
+  var root=document.getElementById('live');
+  LIVE.forEach(function(w){
+    var c=el('div','lv'); c.appendChild(thumb(w.id,w.img));
+    var d=el('div'), tt=el('div','tt','№'+w.id+' «'+nice(w.t)+'»'); tt.appendChild(el('span','badge','уже на сайте'));
+    d.appendChild(tt); d.appendChild(el('div','cp',w.cap)); c.appendChild(d); root.appendChild(c);
+  });
 }
-function changed(){ save(); progress(); }
 
-/* пробы */
-function buildTries(){
-  var root=document.getElementById('tries');
-  T.forEach(function(t){
-    var sec=el('section','q'); sec.id='t-'+t.id;
-    var wh=el('div','wh'), ph=el('a','ph'); ph.href='../../work/'+t.id+'/'; ph.target='_blank'; ph.rel='noopener';
-    ph.setAttribute('aria-label','Открыть работу на сайте');
-    var im=el('img'); im.src='../../site/images/work-'+t.id+'.jpg'; im.alt=''; im.loading='lazy'; im.decoding='async'; ph.appendChild(im);
-    var hd=el('div'); hd.appendChild(el('div','n','№'+t.id)); hd.appendChild(el('h2',null,t.name));
-    wh.appendChild(ph); wh.appendChild(hd); sec.appendChild(wh);
-    var box=el('div','opts'); box.setAttribute('role','radiogroup'); box.setAttribute('aria-label','Подпись к работе №'+t.id);
-    var a=AT(t.id), btns=[];
-    var vals=[0,1,2,'own','none'];
-    vals.forEach(function(v){
-      var b=optBtn('radio',false), sp=el('span');
-      if(typeof v==='number'){ sp.appendChild(el('small',null,VL[v])); sp.appendChild(el('span','tx',t.v[v])); }
-      else sp.textContent=v==='own'?'Своими словами':'Без подписи';
-      b.appendChild(sp); box.appendChild(b); btns.push({b:b,v:v});
-      b.addEventListener('click',function(){ a.v=(a.v===v)?null:v; sync(); changed();
-        if(a.v==='own'){ try{ ta.focus({preventScroll:true}); }catch(e){} } });
+/* кандидаты */
+function cDone(id){ var a=S.c[id]; return !!(a&&(a.v==='ok'||a.v==='edit'||a.v==='no')); }
+function buildCands(){
+  var root=document.getElementById('cands');
+  document.getElementById('nCand').textContent=NC;
+  CAND.forEach(function(c){
+    var sec=el('section','q'); sec.id='w-'+c.id;
+    var wh=el('div','wh'); wh.appendChild(thumb(c.id,c.img));
+    var hd=el('div'); hd.appendChild(el('div','n','№'+c.id)); hd.appendChild(el('h3',null,'«'+nice(c.t)+'»'));
+    wh.appendChild(hd); sec.appendChild(wh);
+    sec.appendChild(el('p','cap',c.cand));
+    var src=el('div','src'), lk=el('a',null,'пост в канале, '+c.date);
+    lk.href=CH+c.post; lk.target='_blank'; lk.rel='noopener';
+    src.appendChild(document.createTextNode('Откуда: ')); src.appendChild(lk);
+    var det=el('details'), sm=el('summary',null,'весь текст поста'); det.appendChild(sm); det.appendChild(el('div','full',c.full));
+    src.appendChild(det); sec.appendChild(src);
+
+    var a=AC(c.id), box=el('div','opts'), btns=[];
+    box.setAttribute('role','radiogroup'); box.setAttribute('aria-label','Подпись к работе №'+c.id);
+    [['ok','Ставим так'],['edit','Поправить'],['no','Не нужно']].forEach(function(p){
+      var b=el('button','opt'+(p[0]==='no'?' no':'')); b.type='button'; b.setAttribute('role','radio');
+      b.appendChild(el('span',null,p[1])); box.appendChild(b); btns.push({b:b,v:p[0]});
+      b.addEventListener('click',function(){
+        a.v=(a.v===p[0])?null:p[0];
+        if(a.v==='edit'&&!clean(a.txt)){ a.txt=c.cand; ta.value=c.cand; }
+        sync(); changed();
+        if(a.v==='edit'){ try{ ta.focus({preventScroll:true}); }catch(e){} }
+      });
     });
     sec.appendChild(box);
-    var lab=el('label','fld'); lab.appendChild(el('span',null,'Своими словами'));
-    var ta=el('textarea'); ta.rows=2; ta.value=a.own||'';
-    ta.addEventListener('input',function(){ a.own=ta.value; autosize(ta); changed(); });
+    var lab=el('label','fld'); lab.appendChild(el('span',null,'Как поставить'));
+    var ta=el('textarea'); ta.rows=2; ta.value=a.txt||'';
+    ta.addEventListener('input',function(){ a.txt=ta.value; autosize(ta); changed(); });
     lab.appendChild(ta); sec.appendChild(lab);
     function sync(){
       btns.forEach(function(p){ p.b.setAttribute('aria-checked',a.v===p.v?'true':'false'); });
-      lab.hidden=a.v!=='own'; if(!lab.hidden) setTimeout(function(){ autosize(ta); },0);
+      lab.hidden=a.v!=='edit'; if(!lab.hidden) setTimeout(function(){ autosize(ta); },0);
     }
     sync();
-    UI['t'+t.id]={sec:sec};
-    root.appendChild(sec);
+    UI[c.id]=sec; root.appendChild(sec);
   });
 }
 
-/* вопросы */
-function noteField(q,label,ph,big){
-  var lab=el('label','fld'); if(label) lab.appendChild(el('span',null,label));
-  var t=el('textarea',big?'big':null); t.rows=big?4:1; if(ph) t.placeholder=ph;
-  if(!label) t.setAttribute('aria-label',q.title);
-  t.value=AQ(q.id).note||'';
-  t.addEventListener('input',function(){ AQ(q.id).note=t.value; autosize(t); changed(); });
-  lab.appendChild(t); setTimeout(function(){ autosize(t); },0);
-  return lab;
-}
-function buildQs(){
-  var root=document.getElementById('qs');
-  Q.forEach(function(q,i){
-    var sec=el('section','q'); sec.id='q-'+q.id;
-    sec.appendChild(el('div','n',String(i+1)));
-    var h=el('h2',null,q.title); if(q.sub) h.appendChild(el('small',null,q.sub)); sec.appendChild(h);
-    UI['q'+q.id]={sec:sec};
-    if(q.opts){
-      var multi=q.type==='many', box=el('div','opts'+(multi?' multi':'')), a=AQ(q.id), btns=[];
-      box.setAttribute('role',multi?'group':'radiogroup'); box.setAttribute('aria-label',q.title);
-      var sync=function(){ btns.forEach(function(p){ var on=multi?((a.v||[]).indexOf(p.o.t)>=0):a.v===p.o.t; p.b.setAttribute('aria-checked',on?'true':'false'); }); };
-      q.opts.forEach(function(o){
-        var b=optBtn(multi?'checkbox':'radio',false); b.appendChild(el('span',null,o.t));
-        b.addEventListener('click',function(){
-          if(multi){
-            var v=(Array.isArray(a.v)?a.v:[]).slice(), k=v.indexOf(o.t);
-            if(k>=0) v.splice(k,1);
-            else{
-              if(o.solo) v=[];
-              else v=v.filter(function(x){ return !q.opts.some(function(p){ return p.solo&&p.t===x; }); });
-              v.push(o.t);
-            }
-            a.v=v;
-          } else a.v=(a.v===o.t)?null:o.t;
-          sync(); changed();
-        });
-        btns.push({b:b,o:o}); box.appendChild(b);
-      });
-      sec.appendChild(box); sync();
-      if(q.note) sec.appendChild(noteField(q,q.note,'',false));
-    } else {
-      sec.appendChild(noteField(q,'',q.ph,true));
-    }
-    root.appendChild(sec);
+/* другие работы */
+var OTH=[];
+function buildOthers(list){
+  OTH=list.filter(function(w){ return !CIDS[w.id]&&!LIDS[w.id]; });
+  var g=document.getElementById('grid'); g.textContent='';
+  OTH.forEach(function(w){
+    NAMES[w.id]=w.t;
+    var c=el('div','card'); c.appendChild(thumb(w.id,w.img));
+    var tt=el('div','tt'); tt.appendChild(el('i',null,'№'+w.id)); tt.appendChild(document.createTextNode('«'+nice(w.t)+'»')); c.appendChild(tt);
+    var ta=el('textarea'); ta.rows=1; ta.placeholder='подпись'; ta.setAttribute('aria-label','Подпись к работе №'+w.id);
+    ta.value=S.o[w.id]||''; c.classList.toggle('has',!!clean(ta.value));
+    ta.addEventListener('input',function(){ S.o[w.id]=ta.value; if(!clean(ta.value)) delete S.o[w.id]; c.classList.toggle('has',!!clean(ta.value)); autosize(ta); changed(); });
+    c.appendChild(ta); g.appendChild(c);
   });
+  var box=document.getElementById('moreBox');
+  if(ownCount()) box.open=true;
+  box.addEventListener('toggle',function(){ if(box.open) g.querySelectorAll('textarea').forEach(autosize); moreSum(); });
+  moreSum(); progress();
 }
+function ownCount(){ var n=0; for(var k in S.o) if(clean(S.o[k])) n++; return n; }
+function moreSum(){
+  var n=OTH.length, k=ownCount(), box=document.getElementById('moreBox');
+  document.getElementById('moreSum').textContent=(box.open?'Свернуть':'Показать')+' '+n+' '+plural(n,'работу','работы','работ')+(k?' · написано '+k:'');
+}
+function imgOf(w){ var m=w.media&&w.media[0]; return (m&&m.type==='img'&&m.path)?m.path:'site/images/work-'+w.id+'.jpg'; }
+
+/* счётчик */
+function progress(){
+  var n=0;
+  CAND.forEach(function(c){ var d=cDone(c.id); if(d) n++; UI[c.id].classList.toggle('done',d); });
+  var k=ownCount(), ark=!!clean(S.ark);
+  document.getElementById('cnt').innerHTML='Отмечено <b>'+n+'</b> из '+NC+(k?' · своих <b>'+k+'</b>':'');
+  document.getElementById('pb').style.width=(n/NC*100)+'%';
+  var b=document.getElementById('sendBtn'), sn=document.getElementById('sendNote'), tot=n+k+(ark?1:0);
+  b.disabled=tot===0;
+  if(!tot) sn.textContent='Пока ничего не отмечено - выбери что-нибудь выше.';
+  else{
+    var p=[]; if(n) p.push(n+' из канала'); if(k) p.push(k+' '+plural(k,'своя подпись','своих подписи','своих подписей')); if(ark) p.push('строки Ани');
+    sn.textContent='Уйдёт: '+p.join(', ')+'.';
+  }
+  if(OTH.length) moreSum();
+}
+function changed(){ save(); progress(); }
 
 /* итоговый текст */
-function clean(s){ return String(s||'').trim(); }
 function summary(){
   var d=new Date(), dd=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();
-  var out=['Тексты к картинам ('+dd+')',''];
-  T.forEach(function(t){
-    var a=S.t[t.id]||{}, v=a.v, r;
-    if(v===0||v===1||v===2) r=VK[v];
-    else if(v==='own'){ var o=clean(a.own); r=o?'свой вариант: '+o:'свой вариант (текст не написала)'; }
-    else if(v==='none') r='без подписи';
-    else r='не выбрано';
-    out.push('№'+t.id+' '+t.name+': '+r);
+  var out=['Подписи к картинам ('+dd+')'], L=[];
+  CAND.forEach(function(c){
+    var a=S.c[c.id]; if(!a) return; var r=null, t=clean(a.txt);
+    if(a.v==='ok') r='ставим';
+    else if(a.v==='edit') r=(t===c.cand)?'ставим':(t||'поправить (текст не написала)');
+    else if(a.v==='no') r='не нужно';
+    if(r) L.push('№'+c.id+' «'+nice(c.t)+'»: '+r);
   });
-  Q.forEach(function(q,i){
-    var a=S.q[q.id]||{}, L=[];
-    if(q.type==='one'&&a.v) L.push(a.v);
-    if(q.type==='many'&&Array.isArray(a.v)) a.v.forEach(function(x){ L.push(x); });
-    var n=clean(a.note);
-    if(n) L.push(q.type==='text'?n:'Комментарий: '+n);
-    out.push(''); out.push((i+1)+'. '+q.title);
-    out=out.concat(L.length?L:['не ответила']);
-  });
+  if(L.length){ out.push(''); out=out.concat(L); }
+  var O=[], ids=Object.keys(S.o).filter(function(k){ return clean(S.o[k]); });
+  var order=OTH.length?OTH.map(function(w){ return String(w.id); }):ids;
+  ids.sort(function(x,y){ var i=order.indexOf(x), j=order.indexOf(y); return (i<0?1e9:i)-(j<0?1e9:j); });
+  ids.forEach(function(k){ O.push('№'+k+' «'+nice(NAMES[k]||'')+'»: '+clean(S.o[k])); });
+  if(O.length){ out.push(''); out=out.concat(O); }
+  var ark=clean(S.ark);
+  if(ark){ out.push(''); out.push('Строки Анны Аркатовой:'); out.push(ark); }
   return out.join('\n');
 }
 
@@ -384,7 +402,7 @@ document.getElementById('sendBtn').addEventListener('click',function(){
   ta.value=text; out.hidden=false; autosize(ta);
   document.getElementById('tgLink').href=url;
   document.getElementById('outHint').textContent=long
-    ? 'Ответов много, поэтому Telegram откроется просто чатом со мной. Текст уже скопирован - вставь его туда. Если не скопировался - нажми «Скопировать» ниже. Дополнять и отправлять ещё раз можно сколько угодно.'
+    ? 'Текста много, поэтому Telegram откроется просто чатом со мной. Текст уже скопирован - вставь его туда. Если не скопировался - нажми «Скопировать» ниже. Дополнять и отправлять ещё раз можно сколько угодно.'
     : 'Если в Telegram текст не подставился - вставь его в чат со мной (он уже скопирован). Если что-то вспомнишь или передумаешь - дополняй здесь и отправляй ещё раз.';
   copy(text);
   S.sent=Date.now(); save(); showLast();
@@ -401,12 +419,29 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   });
 });
 document.getElementById('resetBtn').addEventListener('click',function(){
-  if(!confirm('Стереть все ответы и начать заново?')) return;
-  S={t:{},q:{}}; try{ localStorage.removeItem(KEY); }catch(e){}
+  if(!confirm('Стереть все отметки и начать заново?')) return;
+  S={c:{},o:{},ark:''}; try{ localStorage.removeItem(KEY); }catch(e){}
   location.reload();
 });
 
-buildTries(); buildQs(); progress(); showLast();
+/* Аркатова */
+document.getElementById('arkHint').textContent=ARK_HINT;
+var arkTa=document.getElementById('arkTa'); arkTa.value=S.ark||'';
+arkTa.addEventListener('input',function(){ S.ark=arkTa.value; autosize(arkTa); changed(); });
+setTimeout(function(){ autosize(arkTa); },0);
+
+buildLive(); buildCands(); progress(); showLast();
+/* остальные работы: свежий catalog.json (новые работы попадут сами), иначе снимок FB */
+var fbDone=false;
+function useFB(){ if(fbDone) return; fbDone=true; buildOthers(FB); }
+try{
+  fetch('../../catalog.json',{cache:'no-cache'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(w){
+    if(fbDone||!Array.isArray(w)||!w.length) return useFB();
+    fbDone=true;
+    buildOthers(w.filter(function(x){ return x&&x.id!=null; }).map(function(x){ return {id:x.id,t:x.t||'',img:imgOf(x)}; }));
+  }).catch(useFB);
+}catch(e){ useFB(); }
+setTimeout(useFB,6000);
 })();
 </script>
 </body>

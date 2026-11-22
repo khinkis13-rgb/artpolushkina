@@ -119,18 +119,88 @@
   ],
   "press": [
     {
+      "y": 2026,
+      "r": "In My Room",
+      "e": "In My Room",
+      "u": "https://www.inmyroom.ru/posts/45311-kak-bez-globalnyh-peredelok-preobrazili-dom-330-m-s-ustarevshim-remontom",
+      "img": "site/images/pub-inmyroom-2026.jpg"
+    },
+    {
+      "y": 2026,
+      "r": "Elle Decor (Испания)",
+      "e": "Elle Decor España",
+      "u": "https://www.elledecor.com/es/casas/a71634301/casa-64-metros-color/",
+      "img": "site/images/pub-elledecor-2026.jpg"
+    },
+    {
+      "y": 2026,
+      "r": "Marie Claire Maison",
+      "e": "Marie Claire Maison",
+      "u": "https://mcmaison.ru/interior-flats/biryuzovaya-kvartira-v-moskovskoi-stalinke-dlya-semi-s-tremya-detmi/",
+      "img": "site/images/pub-mcmaison-2026.jpg"
+    },
+    {
+      "y": 2026,
+      "r": "Divan.ru",
+      "e": "Divan.ru",
+      "u": "https://www.divan.ru/idei-i-trendy/minimalistic-open-space-in-a-46-meter-apartment",
+      "img": "site/images/pub-divan-2026.jpg"
+    },
+    {
+      "y": 2026,
+      "r": "Arquitectura y Diseño (Испания)",
+      "e": "Arquitectura y Diseño (Spain)",
+      "u": "https://www.arquitecturaydiseno.es/casas/entramos-apartamento-color-se-integra-elegancia-equilibrio-clasico-interior-contemporaneo_13538",
+      "img": "site/images/pub-arquitecturaydiseno-2026.jpg"
+    },
+    {
+      "y": 2026,
+      "r": "Revista Interiores (Испания)",
+      "e": "Revista Interiores (Spain)",
+      "u": "https://www.revistainteriores.es/casas/convertir-un-piso-en-moscu-en-un-espacio-contemporaneo-sin-renunciar-al-color_13324",
+      "img": "site/images/pub-revistainteriores-2026.jpg"
+    },
+    {
       "y": 2025,
-      "r": "Журнал Salon",
-      "e": "Salon Magazine",
-      "u": "https://salon.ru/article/minimalizm-selementami-mid-century-kvartira-v-dome1936-goda-74182",
-      "img": "site/images/pub-salon-2025.jpg"
+      "r": "«Идеи вашего дома»",
+      "e": "Ideas for Your Home",
+      "u": "https://www.ivd.ru/dizajn-i-dekor/kvartira/umestili-vse-neskuchnyj-minimalizm-v-kvartire-47-kv-m-s-tajnoj-garderobnoj-142812",
+      "img": "site/images/pub-ivd-2025.jpg"
     },
     {
       "y": 2025,
       "r": "My Decor",
       "e": "My Decor",
-      "u": "https://mydecor.ru/interiorflats/neskuchnyi-minimalizm-kvartira-47-m-v-moskve/",
+      "u": "https://mydecor.ru/interior-flats/neskuchnyi-minimalizm-kvartira-47-m-v-moskve/",
       "img": "site/images/pub-mydecor-2025.jpg"
+    },
+    {
+      "y": 2025,
+      "r": "Журнал Salon",
+      "e": "Salon Magazine",
+      "u": "https://salon.ru/article/minimalizm-s-elementami-mid-century-kvartira-v-dome-1936-goda-74182",
+      "img": "site/images/pub-salon-2025.jpg"
+    },
+    {
+      "y": 2025,
+      "r": "Журнал «МОСТ»",
+      "e": "MOST Magazine",
+      "u": "https://mostmag.ru/chuvstva-znakomye-kazhdoj-vystavka-marii-polushkinoj-zhenshhiny-vnutri-zhenshhiny-otkrylas-v-moskovskoj-galeree-na-trubnoj/",
+      "img": "site/images/pub-most-2025.jpg"
+    },
+    {
+      "y": 2025,
+      "r": "In My Room",
+      "e": "In My Room",
+      "u": "https://www.inmyroom.ru/posts/40431-svetlaya-kvartira-115-m-s-yarkimi-akcentami-dlya-semejnoj-pary-s-dvumya-detmi",
+      "img": "site/images/pub-inmyroom-2025.jpg"
+    },
+    {
+      "y": 2025,
+      "r": "Design Mate",
+      "e": "Design Mate",
+      "u": "https://design-mate.ru/read/objects/interior-of-family-apartment--project-by-maria-treshchukova",
+      "img": "site/images/pub-designmate-2025.jpg"
     },
     {
       "y": 2024,

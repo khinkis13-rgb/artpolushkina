@@ -129,6 +129,11 @@ main{flex:1;width:100%;max-width:var(--mw);margin:0 auto;padding:22px 28px 72px}
 .inc a{color:var(--wg);border-bottom:1px solid var(--lg)}
 .inc a:hover{color:var(--burg);border-color:var(--burg)}
 @media(max-width:600px){.chips a{padding:5px 13px;font-size:.8rem}}
+.ship{font-size:.84rem;color:var(--wg);line-height:1.5;margin:-14px 0 22px}
+.och{margin-top:10px;font-size:.84rem;color:var(--wg);line-height:1.5}
+.och a{color:var(--char);text-decoration:underline;text-decoration-color:var(--lg);text-underline-offset:3px}
+.och a:hover{color:var(--burg);text-decoration-color:currentColor}
+@media(max-width:600px){.och{text-align:center}}
 </style>
 </head>
 <body>
@@ -143,12 +148,14 @@ main{flex:1;width:100%;max-width:var(--mw);margin:0 auto;padding:22px 28px 72px}
 <h1>ЛИЦО</h1>
 <div class="meta"><span>Холст, акрил</span><span>30×30 см</span><span>2018</span></div>
 <div class="mp">27 000 ₽</div>
-<a class="mt" id="buy" href="https://t.me/m_polushkina?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%C2%AB%D0%9B%D0%98%D0%A6%D0%9E%C2%BB%20%28%E2%84%9679%29%2C%2030%C3%9730%20%D1%81%D0%BC%2C%2027%C2%A0000%C2%A0%E2%82%BD%20-%20https%3A%2F%2Fartpolushkina.com%2Fwork%2F79%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Купить в Telegram</span></a>
+<p class="ship">Доставка по России и в другие страны - стоимость по запросу.</p>
+<a class="mt" id="buy" data-ch="tg" href="https://t.me/m_polushkina?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%C2%AB%D0%9B%D0%98%D0%A6%D0%9E%C2%BB%20%28%E2%84%9679%29%2C%2030%C3%9730%20%D1%81%D0%BC%2C%2027%C2%A0000%C2%A0%E2%82%BD%20-%20https%3A%2F%2Fartpolushkina.com%2Fwork%2F79%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Купить в Telegram</span></a>
+<p class="och">или <a data-ch="wa" href="https://wa.me/79260209744?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%C2%AB%D0%9B%D0%98%D0%A6%D0%9E%C2%BB%20%28%E2%84%9679%29%2C%2030%C3%9730%20%D1%81%D0%BC%2C%2027%C2%A0000%C2%A0%E2%82%BD%20-%20https%3A%2F%2Fartpolushkina.com%2Fwork%2F79%2F" target="_blank" rel="noopener">WhatsApp</a> · <a data-ch="mail" href="mailto:artpolushkina@gmail.com?subject=%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%C2%AB%D0%9B%D0%98%D0%A6%D0%9E%C2%BB%20%28%E2%84%9679%29&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%C2%AB%D0%9B%D0%98%D0%A6%D0%9E%C2%BB%20%28%E2%84%9679%29%2C%2030%C3%9730%20%D1%81%D0%BC%2C%2027%C2%A0000%C2%A0%E2%82%BD%20-%20https%3A%2F%2Fartpolushkina.com%2Fwork%2F79%2F">почта</a></p>
 <div class="acts">
 <a class="m2 try" href="/#try-79"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg><span>Примерить на стене</span></a>
 <button type="button" class="m2" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg><span>Поделиться</span></button>
 </div>
-<p class="ds">Оригинальная работа Марии Полушкиной, холст, акрил, 30×30 см, 2018. Работы художницы находятся в частных коллекциях 10 стран. Покупка напрямую у художницы, примерка на стене - на сайте.</p>
+<p class="ds">Оригинальная работа Марии Полушкиной, холст, акрил, 30×30 см, 2018. Работы художницы находятся в частных коллекциях 11 стран. Покупка напрямую у художницы, примерка на стене - на сайте.</p>
 <p class="inc">В подборках: <a href="/collection/small/">Небольшие картины в подарок</a>, <a href="/collection/under-30000/">Картины до 30 000 ₽</a></p>
 <nav class="pn" aria-label="Соседние работы">
 <a class="pv" href="/work/78/" rel="prev"><b>← Предыдущая</b><span>НЕСОВЕРШЕНСТВО</span></a>
@@ -187,8 +194,9 @@ try{localStorage.setItem('mp_lang',a.getAttribute('data-lang'));}catch(_){e.prev
 var r10=function(x){return Math.max(10,Math.round(x/10)*10);};
 if(!ru){var fx=document.querySelectorAll('.fx[data-p]');if(fx.length)fetch('/fx.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
 var r=j&&j.rub_per;if(!(r&&r.EUR>0&&r.USD>0))return;fx.forEach(function(el){var p=+el.getAttribute('data-p');if(p>0)el.textContent='\u2248 \u20ac'+r10(p/r.EUR).toLocaleString('en-US')+' \u00b7 $'+r10(p/r.USD).toLocaleString('en-US');});}).catch(function(){});}
-var buy=document.getElementById('buy');
-if(buy)buy.addEventListener('click',function(){copyText(P.msg).then(function(ok){if(ok)toast(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear');});goal(P.sold?'sold_ask':'buy',{id:P.id});});
+document.querySelectorAll('[data-ch]').forEach(function(b){b.addEventListener('click',function(){var ch=b.getAttribute('data-ch');
+copyText(P.msg).then(function(ok){if(ok)toast(ch==='mail'?(ru?'Текст письма скопирован - вставьте его в письмо, если он не появился сам':'Message copied - paste it into the email if it did not appear')
+:(ru?'Текст сообщения скопирован - вставьте его в чат, если он не появился сам':'Message copied - paste it into the chat if it did not appear'));});goal(P.sold?'sold_ask':'buy',{id:P.id,ch:ch});});});
 var sh=document.getElementById('share');
 if(sh)sh.addEventListener('click',function(){goal('share',{id:P.id});
 var done=function(){copyText(P.url).then(function(ok){toast(ok?(ru?'Ссылка на работу скопирована':'Link copied'):P.url);});};
