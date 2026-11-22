@@ -53,12 +53,6 @@ h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
 .back{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:16px}
 .muted{color:var(--wg);font-size:14.5px}
 
-/* что Маша уже прислала - вопросы об этом убраны из списка ниже (опросник держим актуальным) */
-var GOT=[
- 'Правки по анимациям на главной - сделаны 19.11: фоны как на картинах, плавные волны, вытянутая голова, запуск по касанию'
-];
-(function(){var ul=document.getElementById('gotList');if(!ul)return;if(!GOT.length){ul.parentNode.hidden=true;return;}
- GOT.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});})();
 
 /* вопросы */
 .q{padding:34px 0 36px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
@@ -166,6 +160,7 @@ textarea:focus,input:focus{border-color:var(--navy)}
     <p class="lead">Мань, тут всё, что мне от тебя нужно для продвижения сайта. Отвечай когда удобно и по частям - ответы сохраняются в этом браузере. В конце одна кнопка - и всё придёт мне в Telegram.</p>
     <p class="lead muted">Для поиска почти всё беру с сайта, тут только то, чего там нет. В основном просто ткни в подходящий вариант. Ни один вопрос не обязателен, порядок любой.</p>
     <a class="back" href="../">Что и зачем мы делаем - в презентации</a>
+    <div class="got"><b>Новое: тексты к картинам.</b> Есть идея коротких подписей к работам - сделал пробы на четырёх, интересно, как тебе. Совсем не обязательно. <a href="../d/">Посмотреть</a></div>
     <div class="got"><b>Уже получил, спасибо:</b><ul id="gotList"></ul></div>
   </header>
 

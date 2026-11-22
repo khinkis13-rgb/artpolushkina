@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Тексты к картинам</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;--sel:#EEF2F6;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--navy-d)}
+b,strong{font-weight:500}
+[hidden]{display:none!important}
+button,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+
+/* прогресс */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px}
+#cnt{font:400 14px/1.2 var(--fb);color:var(--wg);font-variant-numeric:lining-nums tabular-nums}
+#cnt b{color:var(--navy-d)}
+.go{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font:500 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--burg);text-decoration:none;white-space:nowrap}
+.pb{height:3px;background:var(--line)}
+.pb i{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));transition:width .25s}
+
+/* шапка */
+header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h1,h2{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
+.lead{font-size:18px;color:#4a443d;max-width:640px}
+.lead+.lead,.lead+.lst,.lst+.lead{margin-top:12px}
+.lead b{color:var(--navy-d)}
+.lst{max-width:640px;margin-left:20px;font-size:17px;color:#4a443d}
+.lst li{padding:3px 0}
+.lead.muted{font-size:16px;color:var(--wg)}
+.muted{color:var(--wg);font-size:14.5px}
+.why{font-size:15.5px;color:#5b544c;margin-bottom:16px}
+.sec{padding-top:40px}
+.sec>.k{margin-bottom:0}
+
+/* пробы и вопросы */
+.q{padding:30px 0 34px;border-bottom:1px solid var(--line);scroll-margin-top:60px}
+.q .n{display:flex;align-items:center;gap:12px;font:italic 400 30px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+.q.done .n::after{content:"есть ответ";font:500 11px/1 var(--fb);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);padding:5px 8px;border-radius:3px}
+.q h2{font-size:clamp(26px,5.6vw,34px);line-height:1.12;margin-bottom:12px;overflow-wrap:anywhere}
+.q h2 small{display:block;font:italic 400 .62em/1.3 var(--fd);color:var(--burg);margin-top:4px}
+.wh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.wh .ph{flex:none;display:block;width:96px;height:96px;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.wh .ph img{width:100%;height:100%;object-fit:contain;padding:3px}
+.wh .n{margin:0 0 4px}
+.wh h2{margin:0}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:50px;padding:12px 14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:16px;line-height:1.4;font-weight:400;transition:border-color .15s,background .15s}
+.opt::before{content:"";flex:none;width:20px;height:20px;margin-top:1px;border:1.5px solid #b3a99c;border-radius:50%;background:#fff;transition:all .15s}
+.opts.multi .opt::before{border-radius:5px}
+.opt[aria-checked="true"]{border-color:var(--navy);background:var(--sel);color:var(--navy-d)}
+.opt[aria-checked="true"]::before{border-color:var(--navy);background:var(--navy);box-shadow:inset 0 0 0 4px #fff}
+.opts.multi .opt[aria-checked="true"]::before{box-shadow:none;background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.opt>span{min-width:0;overflow-wrap:break-word}
+.opt small{display:block;font:500 11.5px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.opt .tx{font-size:17px;line-height:1.5;font-weight:300;color:var(--char)}
+.opt[aria-checked="true"] .tx{color:var(--navy-d)}
+@media (hover:hover){.opt:hover{border-color:#c9bca8}}
+.opt:focus-visible,.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.fld{display:block;margin-top:12px}
+.fld>span{display:block;font-size:14.5px;color:var(--wg);margin-bottom:6px}
+textarea{width:100%;font-size:16px;font-weight:400;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:56px;-webkit-appearance:none;appearance:none;outline:none;resize:vertical;line-height:1.45;display:block}
+textarea.big{min-height:110px}
+textarea:focus{border-color:var(--navy)}
+
+/* отправка */
+#send{padding:38px 0 30px;scroll-margin-top:60px}
+#send h2{font-size:clamp(30px,6.4vw,40px);line-height:1.1;margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:12px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:17px;font-weight:500;letter-spacing:.01em;text-decoration:none}
+.btn.big{width:100%;min-height:58px;font-size:18px;margin-top:16px}
+.btn.lite{background:#fff;color:var(--navy-d);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:default}
+#sendNote{margin-top:10px;min-height:22px}
+#out{margin-top:22px}
+.thanks{font:italic 400 30px/1.15 var(--fd);color:var(--burg);margin-bottom:6px}
+#outTxt{min-height:200px;font-size:14.5px;line-height:1.45;background:var(--paper);color:#3b3731;margin-top:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.reset{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.reset button{min-height:44px;background:none;border:0;padding:0 2px;font-size:15px;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+.sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
+
+@media (max-width:359px){
+  .wh .ph{width:76px;height:76px}
+  .opt{padding:11px 12px;gap:10px}
+  .opt .tx{font-size:16px}
+}
+@media (min-width:760px){
+  body{font-size:18px}
+  header{padding:56px 0 44px}
+  .q{padding:42px 0 46px}
+  .wh{gap:22px}
+  .wh .ph{width:140px;height:140px}
+  .btn.big{width:auto;min-width:320px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top" role="status" aria-live="polite">
+  <div class="wrap"><span id="cnt">Отвечено <b>0</b></span><a class="go" href="#send">К отправке</a></div>
+  <div class="pb"><i id="pb"></i></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <img class="sig" src="../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
+    <div class="k">artpolushkina.com · тексты к картинам</div>
+    <h1>Тексты к картинам</h1>
+    <p class="lead">Мань, у каждой работы на сайте теперь своя страница: её находят в Google и Яндексе, ей делятся ссылкой, на неё будут вести Pinterest и площадки. Сейчас там название, техника, размер и цена.</p>
+    <p class="lead"><b>Что уже сделано.</b> К каждой картине написал, что на ней изображено, - сухо и по делу. Этот текст видят только поисковики (например, Google Картинки) и программы для незрячих, на странице его нет. Тут от тебя ничего не нужно.</p>
+    <p class="lead"><b>Что предлагаю обсудить.</b> Короткую подпись, которую видит гость. Не объяснение смысла, а одну-две фразы в тон работе, с воздухом, чтобы было что додумать. Ниже - мои пробы на четырёх работах, по три варианта. Я мог промахнуться мимо того, что ты вкладывала, - тогда так и скажи, это тоже ответ.</p>
+    <p class="lead"><b>Зачем это может пригодиться</b></p>
+    <ul class="lst">
+      <li>Площадки вроде Saatchi Art просят текст к каждой работе. Если он будет, выложим быстро и в одном тоне.</li>
+      <li>Игра слов в названиях при переводе на английский теряется, а одна фраза возвращает иностранцу часть смысла.</li>
+      <li>С подписью у работы проще задержаться и ею поделиться.</li>
+      <li>Поисковикам нравятся страницы с живым текстом, но это вторично: основное для поиска уже сделано.</li>
+    </ul>
+    <p class="lead muted">Это совсем не обязательно. Без подписей сайт работает как сейчас.</p>
+  </header>
+
+  <section class="sec"><div class="k">Пробы</div><div id="tries"></div></section>
+  <section class="sec"><div class="k">Вопросы</div><div id="qs"></div></section>
+
+  <section id="send">
+    <div class="k">Готово?</div>
+    <h2>Отправить ответы</h2>
+    <p class="why">Соберу всё, что ты ответила, в одно сообщение: оно скопируется и откроется Telegram с чатом со мной. Можно отправлять сколько угодно раз - например, сейчас часть, потом остальное.</p>
+    <button class="btn big" id="sendBtn" type="button">Отправить Диме</button>
+    <p class="muted" id="sendNote"></p>
+    <div id="out" hidden>
+      <p class="thanks">Спасибо, Мань!)</p>
+      <p class="why" id="outHint"></p>
+      <textarea id="outTxt" readonly aria-label="Текст для отправки"></textarea>
+      <div class="row">
+        <button class="btn lite" id="copyBtn" type="button">Скопировать</button>
+        <a class="btn lite" id="tgLink" href="https://t.me/Dmitry_Khinkis" target="_blank" rel="noopener">Открыть чат</a>
+      </div>
+    </div>
+    <div class="reset">
+      <span class="muted" id="lastSent"></span>
+      <button type="button" id="resetBtn">Начать заново</button>
+    </div>
+  </section>
+
+  <div class="sign">Made by Dmitry Khinkis</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var KEY='mp_d2', TG='Dmitry_Khinkis', MAXURL=3500;
+
+/* пробы подписей: три варианта к каждой работе (картинки - прямо из site/images) */
+var VL=['А - с улыбкой','Б - тише','В - одной фразой'], VK=['А','Б','В'];
+var T=[
+ {id:87,name:'«Подлинность»',v:[
+  'Маска получилась внушительная. Держать её приходится на вытянутых руках. Зато со стороны не отличить.',
+  'Чем больше маска, тем меньше того, кто под ней. Но держит её он сам.',
+  'Самое настоящее здесь - усилие.']},
+ {id:66,name:'CHEERS!',v:[
+  'Одна бутылка на двоих, и голова, кажется, тоже одна. Пробка уже в полёте. Бокалы посчитаны: два и один. Кто-то начал раньше.',
+  'Бывают люди, с которыми одна бутылка - и одна голова на двоих. За них.',
+  'Кто-то начал раньше.']},
+ {id:58,name:'«Отбрось всё!»',v:[
+  'Если уж отбрасывать, то всё. Доска позади, верх купальника чуть выше, впереди только синее.',
+  'Решиться - это секунда между доской и водой. Всё лишнее успевает отлететь.',
+  'Лишнее отлетает первым.']},
+ {id:8,name:'«Дождаться»',v:[
+  'Когда ждёшь письма, больше ни о чём не думается. Буквально.',
+  'Ожидание занимает всю голову. Даже то место, где было лицо.',
+  'Голова занята.']}
+];
+var Q=[
+ {id:'idea',type:'one',title:'Как тебе идея подписей?',opts:[
+  'Нравится, пиши ко всем - я поправлю, где не так',
+  'Только к некоторым, где точно попадает',
+  'Хочу писать сама, а ты подправишь',
+  'Не надо подписей']},
+ {id:'whose',type:'many',title:'Чьи ещё слова могли бы стоять рядом с картиной?',sub:'с именем автора, если это не ты',opts:[
+  'Мои собственные - напишу к некоторым работам',
+  'Строки Анны Аркатовой из наших книг (спрошу у неё)',
+  'Отзывы тех, у кого живут мои работы',
+  'Кто-то ещё - напишу ниже',
+  {t:'Никого, не надо',solo:true}],note:'Комментарий, если хочешь'},
+ {id:'ready',type:'text',title:'Есть уже готовые тексты или отзывы о работах?',
+  ph:'Например, подписи из книг, посты, слова покупателей. Можно просто написать, где посмотреть.'}
+];
+Q.forEach(function(q){ if(q.opts) q.opts=q.opts.map(function(o){ return typeof o==='string'?{t:o}:o; }); });
+var TOTAL=T.length+Q.length;
+
+/* хранилище: {t:{<id>:{v:0|1|2|'own'|'none', own:''}}, q:{<id>:{v, note}}, sent} */
+function load(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s&&typeof s==='object'&&s.t&&s.q) return s; }catch(e){} return {t:{},q:{}}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+var S=load();
+function AT(id){ var a=S.t[id]; if(!a||typeof a!=='object') a=S.t[id]={}; return a; }
+function AQ(id){ var a=S.q[id]; if(!a||typeof a!=='object') a=S.q[id]={}; return a; }
+
+function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+function plural(n,a,b,c){ var m=n%10,h=n%100; return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c; }
+function autosize(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
+function optBtn(role,checked){ var b=el('button','opt'); b.type='button'; b.setAttribute('role',role); b.setAttribute('aria-checked',checked?'true':'false'); return b; }
+var UI={};
+
+function tDone(t){ var a=S.t[t.id]; return !!(a&&(a.v===0||a.v===1||a.v===2||a.v==='none'||a.v==='own')); }
+function qDone(q){ var a=S.q[q.id]; if(!a) return false;
+  if(String(a.note||'').trim()) return true;
+  if(q.type==='one') return !!a.v;
+  if(q.type==='many') return !!(a.v&&a.v.length);
+  return false; }
+
+function progress(){
+  var n=0;
+  T.forEach(function(t){ var d=tDone(t); if(d) n++; UI['t'+t.id].sec.classList.toggle('done',d); });
+  Q.forEach(function(q){ var d=qDone(q); if(d) n++; UI['q'+q.id].sec.classList.toggle('done',d); });
+  document.getElementById('cnt').innerHTML='Отвечено <b>'+n+'</b> из '+TOTAL;
+  document.getElementById('pb').style.width=(n/TOTAL*100)+'%';
+  var b=document.getElementById('sendBtn'), sn=document.getElementById('sendNote');
+  b.disabled=n===0;
+  sn.textContent=n===0?'Пока нет ни одного ответа - отметь что-нибудь выше.':'Уйдут ответы на '+n+' '+plural(n,'вопрос','вопроса','вопросов')+' из '+TOTAL+'.';
+}
+function changed(){ save(); progress(); }
+
+/* пробы */
+function buildTries(){
+  var root=document.getElementById('tries');
+  T.forEach(function(t){
+    var sec=el('section','q'); sec.id='t-'+t.id;
+    var wh=el('div','wh'), ph=el('a','ph'); ph.href='../../work/'+t.id+'/'; ph.target='_blank'; ph.rel='noopener';
+    ph.setAttribute('aria-label','Открыть работу на сайте');
+    var im=el('img'); im.src='../../site/images/work-'+t.id+'.jpg'; im.alt=''; im.loading='lazy'; im.decoding='async'; ph.appendChild(im);
+    var hd=el('div'); hd.appendChild(el('div','n','№'+t.id)); hd.appendChild(el('h2',null,t.name));
+    wh.appendChild(ph); wh.appendChild(hd); sec.appendChild(wh);
+    var box=el('div','opts'); box.setAttribute('role','radiogroup'); box.setAttribute('aria-label','Подпись к работе №'+t.id);
+    var a=AT(t.id), btns=[];
+    var vals=[0,1,2,'own','none'];
+    vals.forEach(function(v){
+      var b=optBtn('radio',false), sp=el('span');
+      if(typeof v==='number'){ sp.appendChild(el('small',null,VL[v])); sp.appendChild(el('span','tx',t.v[v])); }
+      else sp.textContent=v==='own'?'Своими словами':'Без подписи';
+      b.appendChild(sp); box.appendChild(b); btns.push({b:b,v:v});
+      b.addEventListener('click',function(){ a.v=(a.v===v)?null:v; sync(); changed();
+        if(a.v==='own'){ try{ ta.focus({preventScroll:true}); }catch(e){} } });
+    });
+    sec.appendChild(box);
+    var lab=el('label','fld'); lab.appendChild(el('span',null,'Своими словами'));
+    var ta=el('textarea'); ta.rows=2; ta.value=a.own||'';
+    ta.addEventListener('input',function(){ a.own=ta.value; autosize(ta); changed(); });
+    lab.appendChild(ta); sec.appendChild(lab);
+    function sync(){
+      btns.forEach(function(p){ p.b.setAttribute('aria-checked',a.v===p.v?'true':'false'); });
+      lab.hidden=a.v!=='own'; if(!lab.hidden) setTimeout(function(){ autosize(ta); },0);
+    }
+    sync();
+    UI['t'+t.id]={sec:sec};
+    root.appendChild(sec);
+  });
+}
+
+/* вопросы */
+function noteField(q,label,ph,big){
+  var lab=el('label','fld'); if(label) lab.appendChild(el('span',null,label));
+  var t=el('textarea',big?'big':null); t.rows=big?4:1; if(ph) t.placeholder=ph;
+  if(!label) t.setAttribute('aria-label',q.title);
+  t.value=AQ(q.id).note||'';
+  t.addEventListener('input',function(){ AQ(q.id).note=t.value; autosize(t); changed(); });
+  lab.appendChild(t); setTimeout(function(){ autosize(t); },0);
+  return lab;
+}
+function buildQs(){
+  var root=document.getElementById('qs');
+  Q.forEach(function(q,i){
+    var sec=el('section','q'); sec.id='q-'+q.id;
+    sec.appendChild(el('div','n',String(i+1)));
+    var h=el('h2',null,q.title); if(q.sub) h.appendChild(el('small',null,q.sub)); sec.appendChild(h);
+    UI['q'+q.id]={sec:sec};
+    if(q.opts){
+      var multi=q.type==='many', box=el('div','opts'+(multi?' multi':'')), a=AQ(q.id), btns=[];
+      box.setAttribute('role',multi?'group':'radiogroup'); box.setAttribute('aria-label',q.title);
+      var sync=function(){ btns.forEach(function(p){ var on=multi?((a.v||[]).indexOf(p.o.t)>=0):a.v===p.o.t; p.b.setAttribute('aria-checked',on?'true':'false'); }); };
+      q.opts.forEach(function(o){
+        var b=optBtn(multi?'checkbox':'radio',false); b.appendChild(el('span',null,o.t));
+        b.addEventListener('click',function(){
+          if(multi){
+            var v=(Array.isArray(a.v)?a.v:[]).slice(), k=v.indexOf(o.t);
+            if(k>=0) v.splice(k,1);
+            else{
+              if(o.solo) v=[];
+              else v=v.filter(function(x){ return !q.opts.some(function(p){ return p.solo&&p.t===x; }); });
+              v.push(o.t);
+            }
+            a.v=v;
+          } else a.v=(a.v===o.t)?null:o.t;
+          sync(); changed();
+        });
+        btns.push({b:b,o:o}); box.appendChild(b);
+      });
+      sec.appendChild(box); sync();
+      if(q.note) sec.appendChild(noteField(q,q.note,'',false));
+    } else {
+      sec.appendChild(noteField(q,'',q.ph,true));
+    }
+    root.appendChild(sec);
+  });
+}
+
+/* итоговый текст */
+function clean(s){ return String(s||'').trim(); }
+function summary(){
+  var d=new Date(), dd=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();
+  var out=['Тексты к картинам ('+dd+')',''];
+  T.forEach(function(t){
+    var a=S.t[t.id]||{}, v=a.v, r;
+    if(v===0||v===1||v===2) r=VK[v];
+    else if(v==='own'){ var o=clean(a.own); r=o?'свой вариант: '+o:'свой вариант (текст не написала)'; }
+    else if(v==='none') r='без подписи';
+    else r='не выбрано';
+    out.push('№'+t.id+' '+t.name+': '+r);
+  });
+  Q.forEach(function(q,i){
+    var a=S.q[q.id]||{}, L=[];
+    if(q.type==='one'&&a.v) L.push(a.v);
+    if(q.type==='many'&&Array.isArray(a.v)) a.v.forEach(function(x){ L.push(x); });
+    var n=clean(a.note);
+    if(n) L.push(q.type==='text'?n:'Комментарий: '+n);
+    out.push(''); out.push((i+1)+'. '+q.title);
+    out=out.concat(L.length?L:['не ответила']);
+  });
+  return out.join('\n');
+}
+
+/* копирование - как в опроснике */
+function legacyCopy(text){
+  var t=document.createElement('textarea'); t.value=text; t.setAttribute('readonly','');
+  t.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+  document.body.appendChild(t); var ok=false;
+  try{ t.focus(); t.select(); t.setSelectionRange(0,text.length); ok=document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(t); return ok;
+}
+function copy(text,done){
+  var fin=function(ok){ if(done) done(ok); };
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){fin(true);},function(){ fin(legacyCopy(text)); });
+      return;
+    }
+  }catch(e){}
+  fin(legacyCopy(text));
+}
+function stamp(ts){ var d=new Date(ts); return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+' в '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+function showLast(){ document.getElementById('lastSent').textContent=S.sent?'Последний раз отправляла '+stamp(S.sent):''; }
+
+document.getElementById('sendBtn').addEventListener('click',function(){
+  var text=summary(), long=text.length>MAXURL;
+  var url='https://t.me/'+TG+(long?'':'?text='+encodeURIComponent(text));
+  var out=document.getElementById('out'), ta=document.getElementById('outTxt');
+  ta.value=text; out.hidden=false; autosize(ta);
+  document.getElementById('tgLink').href=url;
+  document.getElementById('outHint').textContent=long
+    ? 'Ответов много, поэтому Telegram откроется просто чатом со мной. Текст уже скопирован - вставь его туда. Если не скопировался - нажми «Скопировать» ниже. Дополнять и отправлять ещё раз можно сколько угодно.'
+    : 'Если в Telegram текст не подставился - вставь его в чат со мной (он уже скопирован). Если что-то вспомнишь или передумаешь - дополняй здесь и отправляй ещё раз.';
+  copy(text);
+  S.sent=Date.now(); save(); showLast();
+  var w=null; try{ w=window.open(url,'_blank'); }catch(e){}
+  if(!w) location.href=url;
+  setTimeout(function(){ out.scrollIntoView({block:'start',behavior:'smooth'}); },50);
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var b=this, ta=document.getElementById('outTxt');
+  copy(ta.value,function(ok){
+    if(!ok){ try{ ta.focus(); ta.select(); ta.setSelectionRange(0,ta.value.length); }catch(e){} }
+    b.textContent=ok?'Скопировано':'Выдели текст и скопируй';
+    setTimeout(function(){ b.textContent='Скопировать'; },2500);
+  });
+});
+document.getElementById('resetBtn').addEventListener('click',function(){
+  if(!confirm('Стереть все ответы и начать заново?')) return;
+  S={t:{},q:{}}; try{ localStorage.removeItem(KEY); }catch(e){}
+  location.reload();
+});
+
+buildTries(); buildQs(); progress(); showLast();
+})();
+</script>
+</body>
+</html>

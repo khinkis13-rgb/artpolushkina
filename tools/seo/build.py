@@ -18,6 +18,19 @@
    "ids": [57, 58]}                             — явный список (вместе с rule — пересечение)
 Сторона — большая сторона из dims() (как фильтр размера на главной), цена — p; в правиле по цене только непроданные.
 Порядок работ — как в catalog.json, отсутствующие id пропускаются, подборка меньше MIN_COL работ не генерируется.
+
+Что изображено (tools/seo/alt.json, необязателен): {"57": {"ru": "...", "en": "..."}} — невидимый гостю текст для
+поисковиков и экранных чтецов, публикуется без одобрения. На странице работы идёт в alt главного фото (#mainImg) и первой
+миниатюры галереи: «<work_alt>. <текст>»; остальные фото, карточки на других страницах и og:image:alt — коротко, как были.
+Ещё — в description JSON-LD VisualArtwork, если нет одобренной подписи. В meta/og/twitter description НЕ идёт.
+
+Видимые подписи (tools/seo/descriptions.json, необязателен — без него или с {} страницы как были):
+  {"57": {"ru": "...", "en": "...", "ok": true, "note": "..."}}
+Выводятся ТОЛЬКО при "ok": true (одобрила Маша): абзац под характеристиками до цены, <meta name="description">,
+og:description и twitter:description (обрезка по границе слова/предложения до DESC_MAX знаков), description в JSON-LD
+(целиком, приоритетнее alt.json). Язык по отдельности: пустой "en" — на en-странице как без подписи. "note" — для себя.
+CSS абзаца — только на страницах с подписью.
+Оба файла: нет файла — нет текстов; битый JSON или не объект — выход с ошибкой, ничего не записав.
 Список изменённых в этом прогоне адресов печатается в stdout и, с --changed <файл>, пишется в файл
 (для IndexNow в GitHub Action). Повторный запуск без изменений входа ничего не меняет.
 
@@ -48,6 +61,7 @@ BOT_RE = (r'googlebot|google-inspectiontool|adsbot-google|storebot-google|yandex
           r'bingbot|duckduckbot|applebot|baiduspider|petalbot|crawler|spider|slurp|lighthouse')
 NBSP = '\u00a0'
 MIN_COL = 4               # подборка, где работ меньше, не генерируется
+DESC_MAX = 200            # длина описания в meta/og/twitter; в JSON-LD и в абзаце на странице — целиком
 SLUG_RE = r'[a-z0-9]+(?:-[a-z0-9]+)*'
 
 # ───────────────────────── данные ─────────────────────────
@@ -134,7 +148,23 @@ def sha(b):
 
 
 def js_json(o):
-    return json.dumps(o, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+    # '</' закрыл бы <script>, '<!--' переводит парсер скрипта в «escaped»-режим — оба безопасно экранируем
+    return (json.dumps(o, ensure_ascii=False, separators=(',', ':'))
+            .replace('</', '<\\/').replace('<!--', '\\u003c!--'))
+
+
+def clip(s, n=DESC_MAX):
+    """Обрезка для meta/og: целыми предложениями, если влезает хотя бы ~60 % длины, иначе по слову с «…»."""
+    s = re.sub(r'\s+', ' ', str(s or '')).strip()
+    if len(s) <= n:
+        return s
+    ends = [m.end() for m in re.finditer(r'[.!?…](?=\s)', s[:n + 1])]
+    if ends and ends[-1] >= n * 0.6:
+        return s[:ends[-1]].strip()
+    cut = s[:n - 1]
+    if ' ' in cut:
+        cut = cut[:cut.rindex(' ')]
+    return cut.rstrip(' ,;:-–—(«"\'') + '…'
 
 
 class Ctx:
@@ -144,6 +174,8 @@ class Ctx:
         self.og = {}   # id → (published path, version tag) or None
         self.cols = []        # [(подборка, [работы])] — только те, что генерируются
         self.work_cols = {}   # id работы → [подборки, где она есть]
+        self.desc = {}        # id работы → {'ru': текст, 'en': текст} — видимые подписи, только одобренные (ok: true)
+        self.alt = {}         # id работы → {'ru': текст, 'en': текст} — что изображено (alt.json), без одобрения
 
     def img_size(self, rel):
         if rel not in self._sizes:
@@ -316,6 +348,12 @@ CSS_COL = """.chips{display:flex;flex-wrap:wrap;justify-content:center;align-ite
 @media(max-width:600px){.chips a{padding:5px 13px;font-size:.8rem}}
 """
 
+# Описание работы (одобренное Машей) — подключается только на странице, где оно есть
+CSS_DESC = """.wd{font-size:1rem;line-height:1.75;color:var(--char);margin:-4px 0 22px;max-width:34em;overflow-wrap:break-word}
+@media(max-width:900px){.wd{max-width:none}}
+@media(max-width:600px){.wd{font-size:.96rem;margin-bottom:20px}}
+"""
+
 TG_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>')
 TRY_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="4" width="14" height="12" rx="1"/><path d="M8 13l3-3 2 2 3-3M2 20h20"/></svg>')
 SHARE_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg>')
@@ -327,7 +365,7 @@ LANG_JS = ("(function(){var pl=%s,alt=%s,w;"
            "try{var s=localStorage.getItem('mp_lang');if(s==='en'||s==='ru')w=s;}catch(_){}}"
            "if(!w){var b=((navigator.languages&&navigator.languages[0])||navigator.language||'ru').toLowerCase();"
            "w=b==='ro-md'||/^(ru|uk|be|kk|ky|uz|tg|hy|az|ka)\\b/.test(b)?'ru':'en';}"
-           "if(w!==pl)location.replace(alt+location.hash);})();")
+           "if(w!==pl)location.replace(alt+location.search+location.hash);})();")
 
 # Общий скрипт внизу: Метрика (после load или через 1,5 с, как на главной), цели, буфер, тост, курс, язык, кнопки
 TAIL_JS = """(function(){
@@ -506,6 +544,12 @@ def render_work(ctx, i, lang):
         desc = f'“{t}”, an original work by Maria Polushkina: {facts}. {ptxt} Buy directly from the artist, try it on your wall.'
     desc = re.sub(r'\s+', ' ', desc).strip()
     og_desc = ' · '.join(x for x in [facts, ptxt.rstrip('.')] if x)
+    wd = (ctx.desc.get(wid) or {}).get(lang, '')   # одобренная видимая подпись; пусто — страница как была
+    wa = (ctx.alt.get(wid) or {}).get(lang, '')    # что изображено — только alt главного фото и JSON-LD
+    ld_desc = wd or wa or desc
+    if wd:
+        desc = og_desc = clip(wd)
+    main_alt = work_alt(a, lang) + (f'. {wa}' if wa else '')
 
     imgs = images_of(a)
     vids = [m['path'] for m in media_of(a) if m.get('type') == 'vid']
@@ -544,7 +588,7 @@ def render_work(ctx, i, lang):
         'url': abs_url(path),
         'inLanguage': lang,
         'image': [SITE + file_url(p) for p in imgs] or [og_img],
-        'description': desc,
+        'description': ld_desc,
         'creator': person,
         'brand': {'@type': 'Brand', 'name': 'Мария Полушкина' if ru else 'Maria Polushkina'},
         'artform': 'Живопись' if ru else 'Painting',
@@ -570,7 +614,8 @@ def render_work(ctx, i, lang):
     ld = {'@context': 'https://schema.org', '@graph': [art, breadcrumbs_ld(crumbs)]}
 
     ru_path = page_path(wid, 'ru')
-    h = [head(lang, title, desc, path, alt_path, ru_path, extra, ld, page_css(ctx)), '<body>', nav(lang, alt_path), '<main>',
+    css = page_css(ctx) + (CSS_DESC if wd else '')
+    h = [head(lang, title, desc, path, alt_path, ru_path, extra, ld, css), '<body>', nav(lang, alt_path), '<main>',
          breadcrumbs_html(crumbs), '<article class="wk">', '<div class="wm">']
 
     # главное фото + галерея остальных (переключение лёгким JS; без JS — все фото всё равно в разметке)
@@ -580,15 +625,16 @@ def render_work(ctx, i, lang):
     if imgs:
         s0 = ctx.img_size(imgs[0])
         wh = f' width="{s0[0]}" height="{s0[1]}" style="{img_css(s0)}"' if s0 else ''
-        h.append(f'<img class="main" id="mainImg" src="{file_url(imgs[0])}" alt="{esc(work_alt(a, lang))}"{wh} fetchpriority="high">')
+        h.append(f'<img class="main" id="mainImg" src="{file_url(imgs[0])}" alt="{esc(main_alt)}"{wh} fetchpriority="high">')
         if len(imgs) > 1:
             h.append(f'<div class="gal" role="group" aria-label="{"Фото работы" if ru else "Photos"}">')
             for n, p in enumerate(imgs):
                 sn = ctx.img_size(p) or (1, 1)
+                ga = main_alt if n == 0 else work_alt(a, lang, n)
                 h.append(f'<button type="button" class="gt{" on" if n == 0 else ""}" aria-pressed="{"true" if n == 0 else "false"}" '
                          f'data-src="{file_url(p)}" data-w="{sn[0]}" data-h="{sn[1]}" data-css="{img_css(sn)}" '
-                         f'data-alt="{esc(work_alt(a, lang, n))}" aria-label="{"Фото" if ru else "Photo"} {n + 1}">'
-                         f'<img src="{file_url(p)}" alt="{esc(work_alt(a, lang, n))}" width="{sn[0]}" height="{sn[1]}" loading="lazy" decoding="async"></button>')
+                         f'data-alt="{esc(ga)}" aria-label="{"Фото" if ru else "Photo"} {n + 1}">'
+                         f'<img src="{file_url(p)}" alt="{esc(ga)}" width="{sn[0]}" height="{sn[1]}" loading="lazy" decoding="async"></button>')
             h.append('</div>')
     if vids:
         h.append('<div class="vids">' + ''.join(
@@ -615,7 +661,10 @@ def render_work(ctx, i, lang):
         ds = (f"Original work by Maria Polushkina, {ds_facts}. The artist's works are held in private collections in 10 countries. "
               + ('This work has been sold - you can ask the artist about similar ones.' if a.get('sold')
                  else 'Buy directly from the artist and try the painting on your wall right on the website.'))
-    h += ['<div class="wi">', f'<h1>{esc(t_raw)}</h1>', f'<div class="meta">{meta}</div>', price_block(a, lang, 'mp'),
+    h += ['<div class="wi">', f'<h1>{esc(t_raw)}</h1>', f'<div class="meta">{meta}</div>']
+    if wd:
+        h.append(f'<p class="wd">{esc(wd)}</p>')
+    h += [price_block(a, lang, 'mp'),
           f'<a class="mt" id="buy" href="{esc(tg)}" target="_blank" rel="noopener">{TG_SVG}<span>{btn}</span></a>',
           '<div class="acts">',
           f'<a class="m2 try" href="{try_href}">{TRY_SVG}<span>{try_txt}</span></a>',
@@ -730,6 +779,35 @@ def load_collections(path):
             continue
         seen.add(slug)
         out.append({**c, 'ru': str(c['ru']).strip(), 'en': str(c['en']).strip()})
+    return out
+
+
+def load_texts(path, ids, need_ok, required=False):
+    """Читает descriptions.json (need_ok: только ok: true, строго булево) или alt.json; нет файла — текстов нет.
+    Берёт непустой ru/en. Битый файл — выход с ошибкой (иначе бот снял бы все тексты с сайта)."""
+    name = os.path.basename(path)
+    try:
+        with open(path, encoding='utf-8') as f:
+            raw = json.load(f)
+    except FileNotFoundError:
+        if required:
+            sys.exit(f'{path}: файла нет - ничего не меняю (без него сборка сняла бы alt со всех страниц работ)')
+        return {}
+    except ValueError as e:
+        sys.exit(f'{path}: не читается как JSON ({e}) - ничего не меняю')
+    if not isinstance(raw, dict):
+        sys.exit(f'{path}: ожидается объект {{"<id>": {{"ru", "en", "ok"}}}}')
+    out = {}
+    for k, v in raw.items():
+        if not (isinstance(k, str) and k.isdigit() and isinstance(v, dict)) or need_ok and v.get('ok') is not True:
+            continue
+        if int(k) not in ids:
+            print(f'{name}: №{k} нет в каталоге - пропуск', file=sys.stderr)
+            continue
+        t = {lang: re.sub(r'\s+', ' ', v[lang]).strip() for lang in ('ru', 'en') if isinstance(v.get(lang), str)}
+        t = {lang: x for lang, x in t.items() if x}
+        if t:
+            out[int(k)] = t
     return out
 
 
@@ -891,6 +969,10 @@ def main():
     ap.add_argument('--catalog', help='catalog.json (по умолчанию <root>/catalog.json)')
     ap.add_argument('--content', help='content.json (по умолчанию <root>/content.json)')
     ap.add_argument('--collections', help='файл подборок (по умолчанию <root>/tools/seo/collections.json; нет файла - нет подборок)')
+    ap.add_argument('--descriptions', help='описания работ (по умолчанию <root>/tools/seo/descriptions.json; '
+                    'нет файла - нет описаний; на сайт идут только ok: true)')
+    ap.add_argument('--alt', help='что изображено (по умолчанию <root>/tools/seo/alt.json; нет файла - нет текстов; '
+                    'идёт в alt главного фото и JSON-LD без одобрения)')
     ap.add_argument('--out', help='куда писать (по умолчанию <root>); для проверок — папка в скратчпаде')
     ap.add_argument('--changed', help='файл, куда записать изменённые адреса (по одному на строку)')
     ap.add_argument('--today', help='дата для lastmod, ГГГГ-ММ-ДД (по умолчанию сегодня по UTC)')
@@ -922,6 +1004,10 @@ def main():
     contacts = content.get('contacts') or {}
     ctx = Ctx(root, out, works, contacts)
     ctx.dm = str(contacts.get('telegramDm') or contacts.get('telegram') or 'artpolushkina').lstrip('@')
+
+    wids = {a['id'] for a in works}
+    ctx.desc = load_texts(args.descriptions or os.path.join(root, 'tools', 'seo', 'descriptions.json'), wids, True)
+    ctx.alt = load_texts(args.alt or os.path.join(root, 'tools', 'seo', 'alt.json'), wids, False, required=True)
 
     # подборки: считаем состав до страниц работ — на них строка «В подборках»
     col_file = args.collections or os.path.join(root, 'tools', 'seo', 'collections.json')
@@ -1066,7 +1152,7 @@ def main():
     if args.changed:
         with open(args.changed, 'w', encoding='utf-8') as f:
             f.write(''.join(u + '\n' for u in changed))
-    print(f'работ: {len(works)}; подборок: {len(ctx.cols)} ('
+    print(f'работ: {len(works)}; alt-текстов: {len(ctx.alt)}; одобренных подписей: {len(ctx.desc)}; подборок: {len(ctx.cols)} ('
           + ', '.join(f'{c["slug"]} {len(ws)}' for c, ws in ctx.cols) + f'); страниц записано: {written}; превью пересчитано: {og_made}; '
           f'удалено страниц: {removed}; sitemap.xml {"обновлён" if sm_changed else "без изменений"}; '
           f'изменённых адресов: {len(changed)}', file=sys.stderr)
