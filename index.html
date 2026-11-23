@@ -8,6 +8,7 @@
 <!-- Подтверждение прав на сайт: вставить значения и раскомментировать -->
 <meta name="yandex-verification" content="b8d1f227ca43ce27">
 <!-- <meta name="google-site-verification" content="ЗНАЧЕНИЕ_ИЗ_SEARCH_CONSOLE"> -->
+<meta name="robots" content="max-image-preview:large">
 <link rel="canonical" href="https://artpolushkina.com/">
 <link rel="alternate" hreflang="ru" href="https://artpolushkina.com/">
 <link rel="alternate" hreflang="en" href="https://artpolushkina.com/?lang=en">
@@ -29,8 +30,10 @@
 <meta name="twitter:image" content="https://artpolushkina.com/site/images/og-cover.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Person","@id":"https://artpolushkina.com/#maria","name":"Мария Полушкина","alternateName":"Maria Polushkina","jobTitle":"Художница","birthDate":"1985","birthPlace":{"@type":"Place","name":"Москва"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Freie Universität Berlin"},"url":"https://artpolushkina.com/","image":"https://artpolushkina.com/site/images/artist-photo.jpg","sameAs":["https://instagram.com/artpolushkina","https://t.me/artpolushkina","https://www.saatchiart.com/mariapolushkina","https://cube.market/artists/mariia-polushkina","https://bizar.art/author/mariya-polushkina-p8t9","https://moongallery.eu/artist/maria-polushkina/","https://kvartiras.com/dn10/"]},
-{"@type":"WebSite","@id":"https://artpolushkina.com/#site","url":"https://artpolushkina.com/","name":"Мария Полушкина","alternateName":"Maria Polushkina","inLanguage":["ru","en"],"author":{"@id":"https://artpolushkina.com/#maria"},"publisher":{"@id":"https://artpolushkina.com/#maria"}}
+{"@type":"Person","@id":"https://artpolushkina.com/#maria","name":"Мария Полушкина","alternateName":"Maria Polushkina","jobTitle":"Художница","birthDate":"1985","birthPlace":{"@type":"Place","name":"Москва"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Freie Universität Berlin"},"url":"https://artpolushkina.com/","image":"https://artpolushkina.com/site/images/artist-photo.jpg","sameAs":["https://instagram.com/artpolushkina","https://t.me/artpolushkina","https://cube.market/artists/mariia-polushkina","https://bizar.art/author/mariya-polushkina-p8t9","https://moongallery.eu/artist/maria-polushkina/","https://kvartiras.com/dn10/"]},
+{"@type":"WebSite","@id":"https://artpolushkina.com/#site","url":"https://artpolushkina.com/","name":"Мария Полушкина","alternateName":"Maria Polushkina","inLanguage":["ru","en"],"author":{"@id":"https://artpolushkina.com/#maria"},"publisher":{"@id":"https://artpolushkina.com/#maria"},"image":{"@id":"https://artpolushkina.com/#cover"}},
+{"@type":"WebPage","@id":"https://artpolushkina.com/#page","url":"https://artpolushkina.com/","name":"Мария Полушкина - современная художница, Москва","inLanguage":"ru","isPartOf":{"@id":"https://artpolushkina.com/#site"},"about":{"@id":"https://artpolushkina.com/#maria"},"primaryImageOfPage":{"@id":"https://artpolushkina.com/#cover"},"image":{"@id":"https://artpolushkina.com/#cover"}},
+{"@type":"ImageObject","@id":"https://artpolushkina.com/#cover","url":"https://artpolushkina.com/site/images/og-cover.jpg","contentUrl":"https://artpolushkina.com/site/images/og-cover.jpg","width":1200,"height":630,"caption":"Мария Полушкина, картина «Поплыли!», холст, акрил","creator":{"@id":"https://artpolushkina.com/#maria"}}
 ]}
 </script>
 <script>
@@ -165,8 +168,8 @@ a:hover{color:var(--mars)}
 .pc{background:var(--canvas-w);border-radius:14px;overflow:hidden;border:1px solid rgba(200,169,110,.1);transition:.3s var(--e);display:flex;flex-direction:column}
 .pc:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(45,42,38,.07);border-color:var(--gold-s)}
 .pi{width:100%;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--canvas-w),var(--lg))}
-.pi img{width:100%;height:100%;object-fit:cover;transition:.4s var(--e)}
-.pc:hover .pi img{transform:scale(1.04)}
+.pim{width:100%;height:100%;background:center/cover no-repeat;transition:.4s var(--e)}
+.pc:hover .pim{transform:scale(1.04)}
 .pb2{padding:20px 24px}
 .py{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--burg);margin-bottom:6px;display:block}
 .pn{font-family:var(--fd);font-size:1.12rem;font-weight:500;margin-bottom:10px;flex:1}
@@ -732,15 +735,24 @@ function rPress(){
   const pb=CT.press||[];
   document.getElementById('pG').innerHTML=pb.map(p=>`
     <div class="pc fi">
-      <div class="pi"><img src="${p.img}" alt="${escA((L==='ru'?'Работы Марии Полушкиной в публикации: ':'Maria Polushkina featured in ')+(L==='ru'?p.r:p.e)+(p.y?', '+p.y:''))}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="pi"><div class="pim" role="img" aria-label="${escA((L==='ru'?'Работы Марии Полушкиной в публикации: ':'Maria Polushkina featured in ')+(L==='ru'?p.r:p.e)+(p.y?', '+p.y:''))}" data-bg="${escA(p.img||'')}"></div></div>
       <div class="pb2">
         <span class="py">${p.y}</span>
         <div class="pn">${L==='ru'?p.r:p.e}</div>
         ${p.u?`<a href="${p.u}" target="_blank" rel="noopener" class="plk">${L==='ru'?'Читать':'Read'}</a>`:`<span class="pp">${L==='ru'?'Печатное издание':'Print edition'}</span>`}
       </div>
     </div>`).join('');
-  ob();
+  ob();pubBg();
 }
+/* Кадры публикаций — CSS-фоном, а не <img>: это интерьеры из журналов, и Google брал их картинками сайта в выдачу вместо картин.
+   Грузятся лениво (как loading="lazy"), битый кадр прячет блок, как раньше onerror */
+let pubIO=null;
+function pubLoad(el){const u=el.dataset.bg;if(!u)return;el.removeAttribute('data-bg');const im=new Image();
+  im.onload=()=>{el.style.backgroundImage='url("'+u.replace(/["\\]/g,'\\$&')+'")';};im.onerror=()=>{el.parentElement.style.display='none';};im.src=u;}
+function pubBg(){const els=document.querySelectorAll('#pG .pim[data-bg]');
+  if(!('IntersectionObserver' in window)){els.forEach(pubLoad);return;}
+  pubIO=pubIO||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){pubIO.unobserve(e.target);pubLoad(e.target);}}),{rootMargin:'800px 0px'});
+  els.forEach(el=>pubIO.observe(el));}
 
 function rContacts(){
   const c=CT.contacts||CT_FB.contacts;
@@ -1414,7 +1426,7 @@ setInterval(ob,800);
   function go(){
     if(busy()||heroOn())return later(2500);
     const W=innerWidth,H=innerHeight,fw=W<600?84:W<1100?104:124,m=fw,dir=Math.random()<.5?1:-1;
-    const ts=[...document.querySelectorAll('.ci,.ap-ring,.pc img')].map(e=>e.getBoundingClientRect())
+    const ts=[...document.querySelectorAll('.ci,.ap-ring,.pc .pim')].map(e=>e.getBoundingClientRect())
       .filter(r=>r.width>40&&r.top+r.height/2>90&&r.top+r.height/2<H-60).map(r=>({x:r.left+r.width/2,y:r.top+r.height/2,pg:1}))
       .sort(()=>Math.random()-.5).slice(0,W<600?1:2).sort((a,b)=>(a.x-b.x)*dir);
     const y0=H*(.2+.6*Math.random()),pts=[...ts,{x:dir>0?W+m*1.5:-m*1.5,y:H*(.15+.7*Math.random())}];
