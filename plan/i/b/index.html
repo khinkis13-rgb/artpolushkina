@@ -248,6 +248,62 @@ ul.no b{color:var(--burg)}
   .reel .cb pre{font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+
+/* живая страница */
+.others{display:grid;grid-template-columns:1fr;gap:22px;margin-top:18px}
+.oth img,.now img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#111}
+.oth figcaption,.vs figcaption{margin-top:8px;font-size:15px;color:#4a443d}
+.oth figcaption b,.vs figcaption b{color:var(--navy-d)}
+.oth figcaption span{display:block;margin-top:2px}
+.vs{display:grid;grid-template-columns:1fr;gap:22px;margin-top:16px}
+.ig{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;max-width:420px}
+.ig .hd{display:flex;gap:12px;align-items:center}
+.ig .av{width:58px;height:58px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--gold-s)}
+.ig .hd b{display:block;font-weight:500;font-size:15px;color:var(--char)}
+.ig .hd span{font-size:13px;color:var(--wg)}
+.ig .bio{font-size:12.5px;line-height:1.45;color:#3b3731;margin:8px 0 0}
+.ig .g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin-top:10px}
+.tl{position:relative;aspect-ratio:3/4;overflow:hidden;background:#EFE9DF}
+.tl img{width:100%;height:100%;object-fit:cover;display:block}
+.tl>i{position:absolute;top:4px;right:5px;font-style:normal;font-size:11px;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.6)}
+.tl.pin>i{color:inherit;text-shadow:none}
+.tl em{position:absolute;left:0;right:0;bottom:0;font:500 10.5px/1.2 var(--fb);font-style:normal;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);padding:14px 5px 5px}
+.tl.txt{display:flex;align-items:center;justify-content:center;text-align:center;background:var(--navy-d);color:#fff;padding:8px}
+.tl.txt span{font:400 16px/1.15 var(--fd)}
+.tl.txt small{display:block;font:400 10px/1.3 var(--fb);color:#d9e0ea;margin-top:6px}
+.tl.hl{outline:2px solid var(--burg);outline-offset:-2px}
+.day{margin-top:30px;padding-top:6px}
+.day .when{display:inline-block;font:500 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--burg);padding:7px 10px;border-radius:3px}
+.day h3{margin-top:12px}
+.strip,.stories{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(140px,170px);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+.fr{scroll-snap-align:start;min-width:0}
+.sc{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#F6F2DC}
+.sc>img{width:100%;height:100%;object-fit:cover;display:block}
+.sc.cov{background:#EEE8DE}.sc.cov>img{object-fit:contain}
+.sc.ph{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:12px;text-align:center;border:2px dashed #b9ac98;background:repeating-linear-gradient(135deg,#F4EEE2 0 12px,#ECE4D5 12px 24px);color:#5b544c;font-size:13.5px;line-height:1.35}
+.sc.ph b{font:500 12px/1 var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--burg)}
+.ov{position:absolute;left:8%;right:8%;top:18%;text-align:center;font:500 13px/1.25 var(--fb);color:#fff;background:rgba(30,28,26,.72);padding:6px 7px;border-radius:6px}
+.ov.lo{top:auto;bottom:14%}
+.ov.in{position:static;margin-top:10px;display:block}
+.fr .t{margin-top:6px;font:500 11px/1.3 var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--wg)}
+.car{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+.car figure{flex:0 0 min(76%,280px);scroll-snap-align:start}
+.car img,.tsl{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block}
+.tsl{background:#F5EEDF;display:flex;flex-direction:column;justify-content:center;padding:20px;font:400 21px/1.25 var(--fd);color:var(--navy-d)}
+.tsl small{display:block;margin-top:14px;font:400 13px/1.45 var(--fb);color:#4a443d}
+.car figcaption{margin-top:6px;font:500 11px/1.3 var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--wg)}
+.story>img{object-fit:cover}
+.stk{position:absolute;left:50%;transform:translateX(-50%);bottom:20%;background:#fff;color:var(--char);border-radius:10px;padding:8px 10px;font:400 12.5px/1.35 var(--fb);text-align:center;box-shadow:0 6px 18px -8px rgba(0,0,0,.4);white-space:nowrap}
+.stk b{font-weight:500;font-size:15px}
+.stk.q{bottom:auto;top:14%;white-space:normal;width:84%;font-weight:500}
+.poll{display:grid;gap:4px;margin-top:6px}.poll i{font-style:normal;font-weight:400;border:1px solid var(--line);border-radius:6px;padding:4px}
+.lnk{position:absolute;left:50%;transform:translateX(-50%);bottom:9%;background:#fff;color:#2b5fd9;border-radius:8px;padding:5px 9px;font:500 12px/1.2 var(--fb);white-space:nowrap}
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;max-width:420px;margin-top:6px}
+.res img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+@media (min-width:760px){
+  .others{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vs{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+}
 </style>
 </head>
 <body>
@@ -257,56 +313,165 @@ ul.no b{color:var(--burg)}
     <img class="sig" src="../../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
     <div class="k">artpolushkina · Instagram</div>
     <h1>Как не заполнить ленту только собой</h1>
-    <p class="lead">Мань, ты спросила, как найти баланс: чтобы всё залетало, но Instagram не состоял из одной тебя. Мы посмотрели, как это делают 23 художника, которые продают картины через Instagram (11 русскоязычных и 12 зарубежных), и проверили, как сейчас устроены обложки и сетка.<sup><a href="#n3">3</a></sup></p>
+    <p class="lead">Мань, ты спросила, как найти баланс: чтобы всё залетало, но Instagram не состоял из одной тебя. Мы посмотрели, как это делают 23 художника, которые продают картины через Instagram (11 русскоязычных и 12 зарубежных), проверили, как сейчас устроены обложки и сетка, и разложили одну твою картину на неделю публикаций.<sup><a href="#n3">3</a></sup></p>
     <div class="sum">
       <div class="k">Коротко</div>
       <h2>Не меньше тебя, а ты всегда рядом с картиной</h2>
       <p>Убирать тебя не нужно: посты с тобой собирают около 50 лайков против 25-30 у одной картины, ролики с тобой - в 4-5 раз больше просмотров. Но «просто я» не нужно ни разу: в каждом кадре с тобой есть картина и рассказ о ней. А сетку профиля можно сделать галереей - обложками.</p>
     </div>
+    <nav class="toc" aria-label="Разделы">
+      <a href="#others"><span>1</span>Как у других</a>
+      <a href="#profile"><span>2</span>Твой профиль</a>
+      <a href="#week"><span>3</span>Раскадровка недели</a>
+      <a href="#ways"><span>4</span>Три варианта</a>
+      <a href="#covers"><span>5</span>Обложки</a>
+    </nav>
   </header>
 
-  <section class="sec" id="seen">
+  <!-- 1. Как у других -->
+  <section class="sec" id="others">
     <div class="n">1</div>
-    <h2>Что мы увидели<small>у других художников</small></h2>
-    <ul class="dots">
-      <li><b>Нормы «сколько лица» нет.</b> Её никто не измерял. Работают две модели: художник как личность или картина в центре, а голос автора - в подписях и сюжете. У тебя юмор уже внутри картин, и это редкое преимущество: такую работу пересылают друг другу как шутку.</li>
-      <li><b>Лицо работает как событие, а не как дневник.</b> У <a href="https://www.instagram.com/mashasomik/" target="_blank" rel="noopener">Маши Сомик</a> (Москва, 10 тыс.) пост «кто я» с портретом - 468 лайков, пост «картина + цена» - 49. А у художницы, которая каждый день говорит в камеру, ролики при 21 тыс. подписчиков собирают по 10-20 лайков.</li>
-      <li><b>Сильнее всего - история одной картины.</b> У <a href="https://www.instagram.com/vostrezova_painting/" target="_blank" rel="noopener">Анастасии Вострезовой</a> (30 тыс.) ролик о том, как писался натюрморт с ковром, с её попугаем в кадре - 724 лайка, обычные ролики - около 200.</li>
-      <li><b>Чередовать, как ты уже делаешь, - правильно.</b> <a href="https://www.instagram.com/anastasiatrusovaart/" target="_blank" rel="noopener">Анастасия Трусова</a> (253 тыс.) строго чередует: готовая картина, ролик процесса, снова картина.</li>
-    </ul>
-
+    <h2>Как это выглядит у других<small>четыре профиля, снято 24 ноября</small></h2>
+    <p>Нормы «сколько лица» нет, её никто не измерял. Но у тех, кто продаёт картины, видны два приёма: лицо появляется как событие, а не как дневник, и вокруг одной картины строится история.</p>
+    <div class="others">
+      <figure class="oth">
+        <a href="https://www.instagram.com/libbyhainesart/" target="_blank" rel="noopener"><img src="img/ig-libbyhainesart.jpg" alt="Профиль Libby Haines в Instagram" loading="lazy"></a>
+        <figcaption><b>Libby Haines</b> · Мельбурн, 114 тыс.<span>В закрепе - афиши (как купить, распродажа принтов), дальше лента из картин, её лица почти нет. В шапке: «новая работа по понедельникам и четвергам», кто первым написал в комментариях, тот и купил. Картины уходят за минуты.</span></figcaption>
+      </figure>
+      <figure class="oth">
+        <a href="https://www.instagram.com/anastasiatrusovaart/" target="_blank" rel="noopener"><img src="img/ig-anastasiatrusovaart.jpg" alt="Профиль Анастасии Трусовой в Instagram" loading="lazy"></a>
+        <figcaption><b>Анастасия Трусова</b> · Бельгия, 253 тыс.<span>Строгое чередование: готовая картина, потом ролик процесса (руки, мастихин), снова картина. Сама она - в «Актуальном», в ленте редко.</span></figcaption>
+      </figure>
+      <figure class="oth">
+        <a href="https://www.instagram.com/mashasomik/" target="_blank" rel="noopener"><img src="img/ig-mashasomik.jpg" alt="Профиль Маши Сомик в Instagram" loading="lazy"></a>
+        <figcaption><b>Маша Сомик</b> · Москва, 10 тыс.<span>Ближе всех к тебе по масштабу. Закреп «кто я» с её портретом - 468 лайков, пост «картина + цена» - 49. Лицо как событие, а не каждый день.</span></figcaption>
+      </figure>
+      <figure class="oth">
+        <a href="https://www.instagram.com/vostrezova_painting/" target="_blank" rel="noopener"><img src="img/ig-vostrezova_painting.jpg" alt="Профиль Анастасии Вострезовой в Instagram" loading="lazy"></a>
+        <figcaption><b>Анастасия Вострезова</b> · Петербург, 30 тыс.<span>Почти одни ролики, и сильнее всего - история одной картины: «как я писала натюрморт с ковром», с её попугаем в кадре, - 724 лайка, обычные ролики - около 200.</span></figcaption>
+      </figure>
+    </div>
   </section>
 
-  <section class="sec" id="ways">
+  <!-- 2. Твой профиль -->
+  <section class="sec" id="profile">
     <div class="n">2</div>
+    <h2>Твой профиль: сейчас и как может быть<small>схема, не настоящие посты</small></h2>
+    <div class="vs">
+      <figure class="now">
+        <img src="img/ig-artpolushkina.jpg" alt="Профиль artpolushkina сейчас" loading="lazy">
+        <figcaption><b>Сейчас.</b> Сетка пёстрая: книга, ты, картины на разных фонах, текст на обложках. Живо, но картину как товар взглядом не поймать.</figcaption>
+      </figure>
+      <figure>
+        <div class="ig" aria-label="Схема профиля после">
+          <div class="hd">
+            <img class="av" src="../../../site/images/artist-photo.jpg" alt="">
+            <div><b>artpolushkina</b><span>Мария Полушкина | Художница</span></div>
+          </div>
+          <p class="bio">▪️Пишу картины каждый день<br>▫️Ироничная живопись<br>▪️Выставки в России и Европе<br>🔻Все картины с ценами и примеркой - на сайте</p>
+          <div class="g">
+            <div class="tl pin"><img src="../../../site/images/artist-photo.jpg" alt=""><i>📌</i><em>кто я</em></div>
+            <div class="tl pin"><img src="img/t-58.jpg" alt=""><i>📌</i><em>лучший ролик</em></div>
+            <div class="tl pin txt"><i>📌</i><span>Как купить картину<small>цены · примерка · доставка</small></span></div>
+            <div class="tl hl"><img src="img/t-66-detail.jpg" alt=""><i>▶</i></div>
+            <div class="tl hl"><img src="img/t-66-interior.jpg" alt=""><i>❐</i></div>
+            <div class="tl hl"><img src="img/t-66.jpg" alt=""><i>▶</i></div>
+            <div class="tl"><img src="img/t-87.jpg" alt=""><i>❐</i></div>
+            <div class="tl"><img src="img/t-86.jpg" alt=""><i>▶</i></div>
+            <div class="tl"><img src="img/t-84.jpg" alt=""><i>❐</i></div>
+            <div class="tl"><img src="img/t-82.jpg" alt=""><i>▶</i></div>
+            <div class="tl"><img src="img/t-73.jpg" alt=""><i>❐</i></div>
+            <div class="tl"><img src="img/t-71.jpg" alt=""><i>▶</i></div>
+          </div>
+        </div>
+        <figcaption><b>Может быть.</b> В закрепе - ты, лучший ролик и «как купить». Дальше сетка как экспозиция: картины на одном фоне. Ролики с тобой никуда не делись (значок ▶), просто на обложке картина. Выделенная строка - одна неделя из раскадровки ниже.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. Раскадровка -->
+  <section class="sec" id="week">
+    <div class="n">3</div>
+    <h2>Раскадровка: одна картина - одна неделя<small>на примере CHEERS!</small></h2>
+    <p>Так выглядит «сериал» на одной работе. Серые штрихованные кадры - то, что снимаешь ты на телефон, остальное у нас уже есть. Кадры листаются вбок.</p>
+
+    <div class="day">
+      <div class="when">Пятница, 19:00 · ролик «процесс»</div>
+      <h3>Пробка вылетает</h3>
+      <div class="strip">
+        <div class="fr"><div class="sc ph"><b>0-1 с</b>Твоя рука с бокалом входит в кадр и «чокается» с картиной</div><div class="t">снимаешь ты</div></div>
+        <div class="fr"><div class="sc"><img src="img/f0.5.jpg" alt=""><span class="ov">pov: пятница, 19:00</span></div><div class="t">1-3 с · анимация</div></div>
+        <div class="fr"><div class="sc"><img src="img/f2.5.jpg" alt=""><span class="ov">pov: пятница, 19:00</span></div><div class="t">3-5 с</div></div>
+        <div class="fr"><div class="sc"><img src="img/f4.5.jpg" alt=""></div><div class="t">5-7 с</div></div>
+        <div class="fr"><div class="sc"><img src="img/f8.5.jpg" alt=""><span class="ov lo">Цена и примерка - ссылка в профиле</span></div><div class="t">последний кадр</div></div>
+        <div class="fr"><div class="sc cov"><img src="img/t-66.jpg" alt=""></div><div class="t">обложка в сетке</div></div>
+      </div>
+      <p class="txt muted">Живое начало - одна секунда, этого хватает, чтобы ролик не пролистнули. Ролик и обложка уже готовы, они на <a href="../#reels">странице плана</a>.</p>
+    </div>
+
+    <div class="day">
+      <div class="when">Воскресенье · карусель</div>
+      <h3>Сама картина</h3>
+      <div class="car">
+        <figure><img src="img/s-interior.jpg" alt="CHEERS! над диваном в масштабе"><figcaption>1 · над диваном 2 м, в настоящем масштабе</figcaption></figure>
+        <figure><img src="img/s-full.jpg" alt="CHEERS! целиком"><figcaption>2 · целиком</figcaption></figure>
+        <figure><img src="img/s-detail.jpg" alt="Деталь: бокалы на кофтах"><figcaption>3 · деталь крупно</figcaption></figure>
+        <figure><div class="tsl">Двое под одной бутылкой и три бокала на двоих. Кто-то явно пришёл со своим 🥂<small>CHEERS! · холст, акрил, 80×70 см<br>Цена и примерка - ссылка в профиле</small></div><figcaption>4 · подпись слайдом или текстом</figcaption></figure>
+      </div>
+      <p class="txt muted">Первый слайд - интерьер: в сетке будет плитка не такая, как у ролика, и сразу виден размер.</p>
+    </div>
+
+    <div class="day">
+      <div class="when">Между постами · Stories</div>
+      <h3>Доступна</h3>
+      <div class="stories">
+        <div class="fr"><div class="sc story"><img src="img/s-full.jpg" alt=""><span class="stk">В наличии · 80×70 см<br><b>105 000 ₽</b></span><span class="lnk">🔗 Посмотреть на сайте</span></div><div class="t">картина + ссылка на её страницу</div></div>
+        <div class="fr"><div class="sc story"><img src="img/s-interior.jpg" alt=""><span class="stk q">Повесили бы в гостиной?<span class="poll"><i>Да!</i><i>Нужна другая стена</i></span></span></div><div class="t">опрос - лёгкий повод ответить</div></div>
+        <div class="fr"><div class="sc ph"><b>кусочек мастерской</b>Палитра или катушка золотой нити, 3 секунды, без текста</div><div class="t">снимаешь ты</div></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="when">Вторник · ролик «ты и картина»</div>
+      <h3>Почему бокалов три</h3>
+      <div class="strip">
+        <div class="fr"><div class="sc ph"><b>0-2 с</b>Ты держишь CHEERS! и смотришь в камеру<span class="ov in">pov: объясняю, почему бокалов три</span></div><div class="t">снимаешь ты</div></div>
+        <div class="fr"><div class="sc ph"><b>2-6 с</b>Показываешь пальцем: два бокала на одной кофте, один на другой</div><div class="t">снимаешь ты</div></div>
+        <div class="fr"><div class="sc ph"><b>6-9 с</b>Пожимаешь плечами и уходишь, картина остаётся в кадре</div><div class="t">снимаешь ты</div></div>
+        <div class="fr"><div class="sc"><img src="img/s-full.jpg" alt=""><span class="ov lo">Доступна · ссылка в профиле</span></div><div class="t">последний кадр</div></div>
+        <div class="fr"><div class="sc cov"><img src="img/t-66-detail.jpg" alt=""></div><div class="t">обложка - деталь</div></div>
+      </div>
+      <p class="txt muted">Это и есть твоё лицо в ленте, но ролик про картину: шутка, которую в ней видишь ты. Вместо «почему бокалов три» подойдёт любая её загадка.</p>
+    </div>
+
+    <div class="day">
+      <div class="when">Итог в сетке</div>
+      <h3>Одна картина - три разные плитки</h3>
+      <div class="res">
+        <img src="img/t-66-detail.jpg" alt="Плитка: деталь"><img src="img/t-66-interior.jpg" alt="Плитка: интерьер"><img src="img/t-66.jpg" alt="Плитка: картина целиком">
+      </div>
+      <p class="txt muted">Деталь, интерьер, целиком: ряд не выглядит как повтор. Четвёртый пост недели - другая работа или событие: выставка, журнал, картина уехала к покупателю.</p>
+    </div>
+  </section>
+
+  <!-- 4. Три варианта -->
+  <section class="sec" id="ways">
+    <div class="n">4</div>
     <h2>Три варианта<small>и какой советуем</small></h2>
     <div class="fmt">
       <div class="card"><span class="q">вид сетки</span><h3>Галерея снаружи, жизнь внутри</h3><p>На всех обложках - чистая картина на одном фоне, внутри ролика с первой секунды живое: ты, руки, кисть.</p><ul><li>+ профиль как у «аккуратных» художников, а живые ролики остаются</li><li>- к каждому ролику нужна обложка</li></ul></div>
       <div class="card m"><span class="q">основа · советуем</span><h3>Каждая картина - маленький сериал</h3><p>Не «картина, потом я», а несколько публикаций вокруг одной работы. Ты в кадре всегда вместе с ней.</p><ul><li>+ ты не заполняешь ленту собой, ты рассказываешь про картину</li><li>+ одна картина даёт 3-4 публикации</li><li>- новых картин за неделю в ленте меньше</li></ul></div>
       <div class="card"><span class="q">не советуем</span><h3>Лента - картины, ты - в Stories</h3><p>Как у самых крупных: в ленте только работы, ты - в Stories и изредка на событиях.</p><ul><li>+ самый «чистый» вид</li><li>- против твоих же цифр: новых людей приводят ролики с тобой. Крупным так можно, их уже знают</li></ul></div>
     </div>
-    <div class="tip"><b>Советуем сериал по содержанию и галерею по виду сетки.</b> Как это выглядит - ниже.</div>
+    <div class="tip"><b>Советуем сериал по содержанию и галерею по виду сетки.</b> Раскадровка выше - как раз это сочетание.</div>
 
   </section>
 
-  <section class="sec" id="serial">
-    <div class="n">3</div>
-    <h2>Сериал вокруг одной картины<small>ты в кадре, но всегда про картину</small></h2>
-    <div class="two">
-      <div class="card"><span class="q">1 · ролик</span><h3>Процесс</h3><p>Руки, кисти, золотая нить, эскиз → холст, под трендовый звук. Текст поверх - с первой секунды. Как твои кисти (2&nbsp;545 просмотров).</p></div>
-      <div class="card"><span class="q">2 · карусель</span><h3>Сама картина</h3><ul><li>картина целиком</li><li>деталь крупно</li><li>в интерьере или в руках, чтобы был виден размер</li><li>откуда сюжет - в подписи</li><li>в конце: «цена и примерка - ссылка в профиле»</li></ul></div>
-      <div class="card m"><span class="q">3 · ты в кадре</span><h3>Ты и эта картина</h3><p>Держишь, вешаешь, рассказываешь, что имела в виду, или «pov» (1&nbsp;797 просмотров). Это и есть твоё лицо в ленте, но всегда про картину.</p></div>
-      <div class="card"><span class="q">4 · stories</span><h3>Доступна</h3><ul><li>репост своего поста</li><li>«в наличии · размер · цена»</li><li>ссылка на страницу картины (раздел 6 плана)</li><li>опрос «Какую повесить в спальню: 1 или 2?»</li></ul></div>
-    </div>
-    <p class="txt muted" style="margin-top:10px">Твой ритм, около четырёх публикаций в неделю, остаётся: три про одну картину, четвёртая - другая работа или событие (выставка, журнал, картина уехала к покупателю). Stories - между ними, 3-4 раза в неделю.</p>
-
-  </section>
-
-  <section class="sec" id="grid">
-    <div class="n">4</div>
-    <h2>Сетка как галерея<small>обложки-картины</small></h2>
+  <!-- 5. Обложки -->
+  <section class="sec" id="covers">
+    <div class="n">5</div>
+    <h2>Обложки<small>как сделать сетку галереей</small></h2>
     <p>Обложку ролика можно поставить свою, отдельно от видео. В ленте Reels люди видят не обложку, а сам ролик с первого кадра, поэтому на охват она почти не влияет и работает только на вид профиля. Значит, в сетке можно держать чистые картины, а внутри - живое.</p>
-    <figure class="grid"><img src="../media/grid-preview.jpg" width="1088" height="480" alt="Три обложки-картины рядом, как плитки сетки профиля" loading="lazy"><figcaption>Так три готовых ролика со страницы плана лягут в сетку профиля.</figcaption></figure>
     <ul class="dots">
       <li><b>Первый кадр ролика - живой:</b> ты, рука, кисть, текст. Если ролик начинается с той же неподвижной картины, что на обложке, его чаще пролистывают в первые три секунды.</li>
       <li><b>Текст на обложке не нужен:</b> её видят только в профиле, а там лучше чистая картина.</li>
@@ -321,7 +486,7 @@ ul.no b{color:var(--burg)}
       <a class="btn" href="../media/02-otbros-vsyo-58-grid.jpg" download="Otbros-vsyo-oblozhka.jpg">Отбрось всё!</a>
       <a class="btn" href="../media/03-v-predvkushenii-64-grid.jpg" download="V-predvkushenii-oblozhka.jpg">В предвкушении</a>
     </div>
-    <p class="txt muted" style="margin-top:10px">На телефоне обложка откроется картинкой: <span class="ui">Поделиться</span> → <span class="ui">Сохранить изображение</span>. Сами ролики - на <a href="../#reels">странице плана</a>. Обложки к следующим роликам сделаю так же, из фото на сайте: напиши, к каким картинам.</p>
+    <p class="txt muted" style="margin-top:10px">На телефоне обложка откроется картинкой: <span class="ui">Поделиться</span> → <span class="ui">Сохранить изображение</span>. Обложки к следующим роликам сделаю так же, из фото на сайте: напиши, к каким картинам.</p>
   </section>
 
   <section class="notes" aria-label="Сноски">
@@ -329,7 +494,7 @@ ul.no b{color:var(--burg)}
     <ol>
       <li id="n1">Справка Instagram пишет, что обложку после публикации не сменить, но страница старая; обзоры 2025 года (Hootsuite, Later) пишут, что можно. Поэтому - сначала на одном ролике.</li>
       <li id="n2">По обзорам 2025-2026 годов. Вернуть ролик в сетку, по свежим источникам, тоже можно (<span class="ui">Добавить в сетку профиля</span>), но мы не проверяли.</li>
-      <li id="n3">Число подписчиков и лайков - по открытым страницам Instagram на 24 ноября 2026 года. Сторис и обложки чужих роликов снаружи не видны, поэтому про них - по статьям и обзорам.</li>
+      <li id="n3">Число подписчиков и лайков - по открытым страницам Instagram на 24 ноября 2026 года. Скрины профилей - для примера, сами посты принадлежат авторам. Сторис и обложки чужих роликов снаружи не видны, поэтому про них - по статьям и обзорам.</li>
     </ol>
   </section>
 
