@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Instagram: баланс</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;--sel:#EEF2F6;--ok:#4F7A5A;--okbg:#EDF3EE;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.55;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:var(--navy-d);text-underline-offset:3px}
+b,strong{font-weight:500}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+p+p{margin-top:10px}
+
+/* верхняя строка */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px}
+#cnt{font:400 14px/1.2 var(--fb);color:var(--wg);font-variant-numeric:lining-nums tabular-nums}
+#cnt b{color:var(--navy-d)}
+.go{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font:500 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--burg);text-decoration:none;white-space:nowrap}
+.pb{height:3px;background:var(--line)}
+.pb i{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));transition:width .25s}
+
+/* шапка */
+header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h1,h2,h3{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1{font-size:clamp(40px,9vw,64px);line-height:1.02;margin-bottom:18px}
+.lead{font-size:18px;color:#4a443d;max-width:680px}
+.lead+.lead{margin-top:12px}
+.sum{margin-top:24px;background:#fff;border:1px solid var(--gold-s);border-left:4px solid var(--gold);border-radius:4px;padding:18px 18px 20px}
+.sum h2{font-size:28px;line-height:1.1;margin-bottom:10px}
+.sum p{font-size:16.5px;color:#4a443d}
+.back{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font-size:16px}
+.muted{color:var(--wg);font-size:14.5px}
+
+/* словарик и оглавление */
+.gl{margin-top:20px;display:grid;grid-template-columns:1fr;gap:8px}
+.gl div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:15px;color:#4a443d}
+.gl b{color:var(--navy-d)}
+.toc{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.toc a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;background:#fff;border:1px solid var(--line);border-radius:40px;font-size:14.5px;font-weight:400;text-decoration:none;color:var(--navy-d)}
+.toc a span{color:var(--gold);font:italic 400 18px/1 var(--fd);margin-right:6px}
+@media (hover:hover){.toc a:hover{border-color:var(--gold-s)}}
+
+/* разделы */
+.sec{padding:40px 0 42px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
+.sec .n{font:italic 400 30px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+.sec h2{font-size:clamp(30px,6.4vw,42px);line-height:1.08;margin-bottom:10px}
+.sec h2 small{display:block;font:italic 400 .56em/1.3 var(--fd);color:var(--burg);margin-top:6px}
+.sec h3{font-size:clamp(23px,4.6vw,27px);line-height:1.15;margin:28px 0 10px}
+.sec>p,.sec .txt{font-size:16.5px;color:#4a443d;max-width:720px}
+.sec ul.dots{margin:10px 0 0 20px;font-size:16px;color:#4a443d;max-width:720px}
+.sec ul.dots li{padding:3px 0}
+sup a{font-size:12px;text-decoration:none;color:var(--gold);font-weight:500;padding:0 1px}
+
+/* шаги */
+ol.steps{list-style:none;counter-reset:st;margin-top:12px;max-width:720px}
+ol.steps>li{counter-increment:st;position:relative;padding:8px 0 10px 44px;font-size:16.5px;color:#3f3a34}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:7px;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--gold-s);color:var(--gold);font:italic 400 19px/28px var(--fd);text-align:center}
+.ui{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:5px;padding:0 6px;font-weight:400;color:var(--navy-d);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* случаи */
+.cases{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.case{background:#fff;border:1px solid var(--line);border-top:3px solid var(--line);padding:14px 16px 16px;border-radius:4px}
+.case h4{font:500 16px/1.3 var(--fb);color:var(--char);margin-bottom:6px}
+.case p{font-size:15.5px;color:#4a443d}
+.case.g{border-top-color:var(--ok)}.case.g h4{color:var(--ok)}
+.case.y{border-top-color:var(--gold)}.case.y h4{color:#7a6230}
+.case.r{border-top-color:var(--burg)}.case.r h4{color:var(--burg)}
+
+/* скрины */
+.shots{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+.shot{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.shot .i{flex:none;width:30px;height:30px;border-radius:6px;background:var(--sel);color:var(--navy-d);font:500 14px/30px var(--fb);text-align:center}
+.shot b{display:block;color:var(--navy-d);font-size:16px}
+.shot span{font-size:15px;color:#4a443d}
+.shot.ok{border-color:#cfe0d3}
+.shot.ok .i{background:var(--okbg);color:var(--ok)}
+.shot.ok b{color:var(--ok)}
+
+/* блоки для копирования */
+.cb{margin-top:12px;background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;max-width:720px}
+.cb{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.cb .h{display:contents}
+.cb .h span{grid-column:1/-1;grid-row:1;padding:10px 14px 0;font:500 12px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--wg);min-width:0}
+.cb .cp{grid-column:2;grid-row:2;margin:4px 8px 10px 0}
+.reel .cb{grid-template-columns:minmax(0,1fr)}.reel .cb .cp{grid-column:1;grid-row:3;justify-self:start;margin:0 14px 12px}
+@media (max-width:560px){.cb{grid-template-columns:minmax(0,1fr)}.cb .cp{grid-column:1;grid-row:3;justify-self:start;margin:0 14px 12px}}
+.cb pre{grid-column:1;grid-row:2;margin:0;padding:6px 14px 12px;font:400 15px/1.5 var(--fb);color:#3b3731;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.cp{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:6px 14px;border-radius:8px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:14px;font-weight:500;white-space:nowrap}
+.cp.ok{background:var(--ok);border-color:var(--ok)}
+.cp:focus-visible,.btn:focus-visible,.chk input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.cbs{display:grid;grid-template-columns:1fr;gap:0}
+
+/* карточки форматов */
+.fmt{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.card{background:#fff;border:1px solid var(--line);padding:18px 18px 18px;border-radius:4px;position:relative}
+.card .q{font:500 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);display:inline-block;padding:6px 9px;border-radius:3px;margin-bottom:10px}
+.card h3{margin:0 0 6px;font-size:26px}
+.card p,.card li{font-size:15.5px;color:#4a443d}
+.card ul{margin:6px 0 0 18px}
+.card ul li{padding:2px 0}
+.tip{margin-top:14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);padding:12px 14px;font-size:15.5px;color:#4a443d;max-width:720px;border-radius:0 4px 4px 0}
+.tip b{color:var(--navy-d)}
+.tip.w{border-left-color:var(--burg)}
+.tip.w b{color:var(--burg)}
+
+/* ролики */
+.reels{display:grid;grid-template-columns:1fr;gap:34px;margin-top:20px}
+.reel{min-width:0}
+.reel video{width:100%;max-width:320px;height:auto;aspect-ratio:9/16;background:#EFE7DA;border-radius:10px;margin:0 auto;box-shadow:0 18px 40px -24px rgba(45,42,38,.45)}
+.reel h3{margin:16px 0 4px;font-size:26px}
+.reel .meta{font-size:14px;color:var(--wg);margin-bottom:8px}
+.reel .what{font-size:15px;color:#4a443d}
+.reel .ov{font-size:15px;color:#4a443d;margin-top:6px}
+.reel .ov i{font-family:var(--fd);font-size:1.15em;color:var(--burg)}
+.reel .cb pre{font-size:14.5px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--navy-d);font-size:15.5px;font-weight:500;text-decoration:none}
+.btn.dk{background:var(--navy-d);border-color:var(--navy-d);color:#fff}
+.more6{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.more6 span{background:#fff;border:1px solid var(--line);border-radius:40px;padding:6px 14px;font-size:14.5px}
+
+/* журналы */
+.pubs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;max-width:720px}
+.pubs figure{min-width:0}
+.pubs img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:#EFE7DA}
+.pubs figcaption{font-size:12.5px;color:var(--wg);margin-top:4px;line-height:1.3}
+.who-l{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px;max-width:720px}
+.who-l a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:8px 14px;background:#fff;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--navy-d);font-weight:400}
+.who-l a i{font-style:normal;font-size:13.5px;color:var(--wg);text-align:right}
+
+/* не делать */
+ul.no{list-style:none;margin-top:12px;max-width:720px}
+ul.no li{position:relative;padding:8px 0 8px 32px;font-size:16px;color:#3f3a34;border-bottom:1px dashed var(--line)}
+ul.no li:last-child{border-bottom:0}
+ul.no li::before{content:"";position:absolute;left:4px;top:13px;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--burg)}
+ul.no li::after{content:"";position:absolute;left:7px;top:20px;width:10px;height:1.5px;background:var(--burg);transform:rotate(-45deg)}
+ul.no b{color:var(--burg)}
+
+/* недели */
+.weeks{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+.wk{background:#fff;border:1px solid var(--line);border-radius:6px;padding:16px 16px 10px}
+.wk .wh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.wk h3{margin:0;font-size:26px}
+.wk .d{font:500 12px/1.2 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.wk .wc{font-size:13.5px;color:var(--wg);white-space:nowrap}
+.chk{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-top:1px dashed var(--line);cursor:pointer;font-size:15.5px;line-height:1.4;color:#3f3a34}
+.chk input{position:absolute;opacity:0;width:1px;height:1px}
+.chk span.b{flex:none;width:22px;height:22px;margin-top:0;border:1.5px solid #b3a99c;border-radius:5px;background:#fff;transition:all .15s}
+.chk input:checked+span.b{border-color:var(--navy);background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.chk input:checked~span.t{color:var(--wg);text-decoration:line-through;text-decoration-color:rgba(125,116,106,.5)}
+.chk .t{min-width:0}
+.wk .dn{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-top:1px dashed var(--line);font-size:15.5px;line-height:1.4;color:var(--wg)}
+.wk .dn i{flex:none;width:22px;height:22px;border-radius:5px;background:var(--okbg);color:var(--ok);font:500 14px/22px var(--fb);font-style:normal;text-align:center}
+.wk .dn em{font-style:normal;font-size:13px;display:block}
+.chk .t em{font-style:normal;font-size:13px;color:var(--wg);display:block;text-decoration:none}
+.tag{display:inline-block;font:500 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;padding:4px 6px;border-radius:3px;margin-right:6px;vertical-align:2px}
+.tag.m{color:var(--burg);background:#F6ECEC}
+.tag.d{color:var(--navy);background:var(--sel)}
+.reset{margin-top:14px;display:flex;justify-content:flex-end}
+.reset button{min-height:44px;background:none;border:0;padding:0 2px;font-size:14.5px;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+
+/* кто что делает */
+.two{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.two .card h3{font-size:26px}
+.grid{margin:16px 0 4px;max-width:720px}
+.grid img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line);background:#fff}
+.grid figcaption{margin-top:8px;font-size:14.5px;color:var(--wg)}
+#balance{margin-top:26px;scroll-margin-top:64px}
+.card.m{border-top:3px solid var(--burg)}
+.card.d{border-top:3px solid var(--navy)}
+.nums{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.nums div{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.nums b{display:block;font:400 22px/1.2 var(--fd);color:var(--navy-d);margin-bottom:4px;font-variant-numeric:lining-nums;font-feature-settings:"lnum"}
+.nums span{font-size:15px;color:#4a443d}
+
+/* сноски */
+.notes{padding:30px 0 10px}
+.notes h2{font-size:24px;margin-bottom:8px}
+.notes ol{margin-left:20px;font-size:14px;color:var(--wg);max-width:720px}
+.notes li{padding:3px 0;scroll-margin-top:60px}
+.notes li:target{color:var(--char);background:#F5EEDF}
+.end{padding:24px 0 6px;font-size:16px;color:#4a443d}
+.sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
+
+/* её цифры */
+.st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0 14px}
+.st div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-width:0}
+.st b{display:block;font:400 clamp(24px,6vw,30px)/1.05 var(--fd);color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum';margin-bottom:4px}
+.st span{display:block;font-size:14px;line-height:1.4;color:#4a443d}
+.st .hi{border-color:var(--gold-s);background:#FFFBF3}
+.st .hi b{color:var(--burg)}
+.best{list-style:none;margin-top:12px;max-width:720px}
+.best li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15.5px;color:#3f3a34}
+.best li:last-child{border-bottom:0}
+.best b{font:400 22px/1 var(--fd);color:var(--burg);font-variant-numeric:lining-nums;font-feature-settings:'lnum';text-align:right;white-space:nowrap}
+.best i{font-style:normal;color:var(--wg);font-size:14px}
+.wh2{margin-top:22px}
+.wh2 .k{margin-bottom:4px}
+
+/* было → стало */
+.was{margin-top:12px;max-width:720px;background:#fff;border:1px dashed #cfc4b4;border-radius:8px;padding:10px 14px 12px}
+.was>span{display:block;font:500 12px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--wg);margin-bottom:4px}
+.was p{font-size:15px;color:#6b635a;white-space:pre-line}
+.arr{max-width:720px;text-align:center;color:var(--gold);font:italic 400 22px/1 var(--fd);margin:6px 0 -4px}
+.hl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.hl span{background:#fff;border:1px solid var(--line);border-radius:40px;padding:5px 12px;font-size:14px;color:#4a443d}
+.hl span.f{border-color:var(--gold-s);background:#FFFBF3;color:var(--navy-d);font-weight:400}
+.hl span.o{color:#a59c91;border-style:dashed}
+
+@media (min-width:560px){
+  .cases{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .st{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .gl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .who-l{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:760px){
+  body{font-size:18px}
+  header{padding:56px 0 44px}
+  .sec{padding:52px 0 54px}
+  .fmt{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reels{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+  .reel .cb pre{font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <img class="sig" src="../../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
+    <div class="k">artpolushkina · Instagram</div>
+    <h1>Как не заполнить ленту только собой</h1>
+    <p class="lead">Мань, ты спросила, как найти баланс: чтобы всё залетало, но Instagram не состоял из одной тебя. Мы посмотрели, как это делают 23 художника, которые продают картины через Instagram (11 русскоязычных и 12 зарубежных), и проверили, как сейчас устроены обложки и сетка.<sup><a href="#n3">3</a></sup></p>
+    <div class="sum">
+      <div class="k">Коротко</div>
+      <h2>Не меньше тебя, а ты всегда рядом с картиной</h2>
+      <p>Убирать тебя не нужно: посты с тобой собирают около 50 лайков против 25-30 у одной картины, ролики с тобой - в 4-5 раз больше просмотров. Но «просто я» не нужно ни разу: в каждом кадре с тобой есть картина и рассказ о ней. А сетку профиля можно сделать галереей - обложками.</p>
+    </div>
+  </header>
+
+  <section class="sec" id="seen">
+    <div class="n">1</div>
+    <h2>Что мы увидели<small>у других художников</small></h2>
+    <ul class="dots">
+      <li><b>Нормы «сколько лица» нет.</b> Её никто не измерял. Работают две модели: художник как личность или картина в центре, а голос автора - в подписях и сюжете. У тебя юмор уже внутри картин, и это редкое преимущество: такую работу пересылают друг другу как шутку.</li>
+      <li><b>Лицо работает как событие, а не как дневник.</b> У <a href="https://www.instagram.com/mashasomik/" target="_blank" rel="noopener">Маши Сомик</a> (Москва, 10 тыс.) пост «кто я» с портретом - 468 лайков, пост «картина + цена» - 49. А у художницы, которая каждый день говорит в камеру, ролики при 21 тыс. подписчиков собирают по 10-20 лайков.</li>
+      <li><b>Сильнее всего - история одной картины.</b> У <a href="https://www.instagram.com/vostrezova_painting/" target="_blank" rel="noopener">Анастасии Вострезовой</a> (30 тыс.) ролик о том, как писался натюрморт с ковром, с её попугаем в кадре - 724 лайка, обычные ролики - около 200.</li>
+      <li><b>Чередовать, как ты уже делаешь, - правильно.</b> <a href="https://www.instagram.com/anastasiatrusovaart/" target="_blank" rel="noopener">Анастасия Трусова</a> (253 тыс.) строго чередует: готовая картина, ролик процесса, снова картина.</li>
+    </ul>
+
+  </section>
+
+  <section class="sec" id="ways">
+    <div class="n">2</div>
+    <h2>Три варианта<small>и какой советуем</small></h2>
+    <div class="fmt">
+      <div class="card"><span class="q">вид сетки</span><h3>Галерея снаружи, жизнь внутри</h3><p>На всех обложках - чистая картина на одном фоне, внутри ролика с первой секунды живое: ты, руки, кисть.</p><ul><li>+ профиль как у «аккуратных» художников, а живые ролики остаются</li><li>- к каждому ролику нужна обложка</li></ul></div>
+      <div class="card m"><span class="q">основа · советуем</span><h3>Каждая картина - маленький сериал</h3><p>Не «картина, потом я», а несколько публикаций вокруг одной работы. Ты в кадре всегда вместе с ней.</p><ul><li>+ ты не заполняешь ленту собой, ты рассказываешь про картину</li><li>+ одна картина даёт 3-4 публикации</li><li>- новых картин за неделю в ленте меньше</li></ul></div>
+      <div class="card"><span class="q">не советуем</span><h3>Лента - картины, ты - в Stories</h3><p>Как у самых крупных: в ленте только работы, ты - в Stories и изредка на событиях.</p><ul><li>+ самый «чистый» вид</li><li>- против твоих же цифр: новых людей приводят ролики с тобой. Крупным так можно, их уже знают</li></ul></div>
+    </div>
+    <div class="tip"><b>Советуем сериал по содержанию и галерею по виду сетки.</b> Как это выглядит - ниже.</div>
+
+  </section>
+
+  <section class="sec" id="serial">
+    <div class="n">3</div>
+    <h2>Сериал вокруг одной картины<small>ты в кадре, но всегда про картину</small></h2>
+    <div class="two">
+      <div class="card"><span class="q">1 · ролик</span><h3>Процесс</h3><p>Руки, кисти, золотая нить, эскиз → холст, под трендовый звук. Текст поверх - с первой секунды. Как твои кисти (2&nbsp;545 просмотров).</p></div>
+      <div class="card"><span class="q">2 · карусель</span><h3>Сама картина</h3><ul><li>картина целиком</li><li>деталь крупно</li><li>в интерьере или в руках, чтобы был виден размер</li><li>откуда сюжет - в подписи</li><li>в конце: «цена и примерка - ссылка в профиле»</li></ul></div>
+      <div class="card m"><span class="q">3 · ты в кадре</span><h3>Ты и эта картина</h3><p>Держишь, вешаешь, рассказываешь, что имела в виду, или «pov» (1&nbsp;797 просмотров). Это и есть твоё лицо в ленте, но всегда про картину.</p></div>
+      <div class="card"><span class="q">4 · stories</span><h3>Доступна</h3><ul><li>репост своего поста</li><li>«в наличии · размер · цена»</li><li>ссылка на страницу картины (раздел 6 плана)</li><li>опрос «Какую повесить в спальню: 1 или 2?»</li></ul></div>
+    </div>
+    <p class="txt muted" style="margin-top:10px">Твой ритм, около четырёх публикаций в неделю, остаётся: три про одну картину, четвёртая - другая работа или событие (выставка, журнал, картина уехала к покупателю). Stories - между ними, 3-4 раза в неделю.</p>
+
+  </section>
+
+  <section class="sec" id="grid">
+    <div class="n">4</div>
+    <h2>Сетка как галерея<small>обложки-картины</small></h2>
+    <p>Обложку ролика можно поставить свою, отдельно от видео. В ленте Reels люди видят не обложку, а сам ролик с первого кадра, поэтому на охват она почти не влияет и работает только на вид профиля. Значит, в сетке можно держать чистые картины, а внутри - живое.</p>
+    <figure class="grid"><img src="../media/grid-preview.jpg" width="1088" height="480" alt="Три обложки-картины рядом, как плитки сетки профиля" loading="lazy"><figcaption>Так три готовых ролика со страницы плана лягут в сетку профиля.</figcaption></figure>
+    <ul class="dots">
+      <li><b>Первый кадр ролика - живой:</b> ты, рука, кисть, текст. Если ролик начинается с той же неподвижной картины, что на обложке, его чаще пролистывают в первые три секунды.</li>
+      <li><b>Текст на обложке не нужен:</b> её видят только в профиле, а там лучше чистая картина.</li>
+      <li><b>При публикации</b> нажми на обложку и выбери картинку из галереи телефона, потом проверь вид в сетке профиля: картина должна быть целиком.</li>
+      <li><b>Старые ролики</b> можно переодеть: <span class="ui">⋯</span> → <span class="ui">Изменить</span> → обложка. Попробуй на одном.<sup><a href="#n1">1</a></sup></li>
+      <li><b>Ролик, который не пошёл,</b> можно убрать из сетки (<span class="ui">⋯</span> → <span class="ui">Управлять</span> → <span class="ui">Убрать из сетки профиля</span>), во вкладке Reels он останется.<sup><a href="#n2">2</a></sup> А порядок постов в сетке теперь можно менять: долгое нажатие на пост.</li>
+      <li><b>Твоё лицо в профиле не пропадёт:</b> в закрепе остаётся биография с портретом (раздел 2 плана), а потом - карусель «Кто я и как купить».</li>
+    </ul>
+    <h3>Обложки к трём готовым роликам</h3>
+    <div class="row">
+      <a class="btn" href="../media/01-cheers-66-grid.jpg" download="CHEERS-oblozhka.jpg">CHEERS!</a>
+      <a class="btn" href="../media/02-otbros-vsyo-58-grid.jpg" download="Otbros-vsyo-oblozhka.jpg">Отбрось всё!</a>
+      <a class="btn" href="../media/03-v-predvkushenii-64-grid.jpg" download="V-predvkushenii-oblozhka.jpg">В предвкушении</a>
+    </div>
+    <p class="txt muted" style="margin-top:10px">На телефоне обложка откроется картинкой: <span class="ui">Поделиться</span> → <span class="ui">Сохранить изображение</span>. Сами ролики - на <a href="../#reels">странице плана</a>. Обложки к следующим роликам сделаю так же, из фото на сайте: напиши, к каким картинам.</p>
+  </section>
+
+  <section class="notes" aria-label="Сноски">
+    <h2>Что не подтверждено</h2>
+    <ol>
+      <li id="n1">Справка Instagram пишет, что обложку после публикации не сменить, но страница старая; обзоры 2025 года (Hootsuite, Later) пишут, что можно. Поэтому - сначала на одном ролике.</li>
+      <li id="n2">По обзорам 2025-2026 годов. Вернуть ролик в сетку, по свежим источникам, тоже можно (<span class="ui">Добавить в сетку профиля</span>), но мы не проверяли.</li>
+      <li id="n3">Число подписчиков и лайков - по открытым страницам Instagram на 24 ноября 2026 года. Сторис и обложки чужих роликов снаружи не видны, поэтому про них - по статьям и обзорам.</li>
+    </ol>
+  </section>
+
+  <p class="end">Как тебе такой баланс? Если что-то не так - пиши, поправим.</p>
+  <a class="back" href="../">← К плану Instagram</a>
+
+  <div class="sign">Made by Dmitry Khinkis</div>
+</div>
+</body>
+</html>
