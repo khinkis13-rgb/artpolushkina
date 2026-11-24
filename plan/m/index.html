@@ -93,6 +93,9 @@ h1{font-size:clamp(36px,8vw,58px);line-height:1.05;margin-bottom:16px}
 .mini{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:6px}
 .mini button,.mini a{display:inline-flex;align-items:center;min-height:40px;background:none;border:0;padding:0;font-size:13.5px;font-weight:400;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
 .mini .ok{color:var(--navy);text-decoration:none}
+.files{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:10px}
+.files .btn{flex:1 1 180px;min-height:46px;padding:10px 16px;font-size:15.5px}
+.files .btn:not(.lite){background:var(--burg);border-color:var(--burg)}
 @media (hover:hover){.chk:hover{border-color:#c9bca8}.mini button:hover,.mini a:hover{color:var(--navy-d)}}
 .btn:focus-visible,.chk:focus-visible,.mini button:focus-visible,.mini a:focus-visible,.txt summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
@@ -136,7 +139,7 @@ textarea:focus{border-color:var(--navy)}
     <a class="toq" href="../q/">← Вопросы по сайту</a>
     <div class="k">artpolushkina.com · письма в журналы</div>
     <h1>Письма в журналы</h1>
-    <p class="lead">Мань, твои картины были в Salon, Marie Claire Maison, In My Room и ещё десятке изданий, но ни один материал не ссылается на твой сайт. А ссылки с журналов хорошо поднимают сайт в поиске. Я написал короткие письма от тебя, просьба в каждом одна - <b>добавить ссылку на сайт рядом с упоминанием картины</b>.</p>
+    <p class="lead">Мань, твои картины были в Salon, Marie Claire Maison, In My Room и ещё десятке изданий, но ни один материал не ссылается на твой сайт. А ссылки с журналов хорошо поднимают сайт в поиске. Я написал короткие письма от тебя, просьба в каждом одна - <b>добавить ссылку на сайт рядом с упоминанием картины</b>. И ещё три письма площадкам, где у тебя есть своя страница: Куб.Маркет, Moon Gallery и «Квартира S».</p>
     <p class="lead">Как отправить: нажимаешь «Открыть письмо» - откроется твоя почта, адрес, тема и текст уже заполнены, остаётся нажать «Отправить». Потом отметь «Отправила», чтобы не запутаться.</p>
     <p class="lead muted" style="font-size:15.5px">Можно по одному, когда удобно, отметки сохраняются в этом браузере. Хочешь что-то поменять в тексте - поправь прямо в почте перед отправкой. Проверь только, что письмо уходит с artpolushkina@gmail.com. Если почта не открылась - у каждого письма есть «Скопировать» и «Открыть в Gmail».</p>
   </header>
@@ -260,6 +263,23 @@ var RAW=[
 "num": "15",
 "subject": "Ссылка на сайт художницы - «Пальчики Concept Art»",
 "body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, с 2021 года мои работы участвуют в проекте «Пальчики Concept Art» и украшают ваши салоны. Спасибо за это сотрудничество.\n\nУ меня есть сайт со всеми работами: https://artpolushkina.com. Если есть возможность, добавьте, пожалуйста, ссылку на него там, где на вашем сайте или в соцсетях упоминается проект или мои работы.\n\nС уважением,\nМария Полушкина"
+},
+{
+"num": "16",
+"subject": "Обновлённое CV для страницы художницы Марии Полушкиной",
+"body": "Здравствуйте!\n\nМеня зовут Мария Полушкина, мои работы есть на Куб.Маркете: https://cube.market/artists/mariia-polushkina\n\nПрикладываю обновлённое CV: в нём выставки 2025 года, новые публикации и мой сайт. Замените, пожалуйста, им файл «Скачать CV» на моей странице.\n\nСпасибо!\nМария Полушкина"
+},
+{
+"num": "17",
+"subject": "Maria Polushkina - website link for my artist page",
+"body": "Dear Moon Gallery team,\n\nMy name is Maria Polushkina, I took part in Moon Gallery with my work about Time and the hourglass. Thank you for having me in this project.\n\nCould you please add a link to my website https://artpolushkina.com next to the Instagram link on my artist page? All my works are there, and the site has an English version.\n\nIf it is convenient, here is an updated bio for the page:\nMaria Polushkina was born in 1985 in Moscow. She lived and studied in Germany and graduated from the Faculty of Communication Theory and Mass Media at Freie Universität Berlin. Since 2011 she has been based in Moscow. She has co-authored two books with poet Anna Arkatova, 'Between Us' (2016) and 'Women Inside a Woman' (2024). Her works are held in private collections in eleven countries and in the Copelouzos Family Art Museum in Athens.\n\nMy page: https://moongallery.eu/artist/maria-polushkina/\n\nBest regards,\nMaria Polushkina",
+"trSubject": "Мария Полушкина - ссылка на сайт для моей страницы художника",
+"trBody": "Здравствуйте, команда Moon Gallery!\n\nМеня зовут Мария Полушкина, я участвовала в Moon Gallery с работой о Времени и песочных часах. Спасибо, что взяли меня в проект.\n\nНе могли бы вы добавить ссылку на мой сайт https://artpolushkina.com рядом со ссылкой на Instagram на моей странице? Там все мои работы, и у сайта есть английская версия.\n\nЕсли удобно, вот обновлённая биография для страницы:\nМария Полушкина родилась в 1985 году в Москве. Жила и училась в Германии, окончила факультет теории коммуникации и средств массовой информации Свободного университета Берлина. С 2011 года живёт в Москве. Выпустила две книги в соавторстве с поэтом Анной Аркатовой: «Между нами» (2016) и «Женщины внутри женщины» (2024). Работы находятся в частных коллекциях в одиннадцати странах и в Copelouzos Family Art Museum в Афинах.\n\nМоя страница: https://moongallery.eu/artist/maria-polushkina/\n\nС наилучшими пожеланиями,\nМария Полушкина"
+},
+{
+"num": "18",
+"subject": "Обновить страницу Марии Полушкиной на сайте галереи",
+"body": "Здравствуйте!\n\nЭто Мария Полушкина, мы с вами делали выставки в ARTPLAY в 2021 и 2022 годах. Моя страница на сайте галереи: https://kvartiras.com/dn10/ (и английская https://kvartiras.com/en/dn10/).\n\nУ меня появился свой сайт со всеми работами и ценами: https://artpolushkina.com. Если есть возможность, добавьте, пожалуйста, ссылку на него на мою страницу, в русскую и английскую версии.\n\nБиография там устарела, в ней ещё написано, что картина полетит на Луну в 2022 году. Свежий текст, если удобно:\nМария Полушкина родилась в 1985 году в Москве. Несколько лет жила и училась в Германии, окончила факультет теории коммуникации и средств массовой информации Freie Universität Berlin (Свободный университет Берлина). С 2011 года живёт в Москве. Выпустила две книги в соавторстве с поэтом Анной Аркатовой: «Между нами» (2016) и «Женщины внутри женщины» (2024). Участница проекта Moon Gallery и выставок в Москве, Риге, Афинах и Берлине. Работы находятся в частных коллекциях в 11 странах и в Copelouzos Family Art Museum в Афинах.\n\nИ ещё: «Бутылка» и «Огни» на странице стоят по ценам 2020 года. Если работы ещё у вас, давайте обновим цены, а если нет - уберите их, пожалуйста.\n\nСпасибо!\nМария Полушкина"
 }
 ];
 
@@ -280,12 +300,17 @@ var META={
  '12':{t:'InStyle',to:'',tag:'без адреса',n:'Адреса редакции я не нашёл. Отправляй, только если у тебя есть контакт в InStyle: «Открыть письмо» и впиши адрес.'},
  '13':{t:'Галерея на Трубной',to:'trubnaya@vzmoscow.ru',cc:'n.kalmykova@vzmoscow.ru'},
  '14':{t:'Дом-музей Марины Цветаевой',to:'muzeicvetaevoi@culture.mos.ru',n:'Если помнишь, где музей писал о выставке, - можешь вставить ссылку в письмо перед отправкой.'},
- '15':{t:'«Пальчики»',to:'marketing@palchiki.com',n:'Лучше своему контакту в «Пальчиках» - тогда впиши его адрес вместо этого. Если контакта нет, отправляй как есть.'}
+ '15':{t:'«Пальчики»',to:'marketing@palchiki.com',n:'Лучше своему контакту в «Пальчиках» - тогда впиши его адрес вместо этого. Если контакта нет, отправляй как есть.'},
+ '16':{t:'Куб.Маркет',s:'заменить CV на твоей странице',to:'info@cube.market',tag:'приложи CV',n:'Прикрепи к письму новое CV - почта сама его не приложит. Скачай файл кнопкой ниже (PDF лучше, Word - если Кубу так привычнее, старое CV у них было в Word). В шапке CV - твой сайт, выставки 2025 и публикации. Перед отправкой глянь CV: две выставки я взял из старого CV Куба («Искусство и спорт», 2022, и «Краски Ван Гога», 2017), а «Ничего подобного» и Pop-Up 2025 мог перепутать - персональные это или групповые. Если что не так - напиши, поправлю. Если у тебя есть вход в личный кабинет Куба («Профиль автора»), возможно, CV можно заменить там самой - тогда письмо не нужно.',
+   files:[{href:'cv/polushkina_cv_ru.pdf',label:'Скачать CV (PDF)'},{href:'cv/polushkina_cv_ru.docx',label:'CV в Word'},{href:'cv/polushkina_cv_en.pdf',label:'CV на английском (PDF)'}]},
+ '17':{t:'Moon Gallery',s:'ссылка на сайт рядом с Instagram',to:'art@moongallery.eu',lang:'en',n:'Письмо на английском: проект европейский. Кураторы - Анна Ситникова и Елизавета Глухова; если ты с ними на связи, можно написать им напрямую. Новая биография в письме - по желанию, её можно убрать. Перевод для тебя - под текстом, его не отправлять.'},
+ '18':{t:'Галерея «Квартира S»',s:'ссылка на сайт, биография, цены',to:'info@kvartiras.com',cc:'kartinakvartira@gmail.com',n:'Если у тебя есть личный контакт галеристов - лучше отправь им. Галерея пишет, что быстрее отвечает в WhatsApp или Telegram (+7 925 113‑40‑17): «Скопировать текст» и вставь туда. «Бутылки» и «Огней» нет на сайте, поэтому новых цен в письме нет - если знаешь, что с ними, поправь последний абзац.'}
 };
 var FIRST=['1','2','3','4','5','6','7','8','9','9а'];
+var PLAT=['16','17','18'];
 
 var L=RAW.map(function(r){ var m=META[r.num]||{}; return {
-  id:r.num, t:m.t||r.num, s:m.s||'', to:m.to||'', cc:m.cc||'', n:m.n||'', tag:m.tag||'',
+  id:r.num, t:m.t||r.num, s:m.s||'', to:m.to||'', cc:m.cc||'', n:m.n||'', tag:m.tag||'', lang:m.lang||'', files:m.files||[],
   subject:r.subject, body:r.body, trSubject:r.trSubject||'', trBody:r.trBody||'' }; });
 
 /* хранилище */
@@ -344,7 +369,12 @@ function card(l){
   else to.textContent='Кому: адрес впишешь сама';
   a.appendChild(to);
   if(l.n) a.appendChild(el('p','note',l.n));
-  var sj=el('p','subj'); sj.appendChild(el('span',null,(l.trBody?'Asunto':'Тема')+': ')); sj.appendChild(document.createTextNode(l.subject)); a.appendChild(sj);
+  if(l.files.length){
+    var fl=el('div','files');
+    l.files.forEach(function(f,i){ var x=el('a',i?'btn lite':'btn',f.label); x.href=f.href; x.setAttribute('download',''); fl.appendChild(x); });
+    a.appendChild(fl);
+  }
+  var sj=el('p','subj'); sj.appendChild(el('span',null,(l.lang==='en'?'Subject':l.trBody?'Asunto':'Тема')+': ')); sj.appendChild(document.createTextNode(l.subject)); a.appendChild(sj);
   a.appendChild(details('Показать текст','Скрыть текст','',null,l.body));
   if(l.trBody) a.appendChild(details('Перевод на русский (не отправлять)','Скрыть перевод','Тема:',l.trSubject,l.trBody,'tr'));
 
@@ -457,7 +487,8 @@ document.getElementById('resetBtn').addEventListener('click',function(){
 
 /* запуск */
 group('В первую очередь','Журналы, где картины видно лучше всего.',L.filter(function(l){ return FIRST.indexOf(l.id)>=0; }));
-group('Потом, когда будет время','Новости, выставки и проекты - тоже полезно, но не срочно.',L.filter(function(l){ return FIRST.indexOf(l.id)<0; }));
+group('Площадки','Сайты, где у тебя уже есть страница, но нет ссылки на artpolushkina.com. Это сильные ссылки: страница целиком о тебе. На Bizar.art просить нечего - поля для сайта нет, а внешние ссылки там запрещены правилами.',L.filter(function(l){ return PLAT.indexOf(l.id)>=0; }));
+group('Потом, когда будет время','Новости, выставки и проекты - тоже полезно, но не срочно.',L.filter(function(l){ return FIRST.indexOf(l.id)<0&&PLAT.indexOf(l.id)<0; }));
 sync(); showLast();
 })();
 </script>

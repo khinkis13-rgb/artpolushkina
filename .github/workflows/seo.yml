@@ -1,4 +1,4 @@
-# Пересобирает статические страницы работ (/work/<id>/, /en/work/<id>/), «Все работы», подборки (/collection/<slug>/), превью для ссылок
+# Пересобирает статические страницы работ (/work/<id>/, /en/work/<id>/), «Все работы», подборки (/collection/<slug>/), превью для ссылок, уменьшенные копии фото (site/thumbs/)
 # и sitemap.xml, когда админка Маши меняет каталог или картинки. Коммит — только сгенерированные пути,
 # отдельным коммитом бота. После выкладки — IndexNow (Яндекс, Bing) по изменённым адресам.
 # Push бота через GITHUB_TOKEN не запускает workflow повторно, а Pages собирает и его коммиты.
@@ -47,7 +47,7 @@ jobs:
         id: commit
         run: |
           # collection/ может не быть (подборок нет, все удалены) — пустой pathspec валит git add, поэтому по одному
-          for p in work en/work collection en/collection site/og sitemap.xml tools/seo/state.json; do
+          for p in work en/work collection en/collection site/og site/thumbs sitemap.xml tools/seo/state.json; do
             if [ -e "$p" ] || git ls-files --error-unmatch "$p" >/dev/null 2>&1; then git add -A -- "$p"; fi
           done
           if git diff --cached --quiet; then

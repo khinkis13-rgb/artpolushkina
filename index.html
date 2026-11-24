@@ -654,6 +654,13 @@ async function loadAll(){
   setTimeout(ob,100);
 }
 
+/* Уменьшенные копии фото для карточек каталога — собирает tools/seo/build.py (site/thumbs/<имя>-400|600|800.jpg, ширины — THUMB_W).
+   Оригинал — последний кандидат: браузер берёт его, где копии мало. Копии ещё нет (работу только что добавили, сборка идёт ~1 мин) —
+   onerror снимает srcset и грузит оригинал */
+function thumbSrcset(p){
+  const m=/^\/?site\/images\/([\w.-]+)\.(jpe?g|png|webp)$/i.exec(p||'');
+  return m?`site/thumbs/${m[1]}-400.jpg 400w, site/thumbs/${m[1]}-600.jpg 600w, site/thumbs/${m[1]}-800.jpg 800w, ${p} 1400w`:'';
+}
 function getMedia(a){
   if(a.media&&a.media.length)return a.media;
   if(a.imgs&&a.imgs.length)return a.imgs.map(p=>({type:'img',path:p}));
@@ -804,13 +811,17 @@ function rC(){
   const u=L==='ru'?'см':'cm';
   const n10=items.length%10,n100=items.length%100;
   document.getElementById('cC').textContent=L==='ru'?`${items.length} ${n10===1&&n100!==11?'работа':n10>=2&&n10<=4&&(n100<12||n100>14)?'работы':'работ'}`:`${items.length} ${items.length===1?'work':'works'}`;
+  // ширина колонки каталога — для sizes у копий фото (раскладку по колонкам считает rC ниже тем же catCols)
+  const nC=catCols(),cgW=document.getElementById('cG').clientWidth||innerWidth;
+  const colW=Math.ceil((cgW-(nC-1)*(innerWidth<=600?14:24))/nC);
   const cards=items.map(a=>{
     const tt=L==='ru'?a.t:a.te,mm=L==='ru'?a.m:a.me;
     const media=getMedia(a);
     const first=media[0];
     const hasVid=media.some(m=>m.type==='vid');
     const alt=escA(workAlt(a));
-    const thumb=first.type==='img'?`<img src="${first.path}" alt="${alt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" aria-label="${alt}" style="width:100%;height:100%;object-fit:cover"></video>`;
+    const ss=first.type==='img'?thumbSrcset(first.path):'';
+    const thumb=first.type==='img'?`<img src="${first.path}"${ss?` srcset="${ss}" sizes="${colW}px"`:''} alt="${alt}" loading="lazy" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="if(this.getAttribute('srcset')){this.removeAttribute('srcset');return;}this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex'">`:`<video src="${first.path}" muted preload="none" aria-label="${alt}" style="width:100%;height:100%;object-fit:cover"></video>`;
     const countBadge=media.length>1?`<div class="media-badge">🖼 ${media.length}</div>`:'';
     const vidBadge=hasVid?`<div class="vid-badge">▶ видео</div>`:'';
     return`<a class="cd" href="${workPath(a.id)}" onclick="return cdClick(event,${a.id})">

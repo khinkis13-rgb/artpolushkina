@@ -7,9 +7,11 @@
   work/index.html, en/work/index.html             — «Все работы»
   collection/<slug>/index.html, en/collection/<slug>/index.html — подборки из tools/seo/collections.json
   site/og/work-<id>.jpg                           — превью 1200×630 для ссылок (одно на оба языка)
+  site/thumbs/<имя>-400|600|800.jpg               — уменьшенные копии фото работ (srcset карточек, галереи, главного фото)
   sitemap.xml                                     — карта сайта целиком
   tools/seo/state.json                            — манифест: хеши страниц и даты lastmod, хеши исходников превью
-Устаревшие work/<число>/, en/work/<число>/, collection/<slug>/, en/collection/<slug>/ и site/og/work-<число>.jpg удаляются.
+Устаревшие work/<число>/, en/work/<число>/, collection/<slug>/, en/collection/<slug>/, site/og/work-<число>.jpg
+и копии в site/thumbs/, чьих исходников больше нет, удаляются.
 
 Подборки (tools/seo/collections.json, необязателен — без него подборок нет): список объектов
   {"slug": "large", "ru": "...", "en": "...", "descRu": "...", "descEn": "...",
@@ -57,6 +59,13 @@ YM_ID = 114487567
 OG_VERSION = '1'          # поднять, чтобы пересобрать все превью (сменился вид картинки)
 OG_W, OG_H = 1200, 630
 OG_BG = (247, 241, 232)   # --canvas
+# Уменьшенные копии фото работ для сетки карточек, галереи и главного фото (srcset): site/thumbs/<имя>-<ширина>.jpg.
+# Оригинал всегда остаётся последним кандидатом srcset — браузер берёт его, где копия мала (телефон 3x, главное фото),
+# так что на экране картинка не мягче, чем была. Главная (index.html) строит те же имена сама — ширины менять вместе с ней.
+THUMB_W = (400, 600, 800)   # 600 — карточки на телефоне (колонка ~170 px × 2,6–3)
+THUMB_VERSION = '2'       # поднять, чтобы пересобрать все копии (сменилось качество/размеры)
+THUMB_DIR = 'site/thumbs'
+EAGER = 4                 # первые карточки в «Все работы» и подборках — без lazy: они на первом экране, LCP
 BOT_RE = (r'googlebot|google-inspectiontool|adsbot-google|storebot-google|yandex(bot|images|metrika|\.com\/bots)|'
           r'bingbot|duckduckbot|applebot|baiduspider|petalbot|crawler|spider|slurp|lighthouse')
 NBSP = '\u00a0'
@@ -176,6 +185,7 @@ class Ctx:
         self.work_cols = {}   # id работы → [подборки, где она есть]
         self.desc = {}        # id работы → {'ru': текст, 'en': текст} — видимые подписи, только одобренные (ok: true)
         self.alt = {}         # id работы → {'ru': текст, 'en': текст} — что изображено (alt.json), без одобрения
+        self.thumbs = {}      # путь картинки → [(ширина копии, путь копии)] — только реально собранные
 
     def img_size(self, rel):
         if rel not in self._sizes:
@@ -289,8 +299,19 @@ FONT_CSS = ''.join(
     f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{wt};font-display:swap;"
     f"src:url(/site/fonts/{f}-{sub}.woff2) format('woff2');unicode-range:{rng}}}\n"
     for fam, f, wt in FONTS for sub, rng in RANGES.items())
+# Запасные шрифты с подогнанными метриками: пока свои шрифты грузятся (font-display:swap), текст набран системным
+# Georgia / Arial (Roboto на Android), растянутым до ширины Cormorant / Nunito — строки переносятся так же, и при подмене
+# шрифта сетка карточек не прыгает (CLS). После загрузки вид тот же, что был. Диапазон — только тот, что покрывают свои
+# шрифты: стрелки и прочие символы вне его берутся из тех же системных шрифтов, что и раньше.
+# Коэффициенты сняты в Chrome по текстам страниц: ширина названий карточек (Cormorant 500) к Georgia — 0,936, подборок и
+# подводки (Nunito 300) к Arial — 1,005; ascent/descent — из самих шрифтов (924/287 и 1011/353 на 1000), делённые на size-adjust.
+FALLBACK_CSS = (
+    "@font-face{font-family:'Cormorant Fallback';src:local('Georgia');size-adjust:93.6%;ascent-override:98.7%;"
+    f"descent-override:30.7%;line-gap-override:0%;unicode-range:{', '.join(RANGES.values())}}}\n"
+    "@font-face{font-family:'Nunito Fallback';src:local('Arial'),local('ArialMT'),local('Roboto'),local('Roboto-Regular');"
+    f"size-adjust:100.5%;ascent-override:100.6%;descent-override:35.1%;line-gap-override:0%;unicode-range:{', '.join(RANGES.values())}}}\n")
 
-CSS = FONT_CSS + """:root{--canvas:#F7F1E8;--canvas-w:#F2EADD;--navy-d:#2C3E5A;--burg:#8B4049;--mars:#7A3040;--gold:#C8A96E;--gold-s:#DABB85;--char:#2D2A26;--wg:#8A8178;--lg:#D1CBC3;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;--mw:1240px;--e:cubic-bezier(.25,.46,.45,.94)}
+CSS = FONT_CSS + FALLBACK_CSS + """:root{--canvas:#F7F1E8;--canvas-w:#F2EADD;--navy-d:#2C3E5A;--burg:#8B4049;--mars:#7A3040;--gold:#C8A96E;--gold-s:#DABB85;--char:#2D2A26;--wg:#8A8178;--lg:#D1CBC3;--fd:'Cormorant Garamond','Cormorant Fallback',Georgia,serif;--fb:'Nunito Sans','Nunito Fallback',system-ui,sans-serif;--mw:1240px;--e:cubic-bezier(.25,.46,.45,.94)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font-family:var(--fb);background:var(--canvas);color:var(--char);font-weight:300;line-height:1.7;font-size:16px;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
@@ -436,7 +457,7 @@ var done=function(){copyText(P.url).then(function(ok){toast(ok?(ru?'Ссылка
 if(navigator.share)navigator.share({title:P.title,url:P.url}).catch(function(e){if(!e||e.name!=='AbortError')done();});else done();});
 var mi=document.getElementById('mainImg');
 document.querySelectorAll('.gt').forEach(function(b){b.addEventListener('click',function(){
-if(!mi)return;mi.src=b.getAttribute('data-src');mi.width=+b.getAttribute('data-w');mi.height=+b.getAttribute('data-h');mi.alt=b.getAttribute('data-alt');mi.style.width=b.getAttribute('data-css');
+if(!mi)return;var ss=b.getAttribute('data-srcset');if(ss){mi.sizes=b.getAttribute('data-sizes');mi.srcset=ss;}else mi.removeAttribute('srcset');mi.src=b.getAttribute('data-src');mi.width=+b.getAttribute('data-w');mi.height=+b.getAttribute('data-h');mi.alt=b.getAttribute('data-alt');mi.style.cssText=b.getAttribute('data-css');
 document.querySelectorAll('.gt').forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b?'true':'false');});});});
 })();"""
 
@@ -542,19 +563,27 @@ def price_block(a, lang, cls):
     return f'<div class="{cls}">{price_en(p)}<span class="fx" data-p="{p}"></span></div>'
 
 
-def thumb_img(ctx, a, lang, lazy=True):
+def thumb_img(ctx, a, lang, lazy=True, h=230):
+    """Картинка карточки. Высота блока .th — h px (180 в «Ещё работы»), на телефоне 170, на узком 140; ширина — по
+    пропорциям. sizes считаем по этой высоте: ширина колонки может быть меньше — тогда браузер возьмёт копию крупнее
+    нужного, но не мельче."""
     imgs = images_of(a)
     rel = imgs[0] if imgs else f"site/images/work-{a['id']}.jpg"
-    sz = ctx.img_size(rel)
+    ss, sz = srcset_of(ctx, rel)
     wh = f' width="{sz[0]}" height="{sz[1]}"' if sz else ''
+    if ss:
+        r = sz[0] / sz[1]
+        wh += (f' srcset="{ss}" sizes="(max-width:360px) {round(140 * r)}px, (max-width:600px) {round(170 * r)}px, '
+               f'{round(h * r)}px"')
     return (f'<img src="{file_url(rel)}" alt="{esc(work_alt(a, lang))}"{wh}'
             f'{" loading=\"lazy\"" if lazy else ""} decoding="async">')
 
 
-def card(ctx, a, lang, with_price=True):
+def card(ctx, a, lang, with_price=True, lazy=True):
     ru = lang == 'ru'
     meta = f"{size_disp(a.get('s', ''))} {'см' if ru else 'cm'}" + (f", {a['y']}" if a.get('y') else '')
-    return (f'<a class="cd" href="{page_path(a["id"], lang)}"><div class="th">{thumb_img(ctx, a, lang)}</div>'
+    th = thumb_img(ctx, a, lang, lazy=lazy, h=230 if with_price else 180)
+    return (f'<a class="cd" href="{page_path(a["id"], lang)}"><div class="th">{th}</div>'
             f'<div class="ctt">{esc(title_of(a, lang))}</div><div class="cc">{esc(meta)}</div>'
             + (price_block(a, lang, 'cp') if with_price else '') + '</a>')
 
@@ -667,19 +696,31 @@ def render_work(ctx, i, lang):
     def img_css(sz_):
         r = sz_[0] / sz_[1]
         return f'width:min(100%,calc(78vh*{r:.4f}))'
+    def main_sizes(sz_):
+        # ширина главного фото: телефон — во всю колонку, планшет — до 900, дальше колонка 3fr (~690 px); и не шире 78vh·r
+        r = sz_[0] / sz_[1]
+        return (f'(max-width:600px) min(calc(100vw - 32px), {78 * r:.1f}vh), (max-width:900px) min(calc(100vw - 56px), '
+                f'{78 * r:.1f}vh), min(690px, {78 * r:.1f}vh)')
     if imgs:
-        s0 = ctx.img_size(imgs[0])
+        ss0, s0 = srcset_of(ctx, imgs[0])
         wh = f' width="{s0[0]}" height="{s0[1]}" style="{img_css(s0)}"' if s0 else ''
+        if ss0:
+            wh += f' srcset="{ss0}" sizes="{main_sizes(s0)}"'
         h.append(f'<img class="main" id="mainImg" src="{file_url(imgs[0])}" alt="{esc(main_alt)}"{wh} fetchpriority="high">')
         if len(imgs) > 1:
             h.append(f'<div class="gal" role="group" aria-label="{"Фото работы" if ru else "Photos"}">')
             for n, p in enumerate(imgs):
-                sn = ctx.img_size(p) or (1, 1)
+                ssn, sn = srcset_of(ctx, p)
+                sn = sn or (1, 1)
                 ga = main_alt if n == 0 else work_alt(a, lang, n)
+                # миниатюра в кнопке — 76 px высотой; копия 400 px покрывает и 3x-экраны
+                tss = f' srcset="{ssn}" sizes="{round(76 * sn[0] / sn[1])}px"' if ssn else ''
+                # после переключения ширину главного фото задаёт data-css (не шире колонки и 78vh·r), sizes — те же, что у главного
+                dss = f' data-srcset="{ssn}" data-sizes="{main_sizes(sn)}"' if ssn else ''
                 h.append(f'<button type="button" class="gt{" on" if n == 0 else ""}" aria-pressed="{"true" if n == 0 else "false"}" '
-                         f'data-src="{file_url(p)}" data-w="{sn[0]}" data-h="{sn[1]}" data-css="{img_css(sn)}" '
+                         f'data-src="{file_url(p)}"{dss} data-w="{sn[0]}" data-h="{sn[1]}" data-css="{img_css(sn)}" '
                          f'data-alt="{esc(ga)}" aria-label="{"Фото" if ru else "Photo"} {n + 1}">'
-                         f'<img src="{file_url(p)}" alt="{esc(ga)}" width="{sn[0]}" height="{sn[1]}" loading="lazy" decoding="async"></button>')
+                         f'<img src="{file_url(p)}"{tss} alt="{esc(ga)}" width="{sn[0]}" height="{sn[1]}" loading="lazy" decoding="async"></button>')
             h.append('</div>')
     if vids:
         h.append('<div class="vids">' + ''.join(
@@ -799,7 +840,7 @@ def render_list(ctx, lang):
          breadcrumbs_html(crumbs), f'<h1 class="st" style="margin-top:8px">{h1}</h1>', '<div class="gl"></div>',
          f'<p class="lead">{esc(lead)} <span style="white-space:nowrap">{cnt}.</span></p>',
          chips_html(ctx, lang, 'Подборки' if ru else 'Collections'),
-         '<div class="grid">', *[card(ctx, a, lang) for a in ctx.works], '</div>', '</main>', footer(lang)]
+         '<div class="grid">', *[card(ctx, a, lang, lazy=k >= EAGER) for k, a in enumerate(ctx.works)], '</div>', '</main>', footer(lang)]
     h = [x for x in h if x]
     h.append(tail({'lang': lang}))
     return '\n'.join(h)
@@ -938,7 +979,7 @@ def render_collection(ctx, c, ws, lang):
          nav(lang, alt_path), '<main>', breadcrumbs_html(crumbs),
          f'<h1 class="st" style="margin-top:8px">{esc(name)}</h1>', '<div class="gl"></div>',
          f'<p class="lead">{esc(desc)} <span style="white-space:nowrap">{cnt}.</span></p>',
-         '<div class="grid">', *[card(ctx, a, lang) for a in ws], '</div>',
+         '<div class="grid">', *[card(ctx, a, lang, lazy=k >= EAGER) for k, a in enumerate(ws)], '</div>',
          chips_html(ctx, lang, 'Другие подборки' if ru else 'Other collections', skip=slug, cls='chips bot'),
          f'<div class="all"><a href="{list_path(lang)}">{"Все работы" if ru else "All works"} →</a></div>',
          '</main>', footer(lang)]
@@ -974,6 +1015,47 @@ def make_og(src, dst):
     tmp = dst + '.tmp'
     bg.save(tmp, 'JPEG', quality=82, optimize=True, progressive=True)
     os.replace(tmp, dst)
+
+
+# ───────────────────────── уменьшенные копии ─────────────────────────
+
+def thumb_rel(rel, w):
+    """site/images/work-57.jpg → site/thumbs/work-57-400.jpg (имя то же, что строит главная)."""
+    stem = os.path.splitext(os.path.basename(rel))[0]
+    return f'{THUMB_DIR}/{stem}-{w}.jpg'
+
+
+def make_thumbs(src, dsts):
+    """dsts: [(ширина, путь)]. Без увеличения: копия у́же оригинала или равна ему; цвет и профиль — как у оригинала."""
+    from PIL import ImageOps
+    with Image.open(src) as im0:
+        icc = im0.info.get('icc_profile')
+        im = ImageOps.exif_transpose(im0)
+        im = im.convert('RGB')
+    for w, dst in dsts:
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        tmp = dst + '.tmp'
+        if w >= im.width and src.lower().endswith(('.jpg', '.jpeg')):
+            shutil.copyfile(src, tmp)   # оригинал не шире копии — кладём его же, без пережатия (имя нужно главной)
+        else:
+            k = min(1.0, w / im.width)
+            t = im if k >= 1 else im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), Image.LANCZOS)
+            kw = {'icc_profile': icc} if icc else {}
+            t.save(tmp, 'JPEG', quality=82, optimize=True, progressive=True, **kw)
+        os.replace(tmp, dst)
+
+
+def srcset_of(ctx, rel):
+    """(srcset, (w, h) оригинала) — копии, что есть у этой картинки, и сам оригинал; без копий — (None, размер)."""
+    sz = ctx.img_size(rel)
+    ts = ctx.thumbs.get(rel)
+    if not sz or not ts:
+        return None, sz
+    parts = [f'{file_url(p)} {w}w' for w, p in ts if w < sz[0]]
+    if not parts:
+        return None, sz
+    parts.append(f'{file_url(rel)} {sz[0]}w')
+    return ', '.join(parts), sz
 
 
 # ───────────────────────── sitemap ─────────────────────────
@@ -1101,6 +1183,24 @@ def main():
         new_og[str(wid)] = hsrc
         ctx.og[wid] = f'/site/og/work-{wid}.jpg?v={hsrc[:8]}'
 
+    # уменьшенные копии: тоже только при смене исходника (или если файла копии нет)
+    old_th, new_th, th_made = state.get('thumbs', {}), {}, 0
+    want_th = set()
+    for a in works:
+        for rel in images_of(a):
+            src = os.path.join(root, rel)
+            if rel in ctx.thumbs or not os.path.isfile(src):
+                continue
+            with open(src, 'rb') as f:
+                hsrc = sha(f.read() + THUMB_VERSION.encode() + repr(THUMB_W).encode())[:16]
+            dsts = [(w, thumb_rel(rel, w)) for w in THUMB_W]
+            if old_th.get(rel) != hsrc or not all(os.path.isfile(os.path.join(out, p)) for _, p in dsts):
+                make_thumbs(src, [(w, os.path.join(out, p)) for w, p in dsts])
+                th_made += 1
+            new_th[rel] = hsrc
+            want_th.update(p for _, p in dsts)
+            ctx.thumbs[rel] = dsts
+
     changed, written = [], 0
 
     def emit(url_path, file_rel, text):
@@ -1156,6 +1256,11 @@ def main():
             m = re.fullmatch(r'work-(\d+)\.jpg', name)
             if m and m.group(1) not in ids:
                 os.remove(os.path.join(ogd, name))
+    thd = os.path.join(out, THUMB_DIR)
+    if os.path.isdir(thd):
+        for name in sorted(os.listdir(thd)):
+            if re.fullmatch(r'.+-\d+\.jpg', name) and f'{THUMB_DIR}/{name}' not in want_th:
+                os.remove(os.path.join(thd, name))
     for p in list(old_pages):
         m = re.fullmatch(r'/(?:en/)?work/(\d+)/', p)
         if m and m.group(1) not in ids and abs_url(p) not in changed:
@@ -1200,6 +1305,7 @@ def main():
     sm_changed = write_if_changed(os.path.join(out, 'sitemap.xml'), sitemap(entries))
 
     state = {'og': dict(sorted(new_og.items(), key=lambda kv: int(kv[0]))),
+             'thumbs': dict(sorted(new_th.items())),
              'pages': dict(sorted(new_pages.items()))}
     write_if_changed(state_path, json.dumps(state, ensure_ascii=False, indent=1) + '\n')
 
@@ -1207,7 +1313,7 @@ def main():
         with open(args.changed, 'w', encoding='utf-8') as f:
             f.write(''.join(u + '\n' for u in changed))
     print(f'работ: {len(works)}; alt-текстов: {len(ctx.alt)}; одобренных подписей: {len(ctx.desc)}; подборок: {len(ctx.cols)} ('
-          + ', '.join(f'{c["slug"]} {len(ws)}' for c, ws in ctx.cols) + f'); страниц записано: {written}; превью пересчитано: {og_made}; '
+          + ', '.join(f'{c["slug"]} {len(ws)}' for c, ws in ctx.cols) + f'); страниц записано: {written}; превью пересчитано: {og_made}; копий пересобрано: {th_made}; '
           f'удалено страниц: {removed}; sitemap.xml {"обновлён" if sm_changed else "без изменений"}; '
           f'изменённых адресов: {len(changed)}', file=sys.stderr)
     for u in changed:
