@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Instagram: план</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../../site/images/favicon-32.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 400;font-display:swap;src:url(../../site/fonts/cormorant-i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(../../site/fonts/cormorant-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(../../site/fonts/nunito-n-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --canvas:#F7F1E8;--paper:#FBF7F0;--line:#E4DBCD;
+  --navy:#4B6A8B;--navy-d:#2C3E5A;--burg:#8B4049;--gold:#B8955A;--gold-s:#DABB85;
+  --char:#2D2A26;--wg:#7D746A;--sel:#EEF2F6;--ok:#4F7A5A;--okbg:#EDF3EE;
+  --fd:'Cormorant Garamond',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--canvas);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--char);font-family:var(--fb);font-weight:300;font-size:17px;line-height:1.55;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:var(--navy-d);text-underline-offset:3px}
+b,strong{font-weight:500}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+p+p{margin-top:10px}
+
+/* верхняя строка */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px}
+#cnt{font:400 14px/1.2 var(--fb);color:var(--wg);font-variant-numeric:lining-nums tabular-nums}
+#cnt b{color:var(--navy-d)}
+.go{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font:500 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--burg);text-decoration:none;white-space:nowrap}
+.pb{height:3px;background:var(--line)}
+.pb i{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--burg));transition:width .25s}
+
+/* шапка */
+header{padding:34px 0 30px;border-bottom:1px solid var(--line)}
+.sig{width:min(190px,52vw);height:auto;margin-bottom:22px}
+.k{font:500 12px/1.3 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h1,h2,h3{font-family:var(--fd);font-weight:400;color:var(--navy-d);font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+h1{font-size:clamp(40px,9vw,64px);line-height:1.02;margin-bottom:18px}
+.lead{font-size:18px;color:#4a443d;max-width:680px}
+.lead+.lead{margin-top:12px}
+.sum{margin-top:24px;background:#fff;border:1px solid var(--gold-s);border-left:4px solid var(--gold);border-radius:4px;padding:18px 18px 20px}
+.sum h2{font-size:28px;line-height:1.1;margin-bottom:10px}
+.sum p{font-size:16.5px;color:#4a443d}
+.back{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font-size:16px}
+.muted{color:var(--wg);font-size:14.5px}
+
+/* словарик и оглавление */
+.gl{margin-top:20px;display:grid;grid-template-columns:1fr;gap:8px}
+.gl div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:15px;color:#4a443d}
+.gl b{color:var(--navy-d)}
+.toc{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.toc a{display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;background:#fff;border:1px solid var(--line);border-radius:40px;font-size:14.5px;font-weight:400;text-decoration:none;color:var(--navy-d)}
+.toc a span{color:var(--gold);font:italic 400 18px/1 var(--fd);margin-right:6px}
+@media (hover:hover){.toc a:hover{border-color:var(--gold-s)}}
+
+/* разделы */
+.sec{padding:40px 0 42px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
+.sec .n{font:italic 400 30px/1 var(--fd);color:var(--gold);margin-bottom:8px;font-variant-numeric:lining-nums;font-feature-settings:'lnum'}
+.sec h2{font-size:clamp(30px,6.4vw,42px);line-height:1.08;margin-bottom:10px}
+.sec h2 small{display:block;font:italic 400 .56em/1.3 var(--fd);color:var(--burg);margin-top:6px}
+.sec h3{font-size:clamp(23px,4.6vw,27px);line-height:1.15;margin:28px 0 10px}
+.sec>p,.sec .txt{font-size:16.5px;color:#4a443d;max-width:720px}
+.sec ul.dots{margin:10px 0 0 20px;font-size:16px;color:#4a443d;max-width:720px}
+.sec ul.dots li{padding:3px 0}
+sup a{font-size:12px;text-decoration:none;color:var(--gold);font-weight:500;padding:0 1px}
+
+/* шаги */
+ol.steps{list-style:none;counter-reset:st;margin-top:12px;max-width:720px}
+ol.steps>li{counter-increment:st;position:relative;padding:8px 0 10px 44px;font-size:16.5px;color:#3f3a34}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:7px;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--gold-s);color:var(--gold);font:italic 400 19px/28px var(--fd);text-align:center}
+.ui{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:5px;padding:0 6px;font-weight:400;color:var(--navy-d);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* случаи */
+.cases{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.case{background:#fff;border:1px solid var(--line);border-top:3px solid var(--line);padding:14px 16px 16px;border-radius:4px}
+.case h4{font:500 16px/1.3 var(--fb);color:var(--char);margin-bottom:6px}
+.case p{font-size:15.5px;color:#4a443d}
+.case.g{border-top-color:var(--ok)}.case.g h4{color:var(--ok)}
+.case.y{border-top-color:var(--gold)}.case.y h4{color:#7a6230}
+.case.r{border-top-color:var(--burg)}.case.r h4{color:var(--burg)}
+
+/* скрины */
+.shots{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+.shot{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.shot .i{flex:none;width:30px;height:30px;border-radius:6px;background:var(--sel);color:var(--navy-d);font:500 14px/30px var(--fb);text-align:center}
+.shot b{display:block;color:var(--navy-d);font-size:16px}
+.shot span{font-size:15px;color:#4a443d}
+
+/* блоки для копирования */
+.cb{margin-top:12px;background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;max-width:720px}
+.cb .h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 6px 14px;border-bottom:1px solid var(--line);background:#fff}
+.cb .h span{font:500 12px/1.3 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--wg);min-width:0}
+.cb pre{margin:0;padding:12px 14px 14px;font:400 15px/1.5 var(--fb);color:#3b3731;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.cp{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:6px 14px;border-radius:8px;border:1px solid var(--navy-d);background:var(--navy-d);color:#fff;font-size:14px;font-weight:500;white-space:nowrap}
+.cp.ok{background:var(--ok);border-color:var(--ok)}
+.cp:focus-visible,.btn:focus-visible,.chk input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.cbs{display:grid;grid-template-columns:1fr;gap:0}
+
+/* карточки форматов */
+.fmt{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.card{background:#fff;border:1px solid var(--line);padding:18px 18px 18px;border-radius:4px;position:relative}
+.card .q{font:500 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--sel);display:inline-block;padding:6px 9px;border-radius:3px;margin-bottom:10px}
+.card h3{margin:0 0 6px;font-size:26px}
+.card p,.card li{font-size:15.5px;color:#4a443d}
+.card ul{margin:6px 0 0 18px}
+.card ul li{padding:2px 0}
+.tip{margin-top:14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);padding:12px 14px;font-size:15.5px;color:#4a443d;max-width:720px;border-radius:0 4px 4px 0}
+.tip b{color:var(--navy-d)}
+.tip.w{border-left-color:var(--burg)}
+.tip.w b{color:var(--burg)}
+
+/* ролики */
+.reels{display:grid;grid-template-columns:1fr;gap:34px;margin-top:20px}
+.reel{min-width:0}
+.reel video{width:100%;max-width:320px;height:auto;aspect-ratio:9/16;background:#EFE7DA;border-radius:10px;margin:0 auto;box-shadow:0 18px 40px -24px rgba(45,42,38,.45)}
+.reel h3{margin:16px 0 4px;font-size:26px}
+.reel .meta{font-size:14px;color:var(--wg);margin-bottom:8px}
+.reel .what{font-size:15px;color:#4a443d}
+.reel .ov{font-size:15px;color:#4a443d;margin-top:6px}
+.reel .ov i{font-family:var(--fd);font-size:1.15em;color:var(--burg)}
+.reel .cb pre{font-size:14.5px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--navy-d);font-size:15.5px;font-weight:500;text-decoration:none}
+.btn.dk{background:var(--navy-d);border-color:var(--navy-d);color:#fff}
+.more6{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.more6 span{background:#fff;border:1px solid var(--line);border-radius:40px;padding:6px 14px;font-size:14.5px}
+
+/* журналы */
+.pubs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;max-width:720px}
+.pubs figure{min-width:0}
+.pubs img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:#EFE7DA}
+.pubs figcaption{font-size:12.5px;color:var(--wg);margin-top:4px;line-height:1.3}
+.who-l{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px;max-width:720px}
+.who-l a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:8px 14px;background:#fff;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--navy-d);font-weight:400}
+.who-l a i{font-style:normal;font-size:13.5px;color:var(--wg);text-align:right}
+
+/* не делать */
+ul.no{list-style:none;margin-top:12px;max-width:720px}
+ul.no li{position:relative;padding:8px 0 8px 32px;font-size:16px;color:#3f3a34;border-bottom:1px dashed var(--line)}
+ul.no li:last-child{border-bottom:0}
+ul.no li::before{content:"";position:absolute;left:4px;top:13px;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--burg)}
+ul.no li::after{content:"";position:absolute;left:7px;top:20px;width:10px;height:1.5px;background:var(--burg);transform:rotate(-45deg)}
+ul.no b{color:var(--burg)}
+
+/* недели */
+.weeks{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+.wk{background:#fff;border:1px solid var(--line);border-radius:6px;padding:16px 16px 10px}
+.wk .wh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.wk h3{margin:0;font-size:26px}
+.wk .d{font:500 12px/1.2 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.wk .wc{font-size:13.5px;color:var(--wg);white-space:nowrap}
+.chk{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-top:1px dashed var(--line);cursor:pointer;font-size:15.5px;line-height:1.4;color:#3f3a34}
+.chk input{position:absolute;opacity:0;width:1px;height:1px}
+.chk span.b{flex:none;width:22px;height:22px;margin-top:0;border:1.5px solid #b3a99c;border-radius:5px;background:#fff;transition:all .15s}
+.chk input:checked+span.b{border-color:var(--navy);background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.chk input:checked~span.t{color:var(--wg);text-decoration:line-through;text-decoration-color:rgba(125,116,106,.5)}
+.chk .t{min-width:0}
+.chk .t em{font-style:normal;font-size:13px;color:var(--wg);display:block;text-decoration:none}
+.tag{display:inline-block;font:500 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;padding:4px 6px;border-radius:3px;margin-right:6px;vertical-align:2px}
+.tag.m{color:var(--burg);background:#F6ECEC}
+.tag.d{color:var(--navy);background:var(--sel)}
+.reset{margin-top:14px;display:flex;justify-content:flex-end}
+.reset button{min-height:44px;background:none;border:0;padding:0 2px;font-size:14.5px;color:var(--wg);text-decoration:underline;text-underline-offset:3px}
+
+/* кто что делает */
+.two{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.two .card h3{font-size:26px}
+.card.m{border-top:3px solid var(--burg)}
+.card.d{border-top:3px solid var(--navy)}
+.nums{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.nums div{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.nums b{display:block;font:400 22px/1.2 var(--fd);color:var(--navy-d);margin-bottom:4px}
+.nums span{font-size:15px;color:#4a443d}
+
+/* сноски */
+.notes{padding:30px 0 10px}
+.notes h2{font-size:24px;margin-bottom:8px}
+.notes ol{margin-left:20px;font-size:14px;color:var(--wg);max-width:720px}
+.notes li{padding:3px 0;scroll-margin-top:60px}
+.notes li:target{color:var(--char);background:#F5EEDF}
+.end{padding:24px 0 6px;font-size:16px;color:#4a443d}
+.sign{text-align:center;font-size:11px;color:#a59c91;letter-spacing:.02em;padding:26px 0 22px;user-select:none}
+
+@media (min-width:560px){
+  .cases{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .who-l{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:760px){
+  body{font-size:18px}
+  header{padding:56px 0 44px}
+  .sec{padding:52px 0 54px}
+  .fmt{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reels{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+  .reel .cb pre{font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="top" role="status" aria-live="polite">
+  <div class="wrap"><span id="cnt">План на 4 недели: сделано <b>0</b> из 0</span><a class="go" href="#weeks">К плану</a></div>
+  <div class="pb"><i id="pb"></i></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <img class="sig" src="../../site/images/logo-signature.svg" alt="M. Polushkina" width="190" height="60">
+    <div class="k">artpolushkina · Instagram</div>
+    <h1>Instagram: план</h1>
+    <p class="lead">Мань, ты писала, что у новых картин по 16 лайков, а раньше было больше, и подозреваешь теневой бан. Я разобрался, что происходит, и собрал план на месяц. Он рассчитан на то, что снимать много ты сейчас не можешь: две публикации в неделю, ролики и тексты делаю я.</p>
+
+    <div class="sum">
+      <div class="k">Коротко</div>
+      <h2>Скорее всего, это не бан</h2>
+      <p>Instagram поменял правила. Теперь он показывает посты в основном тем, кто на тебя <b>ещё не подписан</b>, и решает, кому показать дальше, по тому, досматривают ли ролик, сохраняют ли его и пересылают ли друзьям. Даже подписчики видят не всё. А часть твоих подписчиков из России заходит реже: Instagram у нас открывается только через VPN. Красивое фото картины без движения сейчас набирает мало даже у сильных художников. Это не наказание, а новые правила.</p>
+      <p><b>Что предлагаю.</b> За 5 минут проверить, нет ли всё-таки ограничения. Чуть поправить профиль. Дальше месяц ровного ритма: один короткий ролик и один пост из нескольких фото в неделю, плюс Stories со ссылкой на картину на сайте. Первые три ролика из твоих анимаций уже готовы, они ниже. Главный рычаг - совместные посты с декораторами, которые снимают твои картины для журналов: тебя увидят их подписчики, а это ровно те люди, которые покупают картины в интерьер. Платной рекламы из России в Instagram нет, поэтому всё бесплатное, и никакие «сервисы продвижения» не нужны.</p>
+    </div>
+
+    <div class="gl" aria-label="Слова, которые встретятся">
+      <div><b>Reels</b> - короткий вертикальный ролик. Именно его Instagram охотнее всего показывает новым людям.</div>
+      <div><b>Карусель</b> - пост из нескольких фото, которые листают вбок.</div>
+      <div><b>Stories</b> - фото или видео, которые видны сутки. В них можно поставить ссылку.</div>
+      <div><b>Охват</b> - сколько разных людей увидели публикацию.</div>
+      <div><b>Collab, совместный пост</b> - один пост сразу в двух профилях, твоём и чужом.</div>
+      <div><b>Метка в ссылке</b> - хвост ссылки, по которому я вижу на сайте, что человек пришёл из Instagram.</div>
+    </div>
+
+    <nav class="toc" aria-label="Разделы">
+      <a href="#check"><span>1</span>Проверка</a>
+      <a href="#profile"><span>2</span>Профиль</a>
+      <a href="#post"><span>3</span>Что публиковать</a>
+      <a href="#reels"><span>4</span>Готовые ролики</a>
+      <a href="#collab"><span>5</span>Декораторы</a>
+      <a href="#buy"><span>6</span>Путь к покупке</a>
+      <a href="#no"><span>7</span>Чего не делать</a>
+      <a href="#weeks"><span>8</span>План на 4 недели</a>
+      <a href="#who"><span>9</span>Кто что делает</a>
+    </nav>
+    <a class="back" href="../">← К презентации о сайте</a>
+  </header>
+
+  <!-- 1. Проверка -->
+  <section class="sec" id="check">
+    <div class="n">1</div>
+    <h2>Сначала проверим<small>5 минут, один раз</small></h2>
+    <p>В Instagram есть экран, где прямо написано, ограничен аккаунт или нет. Догадываться не нужно.</p>
+
+    <h3>Статус аккаунта</h3>
+    <ol class="steps">
+      <li>Открой свой профиль: кружок с твоим фото внизу справа.</li>
+      <li>Нажми <span class="ui">☰</span> (три полоски) вверху справа. Откроется «Настройки и действия».</li>
+      <li>Пролистай вниз до <span class="ui">Статус аккаунта</span>. Быстрее так: вверху этого меню есть поиск, напиши в нём «статус».<sup><a href="#n1">1</a></sup></li>
+      <li>Внутри найди пункт про рекомендации, он называется «Что может быть рекомендовано» или похоже.</li>
+    </ol>
+    <div class="cases">
+      <div class="case g"><h4>Везде зелёные галочки</h4><p>Бана нет. Дело в формате, работаем по плану ниже.</p></div>
+      <div class="case y"><h4>«Ваш контент может не рекомендоваться»</h4><p>Там будет список постов. Если считаешь, что это ошибка, нажми «Запросить проверку». Если пост не жалко, удали. Обычно ограничение уходит, если около месяца нет новых нарушений.<sup><a href="#n2">2</a></sup> Пока ждём - без ню и без чужой музыки.</p></div>
+      <div class="case r"><h4>Ограничен весь аккаунт</h4><p>Например, «не показывается в поиске». Пришли скрин, разберём вместе. Пока не разберёмся, ролики не тратим, упор на совместные посты и Telegram.</p></div>
+    </div>
+
+    <h3>Тип аккаунта</h3>
+    <p>Посмотри под описанием профиля. Если там есть кнопка <span class="ui">Профессиональная панель</span>, всё хорошо, аккаунт уже профессиональный. Если кнопки нет:</p>
+    <ol class="steps">
+      <li><span class="ui">☰</span> → <span class="ui">Тип аккаунта и инструменты</span> → <span class="ui">Переключиться на профессиональный аккаунт</span>.</li>
+      <li>Выбери <span class="ui">Автор</span>, категорию «Художник». Это бесплатно, подписчики ничего не заметят.</li>
+    </ol>
+    <p class="txt muted">Без этого у аккаунта нет статистики, и мы не увидим, что работает.</p>
+
+    <h3>Какие скрины прислать мне</h3>
+    <div class="shots">
+      <div class="shot"><div class="i">1</div><div><b>Статус аккаунта</b><span>Сразу видно, есть ли ограничение и на какие посты.</span></div></div>
+      <div class="shot"><div class="i">2</div><div><b>Охват за 30 дней</b><span>«Профессиональная панель» → «Статистика». Нужна строка «подписчики / не подписчики»: так поймём, бан это или формат.</span></div></div>
+      <div class="shot"><div class="i">3</div><div><b>Аудитория</b><span>Города, страны, возраст и «самое активное время». По нему выберем часы публикаций и язык подписей.</span></div></div>
+      <div class="shot"><div class="i">4</div><div><b>Лучший контент</b><span>Публикации по охвату за 30 дней: что уже работает лучше - ролики, карусели или фото.</span></div></div>
+    </div>
+    <div class="row"><a class="btn dk" href="https://t.me/Dmitry_Khinkis" target="_blank" rel="noopener">Прислать скрины Диме в Telegram</a></div>
+  </section>
+
+  <!-- 2. Профиль -->
+  <section class="sec" id="profile">
+    <div class="n">2</div>
+    <h2>Что подправить в профиле<small>20 минут, тексты готовы</small></h2>
+    <p>Профиль - это витрина: человек пришёл с ролика и за пару секунд решает, подписаться ли и смотреть ли дальше. Всё правится в <span class="ui">Редактировать профиль</span>.</p>
+
+    <h3>Имя</h3>
+    <p>Instagram ищет по полю «Имя». Если в нём есть «художник, картины», тебя найдут и те, кто ищет картину, а не только те, кто знает тебя по имени. Имя можно менять не чаще двух раз за 14 дней, так что лучше сразу так:</p>
+    <div class="cb"><div class="h"><span>Имя</span><button class="cp" type="button">Скопировать</button></div><pre>Мария Полушкина | художник, картины</pre></div>
+
+    <h3>Описание</h3>
+    <p>До 150 знаков. Кто ты одной фразой и что делать дальше:</p>
+    <div class="cb"><div class="h"><span>Описание профиля</span><button class="cp" type="button">Скопировать</button></div><pre>Ироничная живопись. Холст, акрил
+Картины для интерьеров · Москва
+Цена и примерка на вашей стене - на сайте ↓</pre></div>
+
+    <h3>Ссылки</h3>
+    <p>Ссылку на сайт ты уже поставила, спасибо. Можно заменить её на такую же, но с меткой: тогда я увижу в статистике сайта, сколько людей пришло из профиля. Вторая ссылка - Telegram-канал (Instagram разрешает до пяти).</p>
+    <div class="cb"><div class="h"><span>Ссылка 1 · сайт</span><button class="cp" type="button">Скопировать</button></div><pre>https://artpolushkina.com/?utm_source=instagram&amp;utm_medium=bio</pre></div>
+    <div class="cb"><div class="h"><span>Ссылка 2 · Telegram</span><button class="cp" type="button">Скопировать</button></div><pre>https://t.me/artpolushkina</pre></div>
+    <div class="cb"><div class="h"><span>Название второй ссылки</span><button class="cp" type="button">Скопировать</button></div><pre>Новые картины первыми - в Telegram</pre></div>
+
+    <h3>Закреплённые посты</h3>
+    <p>Три поста, которые всегда стоят первыми в профиле. Закрепить: на посте <span class="ui">⋯</span> → <span class="ui">Закрепить в профиле</span>.</p>
+    <ul class="dots">
+      <li><b>«Кто я и как купить картину»</b> - карусель на первой неделе, текст ниже.</li>
+      <li><b>Лучший ролик</b> - тот из готовых, что наберёт больше всех.</li>
+      <li><b>Картины в интерьерах и журналах</b> - это доказательство для покупателя, что твои работы висят в настоящих домах.</li>
+    </ul>
+
+    <h3>Актуальное</h3>
+    <p>Кружки под описанием, в которых Stories хранятся навсегда. Хватит четырёх: <b>«В интерьере»</b>, <b>«Как купить»</b>, <b>«Мастерская»</b>, <b>«Журналы»</b>. Добавить: в профиле <span class="ui">+ Новое</span> под описанием, или в своей Stories кнопка <span class="ui">Выделить</span>.</p>
+
+    <h3>Пост «Кто я и как купить»</h3>
+    <p>Слайды: 1) ты рядом с картиной; 2-3) пара картин крупно; 4) картина в интерьере из журнала; 5) слайд с тремя шагами «как купить» - его нарисую я. Подпись поправь под себя:</p>
+    <div class="cb"><div class="h"><span>Подпись к посту</span><button class="cp" type="button">Скопировать</button></div><pre>Привет! Я Маша Полушкина, художник. Пишу картины, в которых всегда есть немного иронии 🙂
+⠀
+Как купить картину:
+1. Выберите на сайте artpolushkina.com - там все работы с ценой и размером. Кнопка «Примерить на стене» покажет картину у вас дома.
+2. Напишите мне в директ или в Telegram.
+3. Договоримся о доставке - по России и за границу.
+⠀
+Новые картины первыми - в Telegram: t.me/artpolushkina
+⠀
+#современноеискусство #ироничнаяживопись #картинавинтерьер #художникмосква #artforinterior</pre></div>
+  </section>
+
+  <!-- 3. Что публиковать -->
+  <section class="sec" id="post">
+    <div class="n">3</div>
+    <h2>Что и как часто публиковать<small>минимум, который работает</small></h2>
+    <p>Регулярность важнее количества: две публикации в неделю месяц подряд лучше, чем семь за неделю и потом месяц тишины.</p>
+    <div class="fmt">
+      <div class="card"><span class="q">1 в неделю</span><h3>Reels</h3><p>Ролик 8-15 секунд. Даёт новых людей.</p><ul><li>Первые три недели - готовые ролики из твоих анимаций (ниже).</li><li>Четвёртая - снять самой 7-10 секунд: телефон вертикально, медленно подойти к картине на стене. Или рука проводит по фактуре, или упаковка картины покупателю.</li></ul></div>
+      <div class="card"><span class="q">1 в неделю</span><h3>Карусель</h3><p>4-8 фото. Её сохраняют, и она лучше всего «продаёт» картину.</p><ul><li>картина целиком</li><li>деталь крупно</li><li>картина в интерьере</li><li>ты рядом, чтобы был виден размер</li><li>последний слайд: название, размер, «цена и примерка - ссылка в профиле»</li></ul></div>
+      <div class="card"><span class="q">3-4 раза в неделю</span><h3>Stories</h3><p>По 1-3 кадра, для тех, кто уже подписан, и для перехода на сайт.</p><ul><li>репост своего нового поста</li><li>кусочек мастерской</li><li>опрос «Какую повесить в спальню: 1 или 2?»</li><li>ссылка на страницу картины (раздел 6)</li></ul></div>
+    </div>
+    <div class="tip"><b>Когда.</b> Пока нет статистики - вечер буднего дня, 19:00-21:00 по Москве. Когда пришлёшь скрины, поставим точное время по твоей аудитории.</div>
+
+    <h3>Первые секунды ролика</h3>
+    <ul class="dots">
+      <li>Движение с первого кадра: без заставок, логотипа и чёрных секунд. Если в первые 2-3 секунды ничего не происходит, ролик пролистывают.</li>
+      <li>Картина крупно и в центре. Сверху и снизу ничего важного: там кнопки и подпись Instagram.</li>
+      <li>В конце - картина целиком, чтобы было ясно, что это настоящая работа.</li>
+      <li>Музыку добавляй в самом Instagram, из его библиотеки. Свою или скачанную не ставь: ролик могут заглушить.</li>
+      <li>По желанию 2-4 слова поверх, с шуткой, инструментом <span class="ui">Аа</span>. Варианты есть у каждого готового ролика.</li>
+    </ul>
+
+    <h3>Подпись к посту</h3>
+    <ul class="dots">
+      <li>Первая строка - зацепка или шутка в твоём духе: только её видно до «ещё».</li>
+      <li>Дальше название, техника, размер.</li>
+      <li>В конце - просьба, которую люди правда выполняют: «Перешлите тому, у кого есть стена под это» или «Сохраните, если выбираете картину в спальню». Пересылка - самый сильный сигнал для Instagram.</li>
+      <li>Ссылки в подписи не нажимаются, пиши «ссылка в профиле».</li>
+    </ul>
+
+    <h3>Хештеги: 3-5, не больше</h3>
+    <p>Хештег - слово с решёткой, по нему ищут похожее. Сейчас Instagram, по сообщениям, принимает не больше пяти,<sup><a href="#n3">3</a></sup> и одинаковый блок под каждым постом только вредит. Формула: 1-2 про жанр, 1-2 про интерьер и одно слово по сюжету. Три готовых набора, последний тег меняй под картину:</p>
+    <div class="cbs">
+      <div class="cb"><div class="h"><span>Набор 1 · жанр и интерьер</span><button class="cp" type="button">Скопировать</button></div><pre>#современноеискусство #ироничнаяживопись #картинавинтерьер #contemporaryart #artforinterior</pre></div>
+      <div class="cb"><div class="h"><span>Набор 2 · для интерьера</span><button class="cp" type="button">Скопировать</button></div><pre>#картинынастену #искусстводляинтерьера #художникмосква #interiorart #море</pre></div>
+      <div class="cb"><div class="h"><span>Набор 3 · для коллекционеров</span><button class="cp" type="button">Скопировать</button></div><pre>#живописьакрилом #картинавинтерьер #artcollector #figurativepainting #шампанское</pre></div>
+    </div>
+    <p class="txt muted" style="margin-top:10px">Слово по сюжету: #море, #шампанское, #новыйгод, #шляпа, #цветы и так далее.</p>
+  </section>
+
+  <!-- 4. Готовые ролики -->
+  <section class="sec" id="reels">
+    <div class="n">4</div>
+    <h2>Готовые ролики<small>три Reels из твоих анимаций</small></h2>
+    <p>Сделаны из тех же анимаций, что на сайте, но под вертикальный экран телефона. Начинаются сразу с движения, заканчиваются картиной как она есть. Музыки в них нет: её ты выберешь в Instagram, кнопкой <span class="ui">Добавить аудио</span> при публикации. Обложку можно выбрать там же (<span class="ui">Изменить обложку</span>) - последний кадр выглядит лучше всего.</p>
+
+    <div class="reels">
+      <article class="reel">
+        <video controls playsinline preload="metadata" poster="media/01-cheers-66-cover.jpg" width="1080" height="1920"><source src="media/01-cheers-66.mp4" type="video/mp4"></video>
+        <h3>CHEERS!</h3>
+        <div class="meta">9 секунд · неделя 1, пятница вечером</div>
+        <p class="what">Вылетает пробка, брызги, бокалы на кофтах наполняются и пустеют.</p>
+        <p class="ov">Текст поверх: <i>«Пятница, 19:00»</i></p>
+        <div class="cb"><div class="h"><span>Подпись</span><button class="cp" type="button">Скопировать</button></div><pre>Двое под одной бутылкой и три бокала на двоих. Кто-то явно пришёл со своим 🥂
+⠀
+CHEERS!
+Холст, акрил. 80х70 см.
+⠀
+Доступна! Цена и примерка на вашей стене - по ссылке в профиле.
+Перешлите тому, с кем у вас всегда есть повод 😉
+⠀
+#современноеискусство #ироничнаяживопись #картинавинтерьер #contemporaryart #artforinterior</pre></div>
+        <div class="row"><a class="btn" href="media/01-cheers-66.mp4" download="CHEERS-reels.mp4">Скачать ролик</a></div>
+      </article>
+
+      <article class="reel">
+        <video controls playsinline preload="metadata" poster="media/02-otbros-vsyo-58-cover.jpg" width="1080" height="1920"><source src="media/02-otbros-vsyo-58.mp4" type="video/mp4"></video>
+        <h3>Отбрось всё!</h3>
+        <div class="meta">11 секунд · неделя 2</div>
+        <p class="what">Прыжок с вышки, круги по воде, верх купальника улетает на вершину горы.</p>
+        <p class="ov">Текст поверх: <i>«Понедельник. Отбросить всё?»</i></p>
+        <div class="cb"><div class="h"><span>Подпись</span><button class="cp" type="button">Скопировать</button></div><pre>Иногда надо просто оттолкнуться и прыгнуть. Всё лишнее отлетит само - даже то, что казалось очень важным 🌊
+⠀
+ОТБРОСЬ ВСЁ!
+Холст, акрил. 80х60 см.
+⠀
+Доступна! Цена и примерка на вашей стене - по ссылке в профиле.
+Сохраните на понедельник 😉
+⠀
+#современноеискусство #живописьакрилом #картинавинтерьер #figurativepainting #море</pre></div>
+        <div class="row"><a class="btn" href="media/02-otbros-vsyo-58.mp4" download="Otbros-vsyo-reels.mp4">Скачать ролик</a></div>
+      </article>
+
+      <article class="reel">
+        <video controls playsinline preload="metadata" poster="media/03-v-predvkushenii-64-cover.jpg" width="1080" height="1920"><source src="media/03-v-predvkushenii-64.mp4" type="video/mp4"></video>
+        <h3>В предвкушении</h3>
+        <div class="meta">12 секунд · неделя 3, до Нового года</div>
+        <p class="what">Вечерняя версия: снег сыплется по комнате, загораются огоньки на ёлке. В конце проявляется настоящая, светлая картина, поэтому в подписи об этом строка.</p>
+        <p class="ov">Текст поверх: <i>«До Нового года - чуть-чуть»</i></p>
+        <div class="cb"><div class="h"><span>Подпись</span><button class="cp" type="button">Скопировать</button></div><pre>За окном снег, ёлка уже стоит, а праздник ещё где-то в пути. Самое сладкое время - время ожидания ✨
+В ролике картина ненадолго «зажгла свет» по-вечернему, а в конце - она такая, какая есть.
+⠀
+В ПРЕДВКУШЕНИИ
+Холст, акрил. 70х60 см.
+⠀
+Доступна! Цена и примерка на вашей стене - по ссылке в профиле.
+⠀
+#современноеискусство #картинавинтерьер #новыйгод #acrylicpainting #artforinterior</pre></div>
+        <div class="row"><a class="btn" href="media/03-v-predvkushenii-64.mp4" download="V-predvkushenii-reels.mp4">Скачать ролик</a></div>
+      </article>
+    </div>
+
+    <div class="tip"><b>На телефоне</b> «Скачать ролик» откроет видео: дальше <span class="ui">Поделиться</span> → <span class="ui">Сохранить видео</span>, и он окажется в галерее. Тот же файл выкладывай и в Telegram-канал.</div>
+    <div class="tip"><b>Если подписчиков больше 1000,</b> при публикации может быть переключатель «Пробный ролик». Такой ролик сначала покажут только тем, кто не подписан, и подписчики не увидят, если он не пойдёт. Удобно для проб.<sup><a href="#n4">4</a></sup></div>
+
+    <h3>Дальше - ещё шесть</h3>
+    <p>Оживлённых картин у нас девять. Если ролики будут обгонять карусели, сделаю такие же из остальных:</p>
+    <div class="more6"><span>Поплыли!</span><span>Последняя капля</span><span>Она ждала дождя</span><span>Через монокль</span><span>В унисон</span><span>You Can Leave Your Hat On</span></div>
+  </section>
+
+  <!-- 5. Декораторы -->
+  <section class="sec" id="collab">
+    <div class="n">5</div>
+    <h2>Главный рычаг - декораторы<small>совместные посты</small></h2>
+    <p><b>Совместный пост</b> (в Instagram он называется «Соавторство», по-английски Collab) - это один пост, который сразу появляется в двух профилях: у тебя и у декоратора. Лайки, комментарии и просмотры у него общие.</p>
+    <p>Почему это работает именно у тебя: твои картины уже висят в интерьерах, которые снимали для In My Room, My Decor, Salon, Elle Decor. У декораторов подписчики - люди, которые делают ремонт и думают, что повесить на стену. Это и есть твои покупатели. И это решает «в журналах автора не указывают»: в совместном посте твоё имя стоит на самом посте.</p>
+    <div class="pubs">
+      <figure><img src="../../site/images/pub-mydecor-2025.jpg" alt="Интерьер с картиной Марии Полушкиной, My Decor" loading="lazy" width="800" height="1000"><figcaption>My Decor, 2025</figcaption></figure>
+      <figure><img src="../../site/images/pub-salon-2025.jpg" alt="Интерьер с картиной Марии Полушкиной, Salon" loading="lazy" width="800" height="600"><figcaption>Salon, 2025</figcaption></figure>
+      <figure><img src="../../site/images/pub-elledecor-2026.jpg" alt="Интерьер с картинами Марии Полушкиной, Elle Decor" loading="lazy" width="800" height="600"><figcaption>Elle Decor, 2026</figcaption></figure>
+    </div>
+
+    <h3>Как сделать</h3>
+    <ol class="steps">
+      <li>Договориться с декоратором (текст сообщения ниже).</li>
+      <li>Кто-то из вас выкладывает фото интерьера с твоей картиной. При публикации: <span class="ui">Отметить людей</span> → <span class="ui">Пригласить соавтора</span> → выбрать второй профиль.</li>
+      <li>Второй принимает приглашение, и пост появляется у обоих.</li>
+      <li>Когда декоратор выкладывает Stories со съёмки, попроси отметить тебя, и сразу перепости.</li>
+    </ol>
+    <p class="txt muted">Соавторов, по сообщениям, можно добавить больше одного: например, декоратора и фотографа.<sup><a href="#n5">5</a></sup> Одного-двух совместных постов в месяц хватит: они дадут больше, чем десяток обычных.</p>
+
+    <h3>С кого начать</h3>
+    <p>Из твоего поста в Telegram от 2 ноября, про съёмку в @hihome.moscow:</p>
+    <div class="who-l">
+      <a href="https://www.instagram.com/nesestry.design/" target="_blank" rel="noopener">@nesestry.design <i>профиль ↗</i></a>
+      <a href="https://www.instagram.com/interio_msk/" target="_blank" rel="noopener">@interio_msk <i>профиль ↗</i></a>
+      <a href="https://www.instagram.com/anya.babenko/" target="_blank" rel="noopener">@anya.babenko <i>профиль ↗</i></a>
+      <a href="https://www.instagram.com/izzi.decor/" target="_blank" rel="noopener">@izzi.decor <i>профиль ↗</i></a>
+      <a href="https://www.instagram.com/maxiimov/" target="_blank" rel="noopener">@maxiimov <i>фотограф ↗</i></a>
+      <a href="https://www.instagram.com/hihome.moscow/" target="_blank" rel="noopener">@hihome.moscow <i>где вышла съёмка ↗</i></a>
+    </div>
+    <p class="txt" style="margin-top:12px">Остальных, кто брал твои картины для съёмок, назови мне просто по именам или по журналам - аккаунты найду сам и соберу список.</p>
+
+    <h3>Сообщение декоратору</h3>
+    <p>Это основа, пиши своими словами:</p>
+    <div class="cb"><div class="h"><span>Сообщение в директ</span><button class="cp" type="button">Скопировать</button></div><pre>Здравствуйте! Это Мария Полушкина, моя картина «…» была в вашей съёмке. Очень красиво получилось! Можно выложить фото совместным постом, чтобы он был и у вас, и у меня? Отмечу вас как автора интерьера. И если будете выкладывать Stories со съёмки, отметьте меня, пожалуйста, @artpolushkina, я с радостью перепощу.</pre></div>
+
+    <h3>Если журнал вышел без твоего имени</h3>
+    <p>Выложи карусель сама: страница журнала или фото интерьера, потом твоя картина крупно. Отметь декоратора и журнал. Для покупателя это лучшее доказательство, что твои картины выбирают для настоящих домов.</p>
+    <div class="cb"><div class="h"><span>Подпись, заполнить «…»</span><button class="cp" type="button">Скопировать</button></div><pre>Моя картина «…» в интерьере @… для журнала … ✨
+Спасибо за красивую съёмку!
+⠀
+«…»
+Холст, акрил. … см.
+Цена и примерка на вашей стене - по ссылке в профиле.
+⠀
+#картинавинтерьер #искусстводляинтерьера #современноеискусство #interiorart #artforinterior</pre></div>
+  </section>
+
+  <!-- 6. Путь к покупке -->
+  <section class="sec" id="buy">
+    <div class="n">6</div>
+    <h2>Путь к покупке<small>из Instagram на сайт</small></h2>
+    <p>У каждой картины на сайте своя страница с ценой, размером, кнопкой «Купить» и «Примерить на стене». В подписи к посту ссылки не нажимаются, а в Stories нажимаются. Поэтому в тот же вечер, что и пост, выкладывай Stories со ссылкой на эту картину.</p>
+
+    <h3>Как поставить ссылку в Stories</h3>
+    <ol class="steps">
+      <li>Создай Stories: кадр картины или кусочек ролика.</li>
+      <li>Вверху нажми значок стикеров (квадратик со смайликом) → <span class="ui">Ссылка</span>.</li>
+      <li>Вставь ссылку (ниже готовые).</li>
+      <li><span class="ui">Настроить текст стикера</span> → напиши «Цена и примерка».</li>
+      <li>Поставь стикер на видное место, но не в самый низ, там его закроют кнопки.</li>
+    </ol>
+    <p class="txt muted">По хвосту ссылки (метке) я вижу на сайте, что человек пришёл из Instagram и что он там делал. Для другой картины в ссылке меняются только два числа: номер работы после «work/» и в конце. Номер видно в адресе страницы картины на сайте, или спроси меня.</p>
+    <div class="cb"><div class="h"><span>CHEERS! · неделя 1</span><button class="cp" type="button">Скопировать</button></div><pre>https://artpolushkina.com/work/66/?utm_source=instagram&amp;utm_medium=stories&amp;utm_campaign=work66</pre></div>
+    <div class="cb"><div class="h"><span>Отбрось всё! · неделя 2</span><button class="cp" type="button">Скопировать</button></div><pre>https://artpolushkina.com/work/58/?utm_source=instagram&amp;utm_medium=stories&amp;utm_campaign=work58</pre></div>
+    <div class="cb"><div class="h"><span>В предвкушении · неделя 3</span><button class="cp" type="button">Скопировать</button></div><pre>https://artpolushkina.com/work/64/?utm_source=instagram&amp;utm_medium=stories&amp;utm_campaign=work64</pre></div>
+
+    <h3>Вместе с Telegram-каналом</h3>
+    <p>Многие покупатели в России без VPN, их дом - Telegram. Каждый ролик выкладывай и в канал t.me/artpolushkina: тот же файл, та же подпись, а ссылка на картину там нажимается. Для канала - своя метка:</p>
+    <div class="cb"><div class="h"><span>Ссылка для поста в канале · CHEERS!</span><button class="cp" type="button">Скопировать</button></div><pre>https://artpolushkina.com/work/66/?utm_source=telegram&amp;utm_medium=channel&amp;utm_campaign=work66</pre></div>
+    <ul class="dots">
+      <li>Раз в две недели в Instagram - Stories «Новые картины первыми - в Telegram» со ссылкой на канал.</li>
+      <li>В канале то, чего нет в Instagram: мастерская, откуда взялся сюжет, «картина уехала к новым хозяевам». Тогда есть смысл подписаться на оба.</li>
+      <li>Вопросы в директе - отвечать в тот же день. Для покупателя это главное, и Instagram это тоже замечает.</li>
+    </ul>
+  </section>
+
+  <!-- 7. Чего не делать -->
+  <section class="sec" id="no">
+    <div class="n">7</div>
+    <h2>Чего не делать<small>частые причины ограничений</small></h2>
+    <ul class="no">
+      <li><b>Не покупать</b> лайки, подписчиков и «живые охваты», не подключать сервисы автолайков и автоподписок, никому не давать пароль «для продвижения».</li>
+      <li><b>Не ставить</b> один и тот же блок из 20-30 хештегов под каждый пост.</li>
+      <li><b>Не выкладывать</b> ролики с водяным знаком TikTok или CapCut и чужие видео: Instagram прячет неоригинальное.</li>
+      <li><b>Не удалять и не перезаливать</b> пост, если он «плохо пошёл». Лучше выложить новый.</li>
+      <li><b>Не ставить</b> свою или скачанную музыку в ролики, только из библиотеки Instagram.</li>
+      <li><b>Картины с ню</b> - в карусели, не в ролики, пока не ясен статус аккаунта.<sup><a href="#n6">6</a></sup></li>
+      <li><b>Не чистить</b> подписчиков массово, даже если много «мёртвых»: это тоже выглядит подозрительно.</li>
+    </ul>
+  </section>
+
+  <!-- 8. План -->
+  <section class="sec" id="weeks">
+    <div class="n">8</div>
+    <h2>План на 4 недели<small>отмечай, что сделано</small></h2>
+    <p>Галочки сохраняются в этом браузере. Пометка <span class="tag m">ты</span> - твоё, <span class="tag d">я</span> - моё.</p>
+    <div class="weeks" id="wk"></div>
+    <div class="reset"><button type="button" id="resetBtn">Снять все галочки</button></div>
+  </section>
+
+  <!-- 9. Кто что делает -->
+  <section class="sec" id="who">
+    <div class="n">9</div>
+    <h2>Кто что делает</h2>
+    <div class="two">
+      <div class="card m"><h3>Ты</h3><ul>
+        <li>Один раз: проверка статуса, скрины, правка профиля.</li>
+        <li>Каждую неделю: выложить ролик и карусель (тексты готовы), 3-4 Stories.</li>
+        <li>Написать 2-3 декораторам, текст готов.</li>
+        <li>Отвечать в директе в тот же день.</li>
+        <li>Раз в месяц - скрины статистики.</li>
+      </ul></div>
+      <div class="card d"><h3>Я</h3><ul>
+        <li>Ролики из анимаций и подписи к ним.</li>
+        <li>Слайд «Как купить» и тексты к каруселям.</li>
+        <li>Ссылки с метками для каждой картины.</li>
+        <li>Список декораторов и их аккаунтов.</li>
+        <li>Раз в месяц - разбор статистики Instagram и сайта в отчёте, и что поменять.</li>
+      </ul></div>
+    </div>
+
+    <h3>Как поймём, что работает</h3>
+    <p>Через месяц сравним с сегодняшними скринами. Лайки смотрим в последнюю очередь: они могут оставаться скромными, даже когда растут продажи.</p>
+    <div class="nums">
+      <div><b>Новые люди у роликов</b><span>Доля просмотров от тех, кто не подписан. Главный знак, что бана нет и Instagram показывает тебя новым людям.</span></div>
+      <div><b>Пересылки и сохранения</b><span>Важнее лайков: это и интерес, и сигнал Instagram показывать дальше.</span></div>
+      <div><b>Посещения профиля и нажатия на ссылку</b><span>Видно в статистике Instagram.</span></div>
+      <div><b>Переходы на сайт и «Купить»</b><span>Смотрю я: сколько людей пришло из Instagram и Telegram, нажимали ли «Купить» и «Примерить».</span></div>
+    </div>
+  </section>
+
+  <section class="notes" aria-label="Сноски">
+    <h2>Что не подтверждено официально</h2>
+    <ol>
+      <li id="n1">Место пункта «Статус аккаунта» меняется от версии приложения, названия пунктов могут чуть отличаться.</li>
+      <li id="n2">«Около месяца» - по сообщениям пользователей, сам Instagram срок не называет.</li>
+      <li id="n3">Предел в пять хештегов - по сообщениям изданий с конца 2025 года, в справке Instagram числа нет. Больше пяти ставить в любом случае незачем.</li>
+      <li id="n4">«Пробный ролик» для аккаунтов от 1000 подписчиков - по обзорам 2025-2026 годов, в твоём приложении не проверено.</li>
+      <li id="n5">Сколько соавторов можно добавить сейчас, точно не знаем: раньше был один, по сообщениям - до пяти.</li>
+      <li id="n6">Правилами ню разрешено, но как оно влияет на показ новым людям, Instagram не говорит. Пока статус не ясен, осторожничаем.</li>
+    </ol>
+  </section>
+
+  <p class="end">Если что-то непонятно или неудобно - пиши, поправим план под тебя.</p>
+  <a class="back" href="../">← К презентации о сайте</a>
+
+  <div class="sign">Made by Dmitry Khinkis</div>
+</div>
+
+<script>
+(function(){
+  /* план по неделям */
+  var W=[
+    {n:'Неделя 1',d:'25.11 - 1.12',it:[
+      ['w1a','m','Проверить «Статус аккаунта» и тип аккаунта','раздел 1'],
+      ['w1b','m','Прислать Диме скрины: статус и статистика за 30 дней',''],
+      ['w1c','m','Поправить имя, описание и ссылки в профиле','тексты в разделе 2'],
+      ['w1d','m','Ролик CHEERS! в пятницу, 19:00-21:00','и тот же файл в Telegram-канал'],
+      ['w1e','m','Stories со ссылкой на CHEERS! в тот же вечер',''],
+      ['w1f','m','Карусель «Кто я и как купить» и закрепить её','слайд с шагами пришлю'],
+      ['w1g','m','Stories-опрос «Какую повесить в спальню: 1 или 2?»',''],
+      ['w1h','d','Слайд «Как купить» для карусели','']
+    ]},
+    {n:'Неделя 2',d:'2 - 8.12',it:[
+      ['w2a','m','Ролик «Отбрось всё!»','и в Telegram-канал'],
+      ['w2b','m','Stories со ссылкой на «Отбрось всё!»',''],
+      ['w2c','m','Написать 2-3 декораторам про совместный пост','текст в разделе 5'],
+      ['w2d','m','Карусель: картина в интерьере, первый совместный пост',''],
+      ['w2e','m','Stories из мастерской, 1-2 кадра',''],
+      ['w2f','d','Разбор скринов и правка плана под твою аудиторию','']
+    ]},
+    {n:'Неделя 3',d:'9 - 15.12',it:[
+      ['w3a','m','Ролик «В предвкушении»','до Нового года самое время'],
+      ['w3b','m','Stories со ссылкой на «В предвкушении»',''],
+      ['w3c','m','Карусель «Картина в подарок»: 3-4 работы с размерами и ценой','подберу работы и текст'],
+      ['w3d','m','Stories «Новые картины первыми - в Telegram»',''],
+      ['w3e','d','Следующие ролики из анимаций, если первые пошли','']
+    ]},
+    {n:'Неделя 4',d:'16 - 22.12',it:[
+      ['w4a','m','Снять ролик 7-10 секунд: медленно подойти к картине на стене','телефон вертикально'],
+      ['w4b','m','Карусель: съёмка или журнал с твоей картиной, отметить декоратора',''],
+      ['w4c','m','Stories: итоги года, отзывы покупателей с их согласия',''],
+      ['w4d','m','Скрины статистики за месяц Диме',''],
+      ['w4e','d','Отчёт: что сработало и план на январь','']
+    ]}
+  ];
+  var KEY='mp_i1', S={};
+  try{ S=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ S={}; }
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+  var box=document.getElementById('wk'), total=0;
+  W.forEach(function(w){
+    var el=document.createElement('div'); el.className='wk';
+    var h='<div class="wh"><h3>'+w.n+'</h3><span class="d">'+w.d+'</span></div><div class="wc"></div>';
+    w.it.forEach(function(t){
+      total++;
+      h+='<label class="chk"><input type="checkbox" data-id="'+t[0]+'"'+(S[t[0]]?' checked':'')+'><span class="b"></span><span class="t"><span class="tag '+t[1]+'">'+(t[1]==='m'?'ты':'я')+'</span>'+t[2]+(t[3]?'<em>'+t[3]+'</em>':'')+'</span></label>';
+    });
+    el.innerHTML=h; box.appendChild(el);
+  });
+  function upd(){
+    var all=box.querySelectorAll('input'), done=0;
+    for(var i=0;i<all.length;i++) if(all[i].checked) done++;
+    document.getElementById('cnt').innerHTML='План на 4 недели: сделано <b>'+done+'</b> из '+all.length;
+    document.getElementById('pb').style.width=(all.length?done*100/all.length:0)+'%';
+    var wks=box.querySelectorAll('.wk');
+    for(var j=0;j<wks.length;j++){
+      var a=wks[j].querySelectorAll('input'),c=0;
+      for(var k=0;k<a.length;k++) if(a[k].checked) c++;
+      wks[j].querySelector('.wc').textContent=c+' из '+a.length;
+    }
+  }
+  box.addEventListener('change',function(e){
+    var t=e.target; if(!t.dataset||!t.dataset.id) return;
+    if(t.checked) S[t.dataset.id]=1; else delete S[t.dataset.id];
+    save(); upd();
+  });
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    if(!confirm('Снять все галочки?')) return;
+    S={}; save();
+    var a=box.querySelectorAll('input'); for(var i=0;i<a.length;i++) a[i].checked=false;
+    upd();
+  });
+  upd();
+
+  /* копирование */
+  function legacyCopy(text){
+    var t=document.createElement('textarea'); t.value=text; t.setAttribute('readonly','');
+    t.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+    document.body.appendChild(t); var ok=false;
+    try{ t.focus(); t.select(); t.setSelectionRange(0,text.length); ok=document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(t); return ok;
+  }
+  function copy(text,done){
+    try{
+      if(navigator.clipboard&&window.isSecureContext){
+        navigator.clipboard.writeText(text).then(function(){done(true);},function(){done(legacyCopy(text));});
+        return;
+      }
+    }catch(e){}
+    done(legacyCopy(text));
+  }
+  function selectPre(pre){
+    try{ var r=document.createRange(); r.selectNodeContents(pre); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.cp'); if(!b) return;
+    var pre=b.closest('.cb').querySelector('pre'), text=pre.textContent;
+    copy(text,function(ok){
+      clearTimeout(b._t);
+      if(ok){ b.textContent='Скопировано ✓'; b.classList.add('ok'); }
+      else { b.textContent='Выделено, скопируй'; selectPre(pre); }
+      b._t=setTimeout(function(){ b.textContent='Скопировать'; b.classList.remove('ok'); },1800);
+    });
+  });
+})();
+</script>
+</body>
+</html>
